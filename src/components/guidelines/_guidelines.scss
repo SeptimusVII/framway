@@ -1,8 +1,0 @@
-.guidelines{
-	.classTag{font-size: 0.9em; margin-left: 0.5rem; opacity: 0.7;
-		&:before{content: '[';}
-		&:after{content: ']';}
-	}
-
-	.tabs .tabs__nav button:first-child:last-child{display: none;}
-}
