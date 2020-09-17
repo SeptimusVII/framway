@@ -1,0 +1,43 @@
+/* FUSE UTILITY COLORS */
+$colors : map-merge($colors, ("primary": $primary));
+$colors : map-merge($colors, ("secondary": $secondary));
+$colors : map-merge($colors, ("tertiary": $tertiary));
+
+$colors : map-merge($colors, ("success": $success));
+$colors : map-merge($colors, ("info": $info));
+$colors : map-merge($colors, ("warning": $warning));
+$colors : map-merge($colors, ("error": $error));
+
+
+/* RESET & GLOBAL PAGE STYLE */
+html{overflow-x: hidden; font-size: body(font-size); 
+	@each $key, $value in $breakpoints{
+  		@include media-max($key){font-size: body("font-size-#{$key}");}
+	}
+}
+body {background: body(background);color:body(font-color); line-height: body(line-height); }
+:focus{outline: 0;}
+
+
+/* IMPORTS */
+@import 'partials/utilities';
+@import 'partials/spacings';
+@import 'partials/backgrounds';
+@import 'partials/borders';
+@import 'partials/tables';
+@import 'partials/texts';
+@import 'partials/fonts';
+@import 'partials/images';
+@import 'partials/buttons';
+@import 'partials/inputs';
+@import 'partials/flex';
+@import 'partials/grid';
+@import 'partials/fx';
+@import 'partials/misc';
+
+
+/* DEBUG */
+// @each $key, $value in $colors{
+    // @debug btn(font-color);
+    // @debug contrastFW( #ffffff, #BC008D);
+// }

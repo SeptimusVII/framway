@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body>
+	<div class="container p-y">
+		<div class="tabs" id="framway__backstage">
+			<div class="tabs__nav">
+				<button data-framnav="dashboard" class="btn-bg-primary ">DASHBOARD</button>
+				<button data-framnav="guidelines" class="btn-bg-primary ">GUIDELINES</button>
+				<button data-framnav="documentation" class="btn-bg-primary ">DOCUMENTATION</button>
+				<button data-framnav="factory" class="btn-bg-primary">FACTORY</button>
+			</div>
+			<div class="tabs__content">
+				<div class="tab"><div class="dashboard"></div></div>
+				<div class="tab"><div class="guidelines"></div></div>
+				<div class="tab"><div class="documentation"></div></div>
+				<div class="tab"><div class="factory"></div></div>
+			</div>
+		</div>
+	</div>
+	<script src="http://localhost:35729/livereload.js" async></script>
+</body>

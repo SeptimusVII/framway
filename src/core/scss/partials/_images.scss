@@ -1,0 +1,80 @@
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+/* IMAGES EFFECTS */
+img{ max-width: 100%; height: auto;
+  .zoomin &, &.zoomin,
+  .zoomout &, &.zoomout,
+  .fadetogrey &, &.fadetogrey,
+  .fadetocolor &, &.fadetocolor
+  {transition: all 0.6s; outline: 1px solid transparent;}
+
+  .zoomin &,
+  &.zoomin{transform: scale3d(1,1,1);}
+  .zoomin:hover &,
+  &.zoomin:hover{transform: scale3d(1.2,1.2,1.2);}
+
+  .zoomout &,
+  &.zoomout{transform: scale3d(1.2,1.2,1.2);}
+  .zoomout:hover &,
+  &.zoomout:hover{transform: scale3d(1,1,1);}
+
+  .fadetocolor &,
+  &.fadetocolor{filter: grayscale(100%);}
+  .fadetocolor:hover &,
+  &.fadetocolor:hover{filter: grayscale(0%);}
+
+  .fadetogrey &,
+  &.fadetogrey {filter: grayscale(0%);}
+  .fadetogrey:hover &,
+  &.fadetogrey:hover {filter: grayscale(100%);}
+}
+
+$ratios : (
+  '16-9': 56.25,
+  '2-1' : 50,
+  '1-1' : 100,
+  '1-2' : 200,
+  '4-3' : 75,
+);
+
+%img-container{position: relative; overflow: hidden; @include flex-grow();max-width: 100%;
+  &:not([class*=w-]){  width: 100%; }
+  & img{height: 100%; width: 100%; object-fit: cover;
+    pointer-events: none;
+  }
+  &[class*="r_"],
+  *[class*="r_"] &{
+    &:before{content: ""; width: 1px; margin-left: -1px; float: left; height: 0; padding-top: 100%;}
+    &:after {content: ""; display: table; clear: both;}
+    & img{width: 100%; height: 100%;object-fit: cover; position: absolute; left: 0; top: 0;}
+  }
+  @each $side_1 in $sides {
+    @if $side_1 == 'left' or $side_1 == 'right' {
+      &[class*="r_"].img--#{$side_1} img,
+      *[class*="r_"].img--#{$side_1} & img{ object-fit: cover; object-position:#{$side_1}; }
+      @each $side_2 in $sides {
+        @if $side_2 == 'top' or $side_2 == 'bottom' {
+          &[class*="r_"].img--#{$side_2} img,
+          *[class*="r_"].img--#{$side_2} & img{ object-fit: cover; object-position:#{$side_2}; }
+          &[class*="r_"].img--#{$side_1}.img--#{$side_2} img,
+          *[class*="r_"].img--#{$side_1}.img--#{$side_2} & img{ object-fit: cover; object-position:#{$side_1+' '+$side_2}; }
+        }
+      }
+    }
+  }
+  @each $key, $value in $ratios {
+    .r_#{$key} &:before,&.r_#{$key}:before{padding-top: #{$value+'%'};}
+  }
+}
+@each $key, $value in $ratios {
+  .r_#{$key}{@extend [class*="r_"];}
+}
+
+.img-container{@extend %img-container;}
+
+/* IMAGES STYLING */
+img.fl-left,
+// .fl-left>img:first-child:last-child{margin-right: $spacing;}
+.fl-left>img:first-child:last-child{margin: 0 body(line-height)*1em $spacing 0;}
+img.fl-right,
+// .fl-right>img:first-child:last-child{margin-left: $spacing;}
+.fl-right>img:first-child:last-child{margin: 0 0 $spacing body(line-height)*1em;}

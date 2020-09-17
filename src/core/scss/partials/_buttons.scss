@@ -1,0 +1,171 @@
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+// BUTTONS
+$exclude : "";
+@if (btn(exclude)){
+  @each $part in btn(exclude){
+    // @warn $part;
+    $exclude : $exclude+':not('+$part+')';
+  }
+}
+// @warn "EXCLUDE = "+$exclude;
+
+.btn#{$exclude}{
+  display: inline-block;
+  text-align: center;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  padding: .5em 1.6em .55em;
+  font-size: 1em;
+  line-height: 1.5em;
+  border-radius: 0;
+  @if btn(radius) == true{
+    border-radius: $radius;
+  }
+  text-transform: none;
+  @if btn(uppercase) == true{
+    text-transform: uppercase;
+  }
+  font-weight: 400;
+  @if btn(font-weight){
+    font-weight: btn(font-weight);
+  }
+  outline: none;
+  border: btn(border-size) solid btn(background);
+  background-color: btn(background);
+  color: btn(font-color);
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  @include transition(all .2s ease-in-out);
+  &:focus{ outline: none; box-shadow: none;}
+  &:hover,&:focus,&:active,&.active{
+      text-decoration: none;
+      @if lightness(btn(background)) > 60{
+        color: contrastFW(btn(font-color),scale-color(btn(background),$lightness:-5));
+        background-color: scale-color(btn(background),$lightness:-15);
+        border-color: scale-color(btn(background),$lightness:-15);
+      }
+      @else{
+        color: contrastFW(btn(font-color),scale-color(btn(background),$lightness:5));
+        background-color: scale-color(btn(background),$lightness:15);
+        border-color: scale-color(btn(background),$lightness:15);
+      }
+    }
+  &>a{padding: .5em 1.6em .55em; margin: -.5em -1.6em -.55em;}
+  &.center{display: block;}
+  [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;}
+}
+
+.btn#{$exclude}{
+  &[class*="icon-"]{display: flex;align-items: center; padding-left: 0.6em; padding-right: 0.6em;
+    & i[class*="fa"],
+    & svg{min-width: 1em;}
+    @each $key, $value in $breakpoints{
+      & .hidden-#{$key}{
+        @include media-max($key){
+          &+i[class*="fa"],
+          &+svg{ margin: 0;}
+        }
+      }
+    }
+  }
+  &.icon-first{
+    & i[class*="fa"],
+    & svg{margin: 0 0.6em 0 0 ; order: -1;}
+  }
+  &.icon-last {
+    & i[class*="fa"],
+    & svg{margin: 0 0 0 0.6em; order: 1;}
+  }
+}
+
+*.btn-sm#{$exclude}{@extend .btn;
+  font-size: .8em; padding: .4em 1.2em .5em;
+  &>a{padding: .4em 1.2em .5em; margin: -.4em -1.2em -.5em;}
+}
+*.btn-lg#{$exclude}{@extend .btn;
+  font-size: 1.25em; padding: .6em 1.7em .65em;
+  &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
+}
+
+
+@each $key, $value in $colors{
+  .btn-bd-#{$key}#{$exclude}{
+    border-color: $value;
+    @if $value != transparent{color: $value; }
+    @else{color: contrastFW(btn(font-color),$value); }
+    background-color: transparent;
+    &:hover,&:active,&.active{
+      border-color: $value;
+      background: $value;
+      text-decoration: none;
+      color: contrastFW(btn(font-color),$value);
+    }
+    &:focus{
+      // color: $value;
+      &:hover,&:active,&.active{
+        color: contrastFW(btn(font-color),$value);
+        @if lightness($value) > 60{
+          color: contrastFW(btn(font-color),scale-color($value,$lightness:-5));
+          background-color: scale-color($value,$lightness:-15);
+          border-color: scale-color($value,$lightness:-15);
+        }
+        @else{
+          color: contrastFW(btn(font-color),scale-color($value,$lightness:5));
+          background-color: scale-color($value,$lightness:15);
+          border-color: scale-color($value,$lightness:15);
+        }
+      }
+    }
+  }
+  .btn-bg-#{$key}#{$exclude}{
+    border-color: $value;
+    background-color: $value;
+    color: contrastFW(btn(font-color),$value);
+    &:hover,&:focus,&:active,&.active{
+      text-decoration: none;
+      @if lightness($value) > 60{
+        color: contrastFW(btn(font-color),scale-color($value,$lightness:-5));
+        background-color: scale-color($value,$lightness:-15);
+        border-color: scale-color($value,$lightness:-15);
+      }
+      @else{
+        color: contrastFW(btn(font-color),scale-color($value,$lightness:5));
+        background-color: scale-color($value,$lightness:15);
+        border-color: scale-color($value,$lightness:15);
+      }
+    }
+  }
+}
+
+// button:not([class*="btn-bg"]):not([class*="btn-bd"]):not([class*="toast"]),
+*[class*=btn-bd-],
+*[class*=btn-bg-],
+input[type="submit"],
+input[type="button"],
+button{@extend .btn;}
+// button,
+// *[class*="btn"]{@extend .btn;}
+
+input[type="submit"].btn-sm,
+input[type="button"].btn-sm,
+button.btn-sm{@extend .btn-sm;}
+
+input[type="submit"].btn-lg,
+input[type="button"].btn-lg,
+button.btn-lg{@extend .btn-lg;}
+
+// @if btn(extend) != '' {
+//   input[type="submit"]:not([class*="btn-bg"]):not([class*="btn-bd"]),
+//   input[type="button"]:not([class*="btn-bg"]):not([class*="btn-bd"]),
+//   button:not([class*="btn-bg"]):not([class*="btn-bd"]):not([class*="toast"]),
+//   *[class*="btn"]:not([class*="btn-bg"]):not([class*="btn-bd"]){@extend #{btn(extend)} !optional;}
+// }

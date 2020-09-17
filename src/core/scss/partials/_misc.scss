@@ -1,0 +1,9 @@
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+// MISCS
+#toast-container>div{box-shadow: none;}
+
+pre{background: color(blacklight); color: color(white); padding: $spacing/2; border-radius: $radius; font-size: 0.8em; margin-bottom: $spacing;}
+pre code{display: block; position: static;}
+pre .copy{position: absolute; right: $spacing; @extend .btn-sm;}
+
+iframe{max-width:100%;}

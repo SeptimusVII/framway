@@ -1,0 +1,20 @@
+.documentation{
+	.tag {
+		background: #fff;
+		border: 1px solid #ddd;
+		display: inline-block;
+		padding: 5px 8px;
+		height: auto;
+		margin: 2.5px;
+		border-radius: 0.3em;
+		font-style: normal;
+		text-transform: none;
+		text-decoration: none;
+		color: inherit;
+		font-family: monospace;
+		font-size: 0.9em;
+	}
+	pre.tag{overflow: visible; white-space: normal;}
+	.table-responsive .table{width: auto; min-width: 100%;}
+	.table.block-std{border: 0;}
+}

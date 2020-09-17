@@ -1,0 +1,202 @@
+table.layout-fixed{table-layout: fixed;}
+
+
+// Tables
+//
+// Customizes the `.table` component with basic values, each used across all table variations.
+
+$table-cell-padding:          .75rem !default;
+$table-cell-padding-sm:       .3rem !default;
+
+$table-color:                 body(font-color) !default;
+$table-bg:                    null !default;
+$table-accent-bg:             rgba(#000, .05) !default;
+$table-hover-color:           $table-color !default;
+$table-hover-bg:              rgba(#000, .075) !default;
+$table-active-bg:             $table-hover-bg !default;
+
+$table-border-width:          1px !default;
+$table-border-color:          #DDDDDD !default;
+
+$table-head-bg:               #DDDDDD !default;
+$table-head-color:            #535052 !default;
+
+$table-dark-color:            #fff !default;
+$table-dark-bg:               #424041 !default;
+$table-dark-accent-bg:        rgba(#fff, .05) !default;
+$table-dark-hover-color:      $table-dark-color !default;
+$table-dark-hover-bg:         rgba(#fff, .075) !default;
+$table-dark-border-color:     lighten($table-dark-bg, 7.5%) !default;
+
+$table-striped-order:         odd !default;
+
+$table-caption-color:         #DDDDDD !default;
+
+$table-bg-level:              -9 !default;
+$table-border-level:          -6 !default;
+
+//
+// Basic Bootstrap table
+//
+
+.table {
+  width: 100%;
+  margin-bottom: $spacing;
+  color: $table-color;
+  background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border-top: $table-border-width solid $table-border-color;
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+}
+
+
+//
+// Condensed table w/ half padding
+//
+
+.table-sm {
+  th,
+  td {
+    padding: $table-cell-padding-sm;
+  }
+}
+
+
+// Border versions
+//
+// Add or remove borders all around the table and between all the columns.
+
+.table-bordered {
+  border: $table-border-width solid $table-border-color;
+
+  th,
+  td {
+    border: $table-border-width solid $table-border-color;
+  }
+
+  thead {
+    th,
+    td {
+      border-bottom-width: 2 * $table-border-width;
+    }
+  }
+}
+
+.table-borderless {
+  th,
+  td,
+  thead th,
+  tbody + tbody {
+    border: 0;
+  }
+}
+
+// Zebra-striping
+//
+// Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+.table-striped {
+  tbody tr:nth-of-type(#{$table-striped-order}) {
+    background-color: $table-accent-bg;
+  }
+}
+
+
+// Hover effect
+//
+// Placed here since it has to come after the potential zebra striping
+
+.table-hover {
+  tbody tr {
+    &:hover {
+      color: $table-hover-color;
+      background-color: $table-hover-bg;
+    }
+  }
+}
+
+
+// Table backgrounds
+//
+// Exact selectors below required to override `.table-striped` and prevent
+// inheritance to nested tables.
+
+
+
+
+// Dark styles
+//
+// Same table markup, but inverted color scheme: dark background and light text.
+
+// stylelint-disable-next-line no-duplicate-selectors
+.table {
+  .thead-dark {
+    th {
+      color: $table-dark-color;
+      background-color: $table-dark-bg;
+      border-color: $table-dark-border-color;
+    }
+  }
+
+  .thead-light {
+    th {
+      color: $table-head-color;
+      background-color: $table-head-bg;
+      border-color: $table-border-color;
+    }
+  }
+}
+
+.table-dark {
+  color: $table-dark-color;
+  background-color: $table-dark-bg;
+
+  th,
+  td,
+  thead th {
+    border-color: $table-dark-border-color;
+  }
+
+  &.table-bordered {
+    border: 0;
+  }
+
+  &.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+      background-color: $table-dark-accent-bg;
+    }
+  }
+
+  &.table-hover {
+    tbody tr {
+      &:hover {
+        color: $table-dark-hover-color;
+        background-color: $table-dark-hover-bg;
+      }
+    }
+  }
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &:not(:last-child){margin-bottom: $spacing;}
+  &>.table{margin-bottom: 0;}
+}
+
+
