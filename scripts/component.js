@@ -1,8 +1,9 @@
 var shell = require('shelljs');
 var fs = require('fs-extra');
-var name = process.argv[2] || false;
-var cmd  = process.argv[3] || 'create';
-var org  = '';
+var name        = process.argv[2] || false;
+var cmd         = process.argv[3] || 'create';
+var createGit   = process.argv[4] || false;
+var org         = '';
 
 if (name.split('/').length > 1) {
     org  = name.split('/')[0];
@@ -65,11 +66,12 @@ var createComponent = function(){
 }`
             );
             fs.appendFileSync('./src/components/'+name+'/sample.html','<div class="'+name+'"></div>');
-
-            if(!org)
-                shell.exec('node scripts/git-create.js component '+name);
-            else      
-                shell.exec('node scripts/git-create.js component '+name+' '+org);
+            if (createGit) {
+                if(!org)
+                    shell.exec('node scripts/git-create.js component '+name);
+                else      
+                    shell.exec('node scripts/git-create.js component '+name+' '+org);
+            }
         }
     });
 };

@@ -2,6 +2,7 @@ var shell = require('shelljs');
 var fs = require('fs-extra');
 var name = process.argv[2] || false;
 var cmd  = process.argv[3] || 'create';
+var createGit   = process.argv[4] || false;
 var org  = '';
 
 if (name.split('/').length > 1) {
@@ -40,14 +41,17 @@ var createTheme = function(){
     if(err)
       console.log('\n'+err.message+'\n');
     else{
-      fs.copyFileSync('./src/scss/_config.scss','./src/themes/'+name+'/_config.scss');
+      // fs.copyFileSync('./src/scss/_config.scss','./src/themes/'+name+'/_config.scss');
+      fs.appendFileSync('./src/themes/'+name+'/config.js','module.exports = {};');
       fs.appendFileSync('./src/themes/'+name+'/_'+name+'.scss','');
       fs.appendFileSync('./src/themes/'+name+'/'+name+'.js','$(function(){\n\n});');
       
-      if(!org)
-        shell.exec('node scripts/git-create.js theme '+name);
-      else      
-        shell.exec('node scripts/git-create.js theme '+name+' '+org);
+      if (createGit) {
+        if(!org)
+          shell.exec('node scripts/git-create.js theme '+name);
+        else      
+          shell.exec('node scripts/git-create.js theme '+name+' '+org);
+      }
     }
   });
 };
