@@ -15,11 +15,9 @@ a{
   &.disabled,&[disabled]{@extend .no-events; text-decoration: line-through;}
 }
 
-// ul,
-// ol,
-// p{margin-bottom: body(line-height)*1em; margin-top: 0;}
-*+p{margin-top: body(line-height)*1em; } // TESTING
-p{@extend .pbreak; margin-bottom: 0;}
+ul,
+ol,
+p{margin-bottom: 1em; margin-top: 0; @extend .pbreak; }
 
 .txt-limit p, p.txt-limit{max-width: body(line-height)*60ch; }
 
@@ -30,7 +28,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6{
   color: body(font-color-title); line-height: inherit; margin-bottom: 0.65em; font-weight: 600;
   *+&{margin-top: body(line-height)*1em;} // TESTING
-  &+ul, &+ol, &+p{margin-top: 0;} // TESTING
+  // &+ul, &+ol, &+p{margin-top: 0;} // TESTING
   &[class*="sep-bottom"]{margin-bottom: 0; &:after{margin-top: 1rem;}}
   &[class*="sep-top"]{margin-top: 0; &:before{margin-bottom: .4rem;}}
   &[class*="sep-right"],
@@ -51,9 +49,8 @@ ul.reset>li{display: inline-block;}
 ul.tags{@extend .reset; overflow: hidden;}
 ul.tags>li{padding: 3px 8px 5px; background: btn(background); color: btn(font-color);display:block; float: left; margin: 2px; @extend .rad; }
 
-ul,ol{ @extend .pbreak; padding-left: 2.8ch; line-height: 1.5; margin-bottom: 1em;
+ul,ol{  padding-left: 2.8ch; line-height: 1.5; margin-bottom: 1em;
   &>ul,&>ol{margin-top: 0.5em;
     &:not(:last-child){margin-bottom: 0.5em;}
   }
-  p+&{margin-top: body(line-height)*1em;} // TESTING
 }
