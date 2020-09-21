@@ -46,3 +46,15 @@
     }
   }
 }
+
+// INPUTS
+.d-grid{
+  &>.input{
+    %input,
+    .select2-container,
+    %checkbox+label,
+    %radio+label,
+    .input-number__container,
+    .input--group{margin: 0;}
+  }
+}
