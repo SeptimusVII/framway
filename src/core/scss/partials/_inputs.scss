@@ -150,6 +150,8 @@ input:focus::placeholder,
 input.focus::placeholder,
 input.active::placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
 
+label{margin-bottom: 0.2rem;}
+
 .form-group{position: relative; margin-bottom: 0; }
 .form-group label{text-transform: uppercase; text-align: left;
   &[for]:not([for=""]){ cursor: pointer;}
@@ -158,4 +160,9 @@ input.active::placeholder{color: contrastFW(input(placeholder-font-color),input-
 .form-group label:first-child+%checkbox{display: block; }
 .form-group:last-child>*:last-child{margin-bottom: 0;}
 
-label{margin-bottom: 0.2rem;}
+.input--group{margin-bottom: $spacing;
+  &:not(.d-grid){display: flex;}
+  @include media-max(xs){margin-bottom: $spacing/2;}
+  .select2-wrapper,.select2-container,%input{position: relative; width: 100%; max-width: 100%; flex-grow: 1; flex-basis: 0; margin-right: 2px;margin-bottom: 0;}
+  .btn{margin: 0 1px;}
+}
