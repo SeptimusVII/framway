@@ -90,10 +90,18 @@ $exclude : "";
 *.btn-sm#{$exclude}{@extend .btn;
   font-size: .8em; padding: .4em 1.2em .5em;
   &>a{padding: .4em 1.2em .5em; margin: -.4em -1.2em -.5em;}
+  border-radius: 0;
+  @if btn(radius) == true{
+    border-radius: $radius;
+  }
 }
 *.btn-lg#{$exclude}{@extend .btn;
   font-size: 1.25em; padding: .6em 1.7em .65em;
   &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
+  border-radius: 0;
+  @if btn(radius) == true{
+    border-radius: $radius;
+  }
 }
 
 
