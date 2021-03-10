@@ -20,7 +20,7 @@
     margin-bottom: $spacing/2;
     margin-right: $spacing/2;
   }
-  padding: .4em .6em .4em;
+  padding: .25em .5em;
   font-size: 1em;
   line-height: 1.5em;
   &:focus,&.focus,&.active{
@@ -40,6 +40,9 @@
       color: contrastFW(input-invalid(font-color),input-invalid(background));
     }
   }
+
+  &.valid{@extend %input[required]:valid;}
+  &.invalid{@extend %input[required]:invalid;}
 }
 
 input.text, input[type="text"],
@@ -153,7 +156,7 @@ input.active::placeholder{color: contrastFW(input(placeholder-font-color),input-
 label{margin-bottom: 0.2rem;}
 
 .form-group{position: relative; margin-bottom: 0; }
-.form-group label{text-transform: uppercase; text-align: left;
+.form-group label{text-transform: uppercase; text-align: left; font-size: 0.8em;
   &[for]:not([for=""]){ cursor: pointer;}
 }
 .form-group label:first-child+%radio,
