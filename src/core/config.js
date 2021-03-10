@@ -38,7 +38,7 @@ module.exports = {
 		'font-size'		: '18px',
 		'font-size-sm'	: '16px',
 		'font-size-xxs'	: '14px',
-		'line-height': '1.45',
+		'line-height' 	: '1.45',
 	},
 	'header': {
 		'background': 'colors(white)',
@@ -55,7 +55,7 @@ module.exports = {
 	'input': {
 		'background': 'colors(white)',
 		'font-color': 'colors(greystronger)',
-		'border-color': 'colors(greystronger)',
+		'border-color': 'colors(grey)',
 		'border-size': 'border-default-size',
 		'placeholder-font-color': 'colors(grey)',
 		'radius': false,
