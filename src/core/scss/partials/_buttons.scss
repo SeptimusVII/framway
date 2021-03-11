@@ -9,6 +9,9 @@ $exclude : "";
 }
 // @warn "EXCLUDE = "+$exclude;
 
+$p-y: 0.5em; // sm: 0.4 - lg: 0.6
+$p-x: 1.5em; // sm: 1.2 - lg: 1.7
+
 .btn#{$exclude}{
   display: inline-block;
   text-align: center;
@@ -20,7 +23,7 @@ $exclude : "";
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: .5em 1.6em .55em;
+  padding: $p-y $p-x $p-y+0.1em;
   font-size: 1em;
   line-height: 1.5em;
   border-radius: 0;
@@ -42,8 +45,8 @@ $exclude : "";
   cursor: pointer;
   font-family: inherit;
   text-decoration: none;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 2.5px;
+  margin-bottom: 2.5px;
   @include transition(all .2s ease-in-out);
   &:focus{ outline: none; box-shadow: none;}
   &:hover,&:focus,&:active,&.active{
@@ -59,13 +62,14 @@ $exclude : "";
         border-color: scale-color(btn(background),$lightness:15);
       }
     }
-  &>a{padding: .5em 1.6em .55em; margin: -.5em -1.6em -.55em;}
+  &>a{padding: $p-y $p-x $p-y; margin: -$p-y -$p-x -$p-y;}
   &.center{display: block;}
-  [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;}
+  // [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;} // 15K characters /!\
 }
 
 .btn#{$exclude}{
-  &[class*="icon-"]{display: inline-flex;align-items: center; padding-left: 0.6em; padding-right: 0.6em;
+  &[class*="icon-"]{display: inline-flex;align-items: center; 
+    padding-left: 0.8em; padding-right: 0.8em;
     & i[class*="fa"],
     & svg{min-width: 1em;}
     @each $key, $value in $breakpoints{
@@ -85,18 +89,23 @@ $exclude : "";
     & i[class*="fa"],
     & svg{margin: 0 0 0 0.6em; order: 1;}
   }
+  &.squared{padding: .6em .65em .65em; 
+    &[class*=btn-lg]{line-height: 1.4em;}
+  }
 }
 
 *.btn-sm#{$exclude}{@extend .btn;
-  font-size: .8em; padding: .4em 1.2em .5em;
-  &>a{padding: .4em 1.2em .5em; margin: -.4em -1.2em -.5em;}
+  font-size: .8em; 
+  padding: .4em 1.2em .4em;
+  &>a{padding: .4em 1.2em .4em; margin: -.4em -1.2em -.4em;}
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
   }
 }
 *.btn-lg#{$exclude}{@extend .btn;
-  font-size: 1.25em; padding: .6em 1.7em .65em;
+  font-size: 1.25em; 
+  padding: .6em 1.7em .65em;
   &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
   border-radius: 0;
   @if btn(radius) == true{
