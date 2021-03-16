@@ -9,8 +9,8 @@ $exclude : "";
 }
 // @warn "EXCLUDE = "+$exclude;
 
-$p-y: 0.5em; // sm: 0.4 - lg: 0.6
-$p-x: 1.5em; // sm: 1.2 - lg: 1.7
+$p-y: 0.5em;
+$p-x: 1.5em;
 
 .btn#{$exclude}{
   display: inline-block;
@@ -62,14 +62,14 @@ $p-x: 1.5em; // sm: 1.2 - lg: 1.7
         border-color: scale-color(btn(background),$lightness:15);
       }
     }
-  &>a{padding: $p-y $p-x $p-y; margin: -$p-y -$p-x -$p-y;}
+  &>a{padding: $p-y $p-x $p-y+0.1em; margin: -$p-y -$p-x -$p-y+0.1em;}
   &.center{display: block;}
   // [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;} // 15K characters /!\
 }
 
 .btn#{$exclude}{
   &[class*="icon-"]{display: inline-flex;align-items: center; 
-    padding-left: 0.8em; padding-right: 0.8em;
+    padding-left: 1em; padding-right: 1em;
     & i[class*="fa"],
     & svg{min-width: 1em;}
     @each $key, $value in $breakpoints{
@@ -83,21 +83,21 @@ $p-x: 1.5em; // sm: 1.2 - lg: 1.7
   }
   &.icon-first{
     & i[class*="fa"],
-    & svg{margin: 0 0.6em 0 0 ; order: -1;}
+    & svg{margin: 0 0.75em 0 -0.2em ; order: -1;}
   }
   &.icon-last {
     & i[class*="fa"],
-    & svg{margin: 0 0 0 0.6em; order: 1;}
+    & svg{margin: 0 -0.2em 0 0.75em; order: 1;}
   }
-  &.squared{padding: .6em .65em .65em; 
-    &[class*=btn-lg]{line-height: 1.4em;}
-  }
+  &.squared{padding: .6em .65em .65em; line-height: 1em; }
 }
 
 *.btn-sm#{$exclude}{@extend .btn;
   font-size: .8em; 
-  padding: .4em 1.2em .4em;
-  &>a{padding: .4em 1.2em .4em; margin: -.4em -1.2em -.4em;}
+  padding: ($p-y - 0.1em) ($p-x - 0.3em) $p-y;
+  &>a{padding: ($p-y - 0.1em) ($p-x - 0.3em) $p-y; margin: -($p-y - 0.1em) -($p-x - 0.3em) -$p-y;}
+  // padding: .4em 1.2em .4em;
+  // &>a{padding: .4em 1.2em .4em; margin: -.4em -1.2em -.4em;}
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
@@ -105,8 +105,10 @@ $p-x: 1.5em; // sm: 1.2 - lg: 1.7
 }
 *.btn-lg#{$exclude}{@extend .btn;
   font-size: 1.25em; 
-  padding: .6em 1.7em .65em;
-  &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
+  padding: ($p-y + 0.1em) ($p-x + 0.2em) ($p-y + 0.15em);
+  &>a{padding: ($p-y + 0.1em) ($p-x + 0.2em) ($p-y + 0.15em); margin: -($p-y + 0.1em) -($p-x + 0.2em) -($p-y + 0.15em);}
+  // padding: .6em 1.7em .65em;
+  // &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
