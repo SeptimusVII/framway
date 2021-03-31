@@ -83,11 +83,11 @@ $p-x: 1.5em;
   }
   &.icon-first{
     & i[class*="fa"],
-    & svg{margin: 0 0.75em 0 -0.2em ; order: -1;}
+    & svg{margin: 0 0.65em 0 -0.2em ; order: -1;}
   }
   &.icon-last {
     & i[class*="fa"],
-    & svg{margin: 0 -0.2em 0 0.75em; order: 1;}
+    & svg{margin: 0 -0.2em 0 0.65em; order: 1;}
   }
   &.squared{padding: .6em .65em .65em; line-height: 1em; }
 }
