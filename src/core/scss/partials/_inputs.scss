@@ -43,6 +43,11 @@
 
   &.valid{@extend %input[required]:valid;}
   &.invalid{@extend %input[required]:invalid;}
+
+  @include input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
+  &:focus,
+  &.focus,
+  &.active{@include input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}}
 }
 
 input.text, input[type="text"],
@@ -131,27 +136,28 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
 input.checkbox,input[type="checkbox"]{@extend %checkbox;}
 input.radio,input[type="radio"]{@extend %radio;}
 
-input:placeholder-shown{color: contrastFW(input(placeholder-font-color),input(background));}
-input::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
-input::-moz-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
-input:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
-input::placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
+// KEEP FOR LEGACY
+// input:placeholder-shown{color: contrastFW(input(placeholder-font-color),input(background));}
+// input::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
+// input::-moz-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
+// input:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
+// input::placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
 
-input:focus:placeholder-shown,
-input.focus:placeholder-shown,
-input.active:placeholder-shown{color: contrastFW(input(placeholder-font-color),input-focus(background));}
-input:focus::-webkit-input-placeholder,
-input.focus::-webkit-input-placeholder,
-input.active::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
-input:focus::-moz-placeholder,
-input.focus::-moz-placeholder,
-input.active::-moz-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
-input:focus:-ms-input-placeholder,
-input.focus:-ms-input-placeholder,
-input.active:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
-input:focus::placeholder,
-input.focus::placeholder,
-input.active::placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
+// input:focus:placeholder-shown,
+// input.focus:placeholder-shown,
+// input.active:placeholder-shown{color: contrastFW(input(placeholder-font-color),input-focus(background));}
+// input:focus::-webkit-input-placeholder,
+// input.focus::-webkit-input-placeholder,
+// input.active::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
+// input:focus::-moz-placeholder,
+// input.focus::-moz-placeholder,
+// input.active::-moz-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
+// input:focus:-ms-input-placeholder,
+// input.focus:-ms-input-placeholder,
+// input.active:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
+// input:focus::placeholder,
+// input.focus::placeholder,
+// input.active::placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}
 
 label{margin-bottom: 0.2rem;}
 
