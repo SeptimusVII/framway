@@ -51,7 +51,7 @@ var createComponent = function(){
             fs.appendFileSync('./src/components/'+name+'/'+name+'.js',
 `module.exports = function(app){
     var `+className+` = Object.getPrototypeOf(app).`+className+` = new app.Component("`+name+`");
-    //`+className+`.debug = true;
+    // `+className+`.debug = true;
     `+className+`.createdAt      = "`+version+`";
     `+className+`.lastUpdate     = "`+version+`";
     `+className+`.version        = "1";
