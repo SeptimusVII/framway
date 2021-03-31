@@ -55,6 +55,7 @@ var toggleFilesIndex = function(disable = true){
 		'webpack.config.js',
 		'package.json',
 		'package-lock.json',
+		'vendor/index.js',
 		// 'src/index.js',
 	]
 	var param = '--assume-unchanged';
