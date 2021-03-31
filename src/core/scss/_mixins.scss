@@ -166,6 +166,8 @@
 
 @mixin input-placeholder {
     &.placeholder { @content; }
+    &:placeholder-shown{ @content; }
+    &::placeholder{ @content; }
     &:-moz-placeholder { @content; }
     &::-moz-placeholder { @content; }
     &:-ms-input-placeholder { @content; }
