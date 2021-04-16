@@ -164,27 +164,25 @@ $p-x: 1.5em;
     }
   }
 }
+.btn-bg-none#{$exclude},
+.btn-bd-none#{$exclude}{color: contrastFW(btn(font-color),color(white));
+  &:hover,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
+  &:focus{color: contrastFW(btn(font-color),color(white));
+    &:hover,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
+  }
+}
 
-// button:not([class*="btn-bg"]):not([class*="btn-bd"]):not([class*="toast"]),
+
 *[class*=btn-bd-],
 *[class*=btn-bg-],
-input[type="submit"],
-input[type="button"],
+input[type="submit"]:not([class*=btn-]),
+input[type="button"]:not([class*=btn-]),
 button{@extend .btn;}
-// button,
-// *[class*="btn"]{@extend .btn;}
 
-input[type="submit"].btn-sm,
-input[type="button"].btn-sm,
+input[type="submit"].btn-sm:not([class*=btn-]),
+input[type="button"].btn-sm:not([class*=btn-]),
 button.btn-sm{@extend .btn-sm;}
 
-input[type="submit"].btn-lg,
-input[type="button"].btn-lg,
+input[type="submit"].btn-lg:not([class*=btn-]),
+input[type="button"].btn-lg:not([class*=btn-]),
 button.btn-lg{@extend .btn-lg;}
-
-// @if btn(extend) != '' {
-//   input[type="submit"]:not([class*="btn-bg"]):not([class*="btn-bd"]),
-//   input[type="button"]:not([class*="btn-bg"]):not([class*="btn-bd"]),
-//   button:not([class*="btn-bg"]):not([class*="btn-bd"]):not([class*="toast"]),
-//   *[class*="btn"]:not([class*="btn-bg"]):not([class*="btn-bd"]){@extend #{btn(extend)} !optional;}
-// }
