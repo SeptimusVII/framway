@@ -9,8 +9,8 @@ $exclude : "";
 }
 // @warn "EXCLUDE = "+$exclude;
 
-$p-y: 0.5em;
-$p-x: 1.5em;
+$btn-p-y: 0.5em;
+$btn-p-x: 1.5em;
 
 .btn#{$exclude}{
   display: inline-block;
@@ -23,7 +23,7 @@ $p-x: 1.5em;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: $p-y $p-x $p-y+0.1em;
+  padding: $btn-p-y $btn-p-x $btn-p-y+0.1em;
   font-size: 1em;
   line-height: 1.5em;
   border-radius: 0;
@@ -62,7 +62,7 @@ $p-x: 1.5em;
         border-color: scale-color(btn(background),$lightness:15);
       }
     }
-  &>a{padding: $p-y $p-x $p-y+0.1em; margin: -$p-y -$p-x -$p-y+0.1em;}
+  &>a{padding: $btn-p-y $btn-p-x $btn-p-y+0.1em; margin: -$btn-p-y -$btn-p-x -$btn-p-y+0.1em;}
   &.center{display: block;}
   // [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;} // 15K characters /!\
 }
@@ -92,10 +92,10 @@ $p-x: 1.5em;
   &.squared{padding: .6em .65em .65em; line-height: 1em; }
 }
 
-*.btn-sm#{$exclude}{@extend .btn;
+.btn-sm#{$exclude}{@extend .btn;
   font-size: .8em; 
-  padding: ($p-y - 0.1em) ($p-x - 0.3em) $p-y;
-  &>a{padding: ($p-y - 0.1em) ($p-x - 0.3em) $p-y; margin: -($p-y - 0.1em) -($p-x - 0.3em) -$p-y;}
+  padding: ($btn-p-y - 0.1em) ($btn-p-x - 0.3em) $btn-p-y;
+  &>a{padding: ($btn-p-y - 0.1em) ($btn-p-x - 0.3em) $btn-p-y; margin: -($btn-p-y - 0.1em) -($btn-p-x - 0.3em) -$btn-p-y;}
   // padding: .4em 1.2em .4em;
   // &>a{padding: .4em 1.2em .4em; margin: -.4em -1.2em -.4em;}
   border-radius: 0;
@@ -103,10 +103,10 @@ $p-x: 1.5em;
     border-radius: $radius;
   }
 }
-*.btn-lg#{$exclude}{@extend .btn;
+.btn-lg#{$exclude}{@extend .btn;
   font-size: 1.25em; 
-  padding: ($p-y + 0.1em) ($p-x + 0.2em) ($p-y + 0.15em);
-  &>a{padding: ($p-y + 0.1em) ($p-x + 0.2em) ($p-y + 0.15em); margin: -($p-y + 0.1em) -($p-x + 0.2em) -($p-y + 0.15em);}
+  padding: ($btn-p-y + 0.1em) ($btn-p-x + 0.2em) ($btn-p-y + 0.15em);
+  &>a{padding: ($btn-p-y + 0.1em) ($btn-p-x + 0.2em) ($btn-p-y + 0.15em); margin: -($btn-p-y + 0.1em) -($btn-p-x + 0.2em) -($btn-p-y + 0.15em);}
   // padding: .6em 1.7em .65em;
   // &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
   border-radius: 0;
