@@ -51,7 +51,7 @@
     }
 
     /* links */
-    .bg-#{$key} a:not([class*="btn"]){
+    .bg-#{$key} a:not([class*="btn"]):not([class*="ft-"]){
       color: contrastFW(link(font-color),$value); 
       &:hover{color:contrastFW(link(font-color-hover),$value);}; 
       &:focus{color: contrastFW(link(font-color-focus),$value); outline: none;}
