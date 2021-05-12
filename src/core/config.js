@@ -33,6 +33,7 @@ module.exports = {
 
 	'body': {
 		'background': 'colors(greylighter)',
+		'block-background': 'colors(white)',
 		'font-color': 'colors(greystronger)',
 		'font-color-title': 'colors(blacklighter)',
 		'font-size'		: '18px',
