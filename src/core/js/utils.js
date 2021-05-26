@@ -320,9 +320,10 @@ var Utils = function Utils(){
 
   // NOTIFICATIONS SETUP
   var toastr = require('toastr');
-  var toastrDefault = {"newestOnTop": false, "closeButton": true, "timeOut": 0, "extendedTimeOut": 0, "showMethod": "slideDown", "positionClass": "toast-bottom-left", "progressBar": false };
-  var toastrTimeOut = {"newestOnTop": false, "closeButton": true, "timeOut": 5000, "extendedTimeOut": 1000, "showMethod": "slideDown", "positionClass": "toast-bottom-left", "progressBar": true };
+  var toastrDefault = {"newestOnTop": false, "closeButton": true, "timeOut": 0, "extendedTimeOut": 0, "showMethod": "slideDown", "positionClass": "toast-bottom-left", "closeHtml": "<button type='button' class='toast-close-button exclude' role='button'>×</button>", "progressBar": false };
+  var toastrTimeOut = {"newestOnTop": false, "closeButton": true, "timeOut": 5000, "extendedTimeOut": 1000, "showMethod": "slideDown", "positionClass": "toast-bottom-left", "closeHtml": "<button type='button' class='toast-close-button exclude' role='button'>×</button>", "progressBar": true };
   toastr.options = toastrDefault;
+
 
   /**
    * display a common notification

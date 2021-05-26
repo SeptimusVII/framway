@@ -1,6 +1,8 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // MISCS
-#toast-container>div{box-shadow: none;}
+#toast-container>div{box-shadow: none;
+	&:hover{box-shadow: none;}
+}
 
 pre{background: color(blacklight); color: color(white); padding: $spacing/2; border-radius: $radius; font-size: 0.8em; margin-bottom: $spacing;}
 pre code{display: block; position: static;}
