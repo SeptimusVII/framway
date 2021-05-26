@@ -146,6 +146,8 @@ if (document.getElementById('framway__backstage')) {
     var search = {};
     for(var item of window.location.search.substring(1).split('&'))
       search[item.split('=')[0]] = item.split('=')[1];
+    // console.log("applyUrlNavigation");
+    // console.log(search);
     for(var item in search){
       if($('*[data-'+item+']').length && $('*[data-'+item+']').get(0).nodeName == 'BUTTON')
         $('*[data-'+item+'="'+search[item]+'"]').first().trigger('click');
@@ -162,6 +164,8 @@ if (document.getElementById('framway__backstage')) {
   Framway.prototype.updateUrlNavigation = function(config){
     var url = window.location.origin+window.location.pathname+'?';
     var i = 0;
+    // console.log("updateUrlNavigation");
+    // console.log(config);
     for(var item in config){
       if (i!=0)
         url += '&';
@@ -178,15 +182,18 @@ if (document.getElementById('framway__backstage')) {
     setTimeout(function(){
       $('#framway__backstage>.tabs__nav button').on('click',function(e){
         var section = $(this).attr('data-framnav');
+        // console.log('click '+section);
         var objNav = {framnav : section};
         if (Framway.prototype[utils.getClassName(section)] && typeof Framway.prototype[utils.getClassName(section)].prototype.getNavState == 'function' && $('.'+section).length)
           objNav = $('.'+section)[section]('get').getNavState();
+        // console.log(objNav);
         Framway.prototype.updateUrlNavigation(objNav);
       });
       Framway.prototype.applyUrlNavigation();
     })
   });
   window.onpopstate = function(event) {
+    // console.log("onpopstate", event);
     Framway.prototype.applyUrlNavigation();
   };
 }
