@@ -162,14 +162,14 @@ input.radio,input[type="radio"]{@extend %radio;}
 label{margin-bottom: 0.2rem;}
 
 .form-group{position: relative; margin-bottom: 0; }
-.form-group label{text-transform: uppercase; text-align: left; font-size: 0.8em;
+.form-group label{ text-align: left; font-size: 0.8em;
   &[for]:not([for=""]){ cursor: pointer;}
 }
 .form-group label:first-child+%radio,
 .form-group label:first-child+%checkbox{display: block; }
 .form-group:last-child>*:last-child{margin-bottom: 0;}
 
-.input-group{margin-bottom: $spacing;
+.input-group{margin-bottom: $spacing; position: relative;
   @include media-max(xs){margin-bottom: $spacing/2;}
   &:not(.d-grid){display: flex;}
   .select2-wrapper,.select2-container,%input{position: relative; width: 100%; max-width: 100%; flex-grow: 1; flex-basis: 0; margin-right: 2px;margin-bottom: 0;flex-basis: 0;}
