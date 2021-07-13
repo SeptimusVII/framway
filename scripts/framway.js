@@ -98,21 +98,26 @@ var combineConfigs = function(){
 
     // SCSS CONFIG COMBINER
     function SCSSconvertFN(str){
-    	var fnName = String(str).match(/\w+\(\w.*\)/)[0].replace(/\(.*\)/,'').replace('','').replace('colors','color');
-		var fnParams = String(str).match(/\(.*\)/)[0];
-		fnParams = fnParams.substr(1);
-		fnParams = fnParams.substr(0, fnParams.length-1).split(',');
-		str = fnName +'(';
-		for(var i in fnParams){  // searching for function or vars in the function parameters
-			if (fnParams[i].match(/\w+\(\w.*\)/))
-				fnParams[i] = SCSSconvertFN(fnParams[i]);
-			if(configJS.hasOwnProperty(fnParams[i]))
-				fnParams[i] = SCSSconvertVAR(fnParams[i]);
-			if (i>0)
-				str+=',';
-			str += String(fnParams[i]).replace('colors','color');
-		}
-		str += ')';
+    	// console.log('-----------');
+    	// console.log(str);
+    	// var fnName 	 = String(str).match(/\w+\(\w.*\)/)[0].replace(/\(.*\)/,'').replace('','').replace('colors','color');
+    	var fnName 	 = String(str).replace(/\(.*\)/,'').replace('','').replace('colors','color');
+			var fnParams = String(str).match(/\(.*\)/)[0];
+			console.log(fnName);
+			fnParams = fnParams.substr(1);
+			fnParams = fnParams.substr(0, fnParams.length-1).split(',');
+			str = fnName +'(';
+			for(var i in fnParams){  // searching for function or vars in the function parameters
+				if (fnParams[i].match(/\w+\(\w.*\)/))
+					fnParams[i] = SCSSconvertFN(fnParams[i]);
+				if(configJS.hasOwnProperty(fnParams[i]))
+					fnParams[i] = SCSSconvertVAR(fnParams[i]);
+				if (i>0)
+					str+=',';
+				str += String(fnParams[i]).replace('colors','color');
+			}
+			str += ')';
+    	// console.log('-----------');
     	return str;
     }
     function SCSSconvertVAR(str){
