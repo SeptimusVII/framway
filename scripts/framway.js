@@ -241,13 +241,27 @@ var combineConfigs = function(){
     // VENDORS UPDATER END
 }
 
-
+var onBuildStart = function(){
+	fs.remove('.ready',function(err){
+    if(err)
+      console.log('\n'+err.message+'\n');
+    else{
+      console.log('\n Build has started... \n');
+    }
+  })
+}
+var onBuildEnd = function(){
+	fs.appendFileSync('.ready','');
+  console.log('\n Build has ended \n');
+}
 
 switch(cmd){
-	case 'init'			: initFramway()  ; break;
-	case 'displayConfig': displayConfig(); break;
+	case 'init'						: initFramway()  ; break;
+	case 'displayConfig'	: displayConfig(); break;
 	case 'combineConfigs' : combineConfigs() ; break;
-	case 'toggleFiles'  : toggleFilesIndex(process.argv[3]) ; break;
+	case 'toggleFiles'  	: toggleFilesIndex(process.argv[3]) ; break;
+	case 'onBuildStart' 	: onBuildStart() ; break;
+	case 'onBuildEnd'  		: onBuildEnd() ; break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;
 }
 

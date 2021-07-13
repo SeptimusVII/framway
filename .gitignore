@@ -42,3 +42,4 @@ src/themes
 
 # dev files
 sftp-config.json
+.ready
