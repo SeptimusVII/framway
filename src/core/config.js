@@ -35,7 +35,7 @@ module.exports = {
 		'background': 'colors(greylighter)',
 		'block-background': 'colors(white)',
 		'font-color': 'colors(greystronger)',
-		'font-color-title': 'colors(blacklighter)',
+		'font-color-title': 'colors(greystronger)',
 		'font-size'		: '18px',
 		'font-size-sm'	: '16px',
 		'font-size-xxs'	: '14px',
