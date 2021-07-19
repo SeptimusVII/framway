@@ -103,7 +103,7 @@ var combineConfigs = function(){
     	// var fnName 	 = String(str).match(/\w+\(\w.*\)/)[0].replace(/\(.*\)/,'').replace('','').replace('colors','color');
     	var fnName 	 = String(str).replace(/\(.*\)/,'').replace('','').replace('colors','color');
 			var fnParams = String(str).match(/\(.*\)/)[0];
-			console.log(fnName);
+			// console.log(fnName);
 			fnParams = fnParams.substr(1);
 			fnParams = fnParams.substr(0, fnParams.length-1).split(',');
 			str = fnName +'(';

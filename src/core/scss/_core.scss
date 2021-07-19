@@ -1,7 +1,7 @@
 /* FUSE UTILITY COLORS */
 $colors : map-merge($colors, ("primary": $primary));
 $colors : map-merge($colors, ("secondary": $secondary));
-$colors : map-merge($colors, ("tertiary": $tertiary));
+// $colors : map-merge($colors, ("tertiary": $tertiary));
 
 $colors : map-merge($colors, ("success": $success));
 $colors : map-merge($colors, ("info": $info));

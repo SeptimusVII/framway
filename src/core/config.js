@@ -3,9 +3,8 @@ module.exports = {
 	'colors' : {
 		'blue' : '#0075BF',
 		'green' : '#5cb85c',
-		'red' : '#E54949',
-		'darkblue' : '#0c264c',
-		'gold' : '#EDDD00',
+		'red' : '#ec2c2c',
+		'yellow' : '#ffe000',
 		'black' : '#000000',
 		'blacklight' : '#111414',
 		'blacklighter' : '#222222',
@@ -17,13 +16,13 @@ module.exports = {
 		'white' : '#ffffff',
 		'none' : 'transparent',
 	},
-	'primary': 'colors(darkblue)',
-	'secondary': 'colors(blue)',
-	'tertiary': 'colors(greystronger)',
+	'primary': 'colors(blue)',
+	'secondary': 'adjust-color(primary,$hue: 180deg)',
+	// 'tertiary': 'colors(greystronger)',
 
 	'success': 'colors(green)',
 	'info': 'colors(blue)',
-	'warning': 'colors(gold)',
+	'warning': 'colors(yellow)',
 	'error': 'colors(red)',
 	
 	'radius': '2px',
@@ -32,10 +31,14 @@ module.exports = {
 
 
 	'body': {
-		'background': 'colors(greylighter)',
-		'block-background': 'colors(white)',
-		'font-color': 'colors(greystronger)',
-		'font-color-title': 'colors(greystronger)',
+		'background': 'change-color(primary,$lightness:98%)',
+		// 'background': 'colors(greylighter)',
+		'block-background': 'change-color(primary,$lightness:99%)',
+		// 'block-background': 'colors(white)',
+		'font-color': 'change-color(primary,$lightness:10%)',
+		// 'font-color': 'colors(greystronger)',
+		'font-color-title': 'change-color(primary,$lightness:10%)',
+		// 'font-color-title': 'colors(greystronger)',
 		'font-size'		: '18px',
 		'font-size-sm'	: '16px',
 		'font-size-xxs'	: '14px',
