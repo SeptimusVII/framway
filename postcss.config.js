@@ -6,5 +6,8 @@ module.exports = {
     require('cssnano')({
         preset: 'default',
     }),
+    require('postcss-import-url')({
+      modernBrowser: true
+    }),
   ]
 }
