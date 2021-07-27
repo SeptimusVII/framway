@@ -36,7 +36,7 @@ module.exports = {
 
     'table-list',
   ],
-  useFA: 'free', // false || 'free' || 'pro'
+  useFA: false, // false || 'free' || 'pro'
   useToastr: true,
   debug: false,
 }

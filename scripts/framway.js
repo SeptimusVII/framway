@@ -233,11 +233,10 @@ var combineConfigs = function(){
 	}
 	if(config.useToastr)
 		strVendors += "import 'toastr/toastr.scss';\n"
-					+ "global.toastr = require('toastr');\n";
+					// + "global.toastr = require('toastr');\n";
 
-	strVendors += "import 'native-promise-only';\n"
-				+ "import objectFitImages from 'object-fit-images';\n"
-				+ "objectFitImages();\n";
+	strVendors += "import objectFitImages from 'object-fit-images';\n"
+						  + "objectFitImages();\n";
 
 	if(strVendors != fs.readFileSync('./vendor/index.js', 'utf8')){
 		fs.outputFileSync('./vendor/index.js',strVendors);
