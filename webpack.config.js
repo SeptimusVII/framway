@@ -74,11 +74,15 @@ module.exports = {
         new LiveReloadPlugin(),
         new WebpackSynchronizableShellPlugin({
             onBuildStart:{
-                scripts: ['npm run framway combineConfigs'],
+                scripts: ['npm run framway onBuildStart','npm run framway combineConfigs'],
                 blocking: true,
                 parallel: false
             },
-            // onBuildEnd:{},
+            onBuildEnd:{
+                scripts: ['npm run framway onBuildEnd'],
+                blocking: true,
+                parallel: false
+            },
             dev: false,
         }),
 	]
