@@ -38,17 +38,18 @@
     /* separators */
     .bg-#{$key} .sep{ background: contrastFW(body(font-color), $value);}
 
-    /* titles */
-    @for $index from 1 through 6{
-      h#{$index}.bg-#{$key},
-      .h#{$index}.bg-#{$key},
-      .bg-#{$key} h#{$index},
-      .bg-#{$key} .h#{$index}{
-        &:not([class*="ft-"]){
-          color: contrastFW(body(font-color-title),$value);
-        }
-      }
-    }
+
+    /* titles - KEEP FOR LEGACY */ 
+    // @for $index from 1 through 6{
+    //   h#{$index}.bg-#{$key},
+    //   .h#{$index}.bg-#{$key},
+    //   .bg-#{$key} h#{$index},
+    //   .bg-#{$key} .h#{$index}{
+    //     &:not([class*="ft-"]){
+    //       color: contrastFW(body(font-color-title),$value);
+    //     }
+    //   }
+    // }
 
     /* links */
     .bg-#{$key} a:not([class*="btn"]):not([class*="ft-"]){

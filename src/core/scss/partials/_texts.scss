@@ -30,7 +30,7 @@ p{margin-bottom: 1em; margin-top: 0; @extend .pbreak; }
 // TITLES
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6{
-  color: body(font-color-title); line-height: inherit; margin-bottom: 0.65em; font-weight: 600;
+  color: inherit; line-height: inherit; margin-bottom: 0.65em; font-weight: 600;
   *+&{margin-top: body(line-height)*1em;} // TESTING
   // &+ul, &+ol, &+p{margin-top: 0;} // TESTING
   &[class*="sep-bottom"]{margin-bottom: 0; &:after{margin-top: 1rem;}}

@@ -37,7 +37,7 @@ module.exports = {
 		// 'block-background': 'colors(white)',
 		'font-color': 'change-color(primary,$lightness:10%)',
 		// 'font-color': 'colors(greystronger)',
-		'font-color-title': 'change-color(primary,$lightness:10%)',
+		// 'font-color-title': 'change-color(primary,$lightness:10%)',
 		// 'font-color-title': 'colors(greystronger)',
 		'font-size'		: '18px',
 		'font-size-sm'	: '16px',
