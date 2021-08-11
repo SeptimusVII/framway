@@ -7,8 +7,8 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // BACKGROUNDS
 @if $enable-bg{
-  *[class*='bg-']:not([class*='bg--']):not([class*='btn-']){padding: $spacing;}
-  *[class*='bg-']:not([class*='bg--']):not([class*='btn-'])>*:last-child{margin-bottom:0;}
+  *:where([class*='bg-']:not([class*='bg--']):not([class*='btn-'])){padding: $spacing;}
+  *:is([class*='bg-']:not([class*='bg--']):not([class*='btn-'])>*:last-child){margin-bottom:0;}
   @each $key, $value in $colors{
     .bg-#{$key}{background-color: $value isImportant($key); color: body(font-color); color: contrastFW(body(font-color), $value);}
     // *[class~="bg-#{$key}"],
@@ -17,21 +17,21 @@
       /* OPACITY */
       .bg-#{$key}-o-#{$index}#{0}{background-color: rgba($value, $index * 0.1);}
 
-      /* LIGHTEN - DARKEN - OPACITY */
-      @if $enable-bg-extended{
-        .bg-#{$key}-minus-#{$index}#{0}{ background-color : lighten($value, $index * 10);}
-        .bg-#{$key}-plus-#{$index}#{0}{ background-color : darken($value, $index * 10);}
-        @for $index2 from 1 through 9{
-          @if $index2 != 0{
-            .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
-            .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
-          }
-          @else{
-            .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
-            .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
-          }
-        }
-      }
+      /* LIGHTEN - DARKEN - OPACITY - KEEP FOR LEGACY*/
+      // @if $enable-bg-extended{
+      //   .bg-#{$key}-minus-#{$index}#{0}{ background-color : lighten($value, $index * 10);}
+      //   .bg-#{$key}-plus-#{$index}#{0}{ background-color : darken($value, $index * 10);}
+      //   @for $index2 from 1 through 9{
+      //     @if $index2 != 0{
+      //       .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
+      //       .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
+      //     }
+      //     @else{
+      //       .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
+      //       .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
+      //     }
+      //   }
+      // }
     }
     // Changes applied to elements inside a bg class container
 
@@ -52,7 +52,7 @@
     // }
 
     /* links */
-    .bg-#{$key} a:not([class*="btn"]):not([class*="ft-"]){
+    .bg-#{$key} a:where(:not([class*="btn"]):not([class*="ft-"])){
       color: contrastFW(link(font-color),$value); 
       &:hover{color:contrastFW(link(font-color-hover),$value);}; 
       &:focus{color: contrastFW(link(font-color-focus),$value); outline: none;}
