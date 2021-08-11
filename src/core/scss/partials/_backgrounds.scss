@@ -99,29 +99,16 @@
     /* inputs placeholders */
     @if(input(background) == transparent){
       .bg-#{$key} option{color: contrastFW(body(font-color),color(none));}
-
-      .bg-#{$key} input:placeholder-shown{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input::-moz-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input::placeholder{color: contrastFW(input(placeholder-font-color),$value);}
+      .bg-#{$key} input{
+        @include input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
+      }
     }
     @if(input-focus(background) == transparent){
-      .bg-#{$key} input:focus:placeholder-shown,
-      .bg-#{$key} input.focus:placeholder-shown,
-      .bg-#{$key} input.active:placeholder-shown{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input:focus::-webkit-input-placeholder,
-      .bg-#{$key} input.focus::-webkit-input-placeholder,
-      .bg-#{$key} input.active::-webkit-input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input:focus::-moz-placeholder,
-      .bg-#{$key} input.focus::-moz-placeholder,
-      .bg-#{$key} input.active::-moz-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input:focus:-ms-input-placeholder,
-      .bg-#{$key} input.focus:-ms-input-placeholder,
-      .bg-#{$key} input.active:-ms-input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
-      .bg-#{$key} input:focus::placeholder,
-      .bg-#{$key} input.focus::placeholder,
-      .bg-#{$key} input.active::placeholder{color: contrastFW(input(placeholder-font-color),$value);}
+      .bg-#{$key} input:focus,
+      .bg-#{$key} input.focus,
+      .bg-#{$key} input.active{
+        @include input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
+      }
     }
   }
 }
