@@ -108,6 +108,5 @@ module.exports = {
 	},
 
 	'enable-bg': true,
-	'enable-bg-extended': false,
 	'enable-bd': true,
 }

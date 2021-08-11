@@ -15,7 +15,7 @@ html{overflow-x: hidden; font-size: body(font-size);
   		@include media-max($key){font-size: body("font-size-#{$key}");}
 	}
 }
-body {background: body(background);color:body(font-color); line-height: body(line-height); }
+body {background: body(background);color:body(font-color); line-height: body(line-height);}
 :focus{outline: 0;}
 
 
