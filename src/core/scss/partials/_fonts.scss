@@ -26,11 +26,11 @@
     .ft-minus-#{$index}#{0}{font-size: #{1 - ($index * 0.10)}em;}
     .ft-plus-#{$index}#{0}{font-size: #{1 + ($index * 0.10)}em;}
   }
-  .ft-#{$index}-em{font-size: #{$index}em;}
-  .ft-#{$index}-rem{font-size: #{$index}rem;}
+  .ft-#{$index}-em{font-size: #{$index}em; line-height: clamp(1em,body(line-height)*1em,52px); }
+  .ft-#{$index}-rem{font-size: #{$index}rem; line-height: clamp(1em,body(line-height)*1em,52px); }
   @for $index2 from 1 through 9 {
-    .ft-#{$index}-#{$index2}-em{font-size: unquote("#{$index}.#{$index2}em");}
-    .ft-#{$index}-#{$index2}-rem{font-size: unquote("#{$index}.#{$index2}rem");}
+    .ft-#{$index}-#{$index2}-em{font-size: unquote("#{$index}.#{$index2}em");line-height: clamp(1em,body(line-height)*1em,52px);}
+    .ft-#{$index}-#{$index2}-rem{font-size: unquote("#{$index}.#{$index2}rem");line-height: clamp(1em,body(line-height)*1em,52px);}
   }
 }
 
