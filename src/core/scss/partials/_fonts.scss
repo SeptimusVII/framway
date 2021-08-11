@@ -1,13 +1,19 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // FONTS CLASSES
-.ft-lighter{font-weight: 200;}
+.ft-thin{font-weight: 100;}
+.ft-lighter, 
+.ft-extralight{font-weight: 200;}
 .ft-l,
 .ft-light{font-weight: 300;}
 .ft-n,
 .ft-normal{font-weight: 400;}
+.ft-medium{font-weight: 500;}
+.ft-semibold{font-weight: 600;}
 .ft-b,
-.ft-bold{font-weight: 600;}
+.ft-bold{font-weight: 700;}
+.ft-extrabold,
 .ft-bolder{font-weight: 800;}
+
 .ft-i{font-style: italic;}
 .ft-u{text-decoration: underline;}
 .ft-u-no{text-decoration: none;}
