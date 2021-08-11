@@ -27,7 +27,7 @@ function Framway(){
     });
     // console.log(framway.styles);
 
-    if (framway.useFA == 'free') {
+    if (framway.useFA != 'pro') {
       var switchIconToFree = function(item){
         item.classList.remove('fal');
         item.classList.remove('far');
