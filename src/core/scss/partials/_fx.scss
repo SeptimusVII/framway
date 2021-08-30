@@ -1,8 +1,8 @@
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 /* EFFECTS */
-%paper { position: relative; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27); }
-%paper %paper {box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.27); }
+%paper { position: relative; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); }
+%paper %paper {box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, 0.25); }
 %paper%lift:before,
 %paper%lift:after {
   position: absolute;
@@ -36,7 +36,5 @@
   &:before{content:"«\00a0";}
   &:after{content:"\00a0»";}
 }
-
-
 
 .txt--extrud{text-shadow: 3px 3px 1px rgba(0,0,0,.3); }
