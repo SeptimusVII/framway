@@ -38,5 +38,7 @@ module.exports = {
   ],
   useFA: false, // false || 'free' || 'pro'
   useToastr: true,
+  useOutdatebrowser: true,
+  useTarteaucitron: true,
   debug: false,
 }
