@@ -25,9 +25,9 @@ module.exports = {
     'konami',
     'input-number',
     'filters',
+    'sliderFW',
     // 'priceCard',
     // 'foldingbox',
-    // 'sliderFW',
     // 'headerFW',
 
     'block-list',
