@@ -86,7 +86,11 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
   opacity: 0; padding: 0; margin:0; @include size(0); position: absolute;
   &+label{
     text-transform: none;
+    padding: .25em .5em;
+    font-size: 1em;
+    line-height: 1.5em;
     padding-left: 1.4em;
+    border: input(border-size) transparent;
     margin-right: $spacing;
     margin-bottom: $spacing;
     position: relative;
@@ -102,11 +106,12 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
     }
     &:before{
       @include size(1em);
-      margin-top: (body(line-height) - 1em) / 2;
+      margin-top: 0.5em;
       border: input(border-size) solid input(border-color);
     }
     &:after{
       @include size(1.15em,0.6em);
+      margin-top: 0.25em;
       border: 2px solid input(font-color);
       border-top: 2px solid color(none);
       border-right: 2px solid color(none);
@@ -127,8 +132,14 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
       border: 0;
       background-color: input(font-color);
       @include transition(all 0.3s);
-      @include size(0.55em);
-      @include transform(translateX((1em - 0.55em) / 2) translateY((body(line-height) - 0.55em) / 2));
+      // @include size(0.55em);
+      // @include transform(translateX((1em - 0.55em) / 2) translateY((body(line-height) - 0.55em) / 2));
+      @include size(1em);
+      @include transform(none);
+      border: 0.225em solid input(background);
+      outline: input(border-size) solid input(border-color);
+      outline-offset: input(border-size)*-1;
+      margin-top: 0.5em;
     }
   }
 }
@@ -161,13 +172,28 @@ input.radio,input[type="radio"]{@extend %radio;}
 
 label{margin-bottom: 0.2rem;}
 
-.form-group{position: relative; margin-bottom: 0; }
-.form-group label{ text-align: left; font-size: 0.8em;
-  &[for]:not([for=""]){ cursor: pointer;}
+.form-group{position: relative;
+  margin-bottom: $spacing;
+  @include media-max(xs){margin-bottom: $spacing/2;}
+  %input, %checkbox+label, %radio+label{
+    margin-bottom: 0;
+    @include media-max(xs){margin-bottom: 0;}
+  }
+  label{ text-align: left; font-size: 0.8em;
+    &[for]:not([for=""]){ cursor: pointer;}
+    &:first-child+%radio,
+    &:first-child+%checkbox{display: block; }
+  }
+  .helper{opacity: 0.6; margin: 0.2rem 0 0; font-size: 0.8em; display: block;}
+  &:last-child>*:last-child{margin-bottom: 0;}
+  .d-grid>&{margin-bottom: 0;
+    @include media-max(xs){margin-bottom:0;}
+  }
+  .filler{display: block;}
 }
-.form-group label:first-child+%radio,
-.form-group label:first-child+%checkbox{display: block; }
-.form-group:last-child>*:last-child{margin-bottom: 0;}
+.form-group-inline{@extend .form-group;
+  %checkbox+label, %radio+label{ display: inline-block; }
+}
 
 .input-group{margin-bottom: $spacing; position: relative;
   @include media-max(xs){margin-bottom: $spacing/2;}
