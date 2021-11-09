@@ -9,3 +9,19 @@ pre code{display: block; position: static;}
 pre .copy{position: absolute; right: $spacing; @extend .btn-sm;}
 
 iframe{max-width:100%;}
+
+
+// ERRORS
+p.success{color:color(success);}
+p.info{color:color(info);}
+p.warning{color:color(warning);}
+p.error{color:color(error);}
+.error-container{ 
+	*+&{margin-top: $spacing;}
+	blockquote{font-size: 0.8em; border-left: 0.25em solid darken(color(error), 10); color: color(error); padding: 0.25em 0.5em; padding-left: 1em; margin: 0.5em; display: block;
+	&.success{border-left-color: darken(color(success),10); color:color(success);}
+	&.info{border-left-color: darken(color(info),10); color:color(info);}
+	&.warning{border-left-color: darken(color(warning),10); color:color(warning);}
+		p:last-child{margin-bottom: 0;}
+	}
+} 
