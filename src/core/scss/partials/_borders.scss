@@ -1,6 +1,7 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // BORDERS
 @if $enable-bd{
+  *:is([class*='bd-']:not([class*='btn-'])>*:last-child){margin-bottom:0;}
   @each $side in $sides {
     @if $side == 'all'{
       .bd,
