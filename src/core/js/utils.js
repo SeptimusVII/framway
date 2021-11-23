@@ -406,6 +406,189 @@ Utils.prototype.getViewportHeight = function(){
 };
 
 /**
+ * [checkForm description]
+ * @param  {[type]}  el          [form container]
+ * @param  {Boolean} renderError 
+ */
+Utils.prototype.checkForm = function(el,renderError = true){
+  if (app.debug) 
+    app.log('checkForm');
+    var $el = $(el);
+    var inputs = $el.find('input,textarea,select').filter(function(i){return this.name != "" && !$(this).hasClass('fileUploader__input');});
+    var specials = {};
+    var $errors = $el.find('.error-container').length ? $el.find('.error-container') : false;
+    // var $errors = $el.find('.error-container').length ? $el.find('.error-container') : $('<div class="error-container"></div>').appendTo($el);
+    var results = {
+      valid: true,
+      inputs: {}
+    }
+
+    $.each(inputs, function(index, input){
+        if (input.getAttribute('name') === undefined)
+          return false;
+      
+      var valid = true;
+        if(input.value == '' && input.getAttribute('required') !== null)
+          valid = false;
+        var inputRow = {
+          'name'   : input.getAttribute('name').replace('[]', ''),
+          'type'   : input.nodeName !== 'INPUT' ? input.nodeName.toLowerCase() : input.getAttribute('type'),
+          'required' : input.getAttribute('required') !== null ? true : false,
+          'value'    : input.value,
+          'valid'    : valid,
+        };
+        if($(input).is(':invalid')) // regular check if input is invalid, then result is false by default
+            inputRow.valid = false;
+
+
+        // CHECKBOXES
+        // multiple checkboxes all need the required attribute to be effectively tested
+        if (inputRow.type == 'checkbox') {
+            inputRow.valid = true;
+            if ($el.find('input').filter('[name="'+input.getAttribute('name')+'"]').length > 1) { // multiple checkbox, should return array of values
+                inputRow.value = [];
+                $el.find('input').filter('[name="'+input.getAttribute('name')+'"]').each(function(){
+                    if ($(this).isChecked())
+                        inputRow.value.push(this.value);
+                });
+                if (inputRow.required === true && !inputRow.value.length)
+                    inputRow.valid = false;
+            } else { // unique checkbox, should return 1 or 0
+                inputRow.value = ($(input).isChecked()) ? 1 : 0;
+                if (inputRow.required === true && inputRow.value == 0)
+                    inputRow.valid = false;
+            }
+        }
+        // RADIOS
+        // multiple radios all need the required attribute to be effectively tested
+        if (inputRow.type == 'radio') {
+            inputRow.valid = true;
+            inputRow.value = false;
+            $el.find('input').filter('[name="'+input.getAttribute('name')+'"]').each(function(){
+                if ($(this).isChecked())
+                    inputRow.value = (this.value);
+            });
+            if (inputRow.required === true && !inputRow.value)
+                inputRow.valid = false;
+        }
+
+        // FILEUPLOADER // TODO
+        if($(input).hasClass('fileUploader') && app.components.includes('fileUploader')){}
+
+        // DATEPICKERS
+        if($(input).hasClass('datepicker') && app.components.includes('datepicker')){
+            inputRow.value = $(input).attr('data-tstamp');
+        }
+
+        // WIZARDS
+        if($(input).hasClass('wizard') && app.components.includes('wizard')){
+          var wizardData    = $(input).wizard('get').getValue();
+          inputRow.type     = 'wizard';
+          inputRow.value    = wizardData.values;
+          inputRow['valid'] = wizardData.valid;
+          // if wizard's value is invalid, the form must not be sent. so the all form is considered invalid
+          if (!wizardData.valid)
+            results.valid = false;
+        }
+
+
+        // FORM VALIDATION
+        if(input.required && !$(input).hasClass('nofill')){  // regular required input
+            if(inputRow.valid === false){
+              // console.log(input, inputRow);
+              results.valid = false;
+            }
+            results.inputs[inputRow.name] = inputRow;
+        }
+        else if(input.required && !$(input).hasClass('nofill')){ // required input according to another input (aka "specials") // TODO  
+          var params = input.getAttribute('data-required').split('/');
+          requiredParams = {
+            'inputName' : params[0],
+            'inputValue' : params[1],
+            'operator' : params[2]
+          };
+          if(!specials[requiredParams.inputName]) {
+            specials[requiredParams.inputName] = new Object();
+            specials[requiredParams.inputName].params = requiredParams;
+            specials[requiredParams.inputName].inputs = [];
+            specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
+          } else {
+            specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
+          }
+        } else { // input not required
+            results.inputs[inputRow.name] = inputRow;
+        }
+        // console.log(inputRow);
+    });
+
+
+    // ERROR MANAGEMENT
+    if(results.valid === false && renderError === true){  // display errors - the container need to have a div.error-container
+      $.each(results.inputs, function(index, input){
+        if(!input.valid){
+          var labelError = input.name.replace('[]', '');
+          if($el.find('label[for="'+labelError+'"]').first().length) // if exist, get label of the input
+            labelError = $el.find('label[for="'+labelError+'"]').first().html().replace(':','').trim();
+
+          if (input.value == false) // assuming input's value is empty / falsy
+            labelError = app.labels.errors.inputs.empty[app.lang].replace('%s',labelError);
+          else  // assuming input's value is incorrect
+            labelError = app.labels.errors.inputs.incorrect[app.lang].replace('%s',labelError);
+          utils.renderError(input.name.replace('[]', ''),labelError,$errors);
+        } else {
+          utils.renderError(input.name.replace('[]', ''),false,$errors);
+        }
+      });
+      } else { // form is valid, clean all error messages
+        $.each(inputs, function(index, input){
+          utils.renderError(input.name.replace('[]', ''),false,$errors);
+      });
+    }
+
+    if (app.debug) 
+      console.table(results);
+
+    return results;
+};
+
+/**
+ * [renderError description]
+ * @param  {[type]}  name    [error name]
+ * @param  {Boolean} msg     [error message]
+ * @param  {Boolean} $el     [errors container]
+ * @param  {Boolean} success [error status]
+ */
+Utils.prototype.renderError = function(name,msg=false,$el=false,success=false){
+  if (app.debug) {
+    app.log('renderError');
+    console.log('name :',name);
+    console.log('msg    :',msg);
+    console.log('$el    :',$el!==false);
+    console.log('success  :',success);
+  }
+  // no error container defined, so we use the notif system
+  if ($el === false){
+    if(msg !== false){
+      if (success===true)
+        notif_fade.success(msg);
+          else
+              notif_fade.error(msg);
+    }
+        return false;
+  }
+  // there is an error container, so we proceed 
+  $el = $($el);
+  $el.find('blockquote.'+name).fadeOut().remove();
+  if (msg!==false) {
+    $el.append('<blockquote class="'+name+'"><p>'+msg+'</p></blockquote>');
+    $el.find('blockquote.'+name).hide().fadeIn();
+    $el.get(0).scrollIntoView({behavior: "smooth"}); // need testing in modalFW
+  }
+}
+
+
+
+/**
  * return a set of jQuery object filtered by the data attribute value submitted
  * @param  {[type]} prop [description]
  * @param  {[type]} val  [description]
