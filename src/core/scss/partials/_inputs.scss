@@ -198,7 +198,7 @@ label{margin-bottom: 0.2rem;}
 .input-group{margin-bottom: $spacing; position: relative;
   @include media-max(xs){margin-bottom: $spacing/2;}
   &:not(.d-grid){display: flex;}
-  .select2-wrapper,.select2-container,%input{position: relative; width: 100%; max-width: 100%; flex-grow: 1; flex-basis: 0; margin-right: 2px;margin-bottom: 0;flex-basis: 0;}
+  .select2FW-wrapper,.select2-container,%input{position: relative; width: 100%; max-width: 100%; flex-grow: 1; flex-basis: 0; margin-right: 2px;margin-bottom: 0;flex-basis: 0;}
   .btn#{$exclude}{margin: 0 1px; display: inline-flex; align-items: center; justify-content: center;}
   &.form-shrink{
     .btn#{$exclude}{padding: .25em .75em; font-size: 1em; line-height: 1.5em;
