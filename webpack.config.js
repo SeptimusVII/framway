@@ -32,6 +32,7 @@ module.exports = {
                     	loader: 'babel-loader',  // transpile es6 javascript to es5
                     	options: {
                     		presets: ['@babel/preset-env'],
+                            plugins: ['@babel/plugin-proposal-logical-assignment-operators']
                     	}
                     }
                 ],
