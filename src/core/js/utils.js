@@ -499,27 +499,73 @@ Utils.prototype.checkForm = function(el,renderError = true){
               results.valid = false;
             }
             results.inputs[inputRow.name] = inputRow;
-        }
-        else if(input.required && !$(input).hasClass('nofill')){ // required input according to another input (aka "specials") // TODO  
-          var params = input.getAttribute('data-required').split('/');
-          requiredParams = {
-            'inputName' : params[0],
-            'inputValue' : params[1],
-            'operator' : params[2]
-          };
-          if(!specials[requiredParams.inputName]) {
-            specials[requiredParams.inputName] = new Object();
-            specials[requiredParams.inputName].params = requiredParams;
-            specials[requiredParams.inputName].inputs = [];
-            specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
-          } else {
-            specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
-          }
+        // }
+        // else if(input.getAttribute('data-required') !== null && !$(input).hasClass('nofill')){ // required input according to another input (aka "specials") // TODO  
+        //   var params = input.getAttribute('data-required').split('/');
+        //   requiredParams = {
+        //     'inputName' : params[0],
+        //     'inputValue' : params[1],
+        //     'operator' : params[2]||'and'
+        //   };
+        //   if(!specials[requiredParams.inputName]) {
+        //     specials[requiredParams.inputName] = new Object();
+        //     specials[requiredParams.inputName].params = requiredParams;
+        //     specials[requiredParams.inputName].inputs = [];
+        //     specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
+        //   } else {
+        //     specials[requiredParams.inputName].inputs[inputRow.name] = inputRow;
+        //   }
         } else { // input not required
             results.inputs[inputRow.name] = inputRow;
         }
         // console.log(inputRow);
     });
+    
+    // console.log(specials);
+    // if(Object.keys(specials).length > 0){  // do this if we have special inputs registred
+    //   $.each(specials, function(index, mode){
+    //     console.log(mode);
+    //     var refInput;
+    //     for(var i = 0; i < inputs.length; i++) {
+    //       if(inputs[i].getAttribute('name') === mode.params.inputName)
+    //         refInput = inputs[i];
+    //     }
+    //     var refInputValue = $(refInput).val();
+    //     console.log(refInputValue == mode.params.inputValue);
+    //     if(refInputValue == mode.params.inputValue) {
+    //       var arrayCheck = [];
+    //        $.each(mode.inputs, function(index, input){
+    //           if(!input.valid)
+    //               arrayCheck.push(0);
+    //           else
+    //               arrayCheck.push(1);
+    //           results.inputs.push(input);
+    //       });
+    //       switch(mode.params.operator) {
+    //         case 'or':
+    //           if(arrayCheck.indexOf(1) == -1)
+    //               results.valid = false;
+    //           break;
+    //         case 'xor':
+    //           var indexes = [], i = -1;
+    //           while ((i = arrayCheck.indexOf(1, i+1)) != -1){
+    //               indexes.push(i);
+    //           }
+    //           if(indexes.length != 1)
+    //               results.valid = false;
+    //           break;
+    //         case 'and':
+    //         default:
+    //           $.each(mode.inputs, function(index, input){
+    //               if(!input.valid)
+    //                   results.valid = false;
+    //               results.inputs.push(input);
+    //           });
+    //           break;
+    //       }
+    //     }
+    //   });
+    // }
 
 
     // ERROR MANAGEMENT
@@ -545,8 +591,8 @@ Utils.prototype.checkForm = function(el,renderError = true){
       });
     }
 
-    if (app.debug) 
-      console.table(results);
+    // if (app.debug) 
+      // console.table(results.inputs);
 
     return results;
 };
