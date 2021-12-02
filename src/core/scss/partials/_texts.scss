@@ -48,7 +48,7 @@ h1,.h1{text-transform: uppercase;}
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // LISTS
-ul.reset{list-style: none; padding:0; margin:0;}
+ul.reset{list-style: none; padding:0; margin:0;@extend .no-pbreak; }
 ul.reset>li{display: inline-block;}
 ul.tags{@extend .reset; overflow: hidden;}
 ul.tags>li{padding: 3px 8px 5px; background: btn(background); color: btn(font-color);display:block; float: left; margin: 2px; @extend .rad; }
