@@ -175,6 +175,10 @@
     &::-webkit-input-placeholder { @content; }
 }
 
+@mixin lastChildNoMargin(){
+  &>*:last-child:not([class*="m-bottom"]){margin-bottom: 0;}
+}
+
 
 // ---------------------------------------- RESPONSIVE FUNCTIONS --------------------------------------------
 @mixin media-max($breakpoint) {
