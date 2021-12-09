@@ -19,7 +19,9 @@
       }
     }
   }
-  &>*{ margin-bottom: 0;
+  &>*{ 
+    &:not([class*=m-bottom]){margin-bottom: 0;}
+    @include lastChildNoMargin();
     @for $index from 1 through 12{
       &.cols-span-#{$index}{grid-column: span $index;}
       &.rows-span-#{$index}{grid-row: span $index;}
@@ -48,14 +50,3 @@
   }
 }
 
-// INPUTS
-.d-grid{
-  &>.input{
-    %input,
-    .select2-container,
-    %checkbox+label,
-    %radio+label,
-    .input-number__container,
-    .input--group{margin: 0;}
-  }
-}
