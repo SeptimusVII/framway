@@ -6,7 +6,7 @@ const WebpackBar = require('webpackbar');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
-const WebpackSynchronizableShellPlugin = require('webpack-synchronizable-shell-plugin');
+const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 
 module.exports = {
 	mode: 'development',
@@ -43,7 +43,7 @@ module.exports = {
                 	{
                 		loader: MiniCssExtractPlugin.loader,
                 	},
-                	'css-loader',
+                	'fast-css-loader',
                 	'postcss-loader',
                 	'fast-sass-loader',
                 ]
@@ -73,7 +73,7 @@ module.exports = {
             // utils: 'utils',
         }),
         new LiveReloadPlugin(),
-        new WebpackSynchronizableShellPlugin({
+        new WebpackShellPluginNext({
             onBuildStart:{
                 scripts: ['npm run framway onBuildStart','npm run framway combineConfigs'],
                 blocking: true,
