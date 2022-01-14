@@ -56,7 +56,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "bootstrap": "^4.6.1",
+    "bootstrap": "^5.1.3",
     "hammerjs": "^2.0.8",
     "jquery": "^3.6.0",
     "jquery-datetimepicker": "^2.5.21",
