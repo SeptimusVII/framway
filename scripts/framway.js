@@ -6,45 +6,77 @@ var cmd  = process.argv[2] || 'displayConfig';
 
 var initFramway = function(){
 	console.log('\n### Framway\'s initialisation...');
-	if (!fs.existsSync('./src/themes/')){
-		fs.mkdir('./src/themes/',function(err){
-			if(err)
-				console.log('\n'+err.message+'\n');
-		});
+	checkExistingFolders().then(function(){
+		if (config.themes.length) {
+			console.log('\n### Importing themes...');
+			getThemes(config.themes);
+		}
+		if (config.components.length) {
+			console.log('\n### Importing components...');
+			getComponents(config.components);
+		}
+		toggleFilesIndex();
+		console.log('\n### Framway\'s initialisation end\n');
+	}).catch(function(err){
+		console.log('something wrong happened: '+err);
+	})
+}
+
+var updateFramway = function(){
+	console.log('\n### Framway\'s updating...');
+	checkExistingFolders().then(function(){
+		if (config.themes.length) {
+			console.log('\n### Updating themes...');
+			getThemes(config.themes);
+		}
+		if (config.components.length) {
+			console.log('\n### Updating components...');
+			getComponents(config.components);
+		}
+		console.log('\n### Framway\'s update end\n');
+	}).catch(function(err){
+		console.log('something wrong happened: '+err);
+	})
+}
+
+var getThemes = function(arrThemes){
+	for (var i = 0; i < arrThemes.length; i++) {
+	  shell.exec('npm run theme '+arrThemes[i]+' get');      
+		console.log(' - Theme "'+arrThemes[i]+'" installed');
 	}
-	if (!fs.existsSync('./src/components/')){
+}
+var getComponents = function(arrComponents){
+	for (var i = 0; i < arrComponents.length; i++) {
+	  shell.exec('npm run component '+arrComponents[i]+' get');      
+		console.log(' - Component "'+arrComponents[i]+'" installed');
+	}
+}
+
+var checkExistingFolders = function(){
+	return new Promise(function(resolve,reject){
+		if (!fs.existsSync('./src/themes/')){
+			fs.mkdir('./src/themes/',function(err){
+				if(err)
+					console.log('\n'+err.message+'\n');
+			});
+		}
+		if (!fs.existsSync('./src/components/')){
 	    fs.mkdir('./src/components/',function(err){
-      		if(err)
-        		console.log('\n'+err.message+'\n');
+	    		if(err)
+	      		console.log('\n'+err.message+'\n');
 	    });
-  	}
-  	if (!fs.existsSync('./vendor/')){
+		}
+		if (!fs.existsSync('./vendor/')){
 	    fs.mkdir('./vendor/',function(err){
-    		if(err)
-      		console.log('\n'+err.message+'\n');
-      	else
+	  		if(err)
+	    		console.log('\n'+err.message+'\n');
+	    	else
 					fs.appendFileSync('./vendor/index.js','');
 	    });
-  	}
-	// fs.appendFileSync('./src/scss/framway.scss','');
-
-	if (config.themes.length) {
-		console.log('\n### Importing themes...');
-		for (var i = 0; i < config.themes.length; i++) {
-		  shell.exec('npm run theme '+config.themes[i]+' get');      
-			console.log(' - Theme "'+config.themes[i]+'" imported');
 		}
-	}
-	if (config.components.length) {
-		console.log('\n### Importing components...');
-		for (var i = 0; i < config.components.length; i++) {
-		  shell.exec('npm run component '+config.components[i]+' get');      
-			console.log(' - Component "'+config.components[i]+'" imported');
-		}
-	}
-
-	toggleFilesIndex();
-	console.log('\n### Framway\'s initialisation end\n');
+		// fs.appendFileSync('./src/scss/framway.scss','');
+		resolve();
+	});
 }
 
 var toggleFilesIndex = function(disable = true){
@@ -274,6 +306,7 @@ var onBuildEnd = function(){
 
 switch(cmd){
 	case 'init'						: initFramway()  ; break;
+	case 'update'					: updateFramway(); break;
 	case 'displayConfig'	: displayConfig(); break;
 	case 'combineConfigs' : combineConfigs() ; break;
 	case 'toggleFiles'  	: toggleFilesIndex(process.argv[3]) ; break;
