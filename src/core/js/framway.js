@@ -190,7 +190,7 @@ if (document.getElementById('framway__backstage')) {
         Framway.prototype.updateUrlNavigation(objNav);
       });
       Framway.prototype.applyUrlNavigation();
-    })
+    },100)
   });
   window.onpopstate = function(event) {
     // console.log("onpopstate", event);
