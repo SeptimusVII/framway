@@ -20,12 +20,10 @@ var initFramway = function(){
   	}
   	if (!fs.existsSync('./vendor/')){
 	    fs.mkdir('./vendor/',function(err){
-      		if(err)
-        		console.log('\n'+err.message+'\n');
-        	else{
-				fs.appendFileSync('./vendor/index.js','');
-        	}
-
+    		if(err)
+      		console.log('\n'+err.message+'\n');
+      	else
+					fs.appendFileSync('./vendor/index.js','');
 	    });
   	}
 	// fs.appendFileSync('./src/scss/framway.scss','');
@@ -33,14 +31,14 @@ var initFramway = function(){
 	if (config.themes.length) {
 		console.log('\n### Importing themes...');
 		for (var i = 0; i < config.themes.length; i++) {
-		  	shell.exec('npm run theme '+config.themes[i]+' get');      
+		  shell.exec('npm run theme '+config.themes[i]+' get');      
 			console.log(' - Theme "'+config.themes[i]+'" imported');
 		}
 	}
 	if (config.components.length) {
 		console.log('\n### Importing components...');
 		for (var i = 0; i < config.components.length; i++) {
-		  	shell.exec('npm run component '+config.components[i]+' get');      
+		  shell.exec('npm run component '+config.components[i]+' get');      
 			console.log(' - Component "'+config.components[i]+'" imported');
 		}
 	}
@@ -96,129 +94,129 @@ var combineConfigs = function(){
 		configJS = mergeDeep(configJS,configTheme);
 	}
 
-    // SCSS CONFIG COMBINER
-    function SCSSconvertFN(str){
-    	// console.log('-----------');
-    	// console.log(str);
-    	// var fnName 	 = String(str).match(/\w+\(\w.*\)/)[0].replace(/\(.*\)/,'').replace('','').replace('colors','color');
-    	var fnName 	 = String(str).replace(/\(.*\)/,'').replace('','').replace('colors','color');
-			var fnParams = String(str).match(/\(.*\)/)[0];
-			// console.log(fnName);
-			fnParams = fnParams.substr(1);
-			fnParams = fnParams.substr(0, fnParams.length-1).split(',');
-			str = fnName +'(';
-			for(var i in fnParams){  // searching for function or vars in the function parameters
-				if (fnParams[i].match(/\w+\(\w.*\)/))
-					fnParams[i] = SCSSconvertFN(fnParams[i]);
-				if(configJS.hasOwnProperty(fnParams[i]))
-					fnParams[i] = SCSSconvertVAR(fnParams[i]);
-				if (i>0)
-					str+=',';
-				str += String(fnParams[i]).replace('colors','color');
-			}
-			str += ')';
-    	// console.log('-----------');
-    	return str;
-    }
-    function SCSSconvertVAR(str){
+  // SCSS CONFIG COMBINER
+  function SCSSconvertFN(str){
+  	// console.log('-----------');
+  	// console.log(str);
+  	// var fnName 	 = String(str).match(/\w+\(\w.*\)/)[0].replace(/\(.*\)/,'').replace('','').replace('colors','color');
+  	var fnName 	 = String(str).replace(/\(.*\)/,'').replace('','').replace('colors','color');
+		var fnParams = String(str).match(/\(.*\)/)[0];
+		// console.log(fnName);
+		fnParams = fnParams.substr(1);
+		fnParams = fnParams.substr(0, fnParams.length-1).split(',');
+		str = fnName +'(';
+		for(var i in fnParams){  // searching for function or vars in the function parameters
+			if (fnParams[i].match(/\w+\(\w.*\)/))
+				fnParams[i] = SCSSconvertFN(fnParams[i]);
+			if(configJS.hasOwnProperty(fnParams[i]))
+				fnParams[i] = SCSSconvertVAR(fnParams[i]);
+			if (i>0)
+				str+=',';
+			str += String(fnParams[i]).replace('colors','color');
+		}
+		str += ')';
+  	// console.log('-----------');
+  	return str;
+  }
+  function SCSSconvertVAR(str){
 		return '$'+str.replace('colors','color');
-    }
-    function formatStr(str){
-    	var resultStr = '';
-    	// console.log(str, typeof str, Array.isArray(str));
-    	if (typeof str === 'object') {
-    		if (Array.isArray(str)) resultStr += '[';
-    		else resultStr += '(';
-    		var i = 0;
-    		for(var key in str){
-    			if (i!=0)
-    				resultStr += ',';
-    			if (Array.isArray(str)) 
-    				resultStr += ''+formatStr(str[key]);
-    			else 
-    				resultStr += '\''+key+'\': '+formatStr(str[key]);
-    			i++;
-    		}
-    		if (Array.isArray(str)) resultStr += ']';
-    		else resultStr += ')';
-    		
-    	} else {
-    		if (String(str).match(/\w+\(\w.*\)/)) 
-				resultStr += SCSSconvertFN(str);
-			else if (configJS.hasOwnProperty(str)) 
-    			resultStr += SCSSconvertVAR(str);
-    		else if (String(str).match(/px$|em$|vh$|vw$|%$|^[0-9]*[0-9]$|\d.\d|transparent|^#|true|false/))
-    			resultStr += String(str).replace('colors','color');
-    		else
-    			resultStr += '\''+String(str).replace('colors','color')+'\'';
-    	}
-    	return resultStr;
-    }
+  }
+  function formatStr(str){
+  	var resultStr = '';
+  	// console.log(str, typeof str, Array.isArray(str));
+  	if (typeof str === 'object') {
+  		if (Array.isArray(str)) resultStr += '[';
+  		else resultStr += '(';
+  		var i = 0;
+  		for(var key in str){
+  			if (i!=0)
+  				resultStr += ',';
+  			if (Array.isArray(str)) 
+  				resultStr += ''+formatStr(str[key]);
+  			else 
+  				resultStr += '\''+key+'\': '+formatStr(str[key]);
+  			i++;
+  		}
+  		if (Array.isArray(str)) resultStr += ']';
+  		else resultStr += ')';
+  		
+  	} else {
+  		if (String(str).match(/\w+\(\w.*\)/)) 
+			resultStr += SCSSconvertFN(str);
+		else if (configJS.hasOwnProperty(str)) 
+  			resultStr += SCSSconvertVAR(str);
+  		else if (String(str).match(/px$|em$|vh$|vw$|%$|^[0-9]*[0-9]$|\d.\d|transparent|^#|true|false/))
+  			resultStr += String(str).replace('colors','color');
+  		else
+  			resultStr += '\''+String(str).replace('colors','color')+'\'';
+  	}
+  	return resultStr;
+  }
 
-    var strConfigSCSS = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n";
-    for(var key in configJS){
-    	// console.log(key, configJS[key]);
-    	if (typeof configJS[key] === 'object') {
-    		strConfigSCSS += '$'+key+': (\n';
-    		for(var name in configJS[key]){
-    			strConfigSCSS += '	\''+name+'\': '+ formatStr(configJS[key][name]) +',\n';
-    		}
-    		strConfigSCSS += ');\n';
-    		strConfigSCSS += '@function '+(key == 'colors'?'color':key)+'($item) {@return map-get($'+key+', \'#{$item}\');}\n\n';
-    	} else {
-    		strConfigSCSS += '$'+key+': '+formatStr(configJS[key])+';\n'
-    	}
-    }
-    if(strConfigSCSS != fs.readFileSync('./src/combined/_config.scss', 'utf8')){
-    	fs.outputFileSync( './src/combined/_config.scss',strConfigSCSS);
-	    console.log('\n### Combined config SCSS rewritten \n');
+  var strConfigSCSS = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n";
+  for(var key in configJS){
+  	// console.log(key, configJS[key]);
+  	if (typeof configJS[key] === 'object') {
+  		strConfigSCSS += '$'+key+': (\n';
+  		for(var name in configJS[key]){
+  			strConfigSCSS += '	\''+name+'\': '+ formatStr(configJS[key][name]) +',\n';
+  		}
+  		strConfigSCSS += ');\n';
+  		strConfigSCSS += '@function '+(key == 'colors'?'color':key)+'($item) {@return map-get($'+key+', \'#{$item}\');}\n\n';
+  	} else {
+  		strConfigSCSS += '$'+key+': '+formatStr(configJS[key])+';\n'
+  	}
+  }
+  if(strConfigSCSS != fs.readFileSync('./src/combined/_config.scss', 'utf8')){
+  	fs.outputFileSync( './src/combined/_config.scss',strConfigSCSS);
+    console.log('\n### Combined config SCSS rewritten \n');
 	}
-    // SCSS CONFIG COMBINER END
-    
-    // SCSS EXPORT
-    var strExport = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n"
-    			  + '@import \'../core/scss/vars\';\n'
-    			  + '@import \'../core/scss/mixins\';\n'
-    			  + '@import \'config\';\n'
-    			  + ':export{\n';
-    for(var key in configJS){
-    	if (typeof configJS[key] === 'object') {
-    		strExport += '	'+key+': #{$'+key+'};\n';
-    	} else {
-    		strExport += '	'+key+': $'+key+';\n';
-    	}
-    }
-    strExport += '}';
-    if(strExport != fs.readFileSync('./src/combined/export.scss', 'utf8')){
-    	fs.outputFileSync( './src/combined/export.scss',strExport);
-	    console.log('\n### Export SCSS rewritten \n');
+  // SCSS CONFIG COMBINER END
+  
+  // SCSS EXPORT
+  var strExport = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n"
+  			  			+ '@import \'../core/scss/vars\';\n'
+  			  			+ '@import \'../core/scss/mixins\';\n'
+  			  			+ '@import \'config\';\n'
+  			  			+ ':export{\n';
+  for(var key in configJS){
+  	if (typeof configJS[key] === 'object') {
+  		strExport += '	'+key+': #{$'+key+'};\n';
+  	} else {
+  		strExport += '	'+key+': $'+key+';\n';
+  	}
+  }
+  strExport += '}';
+  if(strExport != fs.readFileSync('./src/combined/export.scss', 'utf8')){
+    fs.outputFileSync( './src/combined/export.scss',strExport);
+	  console.log('\n### Export SCSS rewritten \n');
 	}
-    // EXPORT END
+  // EXPORT END
 
-    // FRAMWAY UPDATER
-    var strFramway = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n"
-				   + "/* Default configuration & mixins */\n"
-               	   + "@import '../core/scss/mixins';\n"
-               	   + "@import '../core/scss/vars';\n"
-               	   + "@import 'config';\n"
+  // FRAMWAY UPDATER
+  var strFramway = "/* /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. */\n"
+			   				 + "/* Default configuration & mixins */\n"
+             	   + "@import '../core/scss/mixins';\n"
+             	   + "@import '../core/scss/vars';\n"
+             	   + "@import 'config';\n"
 	strFramway += "/* Core styles */\n"
-	        	+ "@import '../core/scss/core';\n";
+	        		+ "@import '../core/scss/core';\n";
 	strFramway += "/* Components styles */\n";
 	for (var i = 0; i < config.components.length; i++) {
-	    strFramway += "@import '../components/"+config.components[i]+"/"+config.components[i]+"';\n";
+	  strFramway += "@import '../components/"+config.components[i]+"/"+config.components[i]+"';\n";
 	}
 	strFramway += "/* Themes styles override */\n";
 	for (var i = 0; i < config.themes.length; i++) {
-	    strFramway += "@import '../themes/"+config.themes[i]+"/"+config.themes[i]+"';\n";
+	  strFramway += "@import '../themes/"+config.themes[i]+"/"+config.themes[i]+"';\n";
 	}
-    if(strFramway != fs.readFileSync('./src/combined/framway.scss', 'utf8')){
+  if(strFramway != fs.readFileSync('./src/combined/framway.scss', 'utf8')){
 		fs.outputFileSync('./src/combined/framway.scss',strFramway);
-	    console.log('\n### Framway rewritten \n');
+	  console.log('\n### Framway rewritten \n');
 	}
-    // FRAMWAY UPDATER END
-    
-    // VENDORS UPDATER
-    var strVendors = "// /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. \n";
+  // FRAMWAY UPDATER END
+  
+  // VENDORS UPDATER
+  var strVendors = "// /!\\ WARNING: Do not edit this file. It will be rewritten in the compilation process. \n";
 		
 	strVendors += "import 'bootstrap/scss/bootstrap-reboot.scss';\n"
 	strVendors += "import 'bootstrap/scss/bootstrap-grid.scss';\n"
@@ -227,9 +225,9 @@ var combineConfigs = function(){
 		strVendors += "import '@fortawesome/fontawesome-pro/js/all.min.js';\n"
 	} else if(config.useFA == 'free'){
 		strVendors += "import '@fortawesome/fontawesome-free/js/all.min.js';\n"
-					+ "import '@fortawesome/free-solid-svg-icons';\n"
-					+ "import '@fortawesome/free-regular-svg-icons';\n"
-					+ "import '@fortawesome/free-brands-svg-icons';\n";
+								+ "import '@fortawesome/free-solid-svg-icons';\n"
+								+ "import '@fortawesome/free-regular-svg-icons';\n"
+								+ "import '@fortawesome/free-brands-svg-icons';\n";
 	}
 	if(config.useToastr)
 		strVendors += "import 'toastr/toastr.scss';\n"
@@ -257,7 +255,7 @@ var combineConfigs = function(){
 		fs.outputFileSync('./vendor/index.js',strVendors);
 	    console.log('\n### vendors rewritten \n');
 	}
-    // VENDORS UPDATER END
+  // VENDORS UPDATER END
 }
 
 var onBuildStart = function(){
