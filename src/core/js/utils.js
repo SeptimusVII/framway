@@ -628,7 +628,7 @@ Utils.prototype.renderError = function(name,msg=false,$el=false,success=false){
   if (msg!==false) {
     $el.append('<blockquote class="'+name+'"><p>'+msg+'</p></blockquote>');
     $el.find('blockquote.'+name).hide().fadeIn();
-    $el.get(0).scrollIntoView({behavior: "smooth"}); // need testing in modalFW
+    $el.get(0).scrollIntoView({behavior: "smooth",block:"center",inline:"nearest"}); // need testing in modalFW
   }
 }
 
