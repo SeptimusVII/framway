@@ -24,11 +24,11 @@ var deleteTheme = function(){
       console.log('\n'+err.message+'\n');
     else{
       if(!org){
-        console.log('\n Theme '+name+' successfully removed, but the git repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete framway-theme-'+name+' -y \n');
+        console.log('\n Theme '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete framway-theme-'+name+' -y \n');
         shell.exec('echo hub delete framway-theme-'+name+' -y|clip');
       }
       else{
-        console.log('\n Theme '+name+' successfully removed, but the git repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+org+'/framway-theme-'+name+' -y \n');
+        console.log('\n Theme '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+org+'/framway-theme-'+name+' -y \n');
         shell.exec('echo hub delete '+org+'/framway-theme-'+name+' -y|clip');
       }
     }
