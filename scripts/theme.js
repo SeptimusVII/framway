@@ -58,17 +58,17 @@ if(!name){
   console.log('\n Missing theme\'s name \n');
 }
 else{
-  name = name.replace('framway-theme-','').replace('.git','').replace('github.com/','fakeLogin:fakePwd@github.com/');
+  name = name.replace('framway-theme-','').replace('.git','');
   if (name.split('/').length > 1) {
-      git  = name.substr(0,name.lastIndexOf('/')+1);
-      name = name.substr(name.lastIndexOf('/')+1);
+    git  = name.substr(0,name.lastIndexOf('/')+1);
+    name = name.substr(name.lastIndexOf('/')+1);
   }
 
   if (!fs.existsSync('./src/themes/')){
-      fs.mkdir('./src/themes/',function(err){
-          if(err)
-            console.log('\n'+err.message+'\n');
-      });
+    fs.mkdir('./src/themes/',function(err){
+      if(err)
+        console.log('\n'+err.message+'\n');
+    });
   }
 
   switch(cmd){

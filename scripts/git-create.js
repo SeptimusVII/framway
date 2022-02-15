@@ -2,7 +2,7 @@ var shell = require('shelljs');
 var type = process.argv[2] || false;
 var name = process.argv[3] || false;
 var org  = process.argv[4] || false;
-var git  = process.argv[4] || 'https://fakeLogin:fakePwd@github.com/SeptimusVII/';
+var git  = process.argv[4] || 'https://github.com/SeptimusVII/';
 
 
 if(!type || !name){

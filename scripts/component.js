@@ -1,9 +1,10 @@
-var shell = require('shelljs');
-var fs = require('fs-extra');
+var shell       = require('shelljs');
+var fs          = require('fs-extra');
 var name        = process.argv[2] || false;
 var cmd         = process.argv[3] || 'create';
 var createGit   = process.argv[4] || false;
 var git         = '';
+
 
 var getComponent = function(){
     shell.exec('node scripts/git-get.js component '+name+' '+git);
@@ -73,7 +74,7 @@ if(!name){
     console.log('\n Missing component\'s name \n');
 }
 else{
-    name = name.replace('framway-component-','').replace('.git','').replace('github.com/','fakeLogin:fakePwd@github.com/');
+    name = name.replace('framway-component-','').replace('.git','');
     if (name.split('/').length > 1) {
         git  = name.substr(0,name.lastIndexOf('/')+1);
         name = name.substr(name.lastIndexOf('/')+1);

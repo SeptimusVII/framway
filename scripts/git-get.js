@@ -2,7 +2,7 @@ var shell = require('shelljs');
 var fs = require('fs-extra');
 var type 	= process.argv[2] || false;
 var name 	= process.argv[3] || false;
-var git  	= process.argv[4] || 'https://fakeLogin:fakePwd@github.com/SeptimusVII/';
+var git  	= process.argv[4] || 'https://github.com/SeptimusVII/';
 
 if(!type || !name){
   console.log('\nMissing argument(s). Expected syntax: git-get [type] [name] \n');
@@ -13,6 +13,7 @@ if(!type || !name){
 	        console.log('\n'+err.message+'\n');
 	    });
 		shell.cd('./src/'+type+'s/');
+		// console.log('target: ' + git+'framway-'+type+'-'+name);
 		shell.exec('git clone '+git+'framway-'+type+'-'+name+' '+name);
 		shell.cd();
 	} else {
