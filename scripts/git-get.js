@@ -2,7 +2,7 @@ var shell = require('shelljs');
 var fs = require('fs-extra');
 var type 	= process.argv[2] || false;
 var name 	= process.argv[3] || false;
-var git  	= process.argv[4] || 'https://github.com/SeptimusVII/';
+var git  	= process.argv[4] || 'https://fakeLogin:fakePwd@github.com/SeptimusVII/';
 
 if(!type || !name){
   console.log('\nMissing argument(s). Expected syntax: git-get [type] [name] \n');
