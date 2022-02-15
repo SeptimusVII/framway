@@ -316,6 +316,21 @@ var onBuildEnd = function(){
   console.log('\n Build has ended \n');
 }
 
+var reset = function(){
+	fs.remove('./src/components/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+  });
+  fs.remove('./src/themes/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+  });
+  fs.remove('./src/combined/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+  });
+}
+
 switch(cmd){
 	case 'init'						: initFramway()  ; break;
 	case 'update'					: updateFramway(); break;
@@ -324,6 +339,7 @@ switch(cmd){
 	case 'toggleFiles'  	: toggleFilesIndex(process.argv[3]) ; break;
 	case 'onBuildStart' 	: onBuildStart() ; break;
 	case 'onBuildEnd'  		: onBuildEnd() ; break;
+	case 'reset'  				: reset() ; break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;
 }
 
