@@ -1,20 +1,23 @@
-var shell = require('shelljs');
-var fs = require('fs-extra');
-var name = process.argv[2] || false;
-var cmd  = process.argv[3] || 'create';
+var shell       = require('shelljs');
+var fs          = require('fs-extra');
+var name        = process.argv[2] || false;
+var cmd         = process.argv[3] || 'create';
 var createGit   = process.argv[4] || false;
-var org  = '';
+var git         = '';
 
-if (name.split('/').length > 1) {
-  org  = name.split('/')[0];
-  name = name.split('/')[1];
-}
 
 var getTheme = function(){
-  if(!org)
-    shell.exec('node scripts/git-get.js theme '+name);
-  else
-    shell.exec('node scripts/git-get.js theme '+name+' '+org);
+  shell.exec('node scripts/git-get.js theme '+name+' '+git);
+  if (!fs.existsSync('./src/themes/'+name+'/'+name+'.js')){
+    fs.remove('./src/themes/'+name,function(err){
+      if(err)
+        console.log('\n'+err.message+'\n');
+      else{
+        createGit = false;
+        createTheme();
+      }
+    });
+  }
 }
 
 
@@ -23,13 +26,10 @@ var deleteTheme = function(){
     if(err)
       console.log('\n'+err.message+'\n');
     else{
-      if(!org){
-        console.log('\n Theme '+name+' successfully removed, but the git repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete framway-theme-'+name+' -y \n');
-        shell.exec('echo hub delete framway-theme-'+name+' -y|clip');
-      }
-      else{
-        console.log('\n Theme '+name+' successfully removed, but the git repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+org+'/framway-theme-'+name+' -y \n');
-        shell.exec('echo hub delete '+org+'/framway-theme-'+name+' -y|clip');
+      console.log('\n Theme '+name+' successfully removed. Be sure to remove the corresponding entry in the framway.config.js file before compiling');
+      if(shell.which('hub')){
+          console.log(' The git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'framway-theme-'+name+' -y \n');
+          shell.exec('echo hub delete '+git+'framway-theme-'+name+' -y|clip');
       }
     }
   })
@@ -46,12 +46,8 @@ var createTheme = function(){
       fs.appendFileSync('./src/themes/'+name+'/_'+name+'.scss','');
       fs.appendFileSync('./src/themes/'+name+'/'+name+'.js','$(function(){\n\n});');
       
-      if (createGit) {
-        if(!org)
-          shell.exec('node scripts/git-create.js theme '+name);
-        else      
-          shell.exec('node scripts/git-create.js theme '+name+' '+org);
-      }
+      if (createGit) 
+        shell.exec('node scripts/git-create.js theme '+name+' '+git);
     }
   });
 };
@@ -61,6 +57,12 @@ if(!name){
   console.log('\n Missing theme\'s name \n');
 }
 else{
+  name = name.replace('framway-theme-','').replace('.git','');
+  if (name.split('/').length > 1) {
+    git  = name.substr(0,name.lastIndexOf('/')+1);
+    name = name.substr(name.lastIndexOf('/')+1);
+  }
+
   if (!fs.existsSync('./src/themes/')){
     fs.mkdir('./src/themes/',function(err){
       if(err)

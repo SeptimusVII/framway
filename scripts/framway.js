@@ -1,8 +1,19 @@
 var shell = require('shelljs');
 var fs = require('fs-extra');
-var config = require('../framway.config.js');
 var cmd  = process.argv[2] || 'displayConfig';
+var config = require('../framway.config.js');
 
+var configCleaned = JSON.parse(JSON.stringify(config));
+for (var i in configCleaned.components) {
+	if (configCleaned.components[i].split('/').length > 1) {
+      configCleaned.components[i] = configCleaned.components[i].substr(configCleaned.components[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
+  }
+}
+for (var i in configCleaned.themes) {
+	if (configCleaned.themes[i].split('/').length > 1) {
+      configCleaned.themes[i] = configCleaned.themes[i].substr(configCleaned.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-theme-','');
+  }
+}
 
 var initFramway = function(){
 	console.log('\n### Framway\'s initialisation...');
@@ -110,6 +121,7 @@ var displayConfig = function(){
 }
 
 
+
 // REGEXP
 //  \w+\(\w.*\) -- full function
 // \(.*\)  -- function parameters
@@ -121,8 +133,8 @@ var combineConfigs = function(){
 
 	var configJS = require('../src/core/config.js');
 	// merging all config we have
-	for (var i = 0; i < config.themes.length; i++){
-		var configTheme = require('../src/themes/'+config.themes[i]+'/config.js');
+	for (var i = 0; i < configCleaned.themes.length; i++){
+		var configTheme = require('../src/themes/'+configCleaned.themes[i]+'/config.js');
 		configJS = mergeDeep(configJS,configTheme);
 	}
 
@@ -234,12 +246,12 @@ var combineConfigs = function(){
 	strFramway += "/* Core styles */\n"
 	        		+ "@import '../core/scss/core';\n";
 	strFramway += "/* Components styles */\n";
-	for (var i = 0; i < config.components.length; i++) {
-	  strFramway += "@import '../components/"+config.components[i]+"/"+config.components[i]+"';\n";
+	for (var i = 0; i < configCleaned.components.length; i++) {
+	  strFramway += "@import '../components/"+configCleaned.components[i]+"/"+configCleaned.components[i]+"';\n";
 	}
 	strFramway += "/* Themes styles override */\n";
-	for (var i = 0; i < config.themes.length; i++) {
-	  strFramway += "@import '../themes/"+config.themes[i]+"/"+config.themes[i]+"';\n";
+	for (var i = 0; i < configCleaned.themes.length; i++) {
+	  strFramway += "@import '../themes/"+configCleaned.themes[i]+"/"+configCleaned.themes[i]+"';\n";
 	}
   if(strFramway != fs.readFileSync('./src/combined/framway.scss', 'utf8')){
 		fs.outputFileSync('./src/combined/framway.scss',strFramway);
@@ -304,6 +316,27 @@ var onBuildEnd = function(){
   console.log('\n Build has ended \n');
 }
 
+var reset = function(){
+	fs.remove('./src/components/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+       else
+       		console.log('### components directory removed');
+  });
+  fs.remove('./src/themes/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+       else
+       		console.log('### themes directory removed');
+  });
+  fs.remove('./src/combined/',function(err){
+      if(err)
+          console.log('\n'+err.message+'\n');
+       else
+       		console.log('### combined directory removed');
+  });
+}
+
 switch(cmd){
 	case 'init'						: initFramway()  ; break;
 	case 'update'					: updateFramway(); break;
@@ -312,6 +345,7 @@ switch(cmd){
 	case 'toggleFiles'  	: toggleFilesIndex(process.argv[3]) ; break;
 	case 'onBuildStart' 	: onBuildStart() ; break;
 	case 'onBuildEnd'  		: onBuildEnd() ; break;
+	case 'reset'  				: reset() ; break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;
 }
 

@@ -1,5 +1,17 @@
 var config = require('../../../framway.config.js');
 require('../../combined/framway.scss');
+
+for (var i in config.components) {
+  if (config.components[i].split('/').length > 1) {
+      config.components[i] = config.components[i].substr(config.components[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
+  }
+}
+for (var i in config.themes) {
+  if (config.themes[i].split('/').length > 1) {
+      config.themes[i] = config.themes[i].substr(config.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-theme-','');
+  }
+}
+
 function Framway(){
   	var framway = this;
   	framway.version = require('../../../package.json').version;
@@ -8,6 +20,8 @@ function Framway(){
 	  framway.components_active = {};
   	framway.$debug = $('<div id="debug"></div>').appendTo($('body'));
     framway.styles = require('../../combined/export.scss');
+    if (framway.styles.default)
+      framway.styles = framway.styles.default;
     // console.log(framway.styles);
     $.each(framway.styles,function(key,value){
       if(value[0] == '(' && value[value.length - 1] == ")"){
@@ -38,7 +52,7 @@ function Framway(){
         switchIconToFree(item);
       utils.addHtmlHook('i.fal,i.far,i.fad', function(item){
         $(item).each(function(){switchIconToFree(this)})
-        });
+      });
     }
 
   	return framway;
