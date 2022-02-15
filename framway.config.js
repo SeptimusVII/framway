@@ -10,7 +10,7 @@ module.exports = {
 
     'tabs',
     'block-std',
-    // 'block-card',
+    'block-card',
     'btn-load',
     'select2FW',
     'accordionFW',
@@ -22,20 +22,15 @@ module.exports = {
     'datepicker',
     'modalFW',
     'goto',
-    // 'konami',
     'input-number',
     'filters',
     'sliderFW',
     'fileUploader',
+    'table-list',
     // 'priceCard',
     // 'foldingbox',
     // 'headerFW',
 
-    'block-list',
-    'block-img',
-    'block-flip',
-
-    'table-list',
   ],
   useFA: false, // false || 'free' || 'pro'
   useToastr: true,
