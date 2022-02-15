@@ -13,11 +13,7 @@ if(!type || !name){
 	shell.exec('git add .');
 	shell.exec('git commit -m "Initial commit"');
 	
-	if(!org)
-		shell.exec('hub create -d "'+type+' '+name+' for Framway" framway-'+type+'-'+name);
-	else
-		shell.exec('hub create -d "'+type+' '+name+' for Framway" '+org+'/framway-'+type+'-'+name);
-
+	shell.exec('hub create -d "'+type+' '+name+' for Framway" '+git+'framway-'+type+'-'+name);
 
 	shell.exec('git push -u origin master');
 	shell.cd();
