@@ -3,18 +3,20 @@ var fs = require('fs-extra');
 var name        = process.argv[2] || false;
 var cmd         = process.argv[3] || 'create';
 var createGit   = process.argv[4] || false;
-var org         = '';
-
-if (name.split('/').length > 1) {
-    org  = name.split('/')[0];
-    name = name.split('/')[1];
-}
+var git         = '';
 
 var getComponent = function(){
-    if(!org)
-        shell.exec('node scripts/git-get.js component '+name);      
-    else
-        shell.exec('node scripts/git-get.js component '+name+' '+org);      
+    shell.exec('node scripts/git-get.js component '+name+' '+git);
+    if (!fs.existsSync('./src/components/'+name+'/'+name+'.js')){
+        fs.remove('./src/components/'+name,function(err){
+            if(err)
+                console.log('\n'+err.message+'\n');
+            else{
+                createGit = false;
+                createComponent();
+            }
+        });
+    }
 }
 
 
@@ -23,14 +25,8 @@ var deleteComponent = function(){
         if(err)
             console.log('\n'+err.message+'\n');
         else{
-            if(!org){
-                console.log('\n Component '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete framway-component-'+name+' -y \n');
-                shell.exec('echo hub delete framway-component-'+name+' -y|clip');
-            }
-            else{
-                console.log('\n Component '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+org+'/framway-component-'+name+' -y \n');
-                shell.exec('echo hub delete '+org+'/framway-component-'+name+' -y|clip');
-            }
+            console.log('\n Component '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'/framway-component-'+name+' -y \n');
+            shell.exec('echo hub delete '+git+'framway-component-'+name+' -y|clip');
         }
     })
 };
@@ -66,12 +62,8 @@ var createComponent = function(){
 }`
             );
             fs.appendFileSync('./src/components/'+name+'/sample.html','<div class="'+name+'"></div>');
-            if (createGit) {
-                if(!org)
-                    shell.exec('node scripts/git-create.js component '+name);
-                else      
-                    shell.exec('node scripts/git-create.js component '+name+' '+org);
-            }
+            if (createGit)
+                shell.exec('node scripts/git-create.js component '+name+' '+git);
         }
     });
 };
@@ -81,12 +73,19 @@ if(!name){
     console.log('\n Missing component\'s name \n');
 }
 else{
+    name = name.replace('framway-component-','').replace('.git','').replace('github.com/','fakeLogin:fakePwd@github.com/');
+    if (name.split('/').length > 1) {
+        git  = name.substr(0,name.lastIndexOf('/')+1);
+        name = name.substr(name.lastIndexOf('/')+1);
+    }
+
     if (!fs.existsSync('./src/components/')){
         fs.mkdir('./src/components/',function(err){
             if(err)
                 console.log('\n'+err.message+'\n');
         });
     }
+
 
     switch(cmd){
         case 'create': createComponent(); break;
