@@ -109,6 +109,19 @@ var displayConfig = function(){
 	}
 }
 
+var getCleanConfig = function(obj){
+	for (var i in obj.components) {
+		if (obj.components[i].split('/').length > 1) {
+        obj.components[i] = obj.components[i].substr(obj.components[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
+    }
+	}
+	for (var i in obj.themes) {
+		if (obj.themes[i].split('/').length > 1) {
+        obj.themes[i] = obj.themes[i].substr(obj.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
+    }
+	}
+	return obj;
+}
 
 // REGEXP
 //  \w+\(\w.*\) -- full function
@@ -234,12 +247,12 @@ var combineConfigs = function(){
 	strFramway += "/* Core styles */\n"
 	        		+ "@import '../core/scss/core';\n";
 	strFramway += "/* Components styles */\n";
-	for (var i = 0; i < config.components.length; i++) {
-	  strFramway += "@import '../components/"+config.components[i]+"/"+config.components[i]+"';\n";
+	for (var i = 0; i < getCleanConfig(config).components.length; i++) {
+	  strFramway += "@import '../components/"+getCleanConfig(config).components[i]+"/"+getCleanConfig(config).components[i]+"';\n";
 	}
 	strFramway += "/* Themes styles override */\n";
-	for (var i = 0; i < config.themes.length; i++) {
-	  strFramway += "@import '../themes/"+config.themes[i]+"/"+config.themes[i]+"';\n";
+	for (var i = 0; i < getCleanConfig(config).themes.length; i++) {
+	  strFramway += "@import '../themes/"+getCleanConfig(config).themes[i]+"/"+getCleanConfig(config).themes[i]+"';\n";
 	}
   if(strFramway != fs.readFileSync('./src/combined/framway.scss', 'utf8')){
 		fs.outputFileSync('./src/combined/framway.scss',strFramway);
