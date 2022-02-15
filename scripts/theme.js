@@ -1,38 +1,34 @@
-var shell = require('shelljs');
-var fs = require('fs-extra');
-var name = process.argv[2] || false;
-var cmd  = process.argv[3] || 'create';
+var shell       = require('shelljs');
+var fs          = require('fs-extra');
+var name        = process.argv[2] || false;
+var cmd         = process.argv[3] || 'create';
 var createGit   = process.argv[4] || false;
-var git  = '';
+var git         = '';
 
-if (name.split('/').length > 1) {
-  git  = name.split('/')[0];
-  name = name.split('/')[1];
-}
 
 var getTheme = function(){
-  shell.exec('node scripts/git-get.js Theme '+name+' '+git);
-    if (!fs.existsSync('./src/Themes/'+name+'/'+name+'.js')){
-        fs.remove('./src/Themes/'+name,function(err){
-            if(err)
-                console.log('\n'+err.message+'\n');
-            else{
-                createGit = false;
-                createTheme();
-            }
-        });
-    }
+  shell.exec('node scripts/git-get.js theme '+name+' '+git);
+  if (!fs.existsSync('./src/themes/'+name+'/'+name+'.js')){
+    fs.remove('./src/themes/'+name,function(err){
+      if(err)
+        console.log('\n'+err.message+'\n');
+      else{
+        createGit = false;
+        createTheme();
+      }
+    });
+  }
 }
 
 
 var deleteTheme = function(){
   fs.remove('./src/themes/'+name,function(err){
-      if(err)
-          console.log('\n'+err.message+'\n');
-      else{
-          console.log('\n theme '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'/framway-theme-'+name+' -y \n');
-          shell.exec('echo hub delete '+git+'framway-theme-'+name+' -y|clip');
-      }
+    if(err)
+      console.log('\n'+err.message+'\n');
+    else{
+      console.log('\n theme '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'/framway-theme-'+name+' -y \n');
+      shell.exec('echo hub delete '+git+'framway-theme-'+name+' -y|clip');
+    }
   })
 };
 

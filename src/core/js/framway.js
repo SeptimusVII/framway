@@ -8,7 +8,7 @@ for (var i in config.components) {
 }
 for (var i in config.themes) {
   if (config.themes[i].split('/').length > 1) {
-      config.themes[i] = config.themes[i].substr(config.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
+      config.themes[i] = config.themes[i].substr(config.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-theme-','');
   }
 }
 
