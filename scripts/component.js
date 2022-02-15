@@ -26,8 +26,11 @@ var deleteComponent = function(){
         if(err)
             console.log('\n'+err.message+'\n');
         else{
-            console.log('\n Component '+name+' successfully removed, but the git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'/framway-component-'+name+' -y \n');
-            shell.exec('echo hub delete '+git+'framway-component-'+name+' -y|clip');
+            console.log('\n Component '+name+' successfully removed. Be sure to remove the corresponding entry in the framway.config.js file before compiling');
+            if(shell.which('hub')){
+                console.log('The git remote repository might remains. To delete it, use the following command (copied to your clipboard): \n $ hub delete '+git+'framway-component-'+name+' -y \n');
+                shell.exec('echo hub delete '+git+'framway-component-'+name+' -y|clip');
+            }
         }
     })
 };
