@@ -39,15 +39,37 @@ module.exports = {
             },
 			{
                 test: /\.s?css$/,  // will watch either for css or scss files
+                exclude: /(combined)/,
                 use: [
-                	{
-                		loader: MiniCssExtractPlugin.loader,
-                	},
-                	'fast-css-loader',
-                	'postcss-loader',
-                	'fast-sass-loader',
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
+                    'fast-css-loader',
+                    'postcss-loader',
+                    'fast-sass-loader',
                 ]
-			}
+            },
+            {
+                test: /\.s?css$/,  // will watch either for css or scss files
+                include: /(combined)/,
+                use: [
+                    {
+                        loader: "style-loader",
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                mode: "icss",
+                            },
+                        },
+                    },
+                    {
+                        loader: "fast-sass-loader",
+                    },
+                ],
+            }
 		]
 	},
     resolve: {
