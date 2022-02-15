@@ -320,14 +320,20 @@ var reset = function(){
 	fs.remove('./src/components/',function(err){
       if(err)
           console.log('\n'+err.message+'\n');
+       else
+       		console.log('### components directory removed');
   });
   fs.remove('./src/themes/',function(err){
       if(err)
           console.log('\n'+err.message+'\n');
+       else
+       		console.log('### themes directory removed');
   });
   fs.remove('./src/combined/',function(err){
       if(err)
           console.log('\n'+err.message+'\n');
+       else
+       		console.log('### combined directory removed');
   });
 }
 
