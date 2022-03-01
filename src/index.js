@@ -26,6 +26,12 @@ app.labels 	??= {
 			fr: 'Envoyer',
 			en: 'Send',
 		},
+	},
+	miscs: {
+		seeMore: {
+			fr: 'En savoir plus',
+			en: 'See more',
+		}
 	}
 };
 app.loadComponents(app.components);
