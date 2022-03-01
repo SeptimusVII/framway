@@ -44,24 +44,24 @@
     }
   }
 
-  &.valid{@extend %input[required]:valid;}
-  &.invalid{@extend %input[required]:invalid;}
+  &.valid{@extend [required]:valid;}
+  &.invalid{@extend [required]:invalid;}
 
   @include input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
   &:focus,
   &.focus,
   &.active{@include input-placeholder{color: contrastFW(input(placeholder-font-color),input-focus(background));}}
-}
+} 
 
-input.text, input[type="text"],
-input.email, input[type="email"],
-input.password, input[type="password"],
-input.tel, input[type="tel"],
-input.url, input[type="url"],
-input.date, input[type="date"],
-input.range, input[type="range"],
-input.number, input[type="number"],
-select, option,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="range"],
+input[type="number"],
+select,
 textarea{@extend %input;}
 
 @if(input(background) == transparent){option{color:body(font-color);} }
