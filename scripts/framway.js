@@ -265,14 +265,14 @@ var combineConfigs = function(){
 	strVendors += "import 'bootstrap/scss/bootstrap-reboot.scss';\n"
 	strVendors += "import 'bootstrap/scss/bootstrap-grid.scss';\n"
 	
-	if (config.useFA == 'pro') {
-		strVendors += "import '@fortawesome/fontawesome-pro/js/all.min.js';\n"
-	} else if(config.useFA == 'free'){
-		strVendors += "import '@fortawesome/fontawesome-free/js/all.min.js';\n"
-								+ "import '@fortawesome/free-solid-svg-icons';\n"
-								+ "import '@fortawesome/free-regular-svg-icons';\n"
-								+ "import '@fortawesome/free-brands-svg-icons';\n";
-	}
+	// if (config.useFA == 'pro') {
+	// 	strVendors += "import '@fortawesome/fontawesome-pro/js/all.min.js';\n"
+	// } else if(config.useFA == 'free'){
+	// 	strVendors += "import '@fortawesome/fontawesome-free/js/all.min.js';\n"
+	// 							+ "import '@fortawesome/free-solid-svg-icons';\n"
+	// 							+ "import '@fortawesome/free-regular-svg-icons';\n"
+	// 							+ "import '@fortawesome/free-brands-svg-icons';\n";
+	// }
 	if(config.useToastr)
 		strVendors += "import 'toastr/toastr.scss';\n"
 					// + "global.toastr = require('toastr');\n";
