@@ -38,6 +38,7 @@ $ratios : (
 
 %img-container{position: relative; overflow: hidden; @include flex-grow();max-width: 100%;
   &:not([class*=w-]){  width: 100%; }
+  & iframe{position: absolute; height: 100%; width: 100%; margin: 0;}
   & img{height: 100%; width: 100%; object-fit: cover;
     pointer-events: none;
   }
