@@ -308,6 +308,7 @@ var onBuildStart = function(){
       console.log('\n'+err.message+'\n');
     else{
       console.log('\n Build has started... \n');
+			combineConfigs();
     }
   })
 }

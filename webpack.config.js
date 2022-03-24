@@ -98,15 +98,20 @@ module.exports = {
         }),
         new LiveReloadPlugin(),
         new WebpackShellPluginNext({
-            onBuildStart:{
-                scripts: ['npm run framway onBuildStart','npm run framway combineConfigs'],
+            onWatchRun:{
+                scripts: ['npm run framway onBuildStart'],
+                blocking: true,
+                parallel: false
+            },
+            onBeforeNormalRun:{
+                scripts: ['npm run framway onBuildStart'],
                 blocking: true,
                 parallel: false
             },
             onBuildEnd:{
                 scripts: ['npm run framway onBuildEnd'],
-                blocking: true,
-                parallel: false
+                blocking: false,
+                parallel: true
             },
             dev: false,
         }),
