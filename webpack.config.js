@@ -49,29 +49,13 @@ module.exports = {
                     'fast-sass-loader',
                 ]
             },
-            // {
-            //     test: /\.s?css$/,  // will watch either for css or scss files
-            //     include: [
-            //         path.resolve(__dirname, "scr/combined/export.scss")
-            //     ],
-            //     use: [
-            //         {
-            //             loader: "style-loader",
-            //         },
-            //         {
-            //             loader: "css-loader",
-            //             options: {
-            //                 importLoaders: 1,
-            //                 modules: {
-            //                     mode: "icss",
-            //                 },
-            //             },
-            //         },
-            //         {
-            //             loader: "fast-sass-loader",
-            //         },
-            //     ],
-            // }
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                type: 'asset/resource',
+                generator : {
+                    filename : 'fonts/[name][ext][query]',
+                }
+            },
 		]
 	},
     resolve: {
