@@ -36,7 +36,7 @@
     "mini-css-extract-plugin": "^2.4.6",
     "mustache-loader": "^1.4.3",
     "node-sass": "^7.0.1",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.12",
     "postcss-focus": "^5.0.1",
     "postcss-import-url": "^7.0.0",
     "postcss-loader": "^6.2.1",
