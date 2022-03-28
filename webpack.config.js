@@ -44,9 +44,21 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                     },
-                    'fast-css-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                mode: "icss",
+                            },
+                        },
+                    },
                     'postcss-loader',
-                    'fast-sass-loader',
+                    {
+                        loader: 'sass-loader',
+                    }
+                    // 'fast-css-loader',
+                    // 'fast-sass-loader',
                 ]
             },
             {

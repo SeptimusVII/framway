@@ -225,7 +225,7 @@ var combineConfigs = function(){
   			  			+ ':export{\n';
   for(var key in configJS){
   	if (typeof configJS[key] === 'object') {
-  		strExport += '	'+key+': #{$'+key+'};\n';
+			strExport += '	'+key+': #{inspect($'+key+')};\n';
   	} else {
   		strExport += '	'+key+': $'+key+';\n';
   	}
