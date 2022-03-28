@@ -24,19 +24,20 @@ function Framway(){
       framway.styles = framway.styles.default;
     // console.log(framway.styles);
     $.each(framway.styles,function(key,value){
+      // console.log(key,value);
       if(value[0] == '(' && value[value.length - 1] == ")"){
         // var objValue = value.replace('(','{').replace(')','}').replace(/ /g, '')
         var objValue = value.replace(/^\(/,'{').replace(/\)$/,'}').replace(/ /g, '') // replace the global parenthesis with brackest
                 .replace(/\((.*?)\)/g,'{$1}') // replace any internal parenthesis with brackets
                 .replace(/([\w]+):/g, '"$1":') // wrap any property name into quotes
                 .replace(/:([\w]+.+\))/g, ':"$1"') // wrap rgba
-                // .replace(/:([\w]+)/g, ':"$1"') // wrap any word
                 .replace(/:([\w].[\w]*)/g, ':"$1"') // wrap any word
+                .replace(/:(\.[\w].[\w]*)/g, ':"$1"') // wrap any word including thing like ".8em"
                 .replace(/#([\w]+)/g, '"#$1"') // wrap any hexadecimal color
                 .replace(/:([\d]+)/g, function(m, num) {return ':'+parseFloat(num)}) // don't know
                 .replace(/:([[{])/g, ':$1'); // don't know
-        // console.log(objValue);
         framway.styles[key] = JSON.parse(objValue);
+        // console.log(framway.styles[key]);
       }
     });
     // console.log(framway.styles);
