@@ -14,7 +14,6 @@ $btn-p-x: 1.5em;
 
 .btn#{$exclude}{
   display: inline-block;
-  text-align: center;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -47,6 +46,7 @@ $btn-p-x: 1.5em;
   text-decoration: none;
   margin-top: 2.5px;
   margin-bottom: 2.5px;
+  &:not([class*="txt-"]){text-align: center;}
   @include transition(all .2s ease-in-out);
   &:focus{ outline: none; box-shadow: none;}
   &:hover,&:focus,&:active,&.active{
