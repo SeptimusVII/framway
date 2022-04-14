@@ -23,7 +23,10 @@ ul,
 ol,
 p{margin-bottom: 1em; margin-top: 0; @extend .pbreak; }
 
-.txt-limit p, p.txt-limit{max-width: body(line-height)*60ch; }
+.txt-limit p, 
+.txt-limit ul, 
+.txt-limit ol, 
+p.txt-limit{max-width: body(line-height)*60ch; }
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
