@@ -27,6 +27,10 @@ p{margin-bottom: 1em; margin-top: 0; @extend .pbreak; }
 .txt-limit ul, 
 .txt-limit ol, 
 p.txt-limit{max-width: body(line-height)*60ch; }
+.no-txt-limit p, 
+.no-txt-limit ul, 
+.no-txt-limit ol, 
+p.no-txt-limit{max-width: none; }
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
