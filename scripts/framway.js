@@ -257,6 +257,7 @@ var combineConfigs = function(){
 		fs.outputFileSync('./src/combined/framway.scss',strFramway);
 	  console.log('\n### Framway rewritten \n');
 	}
+	fs.copySync('./src/combined', './build/combined');
   // FRAMWAY UPDATER END
   
   // VENDORS UPDATER
