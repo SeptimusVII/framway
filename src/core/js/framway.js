@@ -45,13 +45,12 @@ function Framway(){
     if (framway.useFA != 'pro') {
       var switchIconToFree = function(item){
         item.classList.remove('fal');
-        item.classList.remove('far');
         item.classList.remove('fad');
         item.classList.add('fas');
       }
-      for(var item of document.querySelectorAll('i.fal,i.far,i.fad'))
+      for(var item of document.querySelectorAll('i.fal,i.fad'))
         switchIconToFree(item);
-      utils.addHtmlHook('i.fal,i.far,i.fad', function(item){
+      utils.addHtmlHook('i.fal,i.fad', function(item){
         $(item).each(function(){switchIconToFree(this)})
       });
     }
