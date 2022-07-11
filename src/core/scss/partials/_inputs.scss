@@ -86,7 +86,15 @@ input.range:after,input[type="range"]:after{right: 0em; content: attr(max); }
 input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !important; height: 0 !important; display: block; }
 
 %checkbox, %radio{
-  opacity: 0; padding: 0; margin:0; @include size(0); position: absolute;
+  // opacity: 0; padding: 0; margin:0; @include size(0); position: absolute;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  margin-top: 1em;
+  margin-left: 0.35em;
   &+label{
     text-transform: none;
     padding: .25em .5em;
