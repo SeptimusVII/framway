@@ -16,7 +16,10 @@
   *[class*='flex-'][class*='-justifycontent--#{$valueflat}']{justify-content: $value;}
   *[class*='flex-'][class*='-alignitems--#{$valueflat}']{align-items: $value;}
 
-  .alignself--#{$valueflat}{align-self: $value;}
+  .alignself--#{$valueflat}    {align-self: $value;}
+  .justifyself--#{$valueflat}  {justify-self: $value;}
+  .justifyitems--#{$valueflat} {justify-items: $value;}
+  .alignitems--#{$valueflat}   {align-items: $value;}
 }
 
 @for $index from 0 through 5 {
