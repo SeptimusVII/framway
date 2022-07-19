@@ -68,6 +68,7 @@ $ratios : (
 }
 @each $key, $value in $ratios {
   .r_#{$key}{@extend [class*="r_"];}
+  .aspect_#{$key}{aspect-ratio: #{str-slice($key,1,str-index($key,"-")-1) + "/" + str-slice($key,str-index($key,"-")+1) };}
 }
 
 .img-container{@extend %img-container;}
