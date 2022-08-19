@@ -1,12 +1,5 @@
 .d-grid{display: grid; gap: $spacing;
   @include media-max(xs){gap: $spacing/2; }
-  @for $index from 0 through 6{
-    &.gap-#{$index}{gap: $spacing*$index;
-      @include media-max(xs){gap: ($spacing*$index)/2;}
-    }
-    &.gap-#{$index}-em{gap: 1em*$index ;}
-    &.gap-#{$index}-rem{gap: 1rem*$index ;}
-  }
   @for $index from 1 through 12{
     &.cols-#{$index}{grid-template-columns: #{repeat('1fr ',$index)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$index)};}
     &.rows-#{$index}{grid-template-rows: #{repeat('1fr ',$index)}; grid-template-rows: #{repeat('minmax(0,1fr) ',$index)};}
@@ -36,6 +29,14 @@
     }
   }
   &.flow{grid-auto-flow: dense;}
+}
+
+@for $index from 0 through 6{
+  &.gap-#{$index}{gap: $spacing*$index;
+    @include media-max(xs){gap: ($spacing*$index)/2;}
+  }
+  &.gap-#{$index}-em{gap: 1em*$index ;}
+  &.gap-#{$index}-rem{gap: 1rem*$index ;}
 }
 
 // GRID ORDERS
