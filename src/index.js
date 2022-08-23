@@ -34,5 +34,10 @@ app.labels 	??= {
 		}
 	}
 };
-app.loadComponents(app.components);
-app.loadThemes(app.themes);
+app.loadComponents(app.components).then(function(){
+	app.loadThemes(app.themes).then(function(){
+		$(function () {
+			$(window).trigger('resize');
+		});
+	});
+});
