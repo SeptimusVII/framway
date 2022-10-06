@@ -1,5 +1,8 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // MISCS
+#outdated h6{padding: 0 2em;}
+#outdated .last{position: fixed; right:10px; top: 5px; }
+
 #toast-container>div{box-shadow: none;
 	&:hover{box-shadow: none;}
 }

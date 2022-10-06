@@ -281,7 +281,7 @@ var combineConfigs = function(){
 	if(config.useOutdatebrowser){
 		strVendors += "import outdatedBrowser from 'outdated-browser-rework';\n";
 		strVendors += "import 'outdated-browser-rework/dist/style.css';\n";
-		strVendors += `var el = document.createElement('div'); el.setAttribute('id','outdated');document.body.appendChild(el);outdatedBrowser();\n`;
+		strVendors += `var el = document.createElement('div'); el.setAttribute('id','outdated');document.body.appendChild(el);outdatedBrowser({isUnknownBrowserOK:true,requiredCssProperty:'object-fit'} );\n`;
 	}
 	// if(config.useTarteaucitron){
 	// 	// CDN
