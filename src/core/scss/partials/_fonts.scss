@@ -19,6 +19,7 @@
 .ft-u-no{text-decoration: none;}
 .ft-upper{text-transform: uppercase;}
 .ft-lower{text-transform: lowercase;}
+.ft-notrs{text-transform: none;}
 .ft-nowrap{white-space: nowrap;}
 
 @for $index from 0 through 10 {
