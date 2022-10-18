@@ -66,7 +66,7 @@
 @function contrastFW($color1, $color2) {
   $contrast : brightnessFW($color1) - brightnessFW($color2);
   $target: 100;
-  $adjustement : 20; // 10
+  $adjustement : 15; // 10
   @if ( $color1 == transparent and $color2 != transparent){
     @return $color2;
   }
@@ -82,15 +82,15 @@
       @else{
         // do this if we can't lighten color1 enough to contrast with color2
         // decrease color1's brightness, compare the new contrast and return
-        @return contrastFW(scale-color($color1,$lightness: -$adjustement), $color2);
+        @return contrastFW(scale-color($color1,$lightness:(-$adjustement)), $color2);
       }
     }
     @else if ( $contrast < 0 ){
-      // color2 is slightly darker than color2
+      // color1 is slightly darker than color2
       @if (brightnessFW($color1) > abs($contrast)){
         // do this if we can darken color1 enough to contrast with color2
         // adjust color1 to have a minimum contrast of -$target with color 2
-        @return scale-color($color1, $lightness: -$target + abs($contrast));
+        @return scale-color($color1, $lightness: (-$target) + abs($contrast));
       }
       @else{
         // do this if we can't darken color1 enough to contrast with color2
@@ -108,7 +108,7 @@
       @else{
         // color1 is naturally light, so we need to darken it
         // decrease color1's brightness, compare the new contrast and return
-        @return contrastFW(scale-color($color1,$lightness: -$adjustement), $color2);
+        @return contrastFW(scale-color($color1,$lightness: (-$adjustement)), $color2);
       }
     }
   }
@@ -498,7 +498,7 @@
   $angle: rad($angle);
   // Iterate a bunch of times.
   @for $i from 0 through 10 {
-    $sin: $sin + pow(-1, $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
+    $sin: $sin + pow((-1), $i) * pow($angle, (2 * $i + 1)) / fact(2 * $i + 1);
   }
   @return $sin;
 }
@@ -508,7 +508,7 @@
   $angle: rad($angle);
   // Iterate a bunch of times.
   @for $i from 0 through 10 {
-    $cos: $cos + pow(-1, $i) * pow($angle, 2 * $i) / fact(2 * $i);
+    $cos: $cos + pow((-1), $i) * pow($angle, 2 * $i) / fact(2 * $i);
   }
   @return $cos;
 }
