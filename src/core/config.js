@@ -1,5 +1,5 @@
 module.exports = {
-	'spacing': '1rem',
+	'spacing': '1em',
 	'colors' : {
 		'blue' : '#0075BF',
 		'green' : '#5cb85c',
