@@ -60,7 +60,7 @@ module.exports = {
 	'input': {
 		'background': 'colors(white)',
 		'font-color': 'colors(greystronger)',
-		'border-color': 'colors(grey)',
+		'border-color': 'colors(greylight)',
 		'border-size': 'border-default-size',
 		'placeholder-font-color': 'colors(grey)',
 		'radius': false,
@@ -68,13 +68,13 @@ module.exports = {
 	'input-focus': {
 		'background': 'input(background)',
 		'font-color': 'input(font-color)',
-		'border-color': 'input(border-color)',
+		'border-color': 'colors(grey)',
 	},
-	'input-valid': {
-		'background': 'input(background)',
-		'font-color': 'input(font-color)',
-		'border-color': 'input(border-color)',
-	},
+	// 'input-valid': {
+	// 	'background': 'input(background)',
+	// 	'font-color': 'input(font-color)',
+	// 	'border-color': 'input(border-color)',
+	// },
 	'input-invalid': {
 		'background': 'input(background)',
 		'font-color': 'input(font-color)',

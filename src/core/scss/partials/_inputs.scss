@@ -32,20 +32,32 @@
     color: contrastFW(input-focus(font-color),input-focus(background));
   }
   &[required]{
-    &:valid{
-      background-color: input-valid(background);
-      border-color: input-valid(border-color);
-      color: contrastFW(input-valid(font-color),input-valid(background));
+    @if function-exists(input-valid) {
+      &:valid{
+        background-color: input-valid(background);
+        border-color: input-valid(border-color);
+        color: contrastFW(input-valid(font-color),input-valid(background));
+      }
     }
-    &:invalid{
-      background-color: input-invalid(background);
-      border-color: input-invalid(border-color);
-      color: contrastFW(input-invalid(font-color),input-invalid(background));
+    @if function-exists(input-invalid) {
+      &:invalid{
+        background-color: input-invalid(background);
+        border-color: input-invalid(border-color);
+        color: contrastFW(input-invalid(font-color),input-invalid(background));
+      }
     }
   }
 
-  &.valid{@extend [required]:valid;}
-  &.invalid{@extend [required]:invalid;}
+  &.valid{
+    @if function-exists(input-valid) {
+      @extend [required]:valid;
+    }
+  }
+  &.invalid{
+    @if function-exists(input-invalid) {
+      @extend [required]:invalid;
+    }
+  }
 
   @include input-placeholder{color: contrastFW(input(placeholder-font-color),input(background));}
   &:focus,
@@ -68,8 +80,16 @@ textarea{@extend %input;}
 textarea{@include transition(background 0.4s); min-height: 150px; height: auto; max-width: 100%; resize: vertical;}
 input.url, input[type="url"],
 input.email, input[type="email"]{
-  &:focus:valid{@extend %input[required]:valid;}
-  &:invalid{@extend %input[required]:invalid;}
+  &:focus:valid{
+    @if function-exists(input-valid) {
+      @extend %input[required]:valid;
+    }
+  }
+  &:invalid{
+    @if function-exists(input-invalid) {
+      @extend %input[required]:invalid;
+    }
+  }
 }
 input.date, input[type="date"]{padding-right: 0.3em;}
 
