@@ -28,6 +28,8 @@ $btn-p-x: 1.5em;
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
+  } @else if btn(radius) != false {
+    border-radius: btn(radius);
   }
   text-transform: none;
   @if btn(uppercase) == true{
@@ -103,6 +105,8 @@ $btn-p-x: 1.5em;
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
+  } @else if btn(radius) != false {
+    border-radius: btn(radius);
   }
 }
 .btn-lg#{$exclude}{@extend .btn;
@@ -114,6 +118,8 @@ $btn-p-x: 1.5em;
   border-radius: 0;
   @if btn(radius) == true{
     border-radius: $radius;
+  } @else if btn(radius) != false {
+    border-radius: btn(radius);
   }
 }
 
