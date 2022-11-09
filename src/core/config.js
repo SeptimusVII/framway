@@ -104,8 +104,16 @@ module.exports = {
 		'lg' 	: '1200px',
 		'md' 	: '992px',
 		'sm' 	: '768px',
-		'xs' 	: '620px',
-		'xxs'   : '520px',
+		'xs' 	: '576px',
+		'xxs'   : '400px',
+	},
+	'container':{
+		'xl'  : '1320px',
+		'lg'  : '1140px',
+		'md'  : '960px',
+		'sm'  : '720px',
+		'xs'  : '540px',
+		'xxs' : '100%',
 	},
 
 	'enable-bg': true,

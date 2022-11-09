@@ -18,6 +18,15 @@ html{overflow-x: hidden; font-size: body(font-size);
 body {background: body(background);color:body(font-color); line-height: body(line-height);}
 :focus{outline: 0;}
 
+.container{
+	@include media-min(xxs){max-width: container(xxs);}
+	@include media-min(xs) {max-width: container(xs);}
+	@include media-min(sm) {max-width: container(sm);}
+	@include media-min(md) {max-width: container(md);}
+	@include media-min(lg) {max-width: container(lg);}
+	@include media-min(xl) {max-width: container(xl);}
+}
+
 
 /* IMPORTS */
 @import 'partials/utilities';
