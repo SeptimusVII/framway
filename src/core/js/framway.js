@@ -31,6 +31,7 @@ function Framway(){
                 .replace(/\((.*?)\)/g,'{$1}') // replace any internal parenthesis with brackets
                 .replace(/([\w]+):/g, '"$1":') // wrap any property name into quotes
                 .replace(/:([\w]+.+\))/g, ':"$1"') // wrap rgba
+                .replace(/([\w]+)%/g, '"$1%"') // wrap any %
                 .replace(/:([\w].[\w]*)/g, ':"$1"') // wrap any word
                 .replace(/:(\.[\w].[\w]*)/g, ':"$1"') // wrap any word including thing like ".8em"
                 .replace(/#([\w]+)/g, '"#$1"') // wrap any hexadecimal color
