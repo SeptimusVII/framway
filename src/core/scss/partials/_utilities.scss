@@ -3,6 +3,9 @@
 .no-events{pointer-events: none;}
 .no-transition{transition: none !important;}
 .no-overflow{overflow:hidden;}
+html.no-scroll{ height: 100vh; overflow: hidden;
+  body{overflow-y: scroll;}
+}
 
 .hidden,
 .invisible{display: none !important;}
