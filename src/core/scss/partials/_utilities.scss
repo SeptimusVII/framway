@@ -2,7 +2,9 @@
 /* UTILITY CLASSES */
 .no-events{pointer-events: none;}
 .no-transition{transition: none !important;}
-.no-overflow{overflow:hidden;}
+.overflow-hidden{overflow:hidden;}
+.overflow-visible{overflow:visible;}
+.overflow-auto{overflow:auto;}
 html.no-scroll{ height: 100vh; overflow: hidden;
   body{overflow-x: hidden; overflow-y: scroll;}
 }
