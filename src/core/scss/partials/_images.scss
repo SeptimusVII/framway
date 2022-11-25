@@ -26,6 +26,9 @@ img{ max-width: 100%; height: auto;
   &.fadetogrey {filter: grayscale(0%);}
   .fadetogrey:hover &,
   &.fadetogrey:hover {filter: grayscale(100%);}
+
+  .grayscale &,
+  &.grayscale{filter: grayscale(100%);}
 }
 
 $ratios : (
