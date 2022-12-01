@@ -440,7 +440,11 @@ Utils.prototype.checkForm = function(el,renderError = true){
         if($(input).is(':invalid')) // regular check if input is invalid, then result is false by default
             inputRow.valid = false;
 
-
+        // SELECT MULTIPLE
+        if (inputRow.type=='select' && input.hasAttribute('multiple')) {
+          inputRow.value=Array.from(input.selectedOptions).map(v=>v.value);
+        }
+        
         // CHECKBOXES
         // multiple checkboxes all need the required attribute to be effectively tested
         if (inputRow.type == 'checkbox') {
