@@ -476,8 +476,23 @@ Utils.prototype.checkForm = function(el,renderError = true){
                 inputRow.valid = false;
         }
 
-        // FILEUPLOADER // TODO
-        if($(input).hasClass('fileUploader') && app.components.includes('fileUploader')){}
+        // FILEUPLOADER 
+        if($(input).hasClass('fileUploader') && app.components.includes('fileUploader')){
+          var fileUploader = $(input).fileUploader('get');
+            inputRow.valid = true;
+          if (fileUploader.multiple) {
+                inputRow.value = [];
+            fileUploader.$wrapper.find('.fileUploader__input').each(function(){
+              inputRow.value.push(this.value);
+            });
+            if ($(input).attr('required') && !inputRow.value.length)
+                    inputRow.valid = false;
+          } else {
+            inputRow.value = fileUploader.$wrapper.find('.fileUploader__input').val();
+            if ($(input).attr('required') && inputRow.value == '')
+                    inputRow.valid = false;
+          }
+        }
 
         // DATEPICKERS
         if($(input).hasClass('datepicker') && app.components.includes('datepicker')){
