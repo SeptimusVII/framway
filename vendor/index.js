@@ -4,6 +4,6 @@ import 'bootstrap/scss/bootstrap-grid.scss';
 import 'toastr/toastr.scss';
 import outdatedBrowser from 'outdated-browser-rework';
 import 'outdated-browser-rework/dist/style.css';
-var el = document.createElement('div'); el.setAttribute('id','outdated');document.body.appendChild(el);outdatedBrowser();
+var el = document.createElement('div'); el.setAttribute('id','outdated');document.body.appendChild(el);outdatedBrowser({isUnknownBrowserOK:true,requiredCssProperty:'object-fit'} );
 import objectFitImages from 'object-fit-images';
 objectFitImages();
