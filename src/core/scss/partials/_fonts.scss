@@ -23,10 +23,10 @@
 .ft-nowrap{white-space: nowrap;}
 
 @for $index from 0 through 10 {
-  @if $index != 0 {
-    .ft-minus-#{$index}#{0}{font-size: #{1 - ($index * 0.10)}em;}
-    .ft-plus-#{$index}#{0}{font-size: #{1 + ($index * 0.10)}em;}
-  }
+  // @if $index != 0 {
+  //   .ft-minus-#{$index}#{0}{font-size: #{1 - ($index * 0.10)}em;}
+  //   .ft-plus-#{$index}#{0}{font-size: #{1 + ($index * 0.10)}em;}
+  // }
   .ft-#{$index}-em{font-size: #{$index}em; line-height: clamp(1em,body(line-height)*1em,52px); }
   .ft-#{$index}-rem{font-size: #{$index}rem; line-height: clamp(1em,body(line-height)*1em,52px); }
   @for $index2 from 1 through 9 {
