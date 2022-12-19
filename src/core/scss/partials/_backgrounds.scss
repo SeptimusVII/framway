@@ -8,7 +8,7 @@
 // BACKGROUNDS
 @if $enable-bg{
   *:where([class*='bg-']:not([class*='bg--']):not([class*='btn-'])){padding: $spacing;}
-  *:is([class*='bg-']:not([class*='bg--']):not([class*='btn-'])>*:last-child){margin-bottom:0;}
+  *:is([class*='bg-']:not([class*='bg--']):not([class*='btn-'])>*:last-child:not([class*='btn'])){margin-bottom:0;}
   @each $key, $value in $colors{
     .bg-#{$key}{background-color: $value isImportant($key); color: body(font-color); color: contrastFW(body(font-color), $value);}
     // *[class~="bg-#{$key}"],
