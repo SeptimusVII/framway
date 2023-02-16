@@ -152,5 +152,12 @@ Component.prototype.getData = function(label, placeholder = undefined){
     else
       return placeholder;
 }
+Component.prototype.getAttr = function(label, placeholder = undefined){
+  var component = this;
+  if(component.$el.attr(label) !== undefined && component.$el.attr(label) !== "")
+      return component.$el.attr(label);
+    else
+      return placeholder;
+}
 
 module.exports = Component;
