@@ -85,7 +85,7 @@ $ratios : (
 /* IMAGES STYLING */
 img.fl-left,
 // .fl-left>img:first-child:last-child{margin-right: $spacing;}
-.fl-left>img:first-child:last-child{margin: 0 body(line-height)*1em $spacing 0;}
+.fl-left>img:first-child:last-child{margin: 0 body(line-height)*1em 0.5em 0;}
 img.fl-right,
 // .fl-right>img:first-child:last-child{margin-left: $spacing;}
-.fl-right>img:first-child:last-child{margin: 0 0 $spacing body(line-height)*1em;}
+.fl-right>img:first-child:last-child{margin: 0 0 0.5em body(line-height)*1em;}
