@@ -431,8 +431,9 @@ Utils.prototype.checkForm = function(el,renderError = true){
         if(input.value == '' && input.getAttribute('required') !== null)
           valid = false;
         var inputRow = {
-          'name'   : input.getAttribute('name').replace('[]', ''),
-          'type'   : input.nodeName !== 'INPUT' ? input.nodeName.toLowerCase() : input.getAttribute('type'),
+          'name'     : input.getAttribute('name').replace('[]', ''),
+          'id'       : input.getAttribute('id'),
+          'type'     : input.nodeName !== 'INPUT' ? input.nodeName.toLowerCase() : input.getAttribute('type'),
           'required' : input.getAttribute('required') !== null ? true : false,
           'value'    : input.value,
           'valid'    : valid,
@@ -592,8 +593,8 @@ Utils.prototype.checkForm = function(el,renderError = true){
       $.each(results.inputs, function(index, input){
         if(!input.valid){
           var labelError = input.name.replace('[]', '');
-          if($el.find('label[for="'+labelError+'"]').first().length) // if exist, get label of the input
-            labelError = $el.find('label[for="'+labelError+'"]').first().html().replace(':','').trim();
+          if($el.find('label[for="'+input.id+'"]').first().length) // if exist, get label of the input
+            labelError = $el.find('label[for="'+input.id+'"]').first().html().replace(':','').trim();
 
           if (input.value == false) // assuming input's value is empty / falsy
             labelError = app.labels.errors.inputs.empty[app.lang].replace('%s',labelError);
