@@ -75,11 +75,11 @@ module.exports = {
 	// 	'font-color': 'input(font-color)',
 	// 	'border-color': 'input(border-color)',
 	// },
-	'input-invalid': {
-		'background': 'input(background)',
-		'font-color': 'input(font-color)',
-		'border-color': 'error',
-	},
+	// 'input-invalid': {
+	// 	'background': 'input(background)',
+	// 	'font-color': 'input(font-color)',
+	// 	'border-color': 'error',
+	// },
 
 
 	'link': {
@@ -94,7 +94,7 @@ module.exports = {
 		'font-color': 'contrastFW(colors(white),primary)',
 		'border-size': 'border-default-size',
 		'radius': true,
-		'uppercase': true,
+		'uppercase': false,
 		'font-weight': 300,
 		'exclude': ['.exclude'],
 	},
