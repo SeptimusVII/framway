@@ -592,10 +592,7 @@ Utils.prototype.checkForm = function(el,renderError = true){
     if(results.valid === false && renderError === true){  // display errors - the container need to have a div.error-container
       $.each(results.inputs, function(index, input){
         if(!input.valid){
-          var labelError = input.name.replace('[]', '');
-          if($el.find('label[for="'+input.id+'"]').first().length) // if exist, get label of the input
-            labelError = $el.find('label[for="'+input.id+'"]').first().html().replace(':','').trim();
-
+          var labelError = utils.getInputLabel(input.id,input.name.replace('[]', ''));
           if (input.value == false) // assuming input's value is empty / falsy
             labelError = app.labels.errors.inputs.empty[app.lang].replace('%s',labelError);
           else  // assuming input's value is incorrect
@@ -616,6 +613,17 @@ Utils.prototype.checkForm = function(el,renderError = true){
 
     return results;
 };
+
+Utils.prototype.getInputLabel = function(inputID, placeholder=undefined){
+  if($('label[for="'+inputID+'"]').first().length) // if exist, get label of the input
+    return $('label[for="'+inputID+'"]').first().html().replace(':','').trim();
+  else{
+    if (placeholder !== undefined) 
+      return placeholder;
+    else 
+      return inputID;
+  }
+}
 
 /**
  * [renderError description]
