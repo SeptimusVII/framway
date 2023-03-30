@@ -70,8 +70,8 @@ $btn-p-x: 1.5em;
 }
 
 .btn#{$exclude}{
-  &[class*="icon-"]{display: inline-flex;align-items: center; 
-    padding-left: 1em; padding-right: 1em;
+  &[class*="icon-"]{display: inline-flex;align-items: center; padding-left: 1em; padding-right: 1em;
+    &.center{display: flex;}
     & i[class*="fa"],
     & svg{min-width: 1em;}
     @each $key, $value in $breakpoints{

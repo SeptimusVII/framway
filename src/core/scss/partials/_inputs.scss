@@ -71,6 +71,7 @@ input[type="password"],
 input[type="tel"],
 input[type="url"],
 input[type="date"],
+input[type="time"],
 // input[type="range"],
 input[type="number"],
 select,
@@ -91,6 +92,7 @@ input.email, input[type="email"]{
     }
   }
 }
+input.time, input[type="time"],
 input.date, input[type="date"]{padding-right: 0.3em;}
 
 // input.number, input[type="number"]{width: auto;}
