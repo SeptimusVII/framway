@@ -1,12 +1,38 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack'); //to access built-in plugins
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const WebpackBar = require('webpackbar');
+const fs = require('fs');
+const framwayConfig = require('./framway.config.js');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
+const HtmlWebpackInlineStylePlugin = require('html-webpack-inline-style-plugin');
+
+function generateHtmlPlugins (templateDir,targetPath = '') {
+  const templateFiles = fs.readdirSync(path.resolve(__dirname, templateDir))
+  const arrResults = [];
+  templateFiles.forEach(function(item){
+    const parts = item.split('.')
+    const name = parts[0]
+    const ext = parts[1]
+    if(ext == 'html'){
+        arrResults.push(
+            new HtmlWebpackPlugin({
+                filename: `${targetPath}${name}.${ext}`,
+                template: `${templateDir}${name}.${ext}`,
+                inject: false
+            })
+        );
+    }
+  });
+  return arrResults;
+}
+
+var htmlEmails = generateHtmlPlugins('./src/emails/','emails/');
+fs.readdirSync(path.resolve(__dirname, './src/themes/')).forEach(function(theme){
+    if(framwayConfig.themes.indexOf(theme) != -1 && fs.existsSync('./src/themes/'+theme+'/emails/'))
+        htmlEmails = htmlEmails.concat(generateHtmlPlugins('./src/themes/'+theme+'/emails/','emails/'))
+})
 
 module.exports = {
 	mode: 'development',
@@ -39,6 +65,7 @@ module.exports = {
             },
 			{
                 test: /\.s?css$/,  // will watch either for css or scss files
+                exclude: /(emails)/,
                 // exclude: [path.resolve(__dirname, "scr/combined/export.scss") ],
                 use: [
                     {
@@ -62,6 +89,16 @@ module.exports = {
                 ]
             },
             {
+                test: /\.html$/,  // will watch either for css or scss files
+                include: /(emails)/,
+                use: [
+                    {loader: 'html-loader'},
+                    {loader: 'interpolate-require-loader'},
+                    {loader: 'extract-loader'},
+                    {loader: 'raw-loader'},
+                ]
+            },
+            {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 type: 'asset/resource',
                 generator : {
@@ -77,22 +114,12 @@ module.exports = {
         }
     },
 	plugins: [
-        new WebpackBar(),
-        // new BundleAnalyzerPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'Framway\'s home',
-            template: './src/index.html',
-            filename: './index.html',
-            chunks: ['vendor', 'framway'],
-            chunksSortMode: 'manual',
-        }),
 		new MiniCssExtractPlugin({filename : "css/[name].css"}),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery", // enable $ and jQuery as global variables
             // utils: 'utils',
         }),
-        new LiveReloadPlugin(),
         new WebpackShellPluginNext({
             onWatchRun:{
                 scripts: ['npm run framway onBuildStart'],
@@ -111,5 +138,7 @@ module.exports = {
             },
             dev: false,
         }),
+        new HtmlWebpackInlineStylePlugin(), // used to report styles in <style> to their respective tag's style attribute
 	]
+    .concat(htmlEmails)
 };

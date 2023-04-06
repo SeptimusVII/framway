@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title><?php echo $this->title; ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style type="text/css">
+    require('!raw-loader!postcss-loader!sass-loader!./emails.scss')
+  </style>
+</head>
+<body>
+  <table border="0" cellpadding="0" cellspacing="0" id="body">
+    <tr>
+      <td>
+        <table border="0" align="center" cellpadding="0" cellspacing="0" id="container">
+          <tr>
+            <td>
+              <table border="0" align="center" cellpadding="0" cellspacing="0" id="header">
+                <tr class="spacer-y"></tr>
+                <tr>
+                  <td class="spacer-x"></td>
+                  <td class="txt-center" id="logo" width="1">
+                    <!-- {{env::path}}path -->
+                    <img src="https://dev.altradplettacmefran.fr/assets/images/a/logo-c12c431e.png" alt="Your logo here" />
+                  </td>
+                  <td class="spacer-x spacer-y"></td>
+                  <td id="headline" >
+                    <!-- <h3>Lorem Ipsum Dolor Sit Amet</h3> -->
+                  </td>
+                  <td class="spacer-x spacer-y"></td>
+                </tr>
+                <tr class="spacer-y"></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table border="0" align="center" cellpadding="0" cellspacing="0" id="main">
+                <tr class="spacer-y"></tr>
+                <tr class="spacer-y"></tr>
+                <tr>
+                  <td class="spacer-x"></td>
+                  <td class="spacer-x"></td>
+                  <td> 
+                    <!-- content here -->
+                    <!-- <?= $this->body ?> -->
+                    <table class="table table-bordered">
+                      <thead class="thead-light">
+                        <tr>
+                          <th width="50%" class="txt-left">Produit</th>
+                          <th>Prix/unité</th>
+                          <th>Quantité</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody class="txt-center">
+                        <tr>
+                          <td class="txt-left">
+                            Lorem ipsum
+                            <ul>
+                              <li>ipsum dolor sit</li>
+                              <li>amet sit ipsum dolor</li>
+                            </ul>
+                          </td>
+                          <td>xxx,xx €</td>
+                          <td>2</td>
+                          <td>xxx,xx €</td>
+                        </tr>
+                        <tr>
+                          <td class="txt-left">Ipsum dolor</td>
+                          <td>xxx,xx €</td>
+                          <td>1</td>
+                          <td>xxx,xx €</td>
+                        </tr>
+                        <tr>
+                          <td class="txt-left">Dolor sit</td>
+                          <td>xxx,xx €</td>
+                          <td>7</td>
+                          <td>xxx,xx €</td>
+                        </tr>
+                      </tbody>
+                      <thead>
+                        <tr class="thead-light">
+                          <th class="txt-left" style="text-align: left;">Total</th>
+                          <th></th>
+                          <th></th>
+                          <th>xxx,xx €</th>
+                        </tr>
+                      </thead>
+                    </table>
+                    <p>
+                      Zombie ipsum reversus ab viral inferno, nam rsick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby. The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus.
+                    </p>
+                    <p>
+                      Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead.
+                    </p>
+                    <br>
+                    <div class="txt-right">
+                      <button class="btn-bd-primary">button</button>
+                      <button class="btn-bg-primary">button</button>
+                    </div>
+                  </td>
+                  <td class="spacer-x"></td>
+                  <td class="spacer-x"></td>
+                </tr>
+                <tr class="spacer-y"></tr>
+                <tr class="spacer-y"></tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table border="0" align="center" cellpadding="0" cellspacing="0" id="subfooter">
+                <tr class="spacer-y"></tr>
+                <tr>
+                  <td class="spacer-x"></td>
+                  <td class="txt-center">
+                    © {{date::Y}} {{page::rootTitle}} | {{iflng::en}}This email was sent from an automatic mailbox. Please don't answer it.{{iflng::fr}}Cet email a été envoyé depuis une boîte automatique. Merci de ne pas y répondre.{{iflng}}
+                  </td>
+                  <td class="spacer-x"></td>
+                </tr>
+                <tr class="spacer-y"></tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
