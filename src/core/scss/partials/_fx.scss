@@ -24,6 +24,19 @@
 %paper%lift:hover::before {left: 5px;}
 %paper%lift:hover::after {right: 5px;}
 
+@mixin paper() {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  $pseudo : '';
+  @if str-index(#{&}, ":before"){$pseudo:':before'}
+  @if str-index(#{&}, ":after"){$pseudo:':after'}
+  @if ($pseudo == ''){
+    &:not([class*="bg-"]){background-color: body(block-background);color: contrastFW(body(font-color),body(block-background));}
+  }
+  @else{
+    @at-root #{str-replace(#{&}, $pseudo)}:not([class*="bg-"])#{$pseudo}{background-color: body(block-background);color: contrastFW(body(font-color),body(block-background));}
+  }
+}
+
 %ripple {
   position: relative; overflow: hidden;
   &:after {content: ""; display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; background-image: radial-gradient(circle, #000 10%, transparent 10.01%); background-repeat: no-repeat; background-position: 50%; transform: scale(10,10); opacity: 0; transition: transform .5s, opacity 1s; }

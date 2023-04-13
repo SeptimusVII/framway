@@ -28,3 +28,21 @@ p.error{color:color(error);}
 		p:last-child{margin-bottom: 0;}
 	}
 } 
+
+[tooltip]:before{
+	@include paper();
+	content: attr(tooltip);
+	display: block;
+	position: absolute;
+	padding: 0.25em 0.5em;
+	font-size: 0.75em;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	margin-bottom: 0.25em;
+	z-index: 1;
+	transition: opacity 0.4s;
+	opacity: 0;
+	pointer-events: none;
+}
+[tooltip]:hover:before{opacity: 1;}
