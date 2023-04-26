@@ -32,6 +32,29 @@ var Utils = function Utils(){
     }
   }
 
+  /**
+ * Traverse the DOM upwards and checks the computed styles
+ * of each element is passes. Compares the value of the 
+ * requested property with the passed value and returns 
+ * the element if the value is a match
+ *
+ * @param   {HTMLElement} element Element to start from.
+ * @param   {string} property CSS property to research.
+ * @param   {string} value Value to compare CSS property value with.
+ * @returns {HTMLElement|null}
+ */
+utils.findParentWithCSS = (element, property, value) => {
+  while(element !== null) {
+    const style = window.getComputedStyle(element);
+    const propValue = style.getPropertyValue(property);
+    if (value.includes(propValue)) {
+      return element;
+    }
+    element = element.parentElement;
+  }
+  return document;
+};
+
   utils.stringToColor = function(strText){
     strText = strText.replace(/\s+/g, '');
     strText = strText.replace(/[^a-zA-Z 0-9]+/g, '');
