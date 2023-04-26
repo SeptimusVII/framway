@@ -142,16 +142,55 @@ Framway.prototype.clearLogs = function(){
   return framway;
 };
 
+/**
+ * adjust position of overlapping tooltips
+ */
+Framway.prototype.adjustTooltips = function(){
+  var framway = this;
+  $('[tooltip]').each(function(i,el){
+    el.classList.remove('tooltipOffset--right','tooltipOffset--left')
+    var container = framway.findParentWithCSS(el, 'overflow', ['hidden','auto']);
+    console.log(el,container);
+    if ((el.offsetLeft + (parseInt(window.getComputedStyle(el, ':before').width)/2)) > container.offsetWidth)
+        el.classList.add('tooltipOffset--right')
+    else if ((el.offsetLeft - (parseInt(window.getComputedStyle(el, ':before').width)/2)) < 0)
+        el.classList.add('tooltipOffset--left')
+  })
+};
+
+/**
+ * Traverse the DOM upwards and checks the computed styles
+ * of each element is passes. Compares the value of the 
+ * requested property with the passed value and returns 
+ * the element if the value is a match
+ *
+ * @param   {HTMLElement} element Element to start from.
+ * @param   {string} property CSS property to research.
+ * @param   {string} value Value to compare CSS property value with.
+ * @returns {HTMLElement|null}
+ */
+Framway.prototype.findParentWithCSS = (element, property, value) => {
+  while(element !== null) {
+    const style = window.getComputedStyle(element);
+    const propValue = style.getPropertyValue(property);
+    if (value.includes(propValue)) {
+      return element;
+    }
+    element = element.parentElement;
+  }
+  return null;
+};
+
+
+
 global.$ = $;
 global.viewport = utils.getDimensions();
 module.exports = new Framway();
 
-$(function () {
-  $(window).resize(function(){
-    viewport = utils.getDimensions();
-  });
+window.addEventListener("resize", function(){
+  viewport = utils.getDimensions();
+  app.adjustTooltips();
 });
-
 
 if (document.getElementById('framway__backstage')) {
   /**

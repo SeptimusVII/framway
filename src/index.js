@@ -36,8 +36,6 @@ app.labels 	??= {
 };
 app.loadComponents(app.components).then(function(){
 	app.loadThemes(app.themes).then(function(){
-		$(function () {
-			$(window).trigger('resize');
-		});
+		window.dispatchEvent(new Event('resize'));
 	});
 });
