@@ -26,7 +26,7 @@ var initFramway = function(){
 			console.log('\n### Importing components...');
 			getComponents(config.components);
 		}
-		toggleFilesIndex();
+		// toggleFilesIndex();
 		console.log('\n### Framway\'s initialisation end\n');
 	}).catch(function(err){
 		console.log('something wrong happened: '+err);
