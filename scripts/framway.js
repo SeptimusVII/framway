@@ -36,6 +36,14 @@ var initFramway = function(){
 var updateFramway = function(){
 	console.log('\n### Framway\'s updating...');
 	checkExistingFolders().then(function(){
+		console.log('\n### Stashing files...');
+	  shell.exec('git stash');
+		console.log('\n### Pulling framway...');
+	  shell.exec('git pull');
+	  console.log('\n### Unstashing files...');
+	  shell.exec('git stash pop');
+	  console.log('\n### Install npm dependencies...');
+	  shell.exec('npm install');
 		if (config.themes.length) {
 			console.log('\n### Updating themes...');
 			getThemes(config.themes);
