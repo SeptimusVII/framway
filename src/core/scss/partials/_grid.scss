@@ -29,6 +29,11 @@
     }
   }
   &.flow{grid-auto-flow: dense;}
+  &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax(35ch, 1fr));
+    @media (max-width: 45ch) {
+      grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
+    }
+  }
 }
 
 @for $index from 0 through 6{
