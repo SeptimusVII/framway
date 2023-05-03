@@ -24,18 +24,19 @@
 %paper%lift:hover::before {left: 5px;}
 %paper%lift:hover::after {right: 5px;}
 
-@mixin paper() {
+@mixin paper($bg: body(block-background)) {
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
   $pseudo : '';
   @if str-index(#{&}, ":before"){$pseudo:':before'}
   @if str-index(#{&}, ":after"){$pseudo:':after'}
   @if ($pseudo == ''){
-    &:not([class*="bg-"]){background-color: body(block-background);color: contrastFW(body(font-color),body(block-background));}
+    &:not([class*="bg-"]){background-color: $bg;color: contrastFW(body(font-color),$bg);}
   }
   @else{
-    @at-root #{str-replace(#{&}, $pseudo)}:not([class*="bg-"])#{$pseudo}{background-color: body(block-background);color: contrastFW(body(font-color),body(block-background));}
+    @at-root #{str-replace(#{&}, $pseudo)}:not([class*="bg-"])#{$pseudo}{background-color: $bg;color: contrastFW(body(font-color),$bg);}
   }
 }
+.paper{@include paper();}
 
 %ripple {
   position: relative; overflow: hidden;
