@@ -437,7 +437,7 @@ Utils.prototype.checkForm = function(el,renderError = true){
   if (app.debug) 
     app.log('checkForm');
     var $el = $(el);
-    var inputs = $el.find('input,textarea,select').filter(function(i){return this.name != "" && !$(this).hasClass('fileUploader__input');});
+    var inputs = $el.find('input,textarea,select').filter(function(i){return this.name != "" && this.getAttribute('disabled') == null && !$(this).hasClass('fileUploader__input');});
     var specials = {};
     var $errors = $el.find('.error-container').length ? $el.find('.error-container') : false;
     // var $errors = $el.find('.error-container').length ? $el.find('.error-container') : $('<div class="error-container"></div>').appendTo($el);
