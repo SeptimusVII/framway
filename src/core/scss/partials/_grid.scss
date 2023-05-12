@@ -27,6 +27,7 @@
         }
       }
     }
+    &.cols-span-all{grid-column: 1/-1;}
   }
   &.flow{grid-auto-flow: dense;}
   &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax(35ch, 1fr));
