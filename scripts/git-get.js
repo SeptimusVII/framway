@@ -20,9 +20,9 @@ if(!type || !name){
 		if (fs.existsSync('./src/'+type+'s/'+name+'/.git')){
 			shell.cd('./src/'+type+'s/'+name);
 			// shell.exec('git reset --hard');
-			shell.exec('git stash');
+			// shell.exec('git stash');
 			shell.exec('git pull --rebase');
-			shell.exec('git stash pop');
+			// shell.exec('git stash pop');
 			shell.cd();
 		} else {
 			console.log('Error: '+name+' has no git repository \n');

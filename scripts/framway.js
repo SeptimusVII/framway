@@ -1,6 +1,7 @@
 var shell = require('shelljs');
 var fs = require('fs-extra');
 var cmd  = process.argv[2] || 'displayConfig';
+var forceUpdate = process.argv[3] === 'forceUpdate' ? true : false;
 var config = require('../framway.config.js');
 
 var configCleaned = JSON.parse(JSON.stringify(config));
@@ -34,27 +35,31 @@ var initFramway = function(){
 }
 
 var updateFramway = function(){
-	console.log('\n### Framway\'s updating...');
-	checkExistingFolders().then(function(){
-		console.log('\n### Stashing files...');
-	  shell.exec('git stash');
-		console.log('\n### Pulling framway...');
-	  shell.exec('git pull');
-	  console.log('\n### Unstashing files...');
-	  shell.exec('git stash pop');
-	  console.log('\n### Install npm dependencies...');
-	  shell.exec('npm install');
-		if (config.themes.length) {
-			console.log('\n### Updating themes...');
-			getThemes(config.themes);
+	checkIntegrity().then(function(result){
+		if (result === true || forceUpdate === true) {
+			console.log('\n### Framway\'s updating...');
+			checkExistingFolders().then(function(){
+				console.log('\n### Stashing files...');
+			  shell.exec('git stash');
+				console.log('\n### Pulling framway...');
+			  shell.exec('git pull');
+			  console.log('\n### Unstashing files...');
+			  shell.exec('git stash pop');
+			  console.log('\n### Install npm dependencies...');
+			  shell.exec('npm install');
+				if (config.themes.length) {
+					console.log('\n### Updating themes...');
+					getThemes(config.themes);
+				}
+				if (config.components.length) {
+					console.log('\n### Updating components...');
+					getComponents(config.components);
+				}
+				console.log('\n### Framway\'s update end\n');
+			}).catch(function(err){
+				console.log('something wrong happened: '+err);
+			})
 		}
-		if (config.components.length) {
-			console.log('\n### Updating components...');
-			getComponents(config.components);
-		}
-		console.log('\n### Framway\'s update end\n');
-	}).catch(function(err){
-		console.log('something wrong happened: '+err);
 	})
 }
 
@@ -347,6 +352,72 @@ var reset = function(){
   });
 }
 
+var checkIntegrity = async function(){
+		var updateCheck = {
+			themes:[],
+			components:[],
+			requirestash: false,
+		}
+		// console.log(configCleaned);
+		// console.log('\n### THEMES')
+		for (var i = 0; i < configCleaned.themes.length; i++) {
+			await new Promise(function(resolve,reject){
+				if (fs.existsSync('./src/themes/'+configCleaned.themes[i]+'/.git')){
+					shell.cd('./src/themes/'+configCleaned.themes[i]);
+					shell.exec('git status --porcelain=v1',{silent:true},function(code,stdout,stderr){
+						if (stdout) {
+							updateCheck.themes.push(configCleaned.themes[i]);
+							updateCheck.requirestash = true;
+						}
+						shell.cd('./../../..');
+						resolve()
+					})
+				} else {
+						resolve()
+				}
+			});
+		}
+		// console.log('\n### COMPONENTS')
+		for (var i = 0; i < configCleaned.components.length; i++) {
+			await new Promise(function(resolve,reject){
+				if (fs.existsSync('./src/components/'+configCleaned.components[i]+'/.git')){
+					shell.cd('./src/components/'+configCleaned.components[i]);
+					shell.exec('git status --porcelain=v1',{silent:true},function(code,stdout,stderr){
+						if (stdout) {
+							updateCheck.components.push(configCleaned.components[i]);
+							updateCheck.requirestash = true;
+						}
+						shell.cd('./../../..');
+						resolve()
+					})
+				} else {
+						resolve()
+				}
+			});
+		}
+		// console.log(updateCheck);
+		if (updateCheck.requirestash) {
+			console.log('\n### The followings have unsaved changes\n');
+			if(updateCheck.themes.length){
+				console.log('Themes:');
+				for(var theme of updateCheck.themes)
+					console.log(' - '+ theme);
+			}
+			if(updateCheck.components.length){
+				console.log('Components:');
+				for(var component of updateCheck.components)
+					console.log(' - '+ component);
+			}
+			console.log('\nPlease commit or stash your changes before going further.\n');
+			return false;
+		} else {
+			return true;
+		}
+}
+
+var test = function(){
+};
+
 switch(cmd){
 	case 'init'						: initFramway()  ; break;
 	case 'update'					: updateFramway(); break;
@@ -356,6 +427,7 @@ switch(cmd){
 	case 'onBuildStart' 	: onBuildStart() ; break;
 	case 'onBuildEnd'  		: onBuildEnd() ; break;
 	case 'reset'  				: reset() ; break;
+	case 'test'  				  : test() ; break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;
 }
 
