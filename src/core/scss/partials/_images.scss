@@ -82,6 +82,9 @@ $ratios : (
 
 .img-container{@extend %img-container;}
 
+// for later, when attr() will be a real thing
+// background-image: url(attr(src url, ""));
+
 /* IMAGES STYLING */
 img.fl-left,
 // .fl-left>img:first-child:last-child{margin-right: $spacing;}
