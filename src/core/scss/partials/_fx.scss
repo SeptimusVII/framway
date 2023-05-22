@@ -29,11 +29,13 @@
   $pseudo : '';
   @if str-index(#{&}, ":before"){$pseudo:':before'}
   @if str-index(#{&}, ":after"){$pseudo:':after'}
-  @if ($pseudo == ''){
-    &:not([class*="bg-"]){background-color: $bg;color: contrastFW(body(font-color),$bg);}
-  }
-  @else{
-    @at-root #{str-replace(#{&}, $pseudo)}:not([class*="bg-"])#{$pseudo}{background-color: $bg;color: contrastFW(body(font-color),$bg);}
+  @if ($bg != false){
+    @if ($pseudo == ''){
+      &:not([class*="bg-"]){background-color: $bg;color: contrastFW(body(font-color),$bg);}
+    }
+    @else{
+      @at-root #{str-replace(#{&}, $pseudo)}:not([class*="bg-"])#{$pseudo}{background-color: $bg;color: contrastFW(body(font-color),$bg);}
+    }
   }
 }
 .paper{@include paper();}
