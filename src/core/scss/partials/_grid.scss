@@ -27,7 +27,6 @@
         }
       }
     }
-    &.cols-span-all{grid-column: 1/-1;}
   }
   &.flow{grid-auto-flow: dense;}
   &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax(35ch, 1fr));
@@ -36,6 +35,7 @@
     }
   }
 }
+.cols-span-all{grid-column: 1/-1;}
 
 @for $index from 0 through 6{
   &.gap-#{$index}{gap: $spacing*$index;
