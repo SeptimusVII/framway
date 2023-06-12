@@ -65,7 +65,6 @@ $btn-p-x: 1.5em;
       }
     }
   &>a{padding: $btn-p-y $btn-p-x $btn-p-y+0.1em; margin: -$btn-p-y -$btn-p-x -$btn-p-y+0.1em;}
-  &.center{display: block;}
   // [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;} // 15K characters /!\
 }
 

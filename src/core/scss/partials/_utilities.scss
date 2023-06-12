@@ -14,8 +14,18 @@ html.no-scroll{ height: 100vh; overflow: hidden;
 
 .ellipsis{@include ellipsis();}
 
-.center{margin: auto; width: fit-content;}
 .center-block{margin: auto; display: block;}
+.center{margin: auto; width: fit-content;
+  &:is(.btn){display: block;}
+}
+@each $key, $value in $breakpoints{
+  .center-#{$key}{
+    @include media-max($key){
+      margin: auto; width: fit-content;
+      &:is(.btn){display: block;}
+    }
+  }
+}
 
 .fl-left, .float-left{float: left;}
 .fl-right, .float-right{float: right;}
