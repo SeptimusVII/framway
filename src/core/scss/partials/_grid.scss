@@ -1,3 +1,4 @@
+$griditem-minwidth: 35ch !default;
 .d-grid{display: grid; gap: $spacing;
   @include media-max(xs){gap: $spacing/2; }
   @for $index from 1 through 12{
@@ -29,7 +30,7 @@
     }
   }
   &.flow{grid-auto-flow: dense;}
-  &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax(35ch, 1fr));
+  &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax($griditem-minwidth, 1fr));
     @media (max-width: 45ch) {
       grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
     }
