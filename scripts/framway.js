@@ -202,7 +202,7 @@ var combineConfigs = function(){
 			resultStr += SCSSconvertFN(str);
 		else if (configJS.hasOwnProperty(str)) 
   			resultStr += SCSSconvertVAR(str);
-  		else if (String(str).match(/px$|em$|vh$|vw$|%$|^[0-9]*[0-9]$|\d.\d|transparent|^#|true|false/))
+  		else if (String(str).match(/px$|em$|rem$|ch$|vh$|vw$|%$|^[0-9]*[0-9]$|\d.\d|transparent|^#|true|false/))
   			resultStr += String(str).replace('colors','color');
   		else
   			resultStr += '\''+String(str).replace('colors','color')+'\'';
