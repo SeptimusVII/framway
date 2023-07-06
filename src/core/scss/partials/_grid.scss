@@ -1,4 +1,8 @@
 $griditem-minwidth: 35ch !default;
+:root{
+    --griditem-minwidth: #{$griditem-minwidth};
+}
+
 .d-grid{display: grid; gap: $spacing;
   @include media-max(xs){gap: $spacing/2; }
   @for $index from 1 through 12{
@@ -30,7 +34,13 @@ $griditem-minwidth: 35ch !default;
     }
   }
   &.flow{grid-auto-flow: dense;}
-  &.cols-autofit{grid-template-columns: Repeat(auto-fit, minmax($griditem-minwidth, 1fr));
+  &.cols-autofill{
+    grid-template-columns: Repeat(auto-fill, minmax($griditem-minwidth, 1fr));
+    grid-template-columns: Repeat(auto-fill, minmax(var(--griditem-minwidth), 1fr));
+  }
+  &.cols-autofit{
+    grid-template-columns: Repeat(auto-fit, minmax($griditem-minwidth, 1fr));
+    grid-template-columns: Repeat(auto-fit, minmax(var(--griditem-minwidth), 1fr));
     @media (max-width: 45ch) {
       grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
     }
