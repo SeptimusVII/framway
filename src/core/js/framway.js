@@ -150,7 +150,9 @@ Framway.prototype.adjustTooltips = function(){
   $('[tooltip]').each(function(i,el){
     el.classList.remove('tooltipOffset--right','tooltipOffset--left')
     var container = utils.findParentWithCSS(el, 'overflow', ['hidden','auto']);
-    console.log(el,container);
+    if (window.getComputedStyle(container).position == 'static')
+      container.style.position = 'relative';
+    // console.log(el,container);
     if ((el.offsetLeft + (parseInt(window.getComputedStyle(el, ':before').width)/2)) > container.offsetWidth)
         el.classList.add('tooltipOffset--right')
     else if ((el.offsetLeft - (parseInt(window.getComputedStyle(el, ':before').width)/2)) < 0)
