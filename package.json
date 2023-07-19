@@ -1,6 +1,6 @@
 {
   "name": "framway",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -52,10 +52,6 @@
     "webpackbar": "^5.0.2"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-regular-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "bootstrap": "^5.1.3",
     "countup.js": "^2.2.0",
     "hammerjs": "^2.0.8",
