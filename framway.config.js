@@ -34,6 +34,5 @@ module.exports = {
     ],
     useToastr: true,
     useOutdatebrowser: true,
-    useTarteaucitron: true,
     debug: false,
 }

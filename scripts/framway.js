@@ -279,14 +279,7 @@ var combineConfigs = function(){
 	strVendors += "import 'bootstrap/scss/bootstrap-reboot.scss';\n"
 	strVendors += "import 'bootstrap/scss/bootstrap-grid.scss';\n"
 	
-	// if (config.useFA == 'pro') {
-	// 	strVendors += "import '@fortawesome/fontawesome-pro/js/all.min.js';\n"
-	// } else if(config.useFA == 'free'){
-	// 	strVendors += "import '@fortawesome/fontawesome-free/js/all.min.js';\n"
-	// 							+ "import '@fortawesome/free-solid-svg-icons';\n"
-	// 							+ "import '@fortawesome/free-regular-svg-icons';\n"
-	// 							+ "import '@fortawesome/free-brands-svg-icons';\n";
-	// }
+
 	if(config.useToastr)
 		strVendors += "import 'toastr/toastr.scss';\n"
 					// + "global.toastr = require('toastr');\n";
@@ -296,14 +289,6 @@ var combineConfigs = function(){
 		strVendors += "import 'outdated-browser-rework/dist/style.css';\n";
 		strVendors += `var el = document.createElement('div'); el.setAttribute('id','outdated');document.body.appendChild(el);outdatedBrowser({isUnknownBrowserOK:true,requiredCssProperty:'object-fit'} );\n`;
 	}
-	// if(config.useTarteaucitron){
-	// 	// CDN
-	// 	strVendors += "var script = document.createElement('script'); script.id = 'tarteaucitronCDN'; script.type = 'text/javascript'; script.src = 'https://tarteaucitron.io/load.js'; document.getElementsByTagName('head')[0].appendChild(script);\n";
-
-	// 	// var gtagUa = 'UA-XXXXXXXXX-X';
-	// 	// var lang = 'fr';
-	// 	strVendors += "document.getElementById('tarteaucitronCDN').addEventListener('load',() => {tarteaucitronForceLanguage = 'en'; tarteaucitron.init({'privacyUrl': '', /* Privacy policy url */ 'hashtag': '#tarteaucitron', /* Open the panel with this hashtag */ 'cookieName': 'tarteaucitron', /* Cookie name */ 'orientation': 'bottom', /* Banner position (top - bottom) */ 'showAlertSmall': false, /* Show the small banner on bottom right */ 'cookieslist': true, /* Show the cookie list */ 'adblocker': false, /* Show a Warning if an adblocker is detected */ 'AcceptAllCta' : true, /* Show the accept all button when highPrivacy on */ 'highPrivacy': false, /* Disable auto consent */ 'handleBrowserDNTRequest': false, /* If Do Not Track == 1, disallow all */ 'removeCredit': true, /* Remove credit link */ 'moreInfoLink': true, /* Show more info link */ 'useExternalCss': false, /* If false, the tarteaucitron.css file will be loaded */ }); tarteaucitron.user.gtagUa = 'UA-XXXXXXXXX-X'; tarteaucitron.user.gtagMore = function () {/* add here your optionnal gtag() */ }; (tarteaucitron.job = tarteaucitron.job || []).push('gtag'); });"
-	// }
 
 
 	strVendors += "import objectFitImages from 'object-fit-images';\n"
