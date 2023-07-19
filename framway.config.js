@@ -32,7 +32,6 @@ module.exports = {
         // 'text-editor',
         // 'wizard',
     ],
-    useFA: false, // false || 'free' || 'pro'
     useToastr: true,
     useOutdatebrowser: true,
     useTarteaucitron: true,

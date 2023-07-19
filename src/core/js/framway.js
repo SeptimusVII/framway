@@ -43,18 +43,19 @@ function Framway(){
     });
     // console.log(framway.styles);
 
-    if (framway.useFA == 'free') {
-      var switchIconToFree = function(item){
-        item.classList.remove('fal');
-        item.classList.remove('fad');
-        item.classList.add('fas');
-      }
-      for(var item of document.querySelectorAll('i.fal,i.fad'))
-        switchIconToFree(item);
-      utils.addHtmlHook('i.fal,i.fad', function(item){
-        $(item).each(function(){switchIconToFree(this)})
-      });
-    }
+    // if (framway.useFA == 'free') {
+    //   var switchIconToFree = function(item){
+    //     item.classList.remove('fal');
+    //     item.classList.remove('fad');
+    //     item.classList.add('fas');
+    //   }
+    //   for(var item of document.querySelectorAll('i.fal,i.fad'))
+    //     switchIconToFree(item);
+    //   utils.addHtmlHook('i.fal,i.fad', function(item){
+    //     $(item).each(function(){switchIconToFree(this)})
+    //   });
+    // }
+    
 
   	return framway;
 };
