@@ -9,8 +9,8 @@ $exclude : "";
 }
 // @warn "EXCLUDE = "+$exclude;
 
-$btn-p-y: 0.5em;
-$btn-p-x: 1.5em;
+$btn-p-y: 0.5em !default;
+$btn-p-x: 1.5em !default;
 
 .btn#{$exclude}{
   display: inline-block;
