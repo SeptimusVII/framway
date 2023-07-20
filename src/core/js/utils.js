@@ -52,7 +52,7 @@ utils.findParentWithCSS = (element, property, value) => {
     }
     element = element.parentElement;
   }
-  return document;
+  return document.body;
 };
 
   utils.stringToColor = function(strText){
