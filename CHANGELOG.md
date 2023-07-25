@@ -1,8 +1,10 @@
 # Framway
 
+
 2.4.0 - 2023-07-20
-Fix: utils.findParentWithCSS now return document.body, as document alone was not a valid element to return
-Feat: add isWithinViewport checking function
+- Fix: utils.findParentWithCSS now return document.body, as document alone was not a valid element to return
+- Feat: add isWithinViewport checking function
+
 
 2.3.5 - 2023-07-19
 - Fix: .quote font-color
@@ -10,17 +12,21 @@ Feat: add isWithinViewport checking function
 - Fix: remove usage of useTarteaucitron global variable
 - Feat: make button's padding variable available to an override in themes
 
+
 2.3.4 - 2023-07-06
 - Fix: moderate severity vulnerabilities on dependencies
 - Fix: set position of a tooltip's parent to relative if its not already defined (aka is static)
 - Feat: add cols-autofill class variant for grid system. make use of css vars for dynamic customization with html/js
 
+
 2.3.3 - 2023-06-14
 - Fix framway's rewriting script, allowing proper rem and ch units transcription
 - Feat: add griditem-minwidth var for grid width cols-autofit class
 
+
 2.3.2 - 2023-06-13
 - Fix: update default configuration so it's up to date with the latest available components
+
 
 2.3.1 - 2023-06-12
 - Fix: add possibility to negate the background/font color treatment on a paper() inclusion
@@ -28,6 +34,7 @@ Feat: add isWithinViewport checking function
 - Feat: add width utility classes
 - Feat: add responsive centering classes
 - Feat: improve button centering support
+
 
 2.3.0 - 2023-05-15
 - Feat: apply same stashing politic as framway's core repo to components and themes
@@ -43,30 +50,37 @@ Feat: add isWithinViewport checking function
 - Fix: disable toggling files index on framway's init. No more fail on git pull
 - Feat: improvement on update procedure; now you just need to run 'npm run framway update'. All stashing, pulling and dependencies installing is taken care of
 
+
 2.1.1 - 2023-04-26
 - Feat: improve tooltip by adjusting their lateral position if they're overlapping their closest overflowing parent. Add them a floating carret pointing to the hovered item
 - Fix: replace the window resize event from jQuery syntax to native js. This avoid double firing at loading and reduce the overall need for jQuery
+
 
 2.1.0 - 2023-04-13
 - feat: add 'paper' mixin, to replace the %paper class placeholder. The goal is to improve performance by reducing the code mass, as %paper generated massive chunk of selectors
 - feat: add tooltip feature. To use it, add a 'tooltip' attribute with a string value to any element (needs to be explicit or implicit relative positioned)
 
+
 2.0.6 - 2023-04-12
 - fix: remove the pbreak extend in texts scss and move it to utilities. remove it from the ol and ul element, was causing too much issues
+
 
 2.0.5 - 2023-03-30
 - feat: add inputs type time to list of supported inputs
 - fix: button with icon- classes not being centered with class center
+
 
 2.0.4 - 2023-03-29
 - fix: titles with sep- class now have a rem sized margins
 - fix: adjust default css config
 - feat: add utils.getInputLabel function. Allow to retrieve the corresponding label text of a given input.
 
+
 2.0.3 - 2023-03-15
 - fix: dependencies vulnerabilities
 - fix: adjustments for various margins values
 - feat: utils.checkForm now properly display input's label on errors
+
 
 2.0.2 - 2023-02-16
 - fix: dependencies vulnerabilities
