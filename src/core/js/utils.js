@@ -422,8 +422,8 @@ Utils.prototype.getDimensions = function(){
  * @return {int}
  */
 Utils.prototype.getViewportHeight = function(){
-  var height = viewport.height - ($('#header').outerHeight() || 0);
-  if($('.topbar').length && !$('.topbar').closest('#header'))
+  var height = viewport.height - ($('.headerFW').outerHeight() || 0);
+  if($('.topbar').length && !$('.topbar').closest('.headerFW'))
    height -= ($('.topbar').outerHeight() || 0);
   return height;
 };

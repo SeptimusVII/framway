@@ -3,6 +3,7 @@
 2.4.1 - 2023-08-xx
 - feat: add `w-100vw` utility class
 - feat: add `w-[breakpoint]-100vw`, `w-[breakpoint]-100` and `w-[breakpoint]-auto` utility classes
+- Fix: `getViewportHeight` function now use `.headerFW `selector instead of `#header`
 
 2.4.0 - 2023-07-20
 - Fix: utils.findParentWithCSS now return document.body, as document alone was not a valid element to return
