@@ -23,6 +23,8 @@ $griditem-minwidth: 35ch !default;
     @for $index from 1 through 12{
       &.cols-span-#{$index}{grid-column: span $index;}
       &.rows-span-#{$index}{grid-row: span $index;}
+      &.cols-start-#{$index}{grid-column-start: $index;}
+      &.cols-end-#{$index}{grid-column-end: $index+1;}
       @each $key, $value in $breakpoints{
         @include media-max($key){
           @for $index from 1 through 12{
@@ -47,6 +49,7 @@ $griditem-minwidth: 35ch !default;
   }
 }
 .cols-span-all{grid-column: 1/-1;}
+.cols-end-end{grid-column-end: -1;}
 
 @for $index from 0 through 6{
   &.gap-#{$index}{gap: $spacing*$index;
