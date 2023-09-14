@@ -1,5 +1,8 @@
 # Framway
 
+2.4.2 - 2023-10-xx
+- feat: add `txt-balance` and `txt-balance-reset` classes
+
 2.4.1 - 2023-09-06
 - feat: add `w-100vw` utility class
 - feat: add `w-[breakpoint]-100vw`, `w-[breakpoint]-100` and `w-[breakpoint]-auto` utility classes
