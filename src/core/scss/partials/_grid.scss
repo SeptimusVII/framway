@@ -36,16 +36,16 @@ $griditem-minwidth: 35ch !default;
     }
   }
   &.flow{grid-auto-flow: dense;}
-  &.cols-autofill{
-    grid-template-columns: Repeat(auto-fill, minmax($griditem-minwidth, 1fr));
-    grid-template-columns: Repeat(auto-fill, minmax(var(--griditem-minwidth), 1fr));
-  }
   &.cols-autofit{
     grid-template-columns: Repeat(auto-fit, minmax($griditem-minwidth, 1fr));
     grid-template-columns: Repeat(auto-fit, minmax(var(--griditem-minwidth), 1fr));
     @media (max-width: 45ch) {
       grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
     }
+  }
+  &.cols-autofill{
+    grid-template-columns: Repeat(auto-fill, minmax($griditem-minwidth, 1fr));
+    grid-template-columns: Repeat(auto-fill, minmax(var(--griditem-minwidth), 1fr));
   }
 }
 .cols-span-all{grid-column: 1/-1;}

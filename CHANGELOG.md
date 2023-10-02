@@ -2,6 +2,7 @@
 
 2.4.2 - 2023-10-xx
 - feat: add `txt-balance` and `txt-balance-reset` classes
+- Fix: change `cols-autofill/autofit` declaration order
 
 2.4.1 - 2023-09-06
 - feat: add `w-100vw` utility class
