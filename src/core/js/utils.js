@@ -290,7 +290,7 @@ utils.findParentWithCSS = (element, property, value) => {
         target = document.getElementById(targetId);
         if (!target) {
             var target = document.createElement("textarea");
-            target.style.position = "absolute";
+            target.style.position = "fixed";
             target.style.left = "-9999px";
             target.style.top = "0";
             target.id = targetId;
