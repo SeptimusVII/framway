@@ -39,14 +39,15 @@ $ratios : (
   '4-3' : 75,
 );
 
-%img-container{position: relative; overflow: hidden; @include flex-grow();max-width: 100%;
-  &:not([class*=w-]){  width: 100%; }
+@mixin img-container--old(){
+  width: 100%;position: relative; overflow: hidden; flex-grow: 1; max-width: 100%;
   & iframe{position: absolute; height: 100%; width: 100%; margin: 0;}
   & img{height: 100%; width: 100%; object-fit: cover; pointer-events: none; }
-  &.fit--contain img    ,.fit--contain & img   {object-fit: contain;}
-  &.fit--unset img      ,.fit--unset & img     {object-fit: unset;}
-  &.fit--none img       ,.fit--none & img      {object-fit: none;}
-  &.fit--scaledown img  ,.fit--scaledown & img {object-fit: scale-down;}
+  &.fit--cover img     ,.fit--cover & img   {object-fit: cover;}
+  &.fit--contain img   ,.fit--contain & img   {object-fit: contain;}
+  &.fit--unset img     ,.fit--unset & img     {object-fit: unset;}
+  &.fit--none img      ,.fit--none & img      {object-fit: none;}
+  &.fit--scaledown img ,.fit--scaledown & img {object-fit: scale-down;}
   &[class*="r_"],
   *[class*="r_"] &{
     &:before{content: ""; width: 1px; margin-left: -1px; float: left; height: 0; padding-top: 100%;}
@@ -75,12 +76,85 @@ $ratios : (
     img{border-radius: 50%; aspect-ratio: 1/1;}
   }
 }
-@each $key, $value in $ratios {
-  .r_#{$key}{@extend [class*="r_"];}
-  .aspect_#{$key}{aspect-ratio: #{str-slice($key,1,str-index($key,"-")-1) + "/" + str-slice($key,str-index($key,"-")+1) };}
+
+
+@mixin img-container($fit: scale-down){ 
+  display: block;position: relative;overflow: hidden; max-width: 100%; background: rgba(0,0,0,0.05);
+  img{height: 100%;width: 100%;object-fit: $fit;}
+  iframe{height: 100%;}
+  
+  &.no-bg{background: none;}
+  &.rounded-circle{
+    &:is(img),
+    img{border-radius: 50%; aspect-ratio: 1/1;}
+  }
+
+  @each $key, $value in $ratios {
+    &.r_#{$key},
+    .r_#{$key} &:where(:not([class*=r_])){
+      aspect-ratio: #{str-slice($key,1,str-index($key,"-")-1) + "/" + str-slice($key,str-index($key,"-")+1) }; 
+    }
+  }
+  &:where(img){object-fit: $fit;
+    &:not([class*="w-"]){width: fit-content;}
+  }
+  
+
+  .fit--cover &     {&:where(img), img{object-fit: cover;}}
+  .fit--contain &   {&:where(img), img{object-fit: contain;}}
+  .fit--unset &     {&:where(img), img{object-fit: unset;}}
+  .fit--none &      {&:where(img), img{object-fit: none;}}
+  .fit--scaledown & {&:where(img), img{object-fit: scale-down;}}
+  
+  &.fit--cover     {&:where(img), img{object-fit: cover;}}
+  &.fit--contain   {&:where(img), img{object-fit: contain;}}
+  &.fit--unset     {&:where(img), img{object-fit: unset;}}
+  &.fit--none      {&:where(img), img{object-fit: none;}}
+  &.fit--scaledown {&:where(img), img{object-fit: scale-down;}}
+
+
+  @each $side_1 in $sides {
+    @if $side_1 == 'left' or $side_1 == 'right' {
+      // class on parent
+      .img--#{$side_1} &:not([class*="img--"]){
+        &:where(img), img{object-position:#{$side_1};}
+      }
+      @each $side_2 in $sides {
+        @if $side_2 == 'top' or $side_2 == 'bottom' {
+          .img--#{$side_2} &:not([class*="img--"]){
+            &:where(img), img{object-position:#{$side_2};}
+          }
+          .img--#{$side_1}.img--#{$side_2} &:not([class*="img--"]){
+            &:where(img), img{object-position:#{$side_1+' '+$side_2};}
+          }
+        }
+      }
+
+      // class on element
+      &.img--#{$side_1} {
+        &:where(img), img{object-position:#{$side_1};}
+      }
+      @each $side_2 in $sides {
+        @if $side_2 == 'top' or $side_2 == 'bottom' {
+          &.img--#{$side_2} {
+            &:where(img), img{object-position:#{$side_2};}
+          }
+          &.img--#{$side_1}.img--#{$side_2} {
+            &:where(img), img{object-position:#{$side_1+' '+$side_2};}
+          }
+        }
+      }
+    }
+  }
 }
 
-.img-container{@extend %img-container;}
+%img-container{@include img-container();}
+.img-container{@include img-container();}
+img[class*=r_]{@include img-container();}
+
+@each $key, $value in $ratios {
+  .aspect_#{$key}{aspect-ratio: #{str-slice($key,1,str-index($key,"-")-1) + "/" + str-slice($key,str-index($key,"-")+1) };}
+}
 
 // for later, when attr() will be a real thing
 // background-image: url(attr(src url, ""));

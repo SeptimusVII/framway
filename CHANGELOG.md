@@ -5,6 +5,11 @@
 - Fix: switch misc properties using `color(alias)` instead of `alias` var directly
 - Fix: `utils.copyToClipboard`, change fake textarea position to fixed to avoid scroll jumping when the script focus in
 - Feat: `utils.copyToClipboard `can now copy outer html of an element, when the `full` parameter is set to true
+- Feat: img-container revamp; 
+it is now a mixin instead of an inherited class/placeholder, resulting in more control over it and less cumbersome selectors. 
+change the previous model of a container + image positioned in absolute, in favor of the aspect-ratio css specs now largely supported.
+change default global behaviors, such as fitting the picture (previously cover by default, now scale-down)
+keep the old img-container css rules in a separate mixin (`img-container--old`) for legacy and potential retro compatibility
 
 2.4.2 - 2023-10-24
 - feat: make framway's config file more "json friendly"
