@@ -275,7 +275,7 @@ utils.findParentWithCSS = (element, property, value) => {
    * @param  {DOM element} elem
    * @return {Boolean}
    */
-  utils.copyToClipboard = function(elem) {
+  utils.copyToClipboard = function(elem,full=false) {
     // create hidden text element, if it doesn't already exist
     var targetId = "_hiddenCopyText_";
     var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
@@ -296,7 +296,10 @@ utils.findParentWithCSS = (element, property, value) => {
             target.id = targetId;
             document.body.appendChild(target);
         }
-        target.textContent = elem.textContent;
+        if(full)
+          target.textContent = elem.outerHTML;
+        else
+          target.textContent = elem.textContent;
     }
     // select the content
     var currentFocus = document.activeElement;

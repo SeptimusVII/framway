@@ -4,6 +4,7 @@
 - Feat: add postcss-gap-properties plugin, and update postcss to latest version
 - Fix: switch misc properties using `color(alias)` instead of `alias` var directly
 - Fix: `utils.copyToClipboard`, change fake textarea position to fixed to avoid scroll jumping when the script focus in
+- Feat: `utils.copyToClipboard `can now copy outer html of an element, when the `full` parameter is set to true
 
 2.4.2 - 2023-10-24
 - feat: make framway's config file more "json friendly"
