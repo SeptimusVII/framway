@@ -3,8 +3,12 @@ $griditem-minwidth: 35ch !default;
     --griditem-minwidth: #{$griditem-minwidth};
 }
 
-.d-grid{display: grid; gap: $spacing;
-  @include media-max(xs){gap: $spacing/2; }
+@mixin grid(){
+  display: grid; gap: $spacing;
+  @include media-max(xs){gap: $spacing/2;}
+}
+
+.d-grid{@include grid();
   @for $index from 1 through 12{
     &.cols-#{$index}{grid-template-columns: #{repeat('1fr ',$index)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$index)};}
     &.rows-#{$index}{grid-template-rows: #{repeat('1fr ',$index)}; grid-template-rows: #{repeat('minmax(0,1fr) ',$index)};}
