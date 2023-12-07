@@ -78,8 +78,8 @@ $ratios : (
 }
 
 
-@mixin img-container($fit: scale-down){ 
-  display: block;position: relative;overflow: hidden; max-width: 100%; background: rgba(0,0,0,0.05);
+@mixin img-container($fit: scale-down,$bg: body(block-background)){ 
+  display: block;position: relative;overflow: hidden; max-width: 100%; background: $bg;
   img{height: 100%;width: 100%;object-fit: $fit;}
   iframe{height: 100%;}
   
