@@ -81,7 +81,7 @@ $ratios : (
 @mixin img-container($fit: scale-down,$bg: body(block-background)){ 
   display: block;position: relative;overflow: hidden; max-width: 100%; background: $bg;
   img{height: 100%;width: 100%;object-fit: $fit;}
-  iframe{height: 100%;}
+  iframe{height: 100%; width: 100%; margin: 0;}
   
   &.no-bg{background: none;}
   &.rounded-circle{
