@@ -110,3 +110,5 @@
 }
 .counter-y{@extend .counter-top,.counter-bottom;}
 .counter-x{@extend .counter-left,.counter-right;}
+
+.last-child-no-m{@include lastChildNoMargin();}

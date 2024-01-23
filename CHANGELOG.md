@@ -1,6 +1,8 @@
 # Framway
+2.4.4 - 2024-02-xx
+- Feat: add last-child-no-m margin utility class
 
-2.4.3 - 2023-11-xx
+2.4.3 - 2023-11-23
 - Feat: add postcss-gap-properties plugin, and update postcss to latest version
 - Fix: switch misc properties using `color(alias)` instead of `alias` var directly
 - Fix: `utils.copyToClipboard`, change fake textarea position to fixed to avoid scroll jumping when the script focus in
