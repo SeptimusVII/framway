@@ -4,6 +4,7 @@
 - Feat: add a grid() mixin, to replace extending the .d-grid class
 - Fix: Iframes in img-container now takes 100% width available
 - Feat: add last-child-no-m margin utility class
+- Fix: tweaks the button's squared class
 
 2.4.3 - 2023-11-23
 - Feat: add postcss-gap-properties plugin, and update postcss to latest version
