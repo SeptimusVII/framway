@@ -5,6 +5,7 @@
 - Fix: Iframes in img-container now takes 100% width available
 - Feat: add last-child-no-m margin utility class
 - Fix: tweaks the button's squared class
+- Feat: set img-container to be compatible with bg-classes
 
 2.4.3 - 2023-11-23
 - Feat: add postcss-gap-properties plugin, and update postcss to latest version
