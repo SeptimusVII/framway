@@ -13,43 +13,16 @@
     .bg-#{$key}{background-color: $value isImportant($key); color: body(font-color); color: contrastFW(body(font-color), $value);}
     // *[class~="bg-#{$key}"],
     // *[class|="bg-#{$key}"]{color: body(font-color); color: contrastFW(body(font-color), $value);}
-    @for $index from 1 through 10{
-      /* OPACITY */
-      .bg-#{$key}-o-#{$index}#{0}{background-color: rgba($value, $index * 0.1);}
 
-      /* LIGHTEN - DARKEN - OPACITY - KEEP FOR LEGACY*/
-      // @if $enable-bg-extended{
-      //   .bg-#{$key}-minus-#{$index}#{0}{ background-color : lighten($value, $index * 10);}
-      //   .bg-#{$key}-plus-#{$index}#{0}{ background-color : darken($value, $index * 10);}
-      //   @for $index2 from 1 through 9{
-      //     @if $index2 != 0{
-      //       .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
-      //       .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}#{0}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
-      //     }
-      //     @else{
-      //       .bg-#{$key}-minus-#{$index}#{0}-o-#{$index2}{ background : rgba(lighten($value, $index * 10), $index2 * 0.1);}
-      //       .bg-#{$key}-plus-#{$index}#{0}-o-#{$index2}{ background : rgba(darken($value, $index * 10), $index2 * 0.1);}
-      //     }
-      //   }
-      // }
+    @if $enable-bg-extended{
+      /* OPACITY */
+      @for $index from 1 through 10{
+        .bg-#{$key}-o-#{$index}#{0}{background-color: rgba($value, $index * 0.1);}
+      }
     }
     // Changes applied to elements inside a bg class container
-
     /* separators */
     .bg-#{$key} .sep{ background: contrastFW(body(font-color), $value);}
-
-
-    /* titles - KEEP FOR LEGACY */ 
-    // @for $index from 1 through 6{
-    //   h#{$index}.bg-#{$key},
-    //   .h#{$index}.bg-#{$key},
-    //   .bg-#{$key} h#{$index},
-    //   .bg-#{$key} .h#{$index}{
-    //     &:not([class*="ft-"]){
-    //       color: contrastFW(body(font-color-title),$value);
-    //     }
-    //   }
-    // }
 
     /* links */
     .bg-#{$key} a:where(:not([class*="btn"]):not([class*="ft-"])){
@@ -110,5 +83,17 @@
         @include input-placeholder{color: contrastFW(input(placeholder-font-color),$value);}
       }
     }
+
+    /* titles - KEEP FOR LEGACY */ 
+    // @for $index from 1 through 6{
+    //   h#{$index}.bg-#{$key},
+    //   .h#{$index}.bg-#{$key},
+    //   .bg-#{$key} h#{$index},
+    //   .bg-#{$key} .h#{$index}{
+    //     &:not([class*="ft-"]){
+    //       color: contrastFW(body(font-color-title),$value);
+    //     }
+    //   }
+    // }
   }
 }
