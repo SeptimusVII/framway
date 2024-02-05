@@ -1,11 +1,15 @@
 # Framway
 2.4.4 - 2024-02-xx
-- Feat: add a background parameter to img-container mixin
-- Feat: add a grid() mixin, to replace extending the .d-grid class
-- Fix: Iframes in img-container now takes 100% width available
-- Feat: add last-child-no-m margin utility class
+- Feat: add a background parameter to `img-container` mixin
+- Feat: add a grid() mixin, to replace extending the `.d-grid` class
+- Fix: Iframes in `img-container` now takes 100% width available
+- Feat: add `last-child-no-m` margin utility class
 - Fix: tweaks the button's squared class
-- Feat: set img-container to be compatible with bg-classes
+- Feat: set `img-container` to be compatible with background classes
+- Fix: remove occurrences of `tertiary` var
+- Feat: add `enable-bg-extended` config var. lock background opacity classes generation behind this var, for optimization sake
+- Feat: add `str-split` mixin
+- Feat: add color aliases management; at Dom loading time, a script look for occurrences of color classes named after an alias and replace them with their true color name. Aliases are set in scss config files, as an independent key/value array named `aliases`
 
 2.4.3 - 2023-11-23
 - Feat: add postcss-gap-properties plugin, and update postcss to latest version
