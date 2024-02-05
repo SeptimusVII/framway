@@ -1,5 +1,5 @@
 # Framway
-2.4.4 - 2024-02-xx
+2.4.4 - 2024-02-05
 - Feat: add a background parameter to `img-container` mixin
 - Feat: add a grid() mixin, to replace extending the `.d-grid` class
 - Fix: Iframes in `img-container` now takes 100% width available
