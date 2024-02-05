@@ -41,7 +41,13 @@ function Framway(){
         // console.log(framway.styles[key]);
       }
     });
-    // console.log(framway.styles);
+
+    // replace occurrences of aliases in classes by their true value
+    for (var alias in framway.styles.aliases) {
+      for(var el of document.querySelectorAll('[class*="-'+alias+' "],[class$="-'+alias+'"]')){
+        el.className = el.className.replace(alias,framway.styles.aliases[alias])
+      }
+    }
 
     // if (framway.useFA == 'free') {
     //   var switchIconToFree = function(item){
