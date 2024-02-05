@@ -16,15 +16,15 @@ module.exports = {
 		'white' : '#ffffff',
 		'none' : 'transparent',
 	},
+	
 	'primary': 'colors(blue)',
 	'secondary': 'adjust-color(primary,$hue: 180deg)',
-	// 'tertiary': 'colors(greystronger)',
 
 	'success': 'colors(green)',
 	'info': 'colors(blue)',
 	'warning': 'colors(yellow)',
 	'error': 'colors(red)',
-	
+
 	'radius': '2px',
 	'border-default-size': '1px',
 	'border-default-color': 'colors(black)',

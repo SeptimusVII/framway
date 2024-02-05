@@ -1,5 +1,5 @@
 @function isImportant($key) {
-  @if($key == 'primary' or $key == 'secondary' or $key == 'tertiary'){
+  @if($key == 'primary' or $key == 'secondary'){
     @return #{!important};
   } @else{@return null; }
 }
