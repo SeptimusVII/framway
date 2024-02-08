@@ -1,4 +1,9 @@
 # Framway
+2.5.0 - 2024-02-xx
+- Fix: correct input use of the custom radius
+- Update: postcss-focus plugin
+- 
+
 2.4.4 - 2024-02-05
 - Feat: add a background parameter to `img-container` mixin
 - Feat: add a grid() mixin, to replace extending the `.d-grid` class
