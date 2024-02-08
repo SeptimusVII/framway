@@ -37,7 +37,7 @@
     "mustache-loader": "^1.4.3",
     "node-sass": "^7.0.1",
     "postcss": "^8.4.31",
-    "postcss-focus": "^5.0.1",
+    "postcss-focus": "^7.0.0",
     "postcss-gap-properties": "^5.0.0",
     "postcss-import-url": "^7.1.0",
     "postcss-loader": "^7.0.2",

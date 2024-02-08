@@ -129,7 +129,7 @@ $btn-p-x: 1.5em !default;
     @if $value != transparent{color: $value; }
     @else{color: contrastFW(btn(font-color),$value); }
     background-color: transparent;
-    &:hover,&:active,&.active{
+    &:hover,&:focus,&:active,&.active{
       border-color: $value;
       background: $value;
       text-decoration: none;
@@ -173,7 +173,7 @@ $btn-p-x: 1.5em !default;
 }
 .btn-bg-none#{$exclude},
 .btn-bd-none#{$exclude}{color: contrastFW(btn(font-color),color(white));
-  &:hover,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
+  &:hover,&:focus,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
   &:focus{color: contrastFW(btn(font-color),color(white));
     &:hover,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
   }
