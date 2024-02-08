@@ -6,11 +6,11 @@
   color: contrastFW(input(font-color),input(background));
   border: 0;
   border: input(border-size) solid input(border-color);
+  border-radius: 0;
   @if input(radius) == true{
     border-radius: $radius;
-  }
-  @else{
-    border-radius: 0;
+  } @else if input(radius) != false {
+    border-radius: input(radius);
   }
   outline: none;
   width: 100%;
