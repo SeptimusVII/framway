@@ -1,5 +1,5 @@
 # Framway
-2.5.0 - 2024-02-xx
+2.5.0 - 2024-02-14
 - Fix: correct input use of the custom radius
 - Update: postcss-focus plugin
 - Buttons update
@@ -9,6 +9,8 @@
 	- add `input-as-btn` global config boolean. If true, inputs type `button` and `submit` are styled like buttons
 	- keep a `$exclude` empty string var for backward compatibility 
 	- remove `btn` classes extensions
+- Fix: button's margins in `border` classes and `lastChildNoMargin` mixin
+- Fix: udpate `inputs` to new btn system
 
 2.4.4 - 2024-02-05
 - Feat: add a background parameter to `img-container` mixin
