@@ -96,7 +96,6 @@ module.exports = {
 		'radius': true,
 		'uppercase': false,
 		'font-weight': 300,
-		'exclude': ['.exclude'],
 	},
 
 	'breakpoints': {
@@ -119,4 +118,5 @@ module.exports = {
 	'enable-bg': true,
 	'enable-bg-extended': false,
 	'enable-bd': true,
+	'input-as-btn': true,
 }

@@ -9,10 +9,11 @@
 
 pre{background: color(blacklight); color: color(white); padding: $spacing/2; border-radius: $radius; font-size: 0.8em; margin-bottom: $spacing;}
 pre code{display: block; position: static;}
-pre .copy{position: absolute; right: $spacing; @extend .btn-sm;}
+pre .copy{position: absolute; right: $spacing;}
 
 iframe{max-width:100%;}
 
+$exclude: "" !default; // keep for retrocompatibility < v2.4.5
 
 // ERRORS
 p.success{color:$success;}

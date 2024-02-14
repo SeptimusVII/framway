@@ -2,7 +2,13 @@
 2.5.0 - 2024-02-xx
 - Fix: correct input use of the custom radius
 - Update: postcss-focus plugin
-- 
+- Buttons update
+	- remove `exclude` feature - not enough use and causing issues with selector priorities.
+	- replace `btn` classes declaration with a couple mixin/placeholder - classes `btn`, `btn-sm`, `btn-lg` and such now extend the `%btn` placeholder, making styles overriding a lot less cumbersome, and generating a lots less classes and 50ft long selectors.
+	- add a set of css custom properties, complete with default values and possibility to override them from themes config. `btn` classes make use of these CP, allowing us to do contextual styling based on their values instead of altering styles
+	- add `input-as-btn` global config boolean. If true, inputs type `button` and `submit` are styled like buttons
+	- keep a `$exclude` empty string var for backward compatibility 
+	- remove `btn` classes extensions
 
 2.4.4 - 2024-02-05
 - Feat: add a background parameter to `img-container` mixin

@@ -1,75 +1,88 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // BUTTONS
-$exclude : "";
-@if (btn(exclude)){
-  @each $part in btn(exclude){
-    // @warn $part;
-    $exclude : $exclude+':not('+$part+')';
-  }
+$btn-p-x: 1.5em                                    !default; @if btn(padding-x)   { $btn-p-x: btn(padding-x); }
+$btn-p-y: 0.5em                                    !default; @if btn(padding-y)   { $btn-p-y: btn(padding-y); }
+$btn-font-size: 1em                                !default; @if btn(font-size)   { $btn-font-size: btn(font-size); }
+$btn-font-family: inherit                          !default; @if btn(font-family) { $btn-font-family: btn(font-family); }
+$btn-font-weight: 400                              !default; @if btn(font-weight) { $btn-font-weight: btn(font-weight); }
+$btn-line-height: 1.5em                            !default; @if btn(line-height) { $btn-line-height: btn(line-height); }
+$btn-radius: 0                                     !default; @if btn(radius)      { $btn-radius: btn(radius); }
+$btn-background: $primary                          !default; @if btn(background)  { $btn-background: btn(background); }
+$btn-border-color: $primary                        !default; @if btn(background)  { $btn-border-color: btn(background); }
+$btn-border-size: $border-default-size             !default; @if btn(border-size) { $btn-border-size: btn(border-size); }
+$btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)  { $btn-font-color: btn(font-color); }
+
+
+:root{
+  --btn-p-x          : #{$btn-p-x};
+  --btn-p-y          : #{$btn-p-y};
+  --btn-font-size    : #{$btn-font-size};
+  --btn-font-family  : #{$btn-font-family};
+  --btn-font-weight  : #{$btn-font-weight};
+  --btn-line-height  : #{$btn-line-height};
+  --btn-radius       : #{$btn-radius};
+  --btn-background   : #{$btn-background};
+  --btn-border-color : #{$btn-border-color};
+  --btn-border-size  : #{$btn-border-size};
+  --btn-font-color   : #{$btn-font-color};
 }
-// @warn "EXCLUDE = "+$exclude;
 
-$btn-p-y: 0.5em !default;
-$btn-p-x: 1.5em !default;
-
-.btn#{$exclude}{
+@mixin btn(){
   display: inline-block;
   max-width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
-  padding: $btn-p-y $btn-p-x $btn-p-y+0.1em;
-  font-size: 1em;
-  line-height: 1.5em;
-  border-radius: 0;
-  @if btn(radius) == true{
-    border-radius: $radius;
-  } @else if btn(radius) != false {
-    border-radius: btn(radius);
-  }
-  text-transform: none;
-  @if btn(uppercase) == true{
-    text-transform: uppercase;
-  }
-  font-weight: 400;
-  @if btn(font-weight){
-    font-weight: btn(font-weight);
-  }
   outline: none;
-  border: btn(border-size) solid btn(background);
-  background-color: btn(background);
-  color: btn(font-color);
   cursor: pointer;
-  font-family: inherit;
   text-decoration: none;
   margin-top: 2.5px;
   margin-bottom: 2.5px;
-  &:not([class*="txt-"]){text-align: center;}
-  @include transition(all .2s ease-in-out);
+  transition: all .2s ease-in-out;
+  text-align: center;
+
+  @if btn(uppercase) == true {text-transform: uppercase; }
+  @else {text-transform: none; }
+
+  font-size: var(--btn-font-size);
+  font-family: var(--btn-font-family);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
+  border-radius: var(--btn-radius);
+  padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y)+0.1em);
+  border: var(--btn-border-size) solid var(--btn-border-color);
+  background-color: var(--btn-background);
+  color: var(--btn-font-color);
+  &:is(a){color: var(--btn-font-color);}
+  &>a{ 
+    display: block;
+    color: inherit; 
+    text-decoration: none; 
+    padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y)+0.1em); 
+    margin: calc(var(--btn-p-y)*-1) calc(var(--btn-p-x)*-1) calc((var(--btn-p-y)+0.1em)*-1); 
+  }
+
+  &.txt-center {text-align: center;}
+  &.txt-left   {text-align: left;}
+  &.txt-right  {text-align: right;}
   &:focus{ outline: none; box-shadow: none;}
   &:hover,&:focus,&:active,&.active{
-      text-decoration: none;
-      @if lightness(btn(background)) > 60{
-        color: contrastFW(btn(font-color),scale-color(btn(background),$lightness:-5));
-        background-color: scale-color(btn(background),$lightness:-15);
-        border-color: scale-color(btn(background),$lightness:-15);
-      }
-      @else{
-        color: contrastFW(btn(font-color),scale-color(btn(background),$lightness:5));
-        background-color: scale-color(btn(background),$lightness:15);
-        border-color: scale-color(btn(background),$lightness:15);
-      }
+    text-decoration: none;
+    @if lightness($btn-background) > 60{
+      --btn-background: #{scale-color($btn-background,$lightness:-15)};
+      --btn-border-color: #{scale-color($btn-background,$lightness:-15)};
+      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:-5))};
     }
-  &>a{padding: $btn-p-y $btn-p-x $btn-p-y+0.1em; margin: -$btn-p-y -$btn-p-x -$btn-p-y+0.1em;}
-  // [class*=flex]>&+.btn#{$exclude}{margin-left: 5px;} // 15K characters /!\
-}
-
-.btn#{$exclude}{
-  &[class*="icon-"]{display: inline-flex;align-items: center; padding-left: 1em; padding-right: 1em;
+    @else{
+      --btn-background: #{scale-color($btn-background,$lightness:15)};
+      --btn-border-color: #{scale-color($btn-background,$lightness:15)};
+      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:5))};
+    }
+  }
+  &[class*="icon-"]{
+    display: inline-flex; 
+    align-items: center;
     &.center{display: flex;}
     & i[class*="fa"],
     & svg{min-width: 1em;}
@@ -77,119 +90,83 @@ $btn-p-x: 1.5em !default;
       & .hidden-#{$key}{
         @include media-max($key){
           &+i[class*="fa"],
-          &+svg{ margin: 0;}
+          &+svg{transform: none;}
         }
       }
     }
   }
-  &.icon-first{
+  &.icon-first{ padding-left: calc(var(--btn-p-x)*0.75);
     & i[class*="fa"],
-    & svg{margin: 0 0.65em 0 -0.2em ; order: -1;}
+    & svg{ order: -1; 
+      margin: 0 0.5em 0 -0.25em;
+    }
   }
-  &.icon-last {
+  &.icon-last { padding-right: calc(var(--btn-p-x)*0.75);
     & i[class*="fa"],
-    & svg{margin: 0 -0.2em 0 0.65em; order: 1;}
+    & svg{ order: 1; 
+      margin: 0 -0.25em 0 0.5em;
+    }
   }
   &.squared{padding: .6em; line-height: 1em;
     i[class*="fa"],svg{width: 1em; height: 1em;}
   }
 }
 
-.btn-sm#{$exclude}{@extend .btn;
-  font-size: .8em; 
-  padding: ($btn-p-y - 0.1em) ($btn-p-x - 0.3em) $btn-p-y;
-  &>a{padding: ($btn-p-y - 0.1em) ($btn-p-x - 0.3em) $btn-p-y; margin: -($btn-p-y - 0.1em) -($btn-p-x - 0.3em) -$btn-p-y;}
-  // padding: .4em 1.2em .4em;
-  // &>a{padding: .4em 1.2em .4em; margin: -.4em -1.2em -.4em;}
-  border-radius: 0;
-  @if btn(radius) == true{
-    border-radius: $radius;
-  } @else if btn(radius) != false {
-    border-radius: btn(radius);
-  }
+%btn{@include btn();}
+
+.btn,
+.btn-sm,
+.btn-lg,
+*[class*=btn-bd-],
+*[class*=btn-bg-]{@extend %btn;}
+@if $input-as-btn == true {
+  input:where([type="submit"],[type="button"]){@extend %btn;}
 }
-.btn-lg#{$exclude}{@extend .btn;
-  font-size: 1.25em; 
-  padding: ($btn-p-y + 0.1em) ($btn-p-x + 0.2em) ($btn-p-y + 0.15em);
-  &>a{padding: ($btn-p-y + 0.1em) ($btn-p-x + 0.2em) ($btn-p-y + 0.15em); margin: -($btn-p-y + 0.1em) -($btn-p-x + 0.2em) -($btn-p-y + 0.15em);}
-  // padding: .6em 1.7em .65em;
-  // &>a{padding: .6em 1.7em .65em; margin: -.6em -1.7em -.65em;}
-  border-radius: 0;
-  @if btn(radius) == true{
-    border-radius: $radius;
-  } @else if btn(radius) != false {
-    border-radius: btn(radius);
-  }
+
+.btn-sm{
+  --btn-font-size: #{($btn-font-size*0.8)};
+  --btn-p-x: #{($btn-p-x - 0.3em)};
+}
+.btn-lg{
+  --btn-font-size: #{($btn-font-size*1.25)};
+  --btn-p-x: #{($btn-p-x + 0.2em)};
+  --btn-p-y: #{($btn-p-y + 0.1em)};
 }
 
 
 @each $key, $value in $colors{
-  .btn-bd-#{$key}#{$exclude}{
-    border-color: $value;
-    @if $value != transparent{color: $value; }
-    @else{color: contrastFW(btn(font-color),$value); }
-    background-color: transparent;
+  .btn-bd-#{$key}{
+    --btn-background: transparent;
+    --btn-border-color: #{$value};
+    --btn-font-color: #{$value};
     &:hover,&:focus,&:active,&.active{
-      border-color: $value;
-      background: $value;
-      text-decoration: none;
-      color: contrastFW(btn(font-color),$value);
-    }
-    &:focus{
-      // color: $value;
-      &:hover,&:active,&.active{
-        color: contrastFW(btn(font-color),$value);
-        @if lightness($value) > 60{
-          color: contrastFW(btn(font-color),scale-color($value,$lightness:-5));
-          background-color: scale-color($value,$lightness:-15);
-          border-color: scale-color($value,$lightness:-15);
-        }
-        @else{
-          color: contrastFW(btn(font-color),scale-color($value,$lightness:5));
-          background-color: scale-color($value,$lightness:15);
-          border-color: scale-color($value,$lightness:15);
-        }
-      }
+      --btn-background: #{$value};
+      --btn-border-color: #{$value};
+      --btn-font-color: #{contrastFW($btn-font-color,$value)};
     }
   }
-  .btn-bg-#{$key}#{$exclude}{
-    border-color: $value;
-    background-color: $value;
-    color: contrastFW(btn(font-color),$value);
+  .btn-bg-#{$key}{
+    --btn-background: #{$value};
+    --btn-border-color: #{$value};
+    --btn-font-color: #{contrastFW($btn-font-color,$value)};
     &:hover,&:focus,&:active,&.active{
-      text-decoration: none;
       @if lightness($value) > 60{
-        color: contrastFW(btn(font-color),scale-color($value,$lightness:-5));
-        background-color: scale-color($value,$lightness:-15);
-        border-color: scale-color($value,$lightness:-15);
+        --btn-background: #{scale-color($value,$lightness:-15)};
+        --btn-border-color: #{scale-color($value,$lightness:-15)};
+        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:-5))};
       }
       @else{
-        color: contrastFW(btn(font-color),scale-color($value,$lightness:5));
-        background-color: scale-color($value,$lightness:15);
-        border-color: scale-color($value,$lightness:15);
+        --btn-background: #{scale-color($value,$lightness:15)};
+        --btn-border-color: #{scale-color($value,$lightness:15)};
+        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:5))};
       }
     }
   }
 }
-.btn-bg-none#{$exclude},
-.btn-bd-none#{$exclude}{color: contrastFW(btn(font-color),color(white));
-  &:hover,&:focus,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
-  &:focus{color: contrastFW(btn(font-color),color(white));
-    &:hover,&:active,&.active{color: contrastFW(btn(font-color),color(white));}
+.btn-bg-none,
+.btn-bd-none{
+  color: inherit;
+  &:hover,&:focus,&:active,&.active{
+    color: inherit;
   }
 }
-
-
-*[class*=btn-bd-],
-*[class*=btn-bg-],
-input[type="submit"]:not([class*=btn-]),
-input[type="button"]:not([class*=btn-]),
-button{@extend .btn;}
-
-input[type="submit"].btn-sm:not([class*=btn-]),
-input[type="button"].btn-sm:not([class*=btn-]),
-button.btn-sm{@extend .btn-sm;}
-
-input[type="submit"].btn-lg:not([class*=btn-]),
-input[type="button"].btn-lg:not([class*=btn-]),
-button.btn-lg{@extend .btn-lg;}
