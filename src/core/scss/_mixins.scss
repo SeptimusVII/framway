@@ -198,7 +198,7 @@
 }
 
 @mixin lastChildNoMargin(){
-  &>*:last-child:not([class*="m-bottom"]){margin-bottom: 0;}
+  &>*:last-child:not([class*="m-bottom"]):not([class*='btn']){margin-bottom: 0;}
 }
 
 
