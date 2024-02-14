@@ -230,17 +230,15 @@ label{margin-bottom: 0.2rem;}
   &:not(.d-grid){display: flex;}
   .form-group>&{@include lastChildNoMargin();}
   .select2FW-wrapper,.select2-container,%input{position: relative; width: 100%; max-width: 100%; min-width: 0; flex-grow: 1; flex-basis: 0; margin-right: 2px;margin-bottom: 0;flex-basis: 0;}
-  .btn#{$exclude}{margin: 0 1px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;}
+  %btn{margin: 0 1px; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;}
   &.form-shrink{
-    .btn#{$exclude}{padding: .25em .75em; font-size: 1em; line-height: 1.5em;
+    %btn{
+      --btn-font-size: 1em;
+      --btn-line-height: 1.5em;
+      --btn-p-y: .25em;
+      --btn-p-x: 1.25em;
       &.squared{padding: 0; width: 2.15em; width: calc(2em + #{input(border-size)*2});}
       // &:not(.icon-last):not(.icon-first){svg{font-size: 1.2em;}}
-      &.icon-first{
-        svg,i.fa{ margin-right: 0.35em; }
-      }
-      &.icon-last{
-        svg,i.fa{ margin-left: 0.35em; }
-      }
     }
   }
 }
