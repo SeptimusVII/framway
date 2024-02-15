@@ -16,13 +16,13 @@ html.no-scroll{ height: 100vh; overflow: hidden;
 
 .center-block{margin: auto; display: block;}
 .center{margin: auto; width: fit-content;
-  &:is(.btn){display: block;}
+  &:is(%btn){display: block;}
 }
 @each $key, $value in $breakpoints{
   .center-#{$key}{
     @include media-max($key){
       margin: auto; width: fit-content;
-      &:is(.btn){display: block;}
+      &:is(%btn){display: block;}
     }
   }
 }

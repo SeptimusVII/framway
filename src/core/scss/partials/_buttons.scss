@@ -122,6 +122,9 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
 @if $input-as-btn == true {
   input:where([type="submit"],[type="button"]){@extend %btn;}
 }
+@if $button-as-btn == true {
+  button:where([type="submit"],[type="button"]){@extend %btn;}
+}
 
 .btn-sm{
   --btn-font-size: #{($btn-font-size*0.8)};
