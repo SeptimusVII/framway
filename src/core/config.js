@@ -116,7 +116,6 @@ module.exports = {
 	},
 
 	'enable-bg': true,
-	'enable-bg-extended': false,
 	'enable-bd': true,
 	'input-as-btn': true,
 	'button-as-btn': true,

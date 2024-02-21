@@ -4,25 +4,27 @@
   } @else{@return null; }
 }
 
+:root{
+  --bg-opacity: 1;
+}
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // BACKGROUNDS
 @if $enable-bg{
   *:where([class*='bg-']:not([class*='bg--']):not([class*='btn-'])){padding: $spacing;}
   *:is([class*='bg-']:not([class*='bg--']):not([class*='btn-'])>*:last-child:not([class*='btn'])){margin-bottom:0;}
   @each $key, $value in $colors{
-    .bg-#{$key}{background-color: $value isImportant($key); color: body(font-color); color: contrastFW(body(font-color), $value);}
+    .bg-#{$key}{background-color: rgba($value,var(--bg-opacity)) isImportant($key); color: body(font-color); color: contrastFW(body(font-color), $value);}
     // *[class~="bg-#{$key}"],
     // *[class|="bg-#{$key}"]{color: body(font-color); color: contrastFW(body(font-color), $value);}
 
-    @if $enable-bg-extended{
-      /* OPACITY */
-      @for $index from 1 through 10{
-        .bg-#{$key}-o-#{$index}#{0}{background-color: rgba($value, $index * 0.1);}
-      }
+    /* OPACITY */
+    @for $index from 1 through 10{
+      .bg-o-#{$index}#{0}{--bg-opacity: #{$index * 0.1};}
     }
     // Changes applied to elements inside a bg class container
     /* separators */
-    .bg-#{$key} .sep{ background: contrastFW(body(font-color), $value);}
+    // .bg-#{$key} .sep{ background: contrastFW(body(font-color), $value);}
 
     /* links */
     .bg-#{$key} a:where(:not([class*="btn"]):not([class*="ft-"])){
