@@ -1,6 +1,7 @@
 # Framway
 2.5.1 - 2024-02-xx
 - Feat: add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
+- Feat: add `cols-span-#{$key}-all` classes
 
 2.5.0 - 2024-02-14
 - Fix: correct input use of the custom radius

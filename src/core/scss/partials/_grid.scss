@@ -33,6 +33,7 @@ $griditem-minwidth: 35ch !default;
         @include media-max($key){
           @for $index from 1 through 12{
             &.cols-span-#{$key}-#{$index}{grid-column: span $index;}
+            &.cols-span-#{$key}-all{grid-column: 1/-1;}
             &.rows-span-#{$key}-#{$index}{grid-row: span $index;}
           }
         }
