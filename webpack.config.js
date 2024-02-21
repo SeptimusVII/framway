@@ -47,6 +47,7 @@ module.exports = {
                     {
                         loader: "css-loader",
                         options: {
+                            url: false,
                             importLoaders: 1,
                             modules: {
                                 mode: "icss",
