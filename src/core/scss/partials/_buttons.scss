@@ -169,6 +169,7 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
 .btn-bg-none,
 .btn-bd-none{
   color: inherit;
+  &:is(a){color:inherit;}
   &:hover,&:focus,&:active,&.active{
     color: inherit;
   }
