@@ -1,9 +1,13 @@
 # Framway
 2.5.1 - 2024-02-xx
-- Feat: add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
-- Feat: add `cols-span-#{$key}-all` classes
-- Feat: add `background` opacity utility classes, written `bg-o-#{$index}`. Remove old var `enable-bg-extended`
-- Fix: disable `url()` process in css files
+- Feat: 
+	- add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
+	- add `cols-span-#{$key}-all` classes
+	- add `background` opacity utility classes, written `bg-o-#{$index}`. Remove old var `enable-bg-extended`
+	- add `auto-rows` class to grid system. makes all undefined rows the same height
+- Fixes: 
+	- disable `url()` process in css files
+	- fix links font color for btn width `bg/bd-none`
 
 2.5.0 - 2024-02-14
 - Fix: correct input use of the custom radius

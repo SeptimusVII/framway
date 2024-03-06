@@ -41,6 +41,7 @@ $griditem-minwidth: 35ch !default;
     }
   }
   &.flow{grid-auto-flow: dense;}
+  &.auto-rows{grid-auto-rows: 1fr;}
   &.cols-autofit{
     grid-template-columns: Repeat(auto-fit, minmax($griditem-minwidth, 1fr));
     grid-template-columns: Repeat(auto-fit, minmax(var(--griditem-minwidth), 1fr));
