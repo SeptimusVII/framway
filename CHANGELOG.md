@@ -5,9 +5,11 @@
 	- add `cols-span-#{$key}-all` classes
 	- add `background` opacity utility classes, written `bg-o-#{$index}`. Remove old var `enable-bg-extended`
 	- add `auto-rows` class to grid system. makes all undefined rows the same height
+	- add `center-y` classes, allow vertical centering in a height defined space
 - Fixes: 
 	- disable `url()` process in css files
 	- fix links font color for btn width `bg/bd-none`
+	- fix `center` class, it no longer change the margins top and bottom of element 
 
 2.5.0 - 2024-02-14
 - Fix: correct input use of the custom radius
