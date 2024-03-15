@@ -22,6 +22,8 @@
 .ft-notrs{text-transform: none;}
 .ft-nowrap{white-space: nowrap;}
 
+.ft-inherit{color: inherit;}
+
 @for $index from 0 through 10 {
   // @if $index != 0 {
   //   .ft-minus-#{$index}#{0}{font-size: #{1 - ($index * 0.10)}em;}
