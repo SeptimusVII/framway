@@ -641,6 +641,10 @@ Utils.prototype.checkForm = function(el,renderError = true){
 };
 
 Utils.prototype.getInputLabel = function(inputID, placeholder=undefined){
+  if($('#'+inputID).attr('type') == 'radio' || $('#'+inputID).attr('type') == 'checkbox'){
+    if ($('#'+inputID).parent().children('label:not(for)').first().length) {}
+      return $('#'+inputID).parent().children('label:not(for)').first().html().replace(':','').trim();
+  }
   if($('label[for="'+inputID+'"]').first().length) // if exist, get label of the input
     return $('label[for="'+inputID+'"]').first().html().replace(':','').trim();
   else{

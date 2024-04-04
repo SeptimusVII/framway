@@ -1,15 +1,17 @@
 # Framway
-2.5.1 - 2024-02-xx
+2.5.1 - 2024-04-xx
 - Feat: 
 	- add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
 	- add `cols-span-#{$key}-all` classes
 	- add `background` opacity utility classes, written `bg-o-#{$index}`. Remove old var `enable-bg-extended`
 	- add `auto-rows` class to grid system. makes all undefined rows the same height
 	- add `center-y` classes, allow vertical centering in a height defined space
+	- add `ft-inherit` class
 - Fixes: 
 	- disable `url()` process in css files
 	- fix links font color for btn width `bg/bd-none`
 	- fix `center` class, it no longer change the margins top and bottom of element 
+	- `utils.getInputLabel`, fix/improve retrieving of radios and checkboxes label
 
 2.5.0 - 2024-02-14
 - Fix: correct input use of the custom radius
