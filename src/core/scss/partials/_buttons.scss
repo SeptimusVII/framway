@@ -174,3 +174,17 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
     color: inherit;
   }
 }
+
+.btn-group{ display: flex;
+  %btn{--btn-p-x: 0.75em; margin: 0;  border-radius: 0;
+    &:first-child{ border-right: 0; padding-left: 1em;
+      border-top-left-radius: var(--btn-radius); 
+      border-bottom-left-radius: var(--btn-radius);
+    }
+    &:last-child { border-left: 0; padding-right: 1em;
+      border-top-right-radius: var(--btn-radius);
+      border-bottom-right-radius: var(--btn-radius);
+    }
+    &:not(:first-child):not(:last-child){border-left: 0;border-right: 0;}
+  }
+}
