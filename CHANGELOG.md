@@ -1,5 +1,5 @@
 # Framway
-2.5.1 - 2024-04-xx
+2.5.1 - 2024-xx-xx
 - Feat: 
 	- add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
 	- add `cols-span-#{$key}-all` classes
@@ -7,6 +7,8 @@
 	- add `auto-rows` class to grid system. makes all undefined rows the same height
 	- add `center-y` classes, allow vertical centering in a height defined space
 	- add `ft-inherit` class
+	- add `text-wrap: pretty` on text basic element. Supposedly, does avoid orphans at end of paragraphs
+	- add `utils.invertColor` function
 - Fixes: 
 	- disable `url()` process in css files
 	- fix links font color for btn width `bg/bd-none`

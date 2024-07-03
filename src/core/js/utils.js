@@ -33,27 +33,61 @@ var Utils = function Utils(){
   }
 
   /**
- * Traverse the DOM upwards and checks the computed styles
- * of each element is passes. Compares the value of the 
- * requested property with the passed value and returns 
- * the element if the value is a match
- *
- * @param   {HTMLElement} element Element to start from.
- * @param   {string} property CSS property to research.
- * @param   {string} value Value to compare CSS property value with.
- * @returns {HTMLElement|null}
- */
-utils.findParentWithCSS = (element, property, value) => {
+  * Traverse the DOM upwards and checks the computed styles
+  * of each element is passes. Compares the value of the 
+  * requested property with the passed value and returns 
+  * the element if the value is a match
+  *
+  * @param   {HTMLElement} element Element to start from.
+  * @param   {string} property CSS property to research.
+  * @param   {string} value Value to compare CSS property value with.
+  * @returns {HTMLElement|null}
+  */
+  utils.findParentWithCSS = (element, property, value) => {
   while(element !== null) {
     const style = window.getComputedStyle(element);
     const propValue = style.getPropertyValue(property);
     if (value.includes(propValue)) {
       return element;
     }
-    element = element.parentElement;
+      element = element.parentElement;
+    }
+    return document.body;
+  };
+  
+  utils.invertColor = function invertColor(hex, bw) {
+    if (hex.indexOf('#') === 0) {
+        hex = hex.slice(1);
+    }
+    // convert 3-digit hex to 6-digits.
+    if (hex.length === 3) {
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    }
+    if (hex.length !== 6) {
+        throw new Error('Invalid HEX color.');
+    }
+    var r = parseInt(hex.slice(0, 2), 16),
+        g = parseInt(hex.slice(2, 4), 16),
+        b = parseInt(hex.slice(4, 6), 16);
+    if (bw) {
+        // https://stackoverflow.com/a/3943023/112731
+        return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+            ? '#000000'
+            : '#FFFFFF';
+    }
+    // invert color components
+    r = (255 - r).toString(16);
+    g = (255 - g).toString(16);
+    b = (255 - b).toString(16);
+    // pad each with zeros and return
+    return "#" + padZero(r) + padZero(g) + padZero(b);
   }
-  return document.body;
-};
+
+  utils.padZero = function padZero(str, len) {
+    len = len || 2;
+    var zeros = new Array(len).join('0');
+    return (zeros + str).slice(-len);
+  }
 
   utils.stringToColor = function(strText){
     strText = strText.replace(/\s+/g, '');
