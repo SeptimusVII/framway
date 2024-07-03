@@ -1,5 +1,5 @@
 # Framway
-2.5.1 - 2024-xx-xx
+2.5.1 - 2024-07-03
 - Feat: 
 	- add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
 	- add `cols-span-#{$key}-all` classes
@@ -9,6 +9,8 @@
 	- add `ft-inherit` class
 	- add `text-wrap: pretty` on text basic element. Supposedly, does avoid orphans at end of paragraphs
 	- add `utils.invertColor` function
+	- add `btn-group` styles. Wrap any number of buttons in a `.btn-group` container to group them nicely
+	- add `btn-bd-input` styles. Used to make a `btn`'s border alike with inputs while being in a `input-group`
 - Fixes: 
 	- disable `url()` process in css files
 	- fix links font color for btn width `bg/bd-none`
