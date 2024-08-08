@@ -1,4 +1,8 @@
 # Framway
+2.5.2 - 2024-xx-xx
+- Feat:
+	- improve `container` max width management with a custom property system, using `--container-mw` var 
+
 2.5.1 - 2024-07-03
 - Feat: 
 	- add `button-as-btn` global config boolean. If true, buttons type `button` and `submit` are styled like buttons
