@@ -2,6 +2,7 @@
 2.5.2 - 2024-xx-xx
 - Feat:
 	- improve `container` max width management with a custom property system, using `--container-mw` var 
+	- add `min-width` property to direct children of a grid with `auto-fill/fit` 
 
 2.5.1 - 2024-07-03
 - Feat: 

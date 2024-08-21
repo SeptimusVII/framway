@@ -53,6 +53,10 @@ $griditem-minwidth: 35ch !default;
     grid-template-columns: Repeat(auto-fill, minmax($griditem-minwidth, 1fr));
     grid-template-columns: Repeat(auto-fill, minmax(var(--griditem-minwidth), 1fr));
   }
+  &.cols-autofit,
+  &.cols-autofill{
+    &>*{min-width: var(--griditem-minwidth); }
+  }
 }
 .cols-span-all{grid-column: 1/-1;}
 .cols-end-end{grid-column-end: -1;}
