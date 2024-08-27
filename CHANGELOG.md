@@ -5,6 +5,7 @@
 	- add `min-width` property to direct children of a grid with `auto-fill/fit` 
 	- apply `container` rules to `container-fluid`
 	- add input type `search` to input type text `chain`
+	- add `grid-min-max-cols` mixin to `grid`. allow to define a grid with automated min/max number and min size of columns
 
 2.5.1 - 2024-07-03
 - Feat: 

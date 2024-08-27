@@ -8,6 +8,18 @@ $griditem-minwidth: 35ch !default;
   @include media-max(xs){gap: $spacing/2;}
 }
 
+@mixin grid-min-max-cols($min-cols, $max-cols, $cols-min-width, $grid-row-gap: 0px, $grid-column-gap: 0px) {
+  --min-cols: #{$min-cols};
+  --max-cols: #{$max-cols};
+  --cols-min-width: #{$cols-min-width};
+  --grid-row-gap: #{$grid-row-gap};
+  --grid-column-gap: #{$grid-column-gap};
+  
+  display: grid;
+  grid-template-columns: Repeat(auto-fill, Minmax(Min(calc(100%/var(--min-cols) - var(--grid-column-gap)*(var(--min-cols) - 1)/var(--min-cols)), Max(var(--cols-min-width), calc(100%/var(--max-cols) - var(--grid-column-gap)*(var(--max-cols) - 1)/var(--max-cols)))), 1fr));
+  gap: var(--grid-row-gap) var(--grid-column-gap);
+}
+
 .d-grid{@include grid();
   @for $index from 1 through 12{
     &.cols-#{$index}{grid-template-columns: #{repeat('1fr ',$index)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$index)};}
