@@ -36,21 +36,6 @@ $griditem-minwidth: 35ch !default;
   &>*{ 
     &:not([class*=m-bottom]){margin-bottom: 0;}
     @include lastChildNoMargin();
-    @for $index from 1 through 12{
-      &.cols-span-#{$index}{grid-column: span $index;}
-      &.rows-span-#{$index}{grid-row: span $index;}
-      &.cols-start-#{$index}{grid-column-start: $index;}
-      &.cols-end-#{$index}{grid-column-end: $index+1;}
-      @each $key, $value in $breakpoints{
-        @include media-max($key){
-          @for $index from 1 through 12{
-            &.cols-span-#{$key}-#{$index}{grid-column: span $index;}
-            &.cols-span-#{$key}-all{grid-column: 1/-1;}
-            &.rows-span-#{$key}-#{$index}{grid-row: span $index;}
-          }
-        }
-      }
-    }
   }
   &.flow{grid-auto-flow: dense;}
   &.auto-rows{grid-auto-rows: 1fr;}
@@ -68,6 +53,21 @@ $griditem-minwidth: 35ch !default;
   &.cols-autofit,
   &.cols-autofill{
     &>*{min-width: var(--griditem-minwidth); }
+  }
+}
+@for $index from 1 through 12{
+  &.cols-span-#{$index}{grid-column: span $index;}
+  &.rows-span-#{$index}{grid-row: span $index;}
+  &.cols-start-#{$index}{grid-column-start: $index;}
+  &.cols-end-#{$index}{grid-column-end: $index+1;}
+  @each $key, $value in $breakpoints{
+    @include media-max($key){
+      @for $index from 1 through 12{
+        &.cols-span-#{$key}-#{$index}{grid-column: span $index;}
+        &.cols-span-#{$key}-all{grid-column: 1/-1;}
+        &.rows-span-#{$key}-#{$index}{grid-row: span $index;}
+      }
+    }
   }
 }
 .cols-span-all{grid-column: 1/-1;}
