@@ -3,6 +3,8 @@
 - Feat:
 	- improve `container` max width management with a custom property system, using `--container-mw` var 
 	- add `min-width` property to direct children of a grid with `auto-fill/fit` 
+	- apply `container` rules to `container-fluid`
+	- add input type `search` to input type text `chain`
 
 2.5.1 - 2024-07-03
 - Feat: 
