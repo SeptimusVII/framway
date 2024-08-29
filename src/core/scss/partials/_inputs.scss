@@ -248,6 +248,7 @@ label{margin-bottom: 0.2rem;}
         --btn-border-color: #{input(border-color)};
         --btn-background:   #{input(background)};
         --btn-font-color:   #{input(border-color)};
+        --btn-border-size:  #{input(border-size)};
      }
     }
     &:focus+%btn.btn-bd-input{
