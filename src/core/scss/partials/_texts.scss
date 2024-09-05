@@ -32,7 +32,11 @@ p.txt-limit{max-width: body(line-height)*60ch; }
 .no-txt-limit ol, 
 p.no-txt-limit{max-width: none; }
 
-.txt-balance{text-wrap: balance;}
+.txt-balance{text-wrap: balance;
+  ul,
+  ol,
+  p{text-wrap: balance;}
+}
 .txt-balance-reset{text-wrap: initial;}
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/

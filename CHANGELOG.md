@@ -9,6 +9,8 @@
 - Fixes:
 	- move grid spanning classes outside of the scope of `d-grid` class
 	- fix `btn` border size in `input-group`
+	- fix `error-container` margin
+	- fix text wrap for text content in `txt-balance` container
 
 2.5.1 - 2024-07-03
 - Feat: 

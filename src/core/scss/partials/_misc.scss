@@ -21,7 +21,7 @@ p.info{color:$info;}
 p.warning{color:$warning;}
 p.error{color:$error;}
 .error-container{ 
-	*+&{margin-top: $spacing;}
+	*+&{margin-top: 1em;}
 	blockquote{font-size: 0.8em; border-left: 0.25em solid darken($error, 10); color: $error; padding: 0.25em 0.5em; padding-left: 1em; margin: 0.5em; display: block;
 	&.success{border-left-color: darken($success,10); color:$success;}
 	&.info{border-left-color: darken($info,10); color:$info;}
