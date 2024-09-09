@@ -333,7 +333,7 @@
   display: block; /* Fallback for non-webkit */
   display: -webkit-box;
   max-width: 100%;
-  max-height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+  max-height: $line-height * $lines-to-show * 1em; /* Fallback for non-webkit */
   font-size: $font-size;
   line-height: $line-height;
   -webkit-line-clamp: $lines-to-show;
