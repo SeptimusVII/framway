@@ -3,65 +3,49 @@
 @each $side in $sides {
   @if $side != 'all' {
     .m-#{$side}{margin-#{$side}: $spacing !important;
-      @include media-max(xs){margin-#{$side}: $spacing/2 !important;}
     }
     .m-#{$side}-0{margin-#{$side}: 0 !important; }
     .m-#{$side}-x2{margin-#{$side}: $spacing * 2 !important;
-      @include media-max(xs){margin-#{$side}: $spacing !important;}
     }
     .m-#{$side}-x3{margin-#{$side}: $spacing * 3 !important;
-      @include media-max(xs){margin-#{$side}: $spacing * 2 !important;}
     }
     .m-#{$side}-x4{margin-#{$side}: $spacing * 4 !important;
-      @include media-max(xs){margin-#{$side}: $spacing * 3 !important;}
     }
     .m-#{$side}-auto{margin-#{$side}: auto !important;}
     .m-#{$side}-1em{margin-#{$side}: 1em !important;}
 
     .p-#{$side}{padding-#{$side}: $spacing !important;
-      @include media-max(xs){padding-#{$side}: $spacing / 2 !important; }
      }
     .p-#{$side}-0{padding-#{$side}: 0 !important;}
     .p-#{$side}-x2{padding-#{$side}: $spacing * 2 !important;
-      @include media-max(xs){padding-#{$side}: $spacing !important; }
     }
     .p-#{$side}-x3{padding-#{$side}: $spacing * 3 !important;
-      @include media-max(xs){padding-#{$side}: $spacing * 2 !important; }
     }
     .p-#{$side}-x4{padding-#{$side}: $spacing * 4 !important;
-      @include media-max(xs){padding-#{$side}: $spacing * 3 !important; }
     }
     .p-#{$side}-1em{padding-#{$side}: 1em !important;}
   }
   @else {
     .m-#{$side}{margin: $spacing !important;
-      @include media-max(xs){margin: $spacing/2 !important;}
     }
     .m-#{$side}-0{margin: 0 !important; }
     .m-#{$side}-x2{margin: $spacing * 2 !important;
-      @include media-max(xs){margin: $spacing !important;}
     }
     .m-#{$side}-x3{margin: $spacing * 3 !important;
-      @include media-max(xs){margin: $spacing * 2 !important;}
     }
     .m-#{$side}-x4{margin: $spacing * 4 !important;
-      @include media-max(xs){margin: $spacing * 3 !important;}
     }
     .m-#{$side}-auto{margin: auto !important;}
     .m-#{$side}-1em{margin: 1em !important;}
 
     .p-#{$side}{padding: $spacing !important;
-        @include media-max(xs){padding: $spacing / 2 !important; }
      }
     .p-#{$side}-0{padding: 0 !important;}
     .p-#{$side}-x2{padding: $spacing * 2 !important;
-        @include media-max(xs){padding: $spacing !important; }
     }
     .p-#{$side}-x3{padding: $spacing * 3 !important;
-        @include media-max(xs){padding: $spacing * 2 !important; }
     }
     .p-#{$side}-x4{padding: $spacing * 4 !important;
-        @include media-max(xs){padding: $spacing * 3 !important; }
     }
     .p-#{$side}-1em{padding: 1em !important;}
   }
@@ -99,12 +83,10 @@
 @each $side in $sides {
   @if $side != 'all' {
     .counter-#{$side}{margin-#{$side}: -$spacing !important;
-      @include media-max(xs){margin-#{$side}: -$spacing/2 !important;}
     }
   }
   @else{
     .counter-#{$side}{margin: -$spacing !important;
-      @include media-max(xs){margin: -$spacing/2 !important;}
     }
   }
 }

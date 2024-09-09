@@ -6,11 +6,13 @@
 	- apply `container` rules to `container-fluid`
 	- add input type `search` to input type text `chain`
 	- add `grid-min-max-cols` mixin to `grid`. allow to define a grid with automated min/max number and min size of columns
+	- remove the default reduction of spacing below `xs` resolution
 - Fixes:
 	- move grid spanning classes outside of the scope of `d-grid` class
 	- fix `btn` border size in `input-group`
 	- fix `error-container` margin
 	- fix text wrap for text content in `txt-balance` container
+	- fix multi-ellipsis mixin 's line height calculation
 
 2.5.1 - 2024-07-03
 - Feat: 

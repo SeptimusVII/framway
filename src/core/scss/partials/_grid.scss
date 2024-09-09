@@ -5,7 +5,6 @@ $griditem-minwidth: 35ch !default;
 
 @mixin grid(){
   display: grid; gap: $spacing;
-  @include media-max(xs){gap: $spacing/2;}
 }
 
 @mixin grid-min-max-cols($min-cols, $max-cols, $cols-min-width, $grid-row-gap: 0px, $grid-column-gap: 0px) {
@@ -75,7 +74,6 @@ $griditem-minwidth: 35ch !default;
 
 @for $index from 0 through 6{
   &.gap-#{$index}{gap: $spacing*$index;
-    @include media-max(xs){gap: ($spacing*$index)/2;}
   }
   &.gap-#{$index}-em{gap: 1em*$index ;}
   &.gap-#{$index}-rem{gap: 1rem*$index ;}
