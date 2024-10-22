@@ -13,6 +13,7 @@
 	- fix `error-container` margin
 	- fix text wrap for text content in `txt-balance` container
 	- fix multi-ellipsis mixin 's line height calculation
+	- display none on empty `d-grid` children
 
 2.5.1 - 2024-07-03
 - Feat: 
