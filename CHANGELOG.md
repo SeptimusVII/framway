@@ -7,6 +7,7 @@
 	- add input type `search` to input type text `chain`
 	- add `grid-min-max-cols` mixin to `grid`. allow to define a grid with automated min/max number and min size of columns
 	- remove the default reduction of spacing below `xs` resolution
+	- add ratio 3/4 to images styles
 - Fixes:
 	- move grid spanning classes outside of the scope of `d-grid` class
 	- fix `btn` border size in `input-group`
