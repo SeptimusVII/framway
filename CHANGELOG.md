@@ -16,6 +16,7 @@
 	- fix multi-ellipsis mixin 's line height calculation
 	- display none on empty `d-grid` children
 	- fix background and font color on tooltips
+	- update flex partials, as we don't need the prefixers mixins anymore
 
 2.5.1 - 2024-07-03
 - Feat: 

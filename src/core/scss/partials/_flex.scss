@@ -1,15 +1,15 @@
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // FLEX
-.flex{@include flex-container();}
+.flex{display: flex;}
 
-*[class*='flex-']:not([class*="-grow"]){@extend .flex;}
-*[class*='flex-'][class*='-row']{@include flex-direction(row);}
-*[class*='flex-'][class*='-rowreverse']{@include flex-direction(row-reverse);}
-*[class*='flex-'][class*='-column']{@include flex-direction(column);}
-*[class*='flex-'][class*='-columnreverse']{@include flex-direction(column-reverse);}
+*[class*='flex-']:not([class*="-grow"]){display: flex;}
+*[class*='flex-'][class*='-row']{flex-direction: row;}
+*[class*='flex-'][class*='-rowreverse']{flex-direction: row-reverse;}
+*[class*='flex-'][class*='-column']{flex-direction: column;}
+*[class*='flex-'][class*='-columnreverse']{flex-direction: column-reverse;}
 
-*[class*='flex-'][class*='-wrap']{@include flex-wrap();}
-*[class*='flex-'][class*='-nowrap']{@include flex-wrap(nowrap);}
+*[class*='flex-'][class*='-wrap']{flex-wrap: wrap;}
+*[class*='flex-'][class*='-nowrap']{flex-wrap: nowrap;}
 
 @each $value in $flexvalues{
   $valueflat : str-replace($value,'-','');
@@ -25,6 +25,6 @@
 @for $index from 0 through 5 {
   .flexgrow--#{$index},
   *[class*='flex-'][class*='-flexgrow']>*[class*="flexgrow--#{$index}"],
-  *[class*='flex-'][class*='-flexgrow--#{$index}']>*{@include flex-grow($index);}
+  *[class*='flex-'][class*='-flexgrow--#{$index}']>*{flex-grow: $index;}
 }
 
