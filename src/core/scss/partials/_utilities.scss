@@ -69,8 +69,12 @@ p{@extend .pbreak;}
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // WIDTH
+@mixin w-full(){
+  width: 100vw; position: relative; left: 50%; transform: translateX(-50%);
+}
+
 .force-full,
-.w-full{width: 100vw; position: relative; left: 50%; transform: translateX(-50%);}
+.w-full{@include w-full();}
 .w-fit{width: fit-content;}
 .w-auto{width: auto;}
 .w-100vw{width: 100vw;}

@@ -1,4 +1,8 @@
 # Framway
+2.5.3 - 2025-xx-xx
+- Feat:
+	- add `w-full` mixin
+
 2.5.2 - 2024-12-03
 - Feat:
 	- improve `container` max width management with a custom property system, using `--container-mw` var 
