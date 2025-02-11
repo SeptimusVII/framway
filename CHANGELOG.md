@@ -2,6 +2,8 @@
 2.5.3 - 2025-xx-xx
 - Feat:
 	- add `w-full` mixin
+- Fixes
+	- update dependencies
 
 2.5.2 - 2024-12-03
 - Feat:

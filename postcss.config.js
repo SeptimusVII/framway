@@ -3,7 +3,7 @@ module.exports = {
     require('autoprefixer')({ grid: "no-autoplace" }),
     require('postcss-gap-properties'),
     require('postcss-focus'),
-    require('postcss-object-fit-images'),
+    // require('postcss-object-fit-images'),
     require('cssnano')({
         preset: 'default',
     }),
