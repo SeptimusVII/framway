@@ -98,11 +98,11 @@ input.date, input[type="date"]{padding-right: 0.3em;}
 
 // input.number, input[type="number"]{width: auto;}
 
-input.range,input[type="range"]{position: relative; padding: 0.4em 0; border: 0; cursor: pointer; }
+input.range,input[type="range"]{position: relative; padding: 0.4em 0; border: 0; cursor: pointer; color: currentColor; display: flex; gap: 0.5em; align-items: center; }
 input.range:after,
 input[type="range"]:after,
 input.range:before,
-input[type="range"]:before{position: absolute; top: 1.2em; color: body(font-color) }
+input[type="range"]:before{ font-size: 0.8em; }
 input.range:before,input[type="range"]:before{left:0em; content: attr(min); }
 input.range:after,input[type="range"]:after{right: 0em; content: attr(max); }
 
