@@ -2,6 +2,7 @@
 2.5.3 - 2025-xx-xx
 - Feat:
 	- add `w-full` mixin
+	- add `shdw` class for base shadowing on blocks
 - Fixes
 	- update dependencies
 
