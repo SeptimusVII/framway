@@ -3,6 +3,7 @@
 - Feat:
 	- add `w-full` mixin
 	- add `shdw` class for base shadowing on blocks
+	- add `lcnm` utility class, used to add the "last child no margin" effect on blocks
 - Fixes
 	- update dependencies
 

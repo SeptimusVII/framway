@@ -14,6 +14,8 @@ html.no-scroll{ height: 100vh; overflow: hidden;
 
 .ellipsis{@include ellipsis();}
 
+.lcnm{@include lastChildNoMargin();}
+
 .center-block{margin-left: auto; margin-right: auto; display: block;}
 .center{margin-left: auto; margin-right: auto; width: fit-content;
   &:is(%btn){display: block;}
