@@ -6,6 +6,7 @@
 	- add `lcnm` utility class, used to add the "last child no margin" effect on blocks
 - Fixes
 	- update dependencies
+	- fix `quote` element inheritance for font size and color
 
 2.5.2 - 2024-12-03
 - Feat:
