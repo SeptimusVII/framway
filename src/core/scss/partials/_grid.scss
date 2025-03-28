@@ -57,16 +57,16 @@ $griditem-minwidth: 35ch !default;
   }
 }
 @for $index from 1 through 12{
-  &.cols-span-#{$index}{grid-column: span $index;}
-  &.rows-span-#{$index}{grid-row: span $index;}
-  &.cols-start-#{$index}{grid-column-start: $index;}
-  &.cols-end-#{$index}{grid-column-end: $index+1;}
+  .cols-span-#{$index}{grid-column: span $index;}
+  .rows-span-#{$index}{grid-row: span $index;}
+  .cols-start-#{$index}{grid-column-start: $index;}
+  .cols-end-#{$index}{grid-column-end: $index+1;}
   @each $key, $value in $breakpoints{
     @include media-max($key){
       @for $index from 1 through 12{
-        &.cols-span-#{$key}-#{$index}{grid-column: span $index;}
-        &.cols-span-#{$key}-all{grid-column: 1/-1;}
-        &.rows-span-#{$key}-#{$index}{grid-row: span $index;}
+        .cols-span-#{$key}-#{$index}{grid-column: span $index;}
+        .cols-span-#{$key}-all{grid-column: 1/-1;}
+        .rows-span-#{$key}-#{$index}{grid-row: span $index;}
       }
     }
   }
@@ -75,10 +75,9 @@ $griditem-minwidth: 35ch !default;
 .cols-end-end{grid-column-end: -1;}
 
 @for $index from 0 through 6{
-  &.gap-#{$index}{gap: $spacing*$index;
-  }
-  &.gap-#{$index}-em{gap: 1em*$index ;}
-  &.gap-#{$index}-rem{gap: 1rem*$index ;}
+  .gap-#{$index}{gap: $spacing*$index;}
+  .gap-#{$index}-em{gap: 1em*$index ;}
+  .gap-#{$index}-rem{gap: 1rem*$index ;}
 }
 
 // GRID ORDERS
