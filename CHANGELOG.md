@@ -1,6 +1,7 @@
 # Framway
-2.5.3 - 2025-xx-xx
+2.6.0 - 2025-03-28
 - Feat:
+	- update to `dart-sass`
 	- add `w-full` mixin
 	- add `shdw` class for base shadowing on blocks
 	- add `lcnm` utility class, used to add the "last child no margin" effect on blocks

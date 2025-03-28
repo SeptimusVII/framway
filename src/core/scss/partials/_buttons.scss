@@ -50,7 +50,7 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
   font-weight: var(--btn-font-weight);
   line-height: var(--btn-line-height);
   border-radius: var(--btn-radius);
-  padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y)+0.1em);
+  padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y) + 0.1em);
   border: var(--btn-border-size) solid var(--btn-border-color);
   background-color: var(--btn-background);
   color: var(--btn-font-color);
@@ -59,8 +59,8 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
     display: block;
     color: inherit; 
     text-decoration: none; 
-    padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y)+0.1em); 
-    margin: calc(var(--btn-p-y)*-1) calc(var(--btn-p-x)*-1) calc((var(--btn-p-y)+0.1em)*-1); 
+    padding: var(--btn-p-y) var(--btn-p-x) calc(var(--btn-p-y) + 0.1em); 
+    margin: calc(var(--btn-p-y)*-1) calc(var(--btn-p-x)*-1) calc((var(--btn-p-y) + 0.1em)*-1); 
   }
 
   &.txt-center {text-align: center;}
@@ -70,14 +70,14 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
   &:hover,&:focus,&:active,&.active{
     text-decoration: none;
     @if lightness($btn-background) > 60{
-      --btn-background: #{scale-color($btn-background,$lightness:-15)};
-      --btn-border-color: #{scale-color($btn-background,$lightness:-15)};
-      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:-5))};
+      --btn-background: #{scale-color($btn-background,$lightness:-15%)};
+      --btn-border-color: #{scale-color($btn-background,$lightness:-15%)};
+      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:-5%))};
     }
     @else{
-      --btn-background: #{scale-color($btn-background,$lightness:15)};
-      --btn-border-color: #{scale-color($btn-background,$lightness:15)};
-      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:5))};
+      --btn-background: #{scale-color($btn-background,$lightness:15%)};
+      --btn-border-color: #{scale-color($btn-background,$lightness:15%)};
+      --btn-font-color: #{contrastFW($btn-font-color,scale-color($btn-background,$lightness:5%))};
     }
   }
   &[class*="icon-"]{
@@ -154,14 +154,14 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
     --btn-font-color: #{contrastFW($btn-font-color,$value)};
     &:hover,&:focus,&:active,&.active{
       @if lightness($value) > 60{
-        --btn-background: #{scale-color($value,$lightness:-15)};
-        --btn-border-color: #{scale-color($value,$lightness:-15)};
-        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:-5))};
+        --btn-background: #{scale-color($value,$lightness:-15%)};
+        --btn-border-color: #{scale-color($value,$lightness:-15%)};
+        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:-5%))};
       }
       @else{
-        --btn-background: #{scale-color($value,$lightness:15)};
-        --btn-border-color: #{scale-color($value,$lightness:15)};
-        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:5))};
+        --btn-background: #{scale-color($value,$lightness:15%)};
+        --btn-border-color: #{scale-color($value,$lightness:15%)};
+        --btn-font-color: #{contrastFW($btn-font-color,scale-color($value,$lightness:5%))};
       }
     }
   }

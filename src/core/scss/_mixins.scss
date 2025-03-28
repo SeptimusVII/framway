@@ -88,7 +88,7 @@
 @function contrastFW($color1, $color2) {
   $contrast : brightnessFW($color1) - brightnessFW($color2);
   $target: 100;
-  $adjustement : 15; // 10
+  $adjustement : 15%; // 10
   @if ( $color1 == transparent and $color2 != transparent){
     @return $color2;
   }
@@ -99,7 +99,7 @@
       @if (brightnessFW($color1) < $target - abs($contrast)){
         // do this if we can lighten color1 enough to contrast with color2
         // adjust color1 to have a minimum contrast of $target with color 2
-        @return scale-color($color1, $lightness: $target - abs($contrast));
+        @return scale-color($color1, $lightness: ($target - abs($contrast)*1%));
       }
       @else{
         // do this if we can't lighten color1 enough to contrast with color2
@@ -112,7 +112,7 @@
       @if (brightnessFW($color1) > abs($contrast)){
         // do this if we can darken color1 enough to contrast with color2
         // adjust color1 to have a minimum contrast of -$target with color 2
-        @return scale-color($color1, $lightness: (-$target) + abs($contrast));
+        @return scale-color($color1, $lightness: ((-$target) + abs($contrast))*1%);
       }
       @else{
         // do this if we can't darken color1 enough to contrast with color2
@@ -140,6 +140,7 @@
     @return $color1;
   }
 }
+
 
 @mixin filter($filter) {
   -webkit-filter: $filter;
