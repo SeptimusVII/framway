@@ -1,9 +1,10 @@
 # Framway
 2.6.1 - 2025-xx-xx
-	- Fixes
-		- fix grid element width no `cols-` class not registering max-width on children
-	- Feat
-		- add `utils.request` function. Used for async request without relying on jQuery
+- Fixes:
+	- fix grid element width no `cols-` class not registering max-width on children
+- Feat:
+	- add `utils.request` function. Used for async request without relying on jQuery
+	- Improve `utils.checkForm` function, by making use of native javascript Validation API 
 
 2.6.0 - 2025-03-28
 - Feat:
@@ -11,7 +12,7 @@
 	- add `w-full` mixin
 	- add `shdw` class for base shadowing on blocks
 	- add `lcnm` utility class, used to add the "last child no margin" effect on blocks
-- Fixes
+- Fixes:
 	- update dependencies
 	- fix `quote` element inheritance for font size and color
 
