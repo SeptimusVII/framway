@@ -2,6 +2,37 @@ var Utils = function Utils(){
   var utils = this;
 
   /**
+   * Do ajax without use of jQuery
+   * @param {String} url
+   * @param {Object} data
+   * @return {Promise}
+   */
+  utils.request = async function(data, url = "", method = "POST"){
+    var request = new FormData();
+
+    for(var i in data) {
+      if (typeof data[i] == 'object'){
+        for(var f in data[i]) {
+          request.append(i+'['+f+']', data[i][f]);
+        }
+      } else{
+        request.append(i, data[i]);
+      }
+    }
+    var strUrl = url ? url : window.location.href;
+    var strMethod = method ? method: "POST";
+
+    const response = await fetch(strUrl, {
+      method: strMethod,
+      mode: 'same-origin',
+      cache: 'no-cache',
+      body: request
+    });
+
+    return response.json();
+  };
+
+  /**
    * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async
    * When an element mathcing the selector is added to the dom, it fires the related callback
    * @param {String}   selector

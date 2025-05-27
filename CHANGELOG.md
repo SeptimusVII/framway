@@ -2,6 +2,8 @@
 2.6.1 - 2025-xx-xx
 	- Fixes
 		- fix grid element width no `cols-` class not registering max-width on children
+	- Feat
+		- add `utils.request` function. Used for async request without relying on jQuery
 
 2.6.0 - 2025-03-28
 - Feat:
