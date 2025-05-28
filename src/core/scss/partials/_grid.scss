@@ -5,7 +5,6 @@ $griditem-minwidth: 35ch !default;
 
 @mixin grid(){
   display: grid; gap: $spacing;
-  &:not([class*=cols-]){grid-template-columns: 100%;}
 }
 
 @mixin grid-min-max-cols($min-cols, $max-cols, $cols-min-width, $grid-row-gap: 0px, $grid-column-gap: 0px) {
@@ -22,6 +21,7 @@ $griditem-minwidth: 35ch !default;
 
 .d-grid{@include grid();
   &[class*=flex]{display: flex !important;}
+  &:not([class*=cols-]){grid-template-columns: 100%;}
   @for $index from 1 through 12{
     &.cols-#{$index}{grid-template-columns: #{repeat('1fr ',$index)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$index)};}
     &.rows-#{$index}{grid-template-rows: #{repeat('1fr ',$index)}; grid-template-rows: #{repeat('minmax(0,1fr) ',$index)};}
