@@ -1,11 +1,12 @@
 # Framway
 2.6.1 - 2025-xx-xx
-- Fixes:
-	- fix grid element width no `cols-` class not registering max-width on children
-	- try moving default grid templating to `d-grid` class instead of `grid` mixin
 - Feat:
 	- add `utils.request` function. Used for async request without relying on jQuery
 	- Improve `utils.checkForm` function, by making use of native javascript Validation API 
+	- add `h-min-100vh` utility class
+- Fixes:
+	- fix grid element width no `cols-` class not registering max-width on children
+	- try moving default grid templating to `d-grid` class instead of `grid` mixin
 
 2.6.0 - 2025-03-28
 - Feat:
