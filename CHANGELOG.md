@@ -1,6 +1,7 @@
 # Framway
 2.6.1 - 2025-xx-xx
 - Feat:
+	- add flexvalues `start` and `end`
 	- add `utils.request` function. Used for async request without relying on jQuery
 	- Improve `utils.checkForm` function, by making use of native javascript Validation API 
 	- add `h-min-100vh` utility class
