@@ -21,7 +21,9 @@ body {background: body(background);color:body(font-color); line-height: body(lin
 :root{
 	--container-mw: 100%;
 }
-.container{ max-width: var(--container-mw); padding: 0 $spacing;
+
+@mixin container(){
+	max-width: var(--container-mw); padding: 0 $spacing;
 	@include media-min(xxs){--container-mw: #{container(xxs)};}
 	@include media-min(xs) {--container-mw: #{container(xs)};}
 	@include media-min(sm) {--container-mw: #{container(sm)};}
@@ -29,6 +31,7 @@ body {background: body(background);color:body(font-color); line-height: body(lin
 	@include media-min(lg) {--container-mw: #{container(lg)};}
 	@include media-min(xl) {--container-mw: #{container(xl)};}
 }
+.container{@include container();}
 .container-fluid{padding: 0 $spacing;}
 
 

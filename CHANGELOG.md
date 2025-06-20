@@ -5,6 +5,7 @@
 	- add `utils.request` function. Used for async request without relying on jQuery
 	- Improve `utils.checkForm` function, by making use of native javascript Validation API 
 	- add `h-min-100vh` utility class
+	- add mixin for `container` styles
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
