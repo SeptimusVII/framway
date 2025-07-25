@@ -84,6 +84,7 @@ $ratios : (
   &:not([class*="bg-"]){background: $bg;}
   img{height: 100%;width: 100%;object-fit: $fit;}
   iframe{height: 100%; width: 100%; margin: 0;}
+  >figure:has(img){display: contents;}
   
   &.no-bg{background: none;}
   &.rounded-circle{
