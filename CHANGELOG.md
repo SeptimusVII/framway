@@ -6,9 +6,13 @@
 	- Improve `utils.checkForm` function, by making use of native javascript Validation API 
 	- add `h-min-100vh` utility class
 	- add mixin for `container` styles
+	- better management of btn's radius configuration
+	- add features `autocols` and `autorows` to grid's construction mixin
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
+	- set figures having img to `display:contents`
+	- fix grid's cols-autofit/fill item's min width on low resolution
 
 2.6.0 - 2025-03-28
 - Feat:
