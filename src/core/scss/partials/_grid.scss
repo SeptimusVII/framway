@@ -3,8 +3,21 @@ $griditem-minwidth: 35ch !default;
     --griditem-minwidth: #{$griditem-minwidth};
 }
 
-@mixin grid(){
-  display: grid; gap: $spacing;
+@mixin grid($cols:false,$autocols:false,$autorows:false){
+  display: grid; gap: $spacing; grid-template-columns: 100%;
+  @if $autorows != false{
+    grid-auto-rows: 1fr;
+  }
+  @if $autocols != false{
+    grid-template-columns: Repeat($autocols, minmax($griditem-minwidth, 1fr));
+    grid-template-columns: Repeat($autocols, minmax(var(--griditem-minwidth), 1fr));
+    &>*{min-width: minmax(var(--griditem-minwidth),100%); }
+    @if $autocols == auto-fit {
+      @media (max-width: 45ch) {
+        grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
+      }
+    }
+  }
 }
 
 @mixin grid-min-max-cols($min-cols, $max-cols, $cols-min-width, $grid-row-gap: 0px, $grid-column-gap: 0px) {
