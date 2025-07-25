@@ -67,7 +67,10 @@ $griditem-minwidth: 35ch !default;
   }
   &.cols-autofit,
   &.cols-autofill{
-    &>*{min-width: var(--griditem-minwidth); }
+    &>*{min-width: minmax(var(--griditem-minwidth),100%); }
+    @media (max-width: $griditem-minwidth * 1.35) {
+      --griditem-minwidth: 100%;
+    }
   }
 }
 @for $index from 1 through 12{
