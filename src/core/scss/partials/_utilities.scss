@@ -52,10 +52,11 @@ html.no-scroll{ height: 100vh; overflow: hidden;
 .text-left, .txt-left{text-align: left;}
 .text-center, .txt-center{text-align: center;}
 
+$pbreak-width: 20ch;
 .pbreak{
   &:before {
     content: "";
-    width: 20ch;
+    width: $pbreak-width;
     max-width: 100%;
     display: block;
     overflow: hidden;
