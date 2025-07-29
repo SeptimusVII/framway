@@ -9,6 +9,7 @@
 	- better management of btn's radius configuration
 	- add features `autocols` and `autorows` to grid's construction mixin
 	- add `cols` and `rows` management to grid's construction mixin
+	- add `ft-sc` and `ft-asc` utility classes
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
