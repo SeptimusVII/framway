@@ -3,8 +3,8 @@ $griditem-minwidth: 35ch !default;
     --griditem-minwidth: #{$griditem-minwidth};
 }
 
-@mixin grid($cols:1,$rows:false,$autocols:false,$autorows:false){
-  display: grid; gap: $spacing; 
+@mixin grid($cols:1,$rows:false,$autocols:false,$autorows:false,$gap:$spacing){
+  display: grid; gap: $gap; 
   grid-template-columns: #{repeat('1fr ',$cols)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$cols)};
   @if $rows != false {
     grid-template-rows: #{repeat('1fr ',$rows)}; grid-template-rows: #{repeat('minmax(0,1fr) ',$rows)};
