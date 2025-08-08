@@ -6,7 +6,7 @@ $btn-font-size: 1em                                !default; @if btn(font-size) 
 $btn-font-family: inherit                          !default; @if btn(font-family) { $btn-font-family: btn(font-family); }
 $btn-font-weight: 400                              !default; @if btn(font-weight) { $btn-font-weight: btn(font-weight); }
 $btn-line-height: 1.5em                            !default; @if btn(line-height) { $btn-line-height: btn(line-height); }
-$btn-radius: 0                                     !default; @if btn(radius)      { $btn-radius: btn(radius); }
+$btn-radius: 0                                     !default; @if btn(radius)      { @if btn(radius) == true {$btn-radius: $radius; } @else if btn(radius) == false {$btn-radius: 0; } @else {$btn-radius: btn(radius); } }
 $btn-background: $primary                          !default; @if btn(background)  { $btn-background: btn(background); }
 $btn-border-color: $primary                        !default; @if btn(background)  { $btn-border-color: btn(background); }
 $btn-border-size: $border-default-size             !default; @if btn(border-size) { $btn-border-size: btn(border-size); }

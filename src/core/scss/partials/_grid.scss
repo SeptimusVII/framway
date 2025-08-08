@@ -3,8 +3,27 @@ $griditem-minwidth: 35ch !default;
     --griditem-minwidth: #{$griditem-minwidth};
 }
 
-@mixin grid(){
-  display: grid; gap: $spacing;
+@mixin grid($cols:1,$rows:false,$autocols:false,$autorows:false,$gap:$spacing){
+  display: grid; gap: $gap; 
+  grid-template-columns: #{repeat('1fr ',$cols)}; grid-template-columns: #{repeat('minmax(0,1fr) ',$cols)};
+  @if $rows != false {
+    grid-template-rows: #{repeat('1fr ',$rows)}; grid-template-rows: #{repeat('minmax(0,1fr) ',$rows)};
+  }
+  @if $autorows == true{
+    grid-auto-rows: 1fr;
+  } @else if $autorows != false{
+    grid-auto-rows: $autorows;
+  }
+  @if $autocols != false{
+    grid-template-columns: Repeat($autocols, minmax($griditem-minwidth, 1fr));
+    grid-template-columns: Repeat($autocols, minmax(var(--griditem-minwidth), 1fr));
+    &>*{min-width: minmax(var(--griditem-minwidth),100%); }
+    @if $autocols == auto-fit {
+      @media (max-width: 45ch) {
+        grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
+      }
+    }
+  }
 }
 
 @mixin grid-min-max-cols($min-cols, $max-cols, $cols-min-width, $grid-row-gap: 0px, $grid-column-gap: 0px) {
@@ -54,7 +73,10 @@ $griditem-minwidth: 35ch !default;
   }
   &.cols-autofit,
   &.cols-autofill{
-    &>*{min-width: var(--griditem-minwidth); }
+    &>*{min-width: minmax(var(--griditem-minwidth),100%); }
+    @media (max-width: $griditem-minwidth * 1.35) {
+      --griditem-minwidth: 100%;
+    }
   }
 }
 @for $index from 1 through 12{
