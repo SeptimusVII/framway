@@ -17,6 +17,7 @@
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
 	- set figures having img to `display:contents`
 	- fix grid's cols-autofit/fill item's min width on low resolution
+	- fix `visible-` set classes not hidden elements outside their breakpoint 
 
 2.6.0 - 2025-03-28
 - Feat:

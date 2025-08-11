@@ -169,5 +169,5 @@ hr{@extend .sep; border:0; }
 // HIDDENS
 @each $key, $value in $breakpoints{
   .hidden-#{$key}{@include media-max($key){display: none !important;}}
-  .visible-#{$key}{@include media-max($key){display: block !important;}}
+  .visible-#{$key}{display: none !important; @include media-max($key){display: block !important;}}
 }
