@@ -12,6 +12,7 @@
 	- add `ft-sc` and `ft-asc` utility classes
 	- add `pbreak-width` var to utilities
 	- inputs checkbox and radios are no longer related to input borders and backgrounds properties, and will now depends on current font color of their context 
+	- add `cols-start-` and `cols-end-` classes width breakpoints
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin

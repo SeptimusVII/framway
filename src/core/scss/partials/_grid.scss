@@ -90,6 +90,8 @@ $griditem-minwidth: 35ch !default;
         .cols-span-#{$key}-#{$index}{grid-column: span $index;}
         .cols-span-#{$key}-all{grid-column: 1/-1;}
         .rows-span-#{$key}-#{$index}{grid-row: span $index;}
+        .cols-start-#{$key}-#{$index}{grid-column-start: $index;}
+        .cols-end-#{$key}-#{$index}{grid-column-end: $index+1;}
       }
     }
   }
