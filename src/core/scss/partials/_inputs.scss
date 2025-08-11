@@ -124,7 +124,7 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
     font-size: 1em;
     line-height: 1.5em;
     padding-left: 1.4em;
-    border: input(border-size) transparent;
+    border: input(border-size) solid transparent;
     margin-right: 1em;
     margin-bottom: 1em;
     position: relative;
@@ -141,14 +141,14 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
     &:before{
       @include size(1em);
       margin-top: 0.5em;
-      border: input(border-size) solid input(border-color);
+      border: clamp(1px,0.15em,0.15em) solid Hsl(from currentColor h s calc(l + 10));
     }
     &:after{
       @include size(1.15em,0.6em);
       margin-top: 0.25em;
-      border: 2px solid input(font-color);
-      border-top: 2px solid color(none);
-      border-right: 2px solid color(none);
+      border: clamp(1px,0.15em,0.15em) solid currentColor;
+      border-top: clamp(1px,0.15em,0.15em) solid color(none);
+      border-right: clamp(1px,0.15em,0.15em) solid color(none);
       @include transform(rotate(-55deg) skew(-25deg));
       @include transition(opacity 0.1s);
       opacity: 0;
@@ -164,15 +164,15 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
     &:after{
       border-radius: 100%;
       border: 0;
-      background-color: input(font-color);
-      @include transition(all 0.3s);
-      // @include size(0.55em);
-      // @include transform(translateX((1em - 0.55em) / 2) translateY((body(line-height) - 0.55em) / 2));
-      @include size(1em);
-      @include transform(none);
-      border: 0.225em solid input(background);
-      outline: input(border-size) solid input(border-color);
-      outline-offset: input(border-size)*-1;
+      background-color: currentColor;
+      transition: all 0.3s;
+      transform: none;
+      width: 0.5em;
+      height: auto;
+      aspect-ratio: 1; 
+      translate: 50% 50%;
+      outline: clamp(1px,0.15em,0.15em) solid currentColor;
+      outline-offset: calc(clamp(1px,0.1em,0.1em) * -1);
       margin-top: 0.5em;
     }
   }

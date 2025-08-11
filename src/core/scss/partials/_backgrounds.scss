@@ -52,23 +52,23 @@
         }
       }
     }
-    .bg-#{$key} %checkbox, .bg-#{$key} %radio{
-      &+label{
-        &:before{
-          border-color: contrastFW(input(border-color),$value);
-        }
-        &:after{
-          border-color: contrastFW(input(font-color),$value);
-          border-top-color: color(none);
-          border-right-color: color(none);
-        }
-      }
-    }
-    .bg-#{$key} %radio{
-      &:checked+label{
-        &:after{ background-color: contrastFW(input(font-color),$value);}
-      }
-    }
+    // .bg-#{$key} %checkbox, .bg-#{$key} %radio{
+    //   &+label{
+    //     &:before{
+    //       border-color: contrastFW(input(border-color),$value);
+    //     }
+    //     &:after{
+    //       border-color: contrastFW(input(font-color),$value);
+    //       border-top-color: color(none);
+    //       border-right-color: color(none);
+    //     }
+    //   }
+    // }
+    // .bg-#{$key} %radio{
+    //   &:checked+label{
+    //     &:after{ background-color: contrastFW(input(font-color),$value);}
+    //   }
+    // }
     .bg-#{$key} input[type="range"]:after,
     .bg-#{$key} input[type="range"]:before {color: contrastFW(body(font-color),$value); }
     /* inputs placeholders */
