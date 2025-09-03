@@ -51,7 +51,7 @@
   :not([class*=ft-]){font-size: 1.1em; color: inherit;}
   :not([class*=opa-]){opacity: 0.8;}
   &>*{display: inline;}
-  &:before{content:"«\00a0";}
+  &:before{content:"«\00a0"; float: left;}
   &:after{content:"\00a0»";}
 }
 
