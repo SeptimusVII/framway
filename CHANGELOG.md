@@ -13,6 +13,7 @@
 	- add `pbreak-width` var to utilities
 	- inputs checkbox and radios are no longer related to input borders and backgrounds properties, and will now depends on current font color of their context 
 	- add `cols-start-` and `cols-end-` classes width breakpoints
+	- add `fit--natural` class to images styles
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
@@ -20,6 +21,7 @@
 	- fix grid's cols-autofit/fill item's min width on low resolution
 	- fix `visible-` set classes not hidden elements outside their breakpoint 
 	- fix weird padding right sets on `input+btn`
+	- fix quote first " display
 
 2.6.0 - 2025-03-28
 - Feat:

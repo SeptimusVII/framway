@@ -44,7 +44,7 @@ $ratios : (
   width: 100%;position: relative; overflow: hidden; flex-grow: 1; max-width: 100%;
   & iframe{position: absolute; height: 100%; width: 100%; margin: 0;}
   & img{height: 100%; width: 100%; object-fit: cover; pointer-events: none; }
-  &.fit--cover img     ,.fit--cover & img   {object-fit: cover;}
+  &.fit--cover img     ,.fit--cover & img     {object-fit: cover;}
   &.fit--contain img   ,.fit--contain & img   {object-fit: contain;}
   &.fit--unset img     ,.fit--unset & img     {object-fit: unset;}
   &.fit--none img      ,.fit--none & img      {object-fit: none;}
@@ -108,12 +108,15 @@ $ratios : (
   .fit--unset &     {&:where(img), img{object-fit: unset;}}
   .fit--none &      {&:where(img), img{object-fit: none;}}
   .fit--scaledown & {&:where(img), img{object-fit: scale-down;}}
+  .fit--natural &   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
+
   
   &.fit--cover     {&:where(img), img{object-fit: cover;}}
   &.fit--contain   {&:where(img), img{object-fit: contain;}}
   &.fit--unset     {&:where(img), img{object-fit: unset;}}
   &.fit--none      {&:where(img), img{object-fit: none;}}
   &.fit--scaledown {&:where(img), img{object-fit: scale-down;}}
+  &.fit--natural   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
 
 
   @each $side_1 in $sides {
