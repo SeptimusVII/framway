@@ -14,6 +14,7 @@
 	- inputs checkbox and radios are no longer related to input borders and backgrounds properties, and will now depends on current font color of their context 
 	- add `cols-start-` and `cols-end-` classes width breakpoints
 	- add `fit--natural` class to images styles
+	- improve grids auto-fill/fit styles, set a maximum width of 100% to children
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
