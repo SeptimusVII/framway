@@ -16,10 +16,12 @@
   *[class*='flex-'][class*='-justifycontent--#{$valueflat}']{justify-content: $value;}
   *[class*='flex-'][class*='-alignitems--#{$valueflat}']{align-items: $value;}
 
-  .alignself--#{$valueflat}    {align-self: $value;}
-  .justifyself--#{$valueflat}  {justify-self: $value;}
-  .justifyitems--#{$valueflat} {justify-items: $value;}
-  .alignitems--#{$valueflat}   {align-items: $value;}
+  .alignself--#{$valueflat}      {align-self: $value;}
+  .justifyself--#{$valueflat}    {justify-self: $value;}
+  .alignitems--#{$valueflat}     {align-items: $value;}
+  .justifyitems--#{$valueflat}   {justify-items: $value;}
+  .aligncontent--#{$valueflat}   {align-content: $value;}
+  .justifycontent--#{$valueflat} {justify-content: $value;}
 }
 
 @for $index from 0 through 5 {

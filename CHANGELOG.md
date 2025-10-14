@@ -8,14 +8,15 @@
 	- add mixin for `container` styles
 	- better management of btn's radius configuration
 	- add features `autocols` and `autorows` to grid's construction mixin
-	- add `cols`, `rows` and `gap` management to grid's construction mixin
-	- add `griditem-maxwidth` variable, used to define max-width of items slots in a grid container set with autocols properties (default 1fr)
 	- add `ft-sc` and `ft-asc` utility classes
 	- add `pbreak-width` var to utilities
 	- inputs checkbox and radios are no longer related to input borders and backgrounds properties, and will now depends on current font color of their context 
+	- add `cols`, `rows` and `gap` management to grid's construction mixin
+	- add `griditem-maxwidth` variable, used to define max-width of items slots in a grid container set with autocols properties (default 1fr)
 	- add `cols-start-` and `cols-end-` classes width breakpoints
 	- add `fit--natural` class to images styles
 	- improve grids auto-fill/fit styles, set a maximum width of 100% to children
+	- add flex's `aligncontent--` and `justifycontent--` classes (work also for grids)
 - Fixes:
 	- fix grid element width no `cols-` class not registering max-width on children
 	- try moving default grid templating to `d-grid` class instead of `grid` mixin
