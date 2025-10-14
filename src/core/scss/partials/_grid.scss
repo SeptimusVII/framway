@@ -1,6 +1,8 @@
 $griditem-minwidth: 35ch !default;
+$griditem-maxwidth: 1fr !default;
 :root{
     --griditem-minwidth: #{$griditem-minwidth};
+    --griditem-maxwidth: #{$griditem-maxwidth};
 }
 
 @mixin grid($cols:1,$rows:false,$autocols:false,$autorows:false,$gap:$spacing){
@@ -15,8 +17,8 @@ $griditem-minwidth: 35ch !default;
     grid-auto-rows: $autorows;
   }
   @if $autocols != false{
-    grid-template-columns: Repeat($autocols, minmax(min($griditem-minwidth,100%), 1fr));
-    grid-template-columns: Repeat($autocols, minmax(min(var(--griditem-minwidth),100%), 1fr));
+    grid-template-columns: Repeat($autocols, minmax(min($griditem-minwidth,100%), var(--griditem-maxwidth)));
+    grid-template-columns: Repeat($autocols, minmax(min(var(--griditem-minwidth),100%), var(--griditem-maxwidth)));
     &>*{min-width: minmax(var(--griditem-minwidth),100%); }
     @if $autocols == auto-fit {
       @media (max-width: 45ch) {
@@ -38,7 +40,8 @@ $griditem-minwidth: 35ch !default;
   gap: var(--grid-row-gap) var(--grid-column-gap);
 }
 
-.d-grid{@include grid();
+.d-grid{
+  @include grid();
   &[class*=flex]{display: flex !important;}
   &:not([class*=cols-]){grid-template-columns: 100%;}
   @for $index from 1 through 12{
@@ -61,15 +64,15 @@ $griditem-minwidth: 35ch !default;
   &.flow{grid-auto-flow: dense;}
   &.auto-rows{grid-auto-rows: 1fr;}
   &.cols-autofit{
-    grid-template-columns: Repeat(auto-fit, minmax(min($griditem-minwidth,100%), 1fr));
-    grid-template-columns: Repeat(auto-fit, minmax(min(var(--griditem-minwidth),100%), 1fr));
+    grid-template-columns: Repeat(auto-fit, minmax(min($griditem-minwidth,100%), var(--griditem-maxwidth)));
+    grid-template-columns: Repeat(auto-fit, minmax(min(var(--griditem-minwidth),100%), var(--griditem-maxwidth)));
     @media (max-width: 45ch) {
       grid-template-columns: Repeat(auto-fit, minmax(100%, 1fr));
     }
   }
   &.cols-autofill{
-    grid-template-columns: Repeat(auto-fill, minmax(min($griditem-minwidth,100%), 1fr));
-    grid-template-columns: Repeat(auto-fill, minmax(min(var(--griditem-minwidth),100%), 1fr));
+    grid-template-columns: Repeat(auto-fill, minmax(min($griditem-minwidth,100%), var(--griditem-maxwidth)));
+    grid-template-columns: Repeat(auto-fill, minmax(min(var(--griditem-minwidth),100%), var(--griditem-maxwidth)));
   }
   &.cols-autofit,
   &.cols-autofill{

@@ -9,6 +9,7 @@
 	- better management of btn's radius configuration
 	- add features `autocols` and `autorows` to grid's construction mixin
 	- add `cols`, `rows` and `gap` management to grid's construction mixin
+	- add `griditem-maxwidth` variable, used to define max-width of items slots in a grid container set with autocols properties (default 1fr)
 	- add `ft-sc` and `ft-asc` utility classes
 	- add `pbreak-width` var to utilities
 	- inputs checkbox and radios are no longer related to input borders and backgrounds properties, and will now depends on current font color of their context 
