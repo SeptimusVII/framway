@@ -3,3 +3,5 @@ dist/
 dev/
 build/
 node_modules/
+testComponent/
+testTheme/
