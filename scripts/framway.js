@@ -26,14 +26,42 @@ var onBuildStart = function(){
 	    }
 	})
 }
-
-
 var onBuildEnd = function(){
 	fs.appendFileSync('.ready','');
  	 console.log('\n Build has ended \n');
 }
 
+var onWatchStart = function(){
+	checkFoldersAndFiles()
+}
+var onWatchEnd = function(){}
+
+var checkFoldersAndFiles = function(){
+	return new Promise(function(resolve,reject){
+		if (!fs.existsSync('./src/themes/')){
+			fs.mkdir('./src/themes/',function(err){
+				if(err)
+					console.log('\n'+err.message+'\n');
+			});
+		}
+		if (!fs.existsSync('./src/components/')){
+		    fs.mkdir('./src/components/',function(err){
+		    		if(err)
+		      		console.log('\n'+err.message+'\n');
+		    });
+		}
+
+		// create files if they do not exist 
+		if (!fs.existsSync('./src/core/scss/runtime.config.scss'))
+			fs.appendFileSync('./src/core/scss/runtime.config.scss','');
+		if (!fs.existsSync('./src/core/js/runtime.config.js'))
+			fs.appendFileSync('./src/core/js/runtime.config.js','');
+		resolve();
+	});
+}
+
 var rewriteRuntimeConfig = function(){
+
 	// components
 	let strRTC_js   = "/* /!\\ WARNING: this file is rewritten at compilation. Do not edit unless you know what you're doing. */\n";
 	let strRTC_scss = "/* /!\\ WARNING: this file is rewritten at compilation. Do not edit unless you know what you're doing. */\n";
@@ -73,6 +101,8 @@ var displayConfig = function(){
 
 switch(cmd){
 	case 'displayConfig'	: displayConfig(); break;
+	case 'onWatchStart' 	: onWatchStart() ; break;
+	case 'onWatchEnd' 	    : onWatchEnd() ; break;
 	case 'onBuildStart' 	: onBuildStart() ; break;
 	case 'onBuildEnd' 	    : onBuildEnd() ; break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;

@@ -5,6 +5,14 @@ export default new Reporter({
   report({event}) {
       // process.stdout.write('\n'+event.type);
     let d = new Date();
+    if (event.type === 'watchStart') {
+      process.stdout.write('WATCH STARTED - '+d.toLocaleString()+'\n');
+      shell.exec('npm run framway onWatchStart')
+    }
+    if (event.type === 'watchEnd') {
+      process.stdout.write('WATCH ENDED - '+d.toLocaleString()+'\n');
+      shell.exec('npm run framway onWatchEnd')
+    }
     if (event.type === 'buildStart') {
       // let bundles = event.bundleGraph.getBundles();
       // process.stdout.write(`✨ Built ${bundles.length} bundles in ${event.buildTime}ms!\n`);
