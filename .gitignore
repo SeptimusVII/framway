@@ -3,5 +3,6 @@ dist/
 dev/
 build/
 node_modules/
+runtime.config.*
 testComponent/
 testTheme/
