@@ -3,10 +3,10 @@
   "private": true,
   "version": "3.0.0",
   "scripts": {
-    "start": "del /q \"./dev/\"  && parcel --dist-dir ./dev --reporter ./scripts/reporter.mjs --no-source-maps -p 1234",
+    "start": "parcel --dist-dir ./dev --reporter ./scripts/reporter.mjs --no-source-maps -p 1234",
     "clear": "del /q \"./build/\" && del /q \"./dev/\"",
-    "build": "del /q \"./build/\" && node scripts/build.mjs",
-    "_watch": "del /q \"./dev/\" && node scripts/watch.mjs",
+    "build": "node scripts/build.mjs",
+    "_watch": "node scripts/watch.mjs",
     "framway": "node scripts/framway.js"
   },
   "devDependencies": {
