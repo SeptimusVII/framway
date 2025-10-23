@@ -1,5 +1,5 @@
 # Framway
-2.6.1 - 2025-10-23
+2.7.0 - 2025-10-23
 - Feat:
 	- add flexvalues `start` and `end`
 	- add `utils.request` function. Used for async request without relying on jQuery
