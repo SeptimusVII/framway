@@ -1,0 +1,42 @@
+{
+  "name": "framway",
+  "private": true,
+  "version": "3.0.0",
+  "scripts": {
+    "start": "del /q \"./dev/\"  && parcel --dist-dir ./dev --reporter ./scripts/reporter.mjs --no-source-maps -p 1234",
+    "clear": "del /q \"./build/\" && del /q \"./dev/\"",
+    "build": "del /q \"./build/\" && node scripts/build.mjs",
+    "_watch": "del /q \"./dev/\" && node scripts/watch.mjs",
+    "framway": "node scripts/framway.js"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.15.4",
+    "fs-extra": "^11.3.2",
+    "parcel": "^2.14.0",
+    "parcel-namer-rewrite": "^2.10.3-rc.5",
+    "scripts": "^0.1.0",
+    "shelljs": "^0.10.0"
+  },
+  "source": [
+    "src/fwl.html"
+  ],
+  "targets": {
+    "default": {
+      "sourceMap": false,
+      "publicUrl": ".",
+      "distDir": "./build"
+    }
+  },
+  "parcel-namer-rewrite": {
+    "hashing": "never",
+    "rules": {},
+    "profiles": {
+      "development": {
+        "disable": true
+      },
+      "production": {
+        "hashing": "never"
+      }
+    }
+  }
+}
