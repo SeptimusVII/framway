@@ -18,7 +18,7 @@
     "shelljs": "^0.10.0"
   },
   "source": [
-    "src/fwl.html"
+    "src/framway.html"
   ],
   "targets": {
     "default": {

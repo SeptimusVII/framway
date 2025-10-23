@@ -1,4 +1,4 @@
-var config  =  require('../../../fwl.config.js');
+var config  =  require('../../../framway.config.js');
 for (var i in config.components) {
   if (config.components[i].split('/').length > 1) {
       config.components[i] = config.components[i].substr(config.components[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
@@ -14,10 +14,10 @@ require('./runtime.config.js');
 
 class FramwayLite {
 	constructor(){
-		let fwl = this;
-		fwl.version = require('../../../package.json').version;
+		let framway = this;
+		framway.version = require('../../../package.json').version;
 		for(var key in config)
-		  fwl[key] = config[key];
+		  framway[key] = config[key];
 	
 	}
 }
