@@ -1,7 +1,7 @@
 import {Parcel} from '@parcel/core';
 
 let bundler = new Parcel({
-  entries: ['src/fwl.html'],
+  entries: ['src/framway.html'],
   defaultConfig: '@parcel/config-default',
   mode: 'production',
   needsStableName: true,

@@ -1,17 +1,17 @@
 var cmd  = process.argv[2] || 'displayConfig';
-var config = require('../fwl.config.js');
+var config = require('../framway.config.js');
 var fs = require('fs-extra');
 
 var configCleaned = JSON.parse(JSON.stringify(config));
 // console.log(configCleaned);
 for (var i in configCleaned.components) {
 	if (configCleaned.components[i].split('/').length > 1) {
-      configCleaned.components[i] = configCleaned.components[i].substr(configCleaned.components[i].lastIndexOf('/')+1).replace('.git','').replace('fwl-component-','');
+      configCleaned.components[i] = configCleaned.components[i].substr(configCleaned.components[i].lastIndexOf('/')+1).replace('.git','').replace('framway-component-','');
   }
 }
 for (var i in configCleaned.themes) {
 	if (configCleaned.themes[i].split('/').length > 1) {
-      configCleaned.themes[i] = configCleaned.themes[i].substr(configCleaned.themes[i].lastIndexOf('/')+1).replace('.git','').replace('fwl-theme-','');
+      configCleaned.themes[i] = configCleaned.themes[i].substr(configCleaned.themes[i].lastIndexOf('/')+1).replace('.git','').replace('framway-theme-','');
   }
 }
 
