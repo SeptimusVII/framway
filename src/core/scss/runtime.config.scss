@@ -1,1 +1,0 @@
-/* /!\ WARNING: this file is rewritten at compilation. Do not edit unless you know what you're doing. */
