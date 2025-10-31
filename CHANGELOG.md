@@ -1,4 +1,8 @@
 # Framway
+2.7.X - 2025-xx-xx
+- Feat:
+	- add `--primary`,`--secondary` and `--theme` css vars as default
+
 2.7.0 - 2025-10-23
 - Feat:
 	- add flexvalues `start` and `end`

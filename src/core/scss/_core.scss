@@ -20,6 +20,9 @@ body {background: body(background);color:body(font-color); line-height: body(lin
 
 :root{
 	--container-mw: 100%;
+	--primary: #{$primary};
+	--secondary: #{$secondary};
+	--theme: var(--primary);
 }
 
 @mixin container(){
