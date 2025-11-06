@@ -7,29 +7,67 @@ var Utils = function Utils(){
    * @param {Object} data
    * @return {Promise}
    */
-  utils.request = async function(data, url = "", method = "POST"){
-    var request = new FormData();
-
-    for(var i in data) {
-      if (typeof data[i] == 'object'){
-        for(var f in data[i]) {
-          request.append(i+'['+f+']', data[i][f]);
-        }
-      } else{
-        request.append(i, data[i]);
+  utils.request = function(url = "", params = {method: "GET"}, autoResponse = true){
+    return new Promise(async function(resolve,reject){
+      if(url == ""){
+        url = window.location.href;
+        params.method = "POST";
       }
-    }
-    var strUrl = url ? url : window.location.href;
-    var strMethod = method ? method: "POST";
+      var request_params = {
+        method: params.method ? params.method : 'GET',
+        mode:   params.mode   ? params.mode   : 'same-origin',
+        cache:  params.cache  ? params.mode   : 'no-cache',
+      };
+      if (params.hasOwnProperty('data')) {
+        let request_body = new FormData();
+        for(var i in params.data) {
+          if (typeof params.data[i] == 'object'){
+            for(var f in params.data[i]) {
+              request_body.append(i+'['+f+']', params.data[i][f]);
+            }
+          } else{
+            request_body.append(i, params.data[i]);
+          }
+        }
+        // request_params.method = "POST";
+        request_params.body = request_body; 
+      }
 
-    const response = await fetch(strUrl, {
-      method: strMethod,
-      mode: 'same-origin',
-      cache: 'no-cache',
-      body: request
+      const headers = new Headers();
+      headers.append('X-Requested-With','XMLHttpRequest');
+      if (params.hasOwnProperty('headers')) {
+        for(var h in params.headers)
+          headers.append(h,params.headers[h]);
+      }
+      request_params.headers = headers;
+
+      // console.log(url);
+      // console.log(request_params);
+
+      const request = await fetch(url, request_params);
+      const contentType = request.headers.get('content-type');
+      // console.log(request);
+      if (request.status != 200) {
+        resolve({
+          'status': 'error',
+          'statusCode': request.status,
+          'message': (request.statusText!=""?request.statusText:(app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:""))
+        });
+      } else {
+        if (autoResponse) {
+          if (contentType.includes('text/html')) {
+            // console.log('returning text');
+            resolve(request.text());
+          }
+          if (contentType.includes('application/json')) {
+            // console.log('returning json');
+            resolve(request.json());
+          }
+        } else {
+          resolve(request);
+        }
+      }
     });
-
-    return response.json();
   };
 
   utils.getStringAsElement = function(html) {

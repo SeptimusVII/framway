@@ -2,8 +2,11 @@
 2.7.X - 2025-xx-xx
 - Feat:
 	- add `--primary`,`--secondary` and `--theme` css vars as default
+	- add error 404 default labels
+	- add `utils.getStringAsElement` function
 -Changes
 	- update header and footer default font size
+	- update and improve `utils.request` function [breaking changes][WIP]
 
 2.7.0 - 2025-10-23
 - Feat:
