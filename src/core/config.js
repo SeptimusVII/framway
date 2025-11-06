@@ -48,12 +48,12 @@ module.exports = {
 	'header': {
 		'background': 'colors(white)',
 		'font-color': 'body(font-color)',
-		'font-size': 'body(font-size)',
+		'font-size': '1rem',
 	},
 	'footer': {
 		'background': 'colors(white)',
 		'font-color': 'body(font-color)',
-		'font-size': 'body(font-size)',
+		'font-size': '1rem',
 	},
 
 
