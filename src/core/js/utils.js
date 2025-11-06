@@ -32,6 +32,12 @@ var Utils = function Utils(){
     return response.json();
   };
 
+  utils.getStringAsElement = function(html) {
+      return new DOMParser()
+          .parseFromString(html, "text/html")
+          .documentElement;
+  }
+
   /**
    * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async
    * When an element mathcing the selector is added to the dom, it fires the related callback
