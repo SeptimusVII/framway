@@ -11,6 +11,10 @@ app.labels 	??= {
 				fr: 'La valeur renseignée dans le champ "%s" est incorrecte',
 				en: 'The value entered in the "%s" field is incorrect',
 			}
+		},
+		404: {
+			fr: 'Erreur 404 - Page non trouvée',
+			en: 'Error 404 - Page not found',
 		}
 	},
 	buttons: {
