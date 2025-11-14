@@ -46,12 +46,11 @@ var Utils = function Utils(){
 
       const request = await fetch(url, request_params);
       const contentType = request.headers.get('content-type');
-      // console.log(request);
       if (request.status != 200) {
         resolve({
           'status': 'error',
           'statusCode': request.status,
-          'message': (request.statusText!=""?request.statusText:(app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:""))
+          'msg': (request.statusText!=""?request.statusText:(app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:"")),
         });
       } else {
         if (autoResponse) {
