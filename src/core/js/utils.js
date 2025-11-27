@@ -47,10 +47,16 @@ var Utils = function Utils(){
       const request = await fetch(url, request_params);
       const contentType = request.headers.get('content-type');
       if (request.status != 200) {
-        resolve({
+        let msg='';
+        if (contentType.includes('text/html')) 
+          msg = await request.text().then(r=>{return r });
+        else 
+          msg = request.statusText!=""? request.statusText:
+            (app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:"");
+        reject({
           'status': 'error',
           'statusCode': request.status,
-          'msg': (request.statusText!=""?request.statusText:(app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:"")),
+          'msg': msg,
         });
       } else {
         if (autoResponse) {
