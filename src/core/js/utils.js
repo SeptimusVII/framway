@@ -278,6 +278,24 @@ var Utils = function Utils(){
 
 
   /**
+   * return a flattened version of an Object. Keys are formatted to be used in a FromData object (see utils.request)
+   * @param  {Object} obj    
+   * @param  {string} parent
+   * @param  {Object} res    
+   */
+  utils.flattenObj = function(obj, parent, res = {}){
+    for(let key in obj){
+      let propName = parent ? parent + '[' + key +']' : key;
+      if(typeof obj[key] == 'object'){
+        utils.flattenObj(obj[key], propName, res);
+      } else {
+        res[propName] = obj[key];
+      }
+    }
+    return res;
+  }
+
+  /**
    * return an Object from an array of Objects that match a property and a specific value
    * @param  {Array of Objects} arrObj
    * @param  {String} property

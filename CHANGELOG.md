@@ -5,6 +5,7 @@
 	- add error 404 default labels
 	- add `utils.getStringAsElement` function
 	- add `utils.setValueFromKeys` function
+	- add `utils.flattenObj` function
 -Changes
 	- update header and footer default font size
 	- update and improve `utils.request` function [breaking changes][WIP]
