@@ -11,6 +11,7 @@
 	- update and improve `utils.request` function [breaking changes][WIP]
 - Fixes
 	- `utils.request` now return proper text error message if possible
+	- `utils.request` properly get request's body when data parameter is a multilevel object
 
 2.7.0 - 2025-10-23
 - Feat:

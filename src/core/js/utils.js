@@ -21,10 +21,15 @@ var Utils = function Utils(){
       if (params.hasOwnProperty('data')) {
         let request_body = new FormData();
         for(var i in params.data) {
-          if (typeof params.data[i] == 'object'){
-            for(var f in params.data[i]) {
-              request_body.append(i+'['+f+']', params.data[i][f]);
+          if (typeof params.data[i] == 'object' || typeof params.data[i] == 'array'){
+            // console.log(params.data[i],utils.flattenObj(params.data[i],i));
+            let flat = utils.flattenObj(params.data[i],i);
+            for(var f in flat) { // console.log('flattening loop');
+              request_body.append(f, flat[f]);
             }
+            // for(var f in params.data[i]) { // console.log('classic loop [legacy]');
+            //   request_body.append(i+'['+f+']', params.data[i][f]);
+            // }
           } else{
             request_body.append(i, params.data[i]);
           }
