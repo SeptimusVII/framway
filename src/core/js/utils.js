@@ -385,6 +385,25 @@ var Utils = function Utils(){
   };
 
   /**
+   * set a value inside an object, following a path represented by an array of keys
+   * @param  {Object} obj
+   * @param  {[type]} value
+   * @return {String}
+   */
+  utils.setValueFromKeys = function(obj={}, keys=[], value){
+    var tempObj = obj;
+    for(var i = 0; i < keys.length; i++){
+      if(i == keys.length - 1){
+        tempObj[keys[i]] = value;
+        return true;
+      }
+      if(!(keys[i] in tempObj)) return false;
+      tempObj = tempObj[keys[i]];
+    }
+  }
+
+
+  /**
    * Copy the content of the element provided to the clipboard
    * @param  {DOM element} elem
    * @return {Boolean}

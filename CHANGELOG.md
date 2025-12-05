@@ -4,6 +4,7 @@
 	- add `--primary`,`--secondary` and `--theme` css vars as default
 	- add error 404 default labels
 	- add `utils.getStringAsElement` function
+	- add `utils.setValueFromKeys` function
 -Changes
 	- update header and footer default font size
 	- update and improve `utils.request` function [breaking changes][WIP]
