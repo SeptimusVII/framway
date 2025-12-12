@@ -1,5 +1,5 @@
 # Framway
-2.7.1 - 2025-xx-xx
+2.8.0 - 2025-xx-xx
 - Feat:
 	- add `--primary`,`--secondary` and `--theme` css vars as default
 	- add error 404 default labels
