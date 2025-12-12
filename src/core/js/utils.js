@@ -80,10 +80,17 @@ var Utils = function Utils(){
     });
   };
 
+
+  utils.resizeIframeOnContent = function(iframe,h=true,w=false){
+    if (h) iframe.height = iframe.contentWindow.document.body.scrollHeight;
+    if (w) iframe.width = iframe.contentWindow.document.body.scrollWidth;
+    return iframe;
+  }
+
   utils.getStringAsElement = function(html) {
-      return new DOMParser()
-          .parseFromString(html, "text/html")
-          .documentElement;
+    return new DOMParser()
+        .parseFromString(html, "text/html")
+        .documentElement;
   }
 
   /**
