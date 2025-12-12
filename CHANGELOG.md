@@ -1,5 +1,5 @@
 # Framway
-2.7.X - 2025-xx-xx
+2.7.1 - 2025-xx-xx
 - Feat:
 	- add `--primary`,`--secondary` and `--theme` css vars as default
 	- add error 404 default labels
@@ -7,6 +7,7 @@
 	- add `utils.setValueFromKeys` function
 	- add `utils.flattenObj` function
 	- add `utils.resizeIframeOnContent` function
+	- add `utils.insertIsolatedHTML` function
 -Changes
 	- update header and footer default font size
 	- update and improve `utils.request` function [breaking changes][WIP]

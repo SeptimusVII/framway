@@ -80,6 +80,17 @@ var Utils = function Utils(){
     });
   };
 
+  utils.insertIsolatedHTML = function(el,html){
+    let iframe = document.createElement('iframe');
+    el.append(iframe);
+    let doc = iframe.contentWindow.document;
+    doc.open();
+    doc.write(html);
+    doc.close();
+    iframe.style.width = "100%";
+    utils.resizeIframeOnContent(iframe);
+    return iframe;
+  }
 
   utils.resizeIframeOnContent = function(iframe,h=true,w=false){
     if (h) iframe.height = iframe.contentWindow.document.body.scrollHeight;
