@@ -542,6 +542,21 @@ var Utils = function Utils(){
   toastr.options = toastrDefault;
 
 
+  function notifCleanMsg(str){
+    if (str.includes('</html>')){
+      let dial = utils.getNodeFromString(`<dialog class=""><span class="close"><i class="fa fa-times"></i></span></dialog>`);
+      dial.querySelector('.close').addEventListener('click',()=>{
+        dial.close();
+        dial.remove();
+      })
+      document.body.append(dial);
+      dial.showModal()
+      utils.insertIsolatedHTML(dial,str);
+      str = 'Error';
+    }
+    return str;
+  }
+
   /**
    * display a common notification
    * @type {Object}
@@ -549,7 +564,8 @@ var Utils = function Utils(){
   global.notif = {
     error : function(str){
       if(app.useToastr)
-        toastr.error(str);
+        toastr.error(notifCleanMsg(str));
+        // toastr.error(str);
     },
     success : function(str){
       if(app.useToastr)
