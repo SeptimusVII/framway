@@ -9,6 +9,8 @@
 	- add `utils.resizeIframeOnContent` function
 	- add `utils.insertIsolatedHTML` function
 	- add `utils.getNodeFromString` function
+	- add `notifCleanMsg`, used by notif system to display a document wrapper error into a custom dialog window
+	- add default style for <dialog>
 -Changes
 	- update header and footer default font size
 	- update and improve `utils.request` function [breaking changes][WIP]
