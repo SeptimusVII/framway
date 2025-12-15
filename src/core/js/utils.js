@@ -104,6 +104,23 @@ var Utils = function Utils(){
         .documentElement;
   }
 
+  utils.getNodeFromString = function(html) {
+      const template = document.createElement('template');
+      template.innerHTML = html.trim();
+      console.log(template.innerHTML);
+      const nNodes = template.content.childNodes.length;
+      if (nNodes !== 1) {
+          throw new Error(
+              `html parameter must represent a single node; got ${nNodes}. ` +
+              'Note that leading or trailing spaces around an element in your ' +
+              'HTML, like " <img/> ", get parsed as text nodes neighbouring ' +
+              'the element; call .trim() on your input to avoid this.'
+          );
+      }
+      return template.content.firstChild;
+  }
+
+
   /**
    * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async
    * When an element mathcing the selector is added to the dom, it fires the related callback

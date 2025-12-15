@@ -8,6 +8,7 @@
 	- add `utils.flattenObj` function
 	- add `utils.resizeIframeOnContent` function
 	- add `utils.insertIsolatedHTML` function
+	- add `utils.getNodeFromString` function
 -Changes
 	- update header and footer default font size
 	- update and improve `utils.request` function [breaking changes][WIP]
