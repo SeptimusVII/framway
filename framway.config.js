@@ -1,12 +1,13 @@
 module.exports = {
     "themes": [
-        // "someThemeName"
+        "git@github.com:Web-Ex-Machina/framway-theme-smartgear2.git",
+        "git@github.com:Web-Ex-Machina/framway-theme-gepi-qcm.git"
     ],
     "components": [
-        "dashboard",
-        "sampler",
-        "documentation",
-        "factory",
+        // "dashboard",
+        // "sampler",
+        // "documentation",
+        // "factory",
         "accordionFW",
         "block-std",
         "block-card",
@@ -18,20 +19,20 @@ module.exports = {
         "filters",
         "goto",
         "headerFW",
-        "heroFW",
+        // "heroFW",
         "input-number",
-        "input-range",
+        // "input-range",
         // "ipsum",
         "modalFW",
-        "pricecard",
+        // "pricecard",
         "select2FW",
         "sidepanel",
-        "sliderFW",
+        // "sliderFW",
         "splitForm",
         "table-list",
-        "tabs"
-        // "text-editor",
-        // "wizard"
+        "tabs",
+        "text-editor",
+        "wizard"
     ],
     "useToastr": true,
     "useOutdatebrowser": true,

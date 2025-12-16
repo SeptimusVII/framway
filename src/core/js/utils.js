@@ -587,7 +587,7 @@ var Utils = function Utils(){
     error : function(str){
       if(app.useToastr){
         toastr.options = toastrTimeOut;
-        toastr.error(str);
+        toastr.error(notifCleanMsg(str));
         toastr.options = toastrDefault;
       }
     },
@@ -882,10 +882,11 @@ Utils.prototype.renderError = function(name,msg=false,$el=false,success=false){
   // no error container defined, so we use the notif system
   if ($el === false){
     if(msg !== false){
-      if (success===true)
+      if (success===true){
         notif_fade.success(msg);
-          else
-              notif_fade.error(msg);
+      } else {
+        notif_fade.error(msg);
+      }
     }
         return false;
   }
