@@ -1,5 +1,5 @@
 # Framway
-2.8.0 - 2025-xx-xx
+2.8.0 - 2026-01-09
 - Feat:
 	- add `--primary`,`--secondary` and `--theme` css vars as default
 	- add error 404 default labels
@@ -17,6 +17,7 @@
 - Fixes
 	- `utils.request` now return proper text error message if possible
 	- `utils.request` properly get request's body when data parameter is a multilevel object
+	- fix buttons with `icon-` class selectors
 
 2.7.0 - 2025-10-23
 - Feat:

@@ -95,13 +95,15 @@ $btn-font-color: contrastFW(color(white),$primary) !default; @if btn(font-color)
       }
     }
   }
-  &.icon-first{ padding-left: calc(var(--btn-p-x)*0.75);
+  &.icon-first{ 
+    &:has(i[class*="fa"],svg){padding-left: calc(var(--btn-p-x)*0.75);}
     & i[class*="fa"],
     & svg{ order: -1; 
       margin: 0 0.5em 0 -0.25em;
     }
   }
-  &.icon-last { padding-right: calc(var(--btn-p-x)*0.75);
+  &.icon-last { 
+    &:has(i[class*="fa"],svg){padding-right: calc(var(--btn-p-x)*0.75);}
     & i[class*="fa"],
     & svg{ order: 1; 
       margin: 0 -0.25em 0 0.5em;
