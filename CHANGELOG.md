@@ -2,6 +2,7 @@
 2.8.1
 - Fixes:
 	- `utils.request` now accept 2XX status code as successful
+	- revert unwanted config modification
 
 2.8.0 - 2026-01-09
 - Feat:
