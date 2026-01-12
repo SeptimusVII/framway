@@ -1,4 +1,8 @@
 # Framway
+2.8.1
+- Fixes:
+	- `utils.request` now accept 2XX status code as successful
+
 2.8.0 - 2026-01-09
 - Feat:
 	- add `--primary`,`--secondary` and `--theme` css vars as default
