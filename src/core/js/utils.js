@@ -51,19 +51,7 @@ var Utils = function Utils(){
 
       const request = await fetch(url, request_params);
       const contentType = request.headers.get('content-type');
-      if (request.status != 200) {
-        let msg='';
-        if (contentType.includes('text/html')) 
-          msg = await request.text().then(r=>{return r });
-        else 
-          msg = request.statusText!=""? request.statusText:
-            (app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:"");
-        reject({
-          'status': 'error',
-          'statusCode': request.status,
-          'msg': msg,
-        });
-      } else {
+      if (new RegExp(/^2[\d][\d]/mg).test(request.status)) {
         if (autoResponse) {
           if (contentType.includes('text/html')) {
             // console.log('returning text');
@@ -76,6 +64,18 @@ var Utils = function Utils(){
         } else {
           resolve(request);
         }
+      } else {
+        let msg='';
+        if (contentType.includes('text/html')) 
+          msg = await request.text().then(r=>{return r });
+        else 
+          msg = request.statusText!=""? request.statusText:
+            (app.labels.errors[request.status]?app.labels.errors[request.status][app.lang]:"");
+        reject({
+          'status': 'error',
+          'statusCode': request.status,
+          'msg': msg,
+        });
       }
     });
   };
