@@ -18,7 +18,10 @@ class FramwayLite {
 		framway.version = require('../../../package.json').version;
 		for(var key in config)
 		  framway[key] = config[key];
-	
+		
+		if(navigator.userAgent.indexOf('AppleWebKit') != -1){
+		  document.querySelector('html').classList.add('webkit');
+		}
 	}
 }
 
