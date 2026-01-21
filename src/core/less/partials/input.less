@@ -1,0 +1,14 @@
+@input: {
+	#input();
+	border-radius: if(isnumber(#input[@border-radius]), 
+		#input[@border-radius], 
+		if(#input[@border-radius], 
+			@default[radius], 
+			0
+		)
+	);
+}
+
+input[type=text]{
+	@input();
+}

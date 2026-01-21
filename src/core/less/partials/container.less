@@ -1,0 +1,13 @@
+:root{
+	--container-mw: 100%;
+}
+
+.container {
+	max-width: var(--container-mw); padding: 0 @spacing; margin: auto;
+	.media-min(xxs,{--container-mw: #container[xxs]});
+	.media-min(xs, {--container-mw: #container[xs] });
+	.media-min(sm, {--container-mw: #container[sm] });
+	.media-min(md, {--container-mw: #container[md] });
+	.media-min(lg, {--container-mw: #container[lg] });
+	.media-min(xl, {--container-mw: #container[xl] });
+}

@@ -1,0 +1,34 @@
+:root{
+	each(#body(),{
+		& when(isdefined(#body[$@key]) = true) {--body-@{key}: @value; }
+	});
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html{
+	overflow-x: hidden; 
+	font-size: var(--body-font-size); 
+	each(#breakpoint(),{
+		@lookup: 'font-size-@{key}';
+		& when (isdefined(#body[$@lookup])){
+			.media-max(@key,{--body-font-size: #body[$@lookup];})
+		}
+	});
+}
+
+body{
+	margin: 0;
+	background:  var(--body-background);
+	color:       var(--body-color);
+	font-size:   var(--body-font-size);
+	line-height: var(--body-line-height);
+	font-weight: var(--body-font-weight);
+	font-family: var(--body-font-family);
+	& when(isdefined(#body[font-family])) {font-family: #body[font-family];}
+}
+
+:focus{outline: 0;}

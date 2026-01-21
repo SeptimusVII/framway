@@ -1,0 +1,15 @@
+.media-min(@breakpoint,@content) {
+	@media (min-width: #breakpoint[$@breakpoint]) {
+		@content();
+	}
+}
+.media-max(@breakpoint,@content) {
+	@media (max-width: #breakpoint[$@breakpoint]) {
+		@content();
+	}
+}
+.media-mm(@breakpointMin,@breakpointMax,@content) {
+	@media (min-width: #breakpoint[$@breakpointMin]) and (max-width: #breakpoint[$@breakpointMax]) {
+		@content();
+	}
+}

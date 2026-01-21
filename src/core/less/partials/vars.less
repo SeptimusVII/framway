@@ -1,0 +1,16 @@
+@primary   : #alias[primary];
+@secondary : #alias[secondary];
+@success   : #alias[success];
+@info      : #alias[info];
+@warning   : #alias[warning];
+@error     : #alias[error];
+
+@spacing: @default[spacing];
+
+:root{
+	each(#alias(),{
+		--@{key}: @value;
+	});
+	--theme: var(--primary);
+	--spacing: @spacing;
+}
