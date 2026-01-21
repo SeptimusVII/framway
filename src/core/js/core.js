@@ -10,7 +10,7 @@ for (var i in config.themes) {
   }
 }
 
-require('./runtime.config.js');
+require('./pipeline.js');
 
 class FramwayLite {
 	constructor(){
