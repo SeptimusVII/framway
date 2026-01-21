@@ -45,6 +45,22 @@ ul,ol{
 	}
 }
 
+@pbreak-width: 20ch;
+.pbreak{
+  &:before {
+    content: "";
+    width: @pbreak-width;
+    max-width: 100%;
+    display: block;
+    overflow: hidden;
+  }
+}
+.no-pbreak{
+  p:before,
+  &:before{content: none;}
+}
+p{.pbreak();}
+
 .tag{
 	display: block;
 	float: left;
