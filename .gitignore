@@ -3,6 +3,6 @@ dist/
 dev/
 build/
 node_modules/
-runtime.config.*
-testComponent/
-testTheme/
+pipeline.*
+src/themes/
+src/components/
