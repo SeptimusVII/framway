@@ -165,16 +165,13 @@ each(#alias(),{
 	&:before{content:""; flex-grow: 1; margin: auto 0 ;  width: auto ;} 
 }
 .heading(){
-	&:is(.sep-right,.sep-left,.sep-x){
-		display: flex; justify-content: center; gap: 1em;
-	}
+	&:is(.sep-right,.sep-left,.sep-x){display: flex; justify-content: center; gap: 1em; }
+	&:is(.sep-top,.sep-bottom,.sep-y){line-height: 1;}
+	&:is(.sep-bottom,.sep-y){&:after{margin-top: 0.5em;};}
+	&:is(.sep-top,.sep-y){&:before{margin-bottom: 0.5em;};}
 }
-.sep-x{
-	&:extend(.sep-left all,.sep-right all);
-}
-.sep-y{
-	&:extend(.sep-top all,.sep-bottom all);
-}
+.sep-x{&:extend(.sep-left all,.sep-right all);}
+.sep-y{&:extend(.sep-top all,.sep-bottom all);}
 
 // OPACITY
 each(range(0,9),{
