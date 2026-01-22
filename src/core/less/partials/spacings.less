@@ -1,0 +1,73 @@
+@spacing-suffixes: {
+	1em  : '1em';
+	x2   : 'calc(var(--spacing,@spacing) * 2)';
+	x3   : 'calc(var(--spacing,@spacing) * 3)';
+	x4   : 'calc(var(--spacing,@spacing) * 4)';
+	auto : 'auto';
+	0    : '0';
+};
+
+// MARGINS
+each(@sides,.(@side){ 
+	.m-@{side} when not (@side = all) { margin-@{side}: var(--spacing,@spacing) !important; }
+	.m-@{side} when     (@side = all) { margin:         var(--spacing,@spacing) !important; }
+	each(@spacing-suffixes,{
+		.m-@{side}-@{key} when not (@side = all) { margin-@{side}: e(@value) !important; }
+		.m-@{side}-@{key} when     (@side = all) { margin:         e(@value) !important; }
+	});
+})
+
+.m-x      {&:extend(.m-left, .m-right);}
+.m-x-1em  {&:extend(.m-left-1em, .m-right-1em);}
+.m-x-x2   {&:extend(.m-left-x2, .m-right-x2);}
+.m-x-x3   {&:extend(.m-left-x3, .m-right-x3);}
+.m-x-x4   {&:extend(.m-left-x4, .m-right-x4);}
+.m-x-auto {&:extend(.m-left-auto, .m-right-auto);}
+.m-x-0    {&:extend(.m-left-0, .m-right-0);}
+
+.m-y      {&:extend(.m-top, .m-bottom);}
+.m-y-1em  {&:extend(.m-top-1em, .m-bottom-1em);}
+.m-y-y2   {&:extend(.m-top-x2, .m-bottom-x2);}
+.m-y-y3   {&:extend(.m-top-x3, .m-bottom-x3);}
+.m-y-y4   {&:extend(.m-top-x4, .m-bottom-x4);}
+.m-y-auto {&:extend(.m-top-auto, .m-bottom-auto);}
+.m-y-0    {&:extend(.m-top-0, .m-bottom-0);}
+
+
+// PADDINGS
+each(@sides,.(@side){ 
+	.p-@{side} when not (@side = all) { padding-@{side}: var(--spacing,@spacing) !important; }
+	.p-@{side} when     (@side = all) { padding:         var(--spacing,@spacing) !important; }
+	each(@spacing-suffixes,{
+		.p-@{side}-@{key} when not (@side = all) and not (@key = auto) { padding-@{side}: e(@value) !important; }
+		.p-@{side}-@{key} when     (@side = all) and not (@key = auto) { padding:         e(@value) !important; }
+	});
+})
+
+.p-x     {&:extend(.p-left, .p-right);}
+.p-x-1em {&:extend(.p-left-1em, .p-right-1em);}
+.p-x-x2  {&:extend(.p-left-x2, .p-right-x2);}
+.p-x-x3  {&:extend(.p-left-x3, .p-right-x3);}
+.p-x-x4  {&:extend(.p-left-x4, .p-right-x4);}
+.p-x-0   {&:extend(.p-left-0, .p-right-0);}
+
+.p-y     {&:extend(.p-top, .p-bottom);}
+.p-y-1em {&:extend(.p-top-1em, .p-bottom-1em);}
+.p-y-x2  {&:extend(.p-top-x2, .p-bottom-x2);}
+.p-y-x3  {&:extend(.p-top-x3, .p-bottom-x3);}
+.p-y-x4  {&:extend(.p-top-x4, .p-bottom-x4);}
+.p-y-0   {&:extend(.p-top-0, .p-bottom-0);}
+
+
+// COUNTERS
+each(@sides,.(@side){ 
+	.counter-@{side} when not (@side = all) { margin-@{side}: calc(var(--spacing,@spacing) * -1) !important; }
+	.counter-@{side} when     (@side = all) { margin:         calc(var(--spacing,@spacing) * -1) !important; }
+})
+.counter-x{&:extend(.counter-left,.counter-right);}
+.counter-y{&:extend(.counter-top,.counter-bottom);}
+
+// MISCS
+.lcnm{
+	&>*:last-child{margin-bottom: 0;}
+}
