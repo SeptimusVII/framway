@@ -5,4 +5,5 @@ build/
 node_modules/
 pipeline.*
 src/themes/
-src/components/
+src/components
+sftp-*.json
