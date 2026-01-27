@@ -1,7 +1,7 @@
 #colors(){
-	blue         : #0075BF;
-	green        : #5cb85c;
-	red          : #ec2c2c;
+	blue         : #0087D8;
+	green        : #07BA83;
+	red          : #FB3F59;
 	yellow       : #ffe000;
 	black        : #000000;
 	blacklight   : #111414;
@@ -14,7 +14,7 @@
 
 #alias() {
 	primary   : #colors[blue];
-	secondary : spin(#colors[blue],180);
+	secondary : hsl(hue(spin(#colors[blue],180)),saturation(#colors[blue] + 30),lightness(#colors[blue] + 50));
 	success   : #colors[green];
 	info      : #colors[blue];
 	warning   : #colors[yellow];
@@ -25,12 +25,14 @@
 	spacing: 1em;
 	radius: 10px;
 	border-width: 2px;
+	light-mode-color: #colors[blacklight];
+	dark-mode-color : darken(#colors[white],1%);
 }
 
 #header(){}
 #body(){
-	background: Hsl(from @primary h s 98%);
-	color: #colors[blacklight];
+	background: hsl(from @primary h s 95);
+	color: contrast(hsl(hue(@primary),saturation(@primary),95),@default[light-mode-color],@default[dark-mode-color]);
 	line-height: 1.45;
 	font-weight: 400;
 	font-size: 18px;
