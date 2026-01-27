@@ -13,6 +13,15 @@
 		@content();
 	}
 }
+
+.rgb(@hex){
+    @result: red(@hex),green(@hex),blue(@hex);
+}
+
+.getBestReadableFontColorOn(@color,@darkest: @default[dark-mode-color],@brightest: @default[light-mode-color]){
+    @result: contrast(@color,@darkest,@brightest);
+}
+
 .debug(@str:''){
 	&:after{
 		background: @warning;
