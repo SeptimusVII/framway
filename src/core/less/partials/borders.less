@@ -1,0 +1,61 @@
+:root{
+	--bd-width: #border[width];
+	--bd-color: #border[color];
+	--bd-style: solid;
+	--bd-spacing: #border[spacing];
+	& when (isnumber(#border[radius])){
+		--bd-radius: #border[radius];
+	}
+	& when not (isnumber(#border[radius])){
+		& when (#border[radius] = true){
+			--bd-radius: @default[radius];
+		}
+		& when (#border[radius] = false){
+			--bd-radius: 0;
+		}
+	}
+}
+
+.border(@side:false){
+	@s: if((@side = false) or (@side = all), 
+		e(''),
+		e('-@{side}')
+	);
+	border@{s}-width: var(--bd-width); 
+	border@{s}-color: var(--bd-color); 
+	border@{s}-style: var(--bd-style); 
+	&:not([class*="p-"]){
+		padding: var(--bd-spacing);
+	}
+}
+
+.bd-all,
+.bd{.border();border-radius: var(--bd-radius); }
+
+each(@sides,.(@side){ 
+	.bd-@{side}{
+		.border(@side);
+	}
+})
+
+.bd-top{
+	&.bd-left{border-top-left-radius: var(--bd-radius);}
+	&.bd-right{border-top-right-radius: var(--bd-radius);}
+}
+.bd-bottom{
+	&.bd-left{border-bottom-left-radius: var(--bd-radius);}
+	&.bd-right{border-bottom-right-radius: var(--bd-radius);}
+}
+
+each(range(0,10){
+	.bd-@{value},
+	.bd-@{value}-px{ --bd-width:unit(@value,px) ;}
+	.bd-@{value}-em{ --bd-width:unit(@value,em) ;}
+})
+
+each(#colors(){ 
+	.bd-@{key}{ --bd-color: @value;}
+})
+each(#alias(){ 
+	.bd-@{key}{ --bd-color: var(--@{key});}
+})

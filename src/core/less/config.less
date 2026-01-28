@@ -24,7 +24,6 @@
 @default :{
 	spacing: 1em;
 	radius: 10px;
-	border-width: 2px;
 	light-mode-color: #colors[blacklight];
 	dark-mode-color : darken(#colors[white],1%);
 }
@@ -54,6 +53,12 @@
 	border-width            : 1px;
 	@border-radius          : false;
 	@placeholder-font-color : #colors[grey];
+}
+#border(){
+	width: 2px;
+	color: currentColor;
+	spacing: 1rem;
+	radius: 1rem;
 }
 #button(){}
 #link(){

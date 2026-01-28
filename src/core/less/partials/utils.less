@@ -121,7 +121,7 @@ each(#breakpoint(),{
 // SEPARATORS
 .sep(){ 
 	&:before,
-	&:after{display:inline-block; width: 100%; margin: @spacing 0;  clear: both;  height: var(--sep-height, @default[border-width]); background: var(--sep-background, currentColor);}
+	&:after{display:inline-block; width: 100%; margin: @spacing 0;  clear: both;  height: var(--sep-height, #border[width]); background: var(--sep-background, currentColor);}
 }
 each(range(10px),{
 	.sep-@{key}{ --sep-height: @value;}
