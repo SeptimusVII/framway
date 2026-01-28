@@ -1,0 +1,30 @@
+.flex{display: flex;}
+*[class*='flex-']{display: flex;
+	&[class*='-row']{flex-direction: row;}
+	&[class*='-rowreverse']{flex-direction: row-reverse;}
+	&[class*='-column']{flex-direction: column;}
+	&[class*='-columnreverse']{flex-direction: column-reverse;}
+
+	&[class*='-wrap']{flex-wrap: wrap;}
+	&[class*='-nowrap']{flex-wrap: nowrap;}
+
+}
+
+each(@flexvalues,{
+	@flat: replace(@value,'-','');
+	*[class*='flex-'][class*='-justifycontent--@{flat}']{justify-content: @value;}
+	*[class*='flex-'][class*='-alignitems--@{flat}']{align-items: @value;}
+	
+	.alignself--@{flat}      {align-self: @value;}
+	.justifyself--@{flat}    {justify-self: @value;}
+	.alignitems--@{flat}     {align-items: @value;}
+	.justifyitems--@{flat}   {justify-items: @value;}
+	.aligncontent--@{flat}   {align-content: @value;}
+	.justifycontent--@{flat} {justify-content: @value;}
+})
+
+each(range(0,5){
+	.flexgrow--@{value}{flex-grow: @value;}
+	*[class*='flex-'][class*='-flexgrow']>*[class*="flexgrow--@{value}"],
+	*[class*='flex-'][class*='-flexgrow--@{value}']>*{flex-grow: @value;}
+})
