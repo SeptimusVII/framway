@@ -77,3 +77,30 @@
 	&:hover:after,
 	&:hover:before{opacity: 1;}
 }
+
+// ALIASES BLOCK
+each(#alias(),{
+	.@{key}{
+		& when (contrast(@value) = #fff){
+			color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
+			background: color-mix(in oklab, var(escape('--@{key}')) 40%, #fff);
+		}
+		& when (contrast(@value) = #000){
+			color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
+			background: color-mix(in oklab, var(escape('--@{key}')) 60%, #fff);
+		}
+		&:not([class*=p-]){padding: var(--spacing);}
+		// .debug(luma(@value))
+	}
+})
+
+// LEGACY
+.error-container{ 
+	*+&{margin-top: 1em;}
+	blockquote{font-size: 0.8em; border-left: 0.25em solid darken(@error, 10); color: @error; padding: 0.25em 0.5em; padding-left: 1em; margin: 0.5em; display: block;
+	&.success{border-left-color: darken(@success,10); color:@success;}
+	&.info{border-left-color: darken(@info,10); color:@info;}
+	&.warning{border-left-color: darken(@warning,10); color:@warning;}
+		p:last-child{margin-bottom: 0;}
+	}
+} 
