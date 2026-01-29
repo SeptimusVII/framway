@@ -28,12 +28,14 @@
 	dark-mode-color : darken(#colors[white],1%);
 	griditem-minwidth: 35ch;
 	griditem-maxwidth: 1fr;
+	block-background: hsl(hue(@primary),saturation(@primary),98%);
 }
 
 #header(){}
 #body(){
-	background: hsl(from @primary h s 95);
-	color: contrast(hsl(hue(@primary),saturation(@primary),95),@default[light-mode-color],@default[dark-mode-color]);
+	background: hsl(from @primary h s 95%);
+	background: hsl(hue(@primary),saturation(@primary),95%);
+	color: contrast(hsl(hue(@primary),saturation(@primary),95%),@default[light-mode-color],@default[dark-mode-color]);
 	line-height: 1.45;
 	font-weight: 400;
 	font-size: 18px;
