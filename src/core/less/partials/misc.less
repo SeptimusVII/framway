@@ -1,0 +1,28 @@
+.paper(@bg: @default[block-background]){
+ 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+ 	& when not (@bg = false){
+ 		&:not([class*=bg-]){
+	 		background-color: @bg; 
+    		color: .getBestReadableFontColorOn(@bg)[@result];
+ 		}
+ 	}
+}
+.paper{.paper();}
+
+.ripple(){
+	position: relative; overflow: hidden;
+	&:after {content: ""; display: block; position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none; background-image: radial-gradient(circle, #000 10%, transparent 10.01%); background-repeat: no-repeat; background-position: 50%; transform: scale(10,10); opacity: 0; transition: transform .5s, opacity 1s; }
+	&:active:after {transform: scale(0,0); opacity: .2; transition: 0s; }
+}
+
+.txt--extrud{text-shadow: 3px 3px 1px rgba(0,0,0,.3); }
+
+.quote{font-style: italic; margin-bottom: 1em;
+  &:not([class*=ft-]){
+  	font-size: 1.2em;
+  	color: Hsl(from currentColor h s calc(l + 40));
+  }
+  &>*{display: inline;}
+  &:before{content:"«\00a0"; float: left;}
+  &:after{content:"\00a0»";}
+}
