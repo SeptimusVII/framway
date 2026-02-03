@@ -1,0 +1,138 @@
+@ratios :{
+	16-9: 16 / 9;
+	2-1 : 2 / 1;
+	1-1 : 1;
+	1-2 : 1 / 2;
+	4-3 : 4 / 3;
+	3-4 : 3 / 4;
+}
+
+img{ max-width: 100%; height: auto; }
+
+.img-container(@fit: scale-down, @bg: @default[block-background]){
+  	display: block;position: relative;overflow: hidden; max-width: 100%; padding: 0;
+  	&:not([class*="bg-"]){background: @bg;}
+ 	img{height: 100%;width: 100%;object-fit: @fit;}
+ 	iframe{height: 100%; width: 100%; margin: 0;}
+ 	>figure:has(img){display: contents;}
+  	
+  	&.no-bg{background: none;}
+  	&.rounded-circle{
+  	  	&:is(img),
+  	  	img{border-radius: 50%; aspect-ratio: 1/1;}
+  	}
+
+  	each(@ratios, {
+  	  &.r_@{key},
+  	  .r_@{key} &:where(:not([class*=r_])){
+  	    aspect-ratio: @value; 
+  	  }
+  	})
+  	&:where(img){object-fit: @fit;
+  	  &:not([class*="w-"]){width: fit-content;}
+  	}
+
+	.fit--cover &     {&:where(img), img{object-fit: cover;}}
+	.fit--contain &   {&:where(img), img{object-fit: contain;}}
+	.fit--unset &     {&:where(img), img{object-fit: unset;}}
+	.fit--none &      {&:where(img), img{object-fit: none;}}
+	.fit--scaledown & {&:where(img), img{object-fit: scale-down;}}
+	.fit--natural &   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
+
+
+	&.fit--cover     {&:where(img), img{object-fit: cover;}}
+	&.fit--contain   {&:where(img), img{object-fit: contain;}}
+	&.fit--unset     {&:where(img), img{object-fit: unset;}}
+	&.fit--none      {&:where(img), img{object-fit: none;}}
+	&.fit--scaledown {&:where(img), img{object-fit: scale-down;}}
+	&.fit--natural   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
+
+
+	each(@sides,.(@side_1){ 
+		& when (@side_1 = left) or (@side_1 = right){
+	  		// class on parent
+	  		.img--@{side_1} &:not([class*="img--"]) {
+	  		  	&:where(img), img{object-position:@side_1;}
+	  		}
+			each(@sides,.(@side_2){ 
+				& when (@side_2 = top) or (@side_2 = bottom){
+	  				.img--@{side_2} &:not([class*="img--"]) {
+	  		  			&:where(img), img{object-position:@side_2;}
+	  				}
+					.img--@{side_1}.img--@{side_2} &:not([class*="img--"]) {
+						&:where(img), img{object-position:@side_1 @side_2;}
+					}
+				} 
+			})
+	      	// class on element
+	  		&.img--@{side_1} {
+	  		  	&:where(img), img{object-position:@side_1;}
+	  		}
+			each(@sides,.(@side_2){ 
+				& when (@side_2 = top) or (@side_2 = bottom){
+	  				&.img--@{side_2} {
+	  		  			&:where(img), img{object-position:@side_2;}
+	  				}
+					&.img--@{side_1}.img--@{side_2} {
+						&:where(img), img{object-position:@side_1 @side_2;}
+					}
+				} 
+			})
+		} 
+	})
+}
+
+.img-container{.img-container(@bg:green);}
+img[class*=r_]{.img-container(@bg:red);}
+
+each(@ratios, {
+	.aspect_@{key}{aspect-ratio: @value;}
+})
+
+/* IMAGES STYLING */
+img.fl-left,
+.fl-left>img:first-child:last-child{margin: 0 #body[line-height]*1em 0.5em 0;}
+img.fl-right,
+.fl-right>img:first-child:last-child{margin: 0 0 0.5em #body[line-height]*1em;}
+
+
+.img-effect(@idle,@hover:false){
+	& img, img&:is(img){
+		& when (isruleset(@hover)) {
+			transition: all 0.6s; outline: 1px solid transparent;
+		}
+		@idle();
+	}
+	& when (isruleset(@hover)) {
+		&:hover img, img&:is(img):hover{
+			@hover();
+		}
+	}
+}
+.zoomin{
+	.img-effect(
+		{transform: scale3d(1,1,1);},
+		{transform: scale3d(1.2,1.2,1.2);}
+	)
+}
+.zoomout{
+	.img-effect(
+		{transform: scale3d(1.2,1.2,1.2);},
+		{transform: scale3d(1,1,1);}
+	)
+}
+.fadetocolor{
+	.img-effect(
+		{filter: grayscale(100%);},
+		{filter: grayscale(0%);}
+	)
+}
+.fadetogrey{
+	.img-effect(
+		{filter: grayscale(0%);},
+		{filter: grayscale(100%);}
+	)
+}
+.grayscale{
+	.img-effect({filter: grayscale(100%);})
+}
