@@ -35,3 +35,44 @@
     }
 }
 .debug {.debug();}
+
+
+@maxLoop: 5;
+.adjustContrast(@upper,@lower,@threshold: 4%,@counter:0,@force:false){
+    @contrast: .contrast(@upper,@lower);
+    @adjust: 25;
+    @isOK : boolean((@contrast[@result] >= @threshold),true,false);
+    @result: 
+        if((@isOK = true) or (@force = true) or (@counter>=@maxLoop),
+            @upper,
+            if((luma(@lower) < 25%),
+                .adjustContrast(tint(@upper,@adjust),@lower,@threshold,(@counter + 1))[@result],
+                if((luma(@lower) < luma(@upper)),
+                    .adjustContrast(tint(@upper,@adjust),@lower,@threshold,(@counter + 1))[@result], 
+                    .adjustContrast(shade(@upper,@adjust),@lower,@threshold,(@counter + 1))[@result],
+                ),
+            )
+        );
+    @debug: 
+        if((@isOK = true) or (@force = true) or (@counter>=@maxLoop),
+            e('upper: ') luma(@upper) 
+            e('\A lower: ') luma(@lower) 
+            e('\A brightest: ') @contrast[@brightest]  
+            e('\A adjust: ') @adjust 
+            e('\A result: ') @contrast[@result] 
+            e('\A isOK ? ==>') @isOK e('(@{counter} loop)'),
+            if((luma(@lower) < 50%),
+                .adjustContrast(tint(@upper,@adjust),@lower,@threshold,(@counter + 1))[@debug],
+                .adjustContrast(shade(@upper,@adjust),@lower,@threshold,(@counter + 1))[@debug],
+            )
+        );
+}
+
+.contrast(@color1,@color2){
+    @luma1     : luma(@color1);
+    @luma2     : luma(@color2);
+    @brightest : max(@luma1, @luma2);
+    @darkest   : min(@luma1, @luma2);
+    // @result    : if(@darkest > 0%, ((@brightest + 5) / (@darkest + 5)), ((@brightest + 5) / (@darkest + 5)));
+    @result    : if(@darkest > 0%, ((@brightest ) / (@darkest )), ((@brightest ) / 1));
+}
