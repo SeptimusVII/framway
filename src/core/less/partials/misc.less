@@ -1,4 +1,4 @@
-.paper(@bg: @default[block-background]){
+.paper(@bg: #default[block-background]){
  	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
  	& when not (@bg = false){
  		&:not([class*=bg-]){
@@ -30,7 +30,7 @@
 [tooltip]:not([tooltip='']){ position: relative;
 	&:before{
 		.paper(false);
-		background: var(--tooltip-background,@default[block-background]);
+		background: var(--tooltip-background,#default[block-background]);
 		color: var(--tooltip-color,#body[color]);
 		content: attr(tooltip);
 		display: block;
@@ -61,7 +61,7 @@
 		border-left: 5px solid transparent;
 	    border-right: 5px solid transparent;
 	    border-top: 8px solid white;
-	    border-top: 8px solid var(--tooltip-background,@default[block-background]);
+	    border-top: 8px solid var(--tooltip-background,#default[block-background]);
 	    bottom: 100%;
 	    left: 50%;
 	    position: absolute;

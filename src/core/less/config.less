@@ -21,7 +21,7 @@
 	error     : #colors[red];
 }
 
-@default :{
+#default() {
 	spacing: 1em;
 	radius: 10px;
 	light-mode-color: #colors[blacklight];
@@ -35,7 +35,7 @@
 #body(){
 	background: hsl(from @primary h s 95%);
 	background: hsl(hue(@primary),saturation(@primary),95%);
-	color: contrast(hsl(hue(@primary),saturation(@primary),95%),@default[light-mode-color],@default[dark-mode-color]);
+	color: contrast(hsl(hue(@primary),saturation(@primary),95%),#default[light-mode-color],#default[dark-mode-color]);
 	line-height: 1.45;
 	font-weight: 400;
 	font-size: 18px;

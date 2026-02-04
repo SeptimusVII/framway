@@ -9,7 +9,7 @@
 
 img{ max-width: 100%; height: auto; }
 
-.img-container(@fit: scale-down, @bg: @default[block-background]){
+.img-container(@fit: scale-down, @bg: #default[block-background]){
   	display: block;position: relative;overflow: hidden; max-width: 100%; padding: 0;
   	&:not([class*="bg-"]){background: @bg;}
  	img{height: 100%;width: 100%;object-fit: @fit;}
