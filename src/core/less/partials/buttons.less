@@ -1,0 +1,179 @@
+@btn-color-style  : if(isdefined(#button[color-style])   , #button[color-style]  , flat );
+@input-as-btn     : if(isdefined(#button[input-as-btn])  , #button[input-as-btn] , false );
+@button-as-btn    : if(isdefined(#button[button-as-btn]) , #button[button-as-btn], false );
+
+@btn-font-size    : if(isdefined(#button[font-size])     , #button[font-size]    , 1em );
+@btn-p-x          : if(isdefined(#button[padding-x])     , #button[padding-x]    , 1.5em);
+@btn-p-y          : if(isdefined(#button[p-y])           , #button[p-y]          , 0.5em );
+@btn-font-family  : if(isdefined(#button[font-family])   , #button[font-family]  , inherit );
+@btn-font-weight  : if(isdefined(#button[font-weight])   , #button[font-weight]  , 400 );
+@btn-line-height  : if(isdefined(#button[line-height])   , #button[line-height]  , 1.5em );
+
+@btn-background   : if(isdefined(#button[background])    , #button[background]   , @primary );
+@btn-font-color   : if(isdefined(#button[font-color])    , #button[font-color]   , .getBestReadableFontColorOn(@btn-background)[@result] );
+
+@btn-border-color : if(isdefined(#button[border-color])  , #button[border-color] , @primary );
+@btn-border-width : if(isdefined(#button[border-width])  , #button[border-width] , #border[width] );
+@btn-radius       : if(isdefined(#button[radius])        , if(isnumber(#button[radius]), #button[radius], if(#button[radius] = true, #default[radius], 0 ) ) , 0);
+
+:root{
+  --btn-font-size    : @btn-font-size;
+  --btn-p-x          : @btn-p-x;
+  --btn-p-y          : @btn-p-y;
+  --btn-font-family  : @btn-font-family;
+  --btn-font-weight  : @btn-font-weight;
+  --btn-line-height  : @btn-line-height;
+  
+  --btn-base         : @btn-background;
+  --btn-background   : var(--btn-base);
+  --btn-font-color   : @btn-font-color;
+  
+  --btn-border-color : var(--btn-background);
+  --btn-border-width : @btn-border-width;
+  --btn-radius       : @btn-radius;
+
+  & when (contrast(@btn-background) = #fff){
+  	--btn-mix-font : 20%, #fff;
+	}
+	& when (contrast(@btn-background) = #000){
+		--btn-mix-font: 60%, #000;
+	}
+}
+
+.btn(@format:''){
+	// --btn-base: @btn-background; 
+	--btn-background: var(--btn-base);
+	--btn-border-color: var(--btn-background);
+	--btn-font-color: color-mix(in oklab, var(--btn-base) var(--btn-mix-font));
+
+	display: inline-block;
+	max-width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	vertical-align: middle;
+	user-select: none;
+	outline: none;
+	cursor: pointer;
+	text-decoration: none;
+	margin-block: 2.5px;
+	transition: all .2s ease-in-out;
+	text-align: center;
+	border: 0;
+	border-style: solid;
+
+	padding-inline: var(~'--btn@{format}-p-x',       var(--btn-p-x));
+	padding-block:  var(~'--btn@{format}-p-y',       var(--btn-p-y));
+	font-size:      var(~'--btn@{format}-font-size', var(--btn-font-size));
+	font-family:    var(--btn-font-family);
+	font-weight:    var(--btn-font-weight);
+	line-height:    var(--btn-line-height);
+	border-color:   var(--btn-border-color);
+	border-width:   var(--btn-border-width);
+	border-radius:  var(--btn-radius);
+	background:     var(--btn-background);
+	color:          var(--btn-font-color);
+
+
+	&:focus{ outline: none; box-shadow: none;}
+	&:hover,&:focus,&:active,&.active{
+		text-decoration: none;
+		--btn-background:   oklab(from var(--btn-base) calc(l + var(--btn-hover-lightmod,if(lightness(@btn-background) > 60%, 0.15, -0.15))) a b);
+		&:where([class*=btn-bd-]){
+			--btn-background:   var(--btn-base);
+			--btn-border-color:   var(--btn-base);
+			--btn-font-color: color-mix(in oklab, var(--btn-base) var(--btn-mix-font));
+		}
+		&:where([class*=btn-bg-]){}
+	}
+	
+	&>a{ 
+		display: block;
+		color: inherit; 
+		text-decoration: none; 
+		margin: calc(var(--btn-p-y) * -1) calc(var(--btn-p-x) * -1);
+		padding: var(--btn-p-y) var(--btn-p-x);
+	}
+	&:where(a){color: var(--btn-font-color, @btn-font-color);}
+	&.txt-center {text-align: center;}
+	&.txt-left   {text-align: left;}
+	&.txt-right  {text-align: right;}
+}
+
+
+*[class*=btn-bd],
+*[class*=btn-bg],
+.btn {
+	.btn();
+}
+input:where([type="submit"],[type="button"]){
+	& when (@input-as-btn = true){
+		&:extend(.btn all);
+	} 
+}
+button when (@button-as-btn = true){
+	&:extend(.btn all);
+}
+
+*[class*=btn-bd-]{
+	--btn-background: transparent;
+	--btn-border-color: var(--btn-base);
+	--btn-font-color:   var(--btn-base);
+}
+*[class*=btn-bg-]{
+}
+.btn-sm{
+	&:extend(.btn all);
+ 	padding-inline: var(--btn-sm-p-x,          var(--btn-p-x,          @btn-p-x));
+ 	padding-block:  var(--btn-sm-p-y,          var(--btn-p-y,          @btn-p-y));
+ 	font-size:      var(--btn-sm-font-size,    var(--btn-font-size,    @btn-font-size));
+
+ 	--btn-sm-font-size: calc(var(--btn-font-size) * 0.8);
+	--btn-sm-p-x:       calc(var(--btn-p-x) - 0.3em);
+}
+.btn-lg{
+	&:extend(.btn all);
+	padding-inline: var(--btn-lg-p-x,          var(--btn-p-x,          @btn-p-x));
+	padding-block:  var(--btn-lg-p-y,          var(--btn-p-y,          @btn-p-y));
+	font-size:      var(--btn-lg-font-size,    var(--btn-font-size,    @btn-font-size));
+
+	--btn-lg-font-size: calc(var(--btn-font-size) * 1.25);
+	--btn-lg-p-x:       calc(var(--btn-p-x) + 0.2em);
+	--btn-lg-p-y:       calc(var(--btn-p-y) + 0.1em);
+}
+
+
+& when(@btn-color-style = flat){
+	each(#alias(),{
+	    .btn-bd-@{key},
+	    .btn-bg-@{key}{
+				--btn-base: var(escape('--@{key}')); 
+		    .btn-color-modifiers(@value);
+	    }
+	})
+	each(#colors(),{
+	    .btn-bd-@{key},
+	    .btn-bg-@{key}{
+				--btn-base: @value;
+		    .btn-color-modifiers(@value);
+	    }
+	})
+	.btn-color-modifiers(@color){
+    & when (contrast(@color) = #fff){
+			--btn-hover-lightmod: if(lightness(@color) > 8, 0.1 , if(lightness(@color) > 4, 0.25, 0.35 ) );
+    	--btn-mix-font : 20%, #fff;
+		}
+		& when (contrast(@color) = #000){
+			--btn-hover-lightmod: -0.1;
+			--btn-mix-font: 60%, #000;
+		}
+	}
+}
+
+& when(@btn-color-style = smooth){} // TODO
+
+.btn-bg-none,
+.btn-bd-none{
+	color:              inherit;
+	--btn-background:   transparent;
+	--btn-border-color: transparent;
+}
