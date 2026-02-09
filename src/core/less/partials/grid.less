@@ -66,10 +66,10 @@ each(#breakpoint(),.(@v,@k){
 
 // COLS/ROWS SPAN
 each(range(1,12){
-	.cols-span-@{value}  {grid-column: span @index;}
-  	.rows-span-@{value}  {grid-row: span @index;}
-  	.cols-start-@{value} {grid-column-start: @index;}
-  	.cols-end-@{value}   {grid-column-end: @index+1;}
+	.cols-span-@{value}  {grid-column: span @value;}
+	.rows-span-@{value}  {grid-row: span @value;}
+	.cols-start-@{value} {grid-column-start: @value;}
+	.cols-end-@{value}   {grid-column-end: @value+1;}
 })
 each(#breakpoint(),.(@v,@k){
 	.media-max(@k,{
