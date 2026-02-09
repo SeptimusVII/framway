@@ -87,9 +87,9 @@ each(#breakpoint(),.(@v,@k){
 
 // GAP
 each(range(0,6){
-  .gap-@{index}{gap: @spacing*@value;}
-  .gap-@{index}-em{gap: 1em*@value ;}
-  .gap-@{index}-rem{gap: 1rem*@value ;}
+  .gap-@{value}{gap: @spacing*@value;}
+  .gap-@{value}-em{gap: 1em*@value ;}
+  .gap-@{value}-rem{gap: 1rem*@value ;}
 })
 
 // GRID ORDER
