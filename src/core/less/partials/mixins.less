@@ -76,3 +76,10 @@
     // @result    : if(@darkest > 0%, ((@brightest + 5) / (@darkest + 5)), ((@brightest + 5) / (@darkest + 5)));
     @result    : if(@darkest > 0%, ((@brightest ) / (@darkest )), ((@brightest ) / 1));
 }
+
+
+// Return opaque color
+// opaque(#fff, rgba(0, 0, 0, .5)) => #808080
+.opaque(@background, @foreground) {
+  @result: mix(fadein(@foreground,100%), @background, 100%);
+}
