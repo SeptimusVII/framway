@@ -1,0 +1,155 @@
+table{
+	&.layout-fixed{table-layout: fixed;}
+}
+
+
+@table-cell-padding-y:        .75rem;
+@table-cell-padding-x:        .75rem;
+@table-cell-padding-y-sm:     .3rem;
+@table-cell-padding-x-sm:     .3rem;
+
+@table-color:                 #body[color];
+@table-bg:                    transparent;
+@table-accent-bg:             transparent;
+
+@table-striped-color:         @table-color;
+@table-striped-bg-factor: 		.05;
+@table-striped-bg:            rgba(#colors[black], @table-striped-bg-factor);
+
+@table-active-color:          @table-color;
+@table-active-bg-factor: 		  .1;
+@table-active-bg:             rgba(#colors[black], @table-active-bg-factor);
+
+@table-hover-color:           @table-color;
+@table-hover-bg-factor: 		  .075;
+@table-hover-bg:              rgba(#colors[black], @table-hover-bg-factor);
+
+@table-border-factor:         .1;
+@table-border-width:          1px;
+@table-border-color:          #colors[greylight];
+
+@table-striped-order:         odd;
+@table-striped-columns-order: even;
+
+
+.table{
+	// DEFAULT
+	--table-color:         @table-color;
+	--table-bg:            @table-bg;
+	--table-border-color:  @table-border-color;
+	--table-accent-bg:     @table-accent-bg;
+	--table-striped-color: @table-color;
+	--table-striped-bg:    @table-striped-bg;
+	--table-active-color:  @table-color;
+	--table-active-bg:     @table-active-bg;
+	--table-hover-color:   @table-hover-color;
+	--table-hover-bg:      @table-hover-bg;
+
+	width: 100%;
+	margin-bottom: @spacing;
+	vertical-align:   var(--table-vertical-align, top);
+  border-color: 	  var(--table-border-color);
+	color:            var(--table-font-color, @table-color);
+	background-color: var(--table-background, transparent);
+
+	// target td/th
+  > * > * > * {
+	  padding-block: var(--table-cell-padding-y, @table-cell-padding-y);
+	  padding-inline: var(--table-cell-padding-x, @table-cell-padding-x);
+    background-color: var(--table-bg);
+    border-bottom-width: @table-border-width;
+    box-shadow: inset 0 0 0 9999px var(--table-accent-bg);
+	}
+
+	> tbody {
+	  vertical-align: inherit;
+	}
+	thead th {
+	  vertical-align: bottom;
+	  border-bottom: (2 * @table-border-width) solid @table-border-color;
+	}
+
+	tbody + tbody {
+	  border-top: (2 * @table-border-width) solid @table-border-color;
+	}
+
+
+	// VARIANTS
+	&.sm {
+		--table-cell-padding-y: @table-cell-padding-y-sm;
+		--table-cell-padding-x: @table-cell-padding-x-sm;
+	}
+	&.bordered {
+  	> * > * > * {
+		  border: @table-border-width solid @table-border-color;
+		}
+
+		> * {
+      border-width: 0 @table-border-width;
+    }
+	}
+	&.borderless {
+  	> * > * > * {
+			border-bottom-width: 0;
+		}
+	}
+	&.striped {
+	  > tbody > tr:nth-of-type(@{table-striped-order}) > * {
+	    --table-accent-bg: var(--table-striped-bg);
+	    color: var(--table-striped-color);
+	  }
+	}
+	&.striped-columns {
+		> * > tr > :nth-child(@{table-striped-columns-order}) {
+		  --table-accent-bg: var(--table-striped-bg);
+		  color: var(--table-striped-color);
+		}
+	}
+	&.hover{
+		> tbody > tr:hover > * {
+    --table-accent-bg: var(--table-hover-bg);
+    color: var(--table-hover-color);
+  }
+	}
+
+	.active {
+	  --table-accent-bg: var(--table-active-bg);
+	  color: var(--table-active-color);
+	}
+
+
+	// this is the bootstrap way. need rework to achieve better results, as misc/alias blocks
+	@white-factor: 10%;
+	@black-factor: 10%;
+	each(#alias(),{
+	  &.@{key}{
+	  	@color: .getBestReadableFontColorOn(@value, mix(@value,#000,@black-factor), mix(@value,#fff,@white-factor))[@result];
+	  	@hover-bg:           mix(@color, @value, percentage(@table-hover-bg-factor));
+	  	@striped-bg:         mix(@color, @value, percentage(@table-striped-bg-factor));
+	  	@active-bg:          mix(@color, @value, percentage(@table-active-bg-factor));
+	  	@table-border-color: mix(@color, @value, percentage(@table-border-factor));
+
+	  	--table-color: @{color};
+	  	--table-bg: @{value};
+	  	--table-border-color: @{table-border-color};
+	  	--table-striped-bg: @{striped-bg};
+	  	--table-striped-color: .getBestReadableFontColorOn(@striped-bg, mix(@value,#000,@black-factor), mix(@value,#fff,@white-factor))[@result];
+	  	--table-active-bg: @{active-bg};
+	  	--table-active-color: .getBestReadableFontColorOn(@active-bg, mix(@value,#000,@black-factor), mix(@value,#fff,@white-factor))[@result];
+	  	--table-hover-bg: @{hover-bg};
+	  	--table-hover-color: .getBestReadableFontColorOn(@hover-bg, mix(@value,#000,@black-factor), mix(@value,#fff,@white-factor))[@result];
+
+	  	color:        var(--table-color);
+	  	border-color: var(--table-border-color);
+	  }
+	})
+}
+
+
+// support for tables using bootstrap strict markup
+.table-sm:extend(.table all, .table.sm){}
+.table-bordered:extend(.table all, .table.bordered all){}
+.table-borderless:extend(.table all, .table.borderless all){}
+.table-striped:extend(.table all, .table.striped all){}
+.table-striped-columns:extend(.table all, .table.striped-columns all){}
+.table-hover:extend(.table all, .table.hover all){}
