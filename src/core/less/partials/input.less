@@ -1,14 +1,182 @@
-@input: {
-	#input();
-	border-radius: if(isnumber(#input[@border-radius]), 
-		#input[@border-radius], 
-		if(#input[@border-radius], 
-			#default[radius], 
-			0
-		)
-	);
+@input-background           : if(isdefined(#input[background])           , #input[background]    , colors[white]);
+@input-color                : if(isdefined(#input[color])                , #input[color]         , .getBestReadableFontColorOn(@input-background));
+@input-p-x                  : if(isdefined(#input[p-x])                  , #input[p-x]           , .5em);
+@input-p-y                  : if(isdefined(#input[p-y])                  , #input[p-y]           , .25em);
+@input-font-size            : if(isdefined(#input[font-size])            , #input[font-size]     , 1em);
+@input-line-height          : if(isdefined(#input[line-height])          , #input[line-height]   , 1.5em);
+@input-border-width         : if(isdefined(#input[border-width])         , #input[border-width]  , 1px);
+@input-border-color         : if(isdefined(#input[border-color])         , #input[border-color]  , currentColor);
+@input-border-radius        : if(isdefined(#input[border-radius])        , if(isnumber(#input[border-radius]), #input[border-radius], if(#input[border-radius], #default[radius], 0 ) ) , 0);
+@input-placeholder-color    : if(isdefined(#input[placeholder-color])    , #input[placeholder-color]  , fadeout(@input-color,50%));
+// @input-placeholder-color    : if(isdefined(#input[placeholder-color])    , #input[placeholder-color]  , hsla(from currentColor h s l / 0.3)); // this doesn't work, placeholder can't keep track of currentColor
+
+@input-valid-background     : if(isdefined(#input.valid[background])     , #input.valid[background]     , @input-background   );
+@input-valid-color          : if(isdefined(#input.valid[color])          , #input.valid[color]          , @input-color        );
+@input-valid-border-color   : if(isdefined(#input.valid[border-color])   , #input.valid[border-color]   , @input-border-color );
+
+@input-invalid-background   : if(isdefined(#input.invalid[background])   , #input.invalid[background]   , @input-background   );
+@input-invalid-color        : if(isdefined(#input.invalid[color])        , #input.invalid[color]        , @input-color        );
+@input-invalid-border-color : if(isdefined(#input.invalid[border-color]) , #input.invalid[border-color] , @input-border-color );
+
+@input-focus-background     : if(isdefined(#input.focus[background])     , #input.focus[background]     , @input-background   );
+@input-focus-color          : if(isdefined(#input.focus[color])          , #input.focus[color]          , @input-color        );
+@input-focus-border-color   : if(isdefined(#input.focus[border-color])   , #input.focus[border-color]   , @input-border-color );
+@input-focus-merge-factor   : 30%;
+
+.input {
+	transition: all 0.25s;
+	width: 100%;
+	background-color: var(--input-background, @input-background);
+	color:            var(--input-color, @input-color);
+	border:           0;
+	border-style:     solid;
+	border-width:     var(--input-border-width, @input-border-width);
+	border-color:     var(--input-border-color, @input-border-color);
+	border-radius:    var(--input-border-radius ,@input-border-radius);
+	
+	padding-inline:   var(--input-p-x, @input-p-x);
+	padding-block:    var(--input-p-y, @input-p-y);
+
+	font-size:        var(--input-font-size, @input-font-size);
+	line-height:      var(--input-line-height, @input-line-height);
+
+	margin-right:  1em;
+	margin-bottom: 1em;
+
+	td &:last-child {margin-bottom: 0;margin-right: 0; }
+
+	&:focus,
+	&.focus,
+	&.active{
+		--input-background   : @input-focus-background;
+		--input-color        : @input-focus-color;
+		--input-border-color : @input-focus-border-color;
+	}
+	&.valid,
+	&[required]:valid{
+		--input-background   : @input-valid-background;
+		--input-color        : @input-valid-color;
+		--input-border-color : @input-valid-border-color;
+		&:focus,
+		&.focus,
+		&.active{
+			--input-background   : mix(@input-focus-background, @input-valid-background,@input-focus-merge-factor);
+			--input-color        : mix(@input-focus-color, @input-valid-color,@input-focus-merge-factor);
+			--input-border-color : mix(@input-focus-border-color, @input-valid-border-color,@input-focus-merge-factor);
+		}
+	}
+	&.invalid,
+	&[required]:invalid{
+		--input-background   : @input-invalid-background;
+		--input-color        : @input-invalid-color;
+		--input-border-color : @input-invalid-border-color;
+		&:focus,
+		&.focus,
+		&.active{
+			--input-background   : mix(@input-focus-background, @input-invalid-background,@input-focus-merge-factor);
+			--input-color        : mix(@input-focus-color, @input-invalid-color,@input-focus-merge-factor);
+			--input-border-color : mix(@input-focus-border-color, @input-invalid-border-color,@input-focus-merge-factor);
+		}
+	}
+
+	.input-placeholder({
+		color: @input-placeholder-color;
+	});
 }
 
-input[type=text]{
-	@input();
+.input-placeholder(@content){
+	&.placeholder                { @content(); }
+	&:placeholder-shown          { @content(); }
+	&::placeholder               { @content(); }
+	&:-moz-placeholder           { @content(); }
+	&::-moz-placeholder          { @content(); }
+	&:-ms-input-placeholder      { @content(); }
+	&::-webkit-input-placeholder { @content(); }
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+select,
+textarea {
+	&:extend(.input all);
+}
+
+option when (@input-background = transparent){
+	color: #body[color];
+}
+textarea{ min-height: 150px; height: auto; max-width: 100%; resize: vertical;  display: block;}
+
+input.email, input[type="email"]{
+  &:focus:valid{
+		&:extend(.input.valid all);
+  }
+  &:invalid{
+		&:extend(.input.invalid all);
+  }
+}
+input.time, input[type="time"],
+input.date, input[type="date"]{padding-right: 0.3em;} // legacy
+
+input.range,input[type="range"]{position: relative; padding: 0.4em 0; border: 0; cursor: pointer; color: currentColor; display: flex; gap: 0.5em; align-items: center; height: 50px;}
+input.range:after,
+input[type="range"]:after,
+input.range:before,
+input[type="range"]:before{ font-size: 0.8em; position: absolute; bottom:0;}
+input.range:before,input[type="range"]:before{left:0em; content: attr(min); }
+input.range:after,input[type="range"]:after{right: 0em; content: attr(max); }
+
+input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !important; height: 0 !important; display: block; } // legacy
+
+.checkbox() {}
+.radio()    {}
+
+// block wrapper>label+input used in forms
+.form-group{
+	position: relative;
+	margin-bottom: 1em;
+	.lcnm();
+
+	label{
+		text-align: left; 
+		font-size: 0.8em;
+    	&[for]:not([for=""]){ cursor: pointer;}
+	}
+
+	.helper{opacity: 0.6; margin: 0.2rem 0 0; font-size: 0.8em; display: block;} // legacy
+	.filler{display: block;} // legacy
+}
+.form-group-inline{ // legacy
+	.form-group();
+}
+
+// block wrapper>input+button(s)
+.input-group{
+	position: relative;
+	margin-bottom: 1em;
+  	&:not(.d-grid){display: flex;}
+
+  	.form-group>&{
+  		.lcnm();
+  	}
+
+  	.input{
+		border-top-right-radius: 0; 
+		border-bottom-right-radius: 0; 
+		border-right: 0; 
+		margin: 0;
+	}
+	.btn {
+		margin: 0 1px; 
+		display: inline-flex; 
+		align-items: center; 
+		justify-content: center; 
+		flex-shrink: 0;
+	}
 }

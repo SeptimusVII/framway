@@ -51,12 +51,26 @@
 	font-weight   : 600;
 }
 #input(){
-	background              : #colors[white];	
-	color                   : #colors[greystrong];	
-	border-color            : #colors[greylight];
-	border-width            : 1px;
-	@border-radius          : false;
-	@placeholder-font-color : #colors[grey];
+	background        : #colors[white];	
+	color             : #colors[greystrong];	
+	border-color      : #colors[greylight];
+	border-width      : 1px;
+	border-radius     : 4px;
+	// placeholder-color : #colors[grey];
+	.valid {
+		background   : tint(@success,90);
+		color        : @success;	
+		border-color : tint(@success,90);
+	};
+	.invalid {
+		background   : tint(@error,90);
+		color        : @error;	
+		border-color : tint(@error,90);
+	};
+	.focus{
+		background   : tint(#colors[blacklight],95);
+		border-color : transparent;
+	}
 }
 #border(){
 	width: 2px;
