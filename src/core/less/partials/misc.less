@@ -94,41 +94,51 @@ each(#alias(),{
 	}
 })
 
+// UI MISC ELEMENTS
+.ui-close(@style:{}){
+	position: relative;
+	width: 2em;
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	opacity: 0.6;
+	&:hover{
+		opacity: 1; 
+		transition: opacity 0.5s;
+	}
+	&:empty{
+		&:before,&:after{
+			content:""; 
+			width: 65%; 
+			height: 2px;  
+			background: currentColor;
+			position: absolute;
+			inset: 0;
+			margin: auto;
+		}
+		&:before{rotate: 45deg;}
+		&:after{rotate: -45deg;}
+	}
+	@style();
+}
+
+.close{.ui-close();}
 
 // DIALOGS
 dialog{
 	.container();
 	.paper();
 	.lcnm();
-	width: 100%; padding: var(--modal-spacing, 2em); border: 0; 
+	width: 100%; padding: var(--modal-spacing, 2em); border: 0; margin: auto;
 	.close{
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: var(--modal-spacing, 2em);
-		aspect-ratio: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		cursor: pointer;
-		opacity: 0.6;
-		&:hover{
-			opacity: 1; 
-			transition: opacity 0.5s;
-		}
-		&:empty{
-			&:before,&:after{
-				content:""; 
-				width: 65%; 
-				height: 2px;  
-				background: currentColor;
-				position: absolute;
-				inset: 0;
-				margin: auto;
-			}
-			&:before{rotate: 45deg;}
-			&:after{rotate: -45deg;}
-		}
+		.ui-close({
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: var(--modal-spacing, 2em);
+		})
 	}
 	&::backdrop {
 	  background-color: transparent;
