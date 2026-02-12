@@ -40,7 +40,7 @@
 	}
 }
 
-.btn(@format:''){
+.btn{
 	// --btn-base: @btn-background; 
 	--btn-background: var(--btn-base);
 	--btn-border-color: var(--btn-background);
@@ -61,9 +61,9 @@
 	border: 0;
 	border-style: solid;
 
-	padding-inline: var(~'--btn@{format}-p-x',       var(--btn-p-x));
-	padding-block:  var(~'--btn@{format}-p-y',       var(--btn-p-y));
-	font-size:      var(~'--btn@{format}-font-size', var(--btn-font-size));
+	padding-inline: var(--btn-p-x,       var(--btn-p-x));
+	padding-block:  var(--btn-p-y,       var(--btn-p-y));
+	font-size:      var(--btn-font-size, var(--btn-font-size));
 	font-family:    var(--btn-font-family);
 	font-weight:    var(--btn-font-weight);
 	line-height:    var(--btn-line-height);
@@ -101,9 +101,8 @@
 
 
 *[class*=btn-bd],
-*[class*=btn-bg],
-.btn {
-	.btn();
+*[class*=btn-bg]{
+	&:extend(.btn all);
 }
 input:where([type="submit"],[type="button"]){
 	& when (@input-as-btn = true){
