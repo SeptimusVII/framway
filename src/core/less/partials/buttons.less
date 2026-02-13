@@ -97,6 +97,31 @@
 	&.txt-center {text-align: center;}
 	&.txt-left   {text-align: left;}
 	&.txt-right  {text-align: right;}
+
+	@btn-icon-spacing: 0.65em;
+	&:has(>i,>svg){
+		display: inline-flex;
+		gap: @btn-icon-spacing;
+	}
+	>i,>svg{
+		&.last:not(:only-child),
+		&:last-child:not(:only-child){
+			order: 1;
+			margin-right: -@btn-icon-spacing;
+		}
+		&.first:not(:only-child),
+		&:first-child:not(:only-child){
+			order: -1;
+			margin-left: -@btn-icon-spacing;
+		}
+	}
+
+	&.squared{
+		--btn-p-x: 0.8em;
+		--btn-p-y: 0;
+		line-height: 1em;
+		aspect-ratio: 1;
+	}
 }
 
 
@@ -176,3 +201,5 @@ button when (@button-as-btn = true){
 	--btn-background:   transparent;
 	--btn-border-color: transparent;
 }
+
+.btn-group{} // TODO
