@@ -23,6 +23,18 @@
 @input-focus-border-color   : if(isdefined(#input.focus[border-color])   , #input.focus[border-color]   , @input-border-color );
 @input-focus-merge-factor   : 30%;
 
+:root{
+	--input-background    : @input-background;
+	--input-color         : @input-color;
+	--input-border-width  : @input-border-width;
+	--input-border-color  : @input-border-color;
+	--input-border-radius : @input-border-radius; 
+	--input-p-x           : @input-p-x;
+	--input-p-y           : @input-p-y;
+	--input-font-size     : @input-font-size;
+	--input-line-height   : @input-line-height;
+}
+
 .input {
 	transition: all 0.25s;
 	width: 100%;
@@ -160,17 +172,25 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
 .input-group{
 	position: relative;
 	margin-bottom: 1em;
-  	&:not(.d-grid){display: flex;}
+	&:not(.d-grid){display: flex;}
 
-  	.form-group>&{
-  		.lcnm();
-  	}
+	.form-group>&{
+		.lcnm();
+	}
 
-  	.input{
+	.input{
 		border-top-right-radius: 0; 
 		border-bottom-right-radius: 0; 
 		border-right: 0; 
 		margin: 0;
+		+.btn{
+			border-top-left-radius: 0; 
+			border-bottom-left-radius: 0; 
+			margin: 0; 
+		}
+		&:focus+.btn-bd-input{
+			// once where code here, now it thou not
+		}
 	}
 	.btn {
 		margin: 0 1px; 
@@ -179,4 +199,24 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
 		justify-content: center; 
 		flex-shrink: 0;
 	}
+
+	// shrink button so it match input's size
+	&.form-shrink,
+	&.shrink{
+		.btn{
+		  --btn-font-size    : var(--input-font-size);
+		  --btn-p-x          : 1em;
+		  --btn-p-y          : 0;
+		  --btn-line-height  : var(--input-line-height);
+		}
+	}
+}
+
+// blend button with inputs, best used in input-group
+.btn-bd-input{
+	&:extend(.btn all);
+	--btn-border-color: var(--input-border-color);
+	--btn-background:   var(--input-background);
+	--btn-font-color:   var(--input-border-color);
+	--btn-border-width: var(--input-border-width);
 }
