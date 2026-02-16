@@ -107,14 +107,25 @@
 		&.last:not(:only-child),
 		&:last-child:not(:only-child){
 			order: 1;
+			margin-left: 0;
 			margin-right: -@btn-icon-spacing;
 		}
 		&.first:not(:only-child),
 		&:first-child:not(:only-child){
 			order: -1;
+			margin-right: 0;
 			margin-left: -@btn-icon-spacing;
 		}
 	}
+	each(#breakpoint(),{
+		&:has(i,svg):has(.hidden-@{key}){
+			i,svg{
+				.media-max(@key,{
+					margin-inline: 0 !important;
+				})
+			}
+		}
+	})
 
 	&.squared{
 		--btn-p-x: 0.8em;
