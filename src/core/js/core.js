@@ -12,7 +12,7 @@ for (var i in config.themes) {
 
 require('./pipeline.js');
 
-class FramwayLite {
+class Framway {
 	constructor(){
 		let framway = this;
 		framway.version = require('../../../package.json').version;
@@ -26,4 +26,4 @@ class FramwayLite {
 }
 
 
-module.exports = new FramwayLite();
+module.exports = new Framway();

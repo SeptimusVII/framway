@@ -1,2 +1,2 @@
-window.fwl = require('./core/js/core.js');
-console.log(fwl);
+window.fw = require('./core/js/core.js');
+console.log(fw);
