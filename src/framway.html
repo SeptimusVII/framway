@@ -1,129 +1,929 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FramwayLite sample file</title>
-    
+
     <link rel="stylesheet" href="framway.less">
     <script type="module" src="framway.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <h1>This is a sample page</h1>
-      <p>This is a sample page for guideline purposes. you will find here most of the classical and default web elements at your disposal for designing your website, rendered according to the current framway's configuration. </p>
-      <h1>Lorem ipsum dolor sit met - h1</h1>
-      <h2>Lorem ipsum dolor sit met - h2</h2>
-      <h3>Lorem ipsum dolor sit met - h3</h3>
-      <h4>Lorem ipsum dolor sit met - h4</h4>
-      <h5>Lorem ipsum dolor sit met - h5</h5>
-      <h6>Lorem ipsum dolor sit met - h6</h6>
-      <ul class="tags">
-        <li>Lorem ipsum dolor sit amet</li>
-        <li>consectetur adipisicing elit</li>
-        <li>Animi eius facilis</li>
-      </ul>
-      <div class="clear-after m-bottom-x2">
-        <img src="https://picsum.photos/300" alt="" class="fl-left">
-        <p class="txt-limit">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. <b>In provident nobis ipsum mollitia</b>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor <i>voluptatum possimus</i> maxime voluptatibus, ratione deleniti. Architecto, delectus?
-        </p>
-        <button>Lorem ipsum</button>
-      </div>
-      <div class="clear-after m-bottom">
-        <img src="https://picsum.photos/500/300" alt="" class="fl-right">
-        <h5 class="pbreak">Lorem ipsum dolor sit amet - h5</h5>
-        <p class="txt-limit test-style">
-          Lorem ipsum dolor sit amet, <a href="#">consectetur adipisicing</a> elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, <u>consectetur adipisicing</u> elit. In provident nobis <a href="#">ipsum mollitia</a>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor voluptatum possimus maxime voluptatibus, ratione deleniti. Architecto, delectus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam qui reiciendis, quisquam quam, impedit ducimus laboriosam, ullam ipsam ipsum sed, possimus tempore? Sapiente adipisci porro possimus neque, cum inventore optio.
-        </p>
-        <p class="txt-limit">
-          Lorem ipsum dolor sit amet, <a href="#">consectetur adipisicing</a> elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, <u>consectetur adipisicing</u> elit. In provident nobis <a href="#">ipsum mollitia</a>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor voluptatum possimus maxime voluptatibus, ratione deleniti. Architecto, delectus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam qui reiciendis, quisquam quam, impedit ducimus laboriosam, ullam ipsam ipsum sed, possimus tempore? Sapiente adipisci porro possimus neque, cum inventore optio.
-        </p>
-      </div>
-      <div class="ft-1-5-rem txt-center ft-i ft-l opa-6 m-y-x4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit
-      </div>
-      <div class="d-grid cols-2 cols-sm-1 ft-1-2-em m-bottom-x2">
-        <div class="flex-justifycontent--center">
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>consectetur adipisicing elit</li>
-            <li>Animi eius facilis</li>
-          </ul>
+        <div class="tabs">
+            <div class="tabs__nav">
+                <button class="active">Inputs</button>
+                <button class="">Tables</button>
+                <button class="">Buttons</button>
+                <button class="">Backgrounds</button>
+                <button class="">Images</button>
+                <button class="">Page sampler</button>
+            </div>
+            <div class="tabs__content">
+                <div class="tab ">
+                    <h3>INPUTS</h3>
+                    <div class="tabs">
+                        <div class="tabs__nav">
+                            <button class="active">Type text</button>
+                            <button class="">Type text extra</button>
+                            <button class="">Other types</button>
+                        </div>
+                        <div class="tabs__content">
+                            <div class="tab active">
+                                <input type="text" placeholder="Input solo">
+                                <div class="form-group">
+                                    <input type="text" class="valid" placeholder="Input in a form-group, without label">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input1">Label ipsum</label>
+                                    <input id="input1" type="text" class="invalid" placeholder="Input in a form-group, with label">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input2">Input without placeholder</label>
+                                    <input id="input2" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input3">Input with value already set</label>
+                                    <input id="input3" type="text" placeholder="Placeholder ipsum" value="Value ipsum">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input4">Input focused</label>
+                                    <input id="input4" type="text" class="focus" placeholder="Placeholder ipsum">
+                                </div>
+                                <div class="form-group">
+                                    <label for="input5">Input required</label>
+                                    <input id="input5" type="text" placeholder="Placeholder ipsum" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="input6">Input required and valid</label>
+                                    <input id="input6" type="text" placeholder="Placeholder ipsum" value="Valid value ipsum" required>
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <div class="form-group">
+                                  <label for="input19">Textarea</label>
+                                  <textarea name="" id="input19"></textarea>
+                                </div>
+                                <div class="form-group-inline">
+                                  <label for="input7">Input password</label>
+                                  <input id="input7" type="password" placeholder="Placeholder ipsum" value="passwordipsum">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input8">Input email</label>
+                                  <input id="input8" type="email" placeholder="Placeholder ipsum" value="lorem@ipsum.dolor">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input9">Input email with invalid value</label>
+                                  <input id="input9" type="email" placeholder="Placeholder ipsum" value="loremipsum.dolor">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input10">Input tel</label>
+                                  <input id="input10" type="tel" placeholder="Placeholder ipsum">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input11">Input url</label>
+                                  <input id="input11" type="url" placeholder="Placeholder ipsum">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input12">Input date</label>
+                                  <input id="input12" type="date" placeholder="Placeholder ipsum">
+                                </div>
+                                <div class="form-group">
+                                  <label for="input13">Input number</label>
+                                  <input id="input13" type="number">
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <div class="form-group m-bottom-x2">
+                                  <label for="input14">Input range</label>
+                                  <input id="input14" type="range" min="0" max="100" value="50" step="5">
+                                </div>
+                                <div class="form-group m-bottom">
+                                  <label for="">Checkboxes</label>
+                                  <input id="input15" type="checkbox" checked>
+                                  <label for="input15">Label checkbox Zombies reversus ab inferno, nam malum cerebro. De carne animata corpora quaeritis. Summus sit​​, morbo vel maleficia? De Apocalypsi undead dictum mauris. Hi mortuis soulless creaturas </label>
+                                  <input id="input16" type="checkbox">
+                                  <label for="input16">Label checkbox</label>
+                                </div>
+                                <div class="form-group m-bottom-x2">
+                                  <label for="">Radios</label>
+                                  <input name="inputRadio" id="input17" type="radio" checked>
+                                  <label for="input17">Label radio</label>
+                                  <input name="inputRadio" id="input18" type="radio">
+                                  <label for="input18">Label radio Zombies reversus ab inferno, nam malum cerebro. De carne animata corpora quaeritis. Summus sit​​, morbo vel maleficia? De Apocalypsi undead dictum mauris. Hi mortuis soulless creaturas </label>
+                                </div>
+                                <div class="form-group m-bottom">
+                                  <label for="input20">Select</label>
+                                  <select name="" id="input20">
+                                    <option value="1">value 1</option>
+                                    <option value="2">value 2</option>
+                                    <option value="3">value 3</option>
+                                  </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab">
+                    <h3>TABLES</h3>
+                    <div class="d-grid cols-autofit gap-3">
+                        <div class="table-responsive">
+                            <table class="table hover success">
+                                <tr>
+                                    <th>Lorem</th>
+                                    <th>Ipsum</th>
+                                    <th>Dolor</th>
+                                    <th>Sit</th>
+                                </tr>
+                                <tr class="active">
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td class="active">lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table sm hover ">
+                                <tr>
+                                    <th>Lorem</th>
+                                    <th>Ipsum</th>
+                                    <th>Dolor</th>
+                                    <th>Sit</th>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table bordered hover">
+                                <thead>
+                                <tr>
+                                    <th>Lorem</th>
+                                    <th>Ipsum</th>
+                                    <th>Dolor</th>
+                                    <th>Sit</th>
+                                </tr>
+                                </thead>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table striped striped-columns borderless hover">
+                                <thead>
+                                    <tr>
+                                        <th>Lorem</th>
+                                        <th>Ipsum</th>
+                                        <th>Dolor</th>
+                                        <th>Sit</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                                <tr>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                    <td>lorem ipsum</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab active">
+                    <h3>BUTTONS</h3>
+                    <div class="tabs">
+                        <div class="tabs__nav">
+                            <button class="">Default</button>
+                            <button class="">Colored</button>
+                            <button class="">Extras</button>
+                        </div>
+                        <div class="tabs__content">
+                            <div class="tab">
+                                <div class="bd-bottom bd-greylight m-bottom flex-wrap-alignitems--flexend">
+                                    <button class="btn-sm">button.btn-sm</button>&nbsp;
+                                    <button class="btn">button.btn</button>&nbsp;
+                                    <button class="btn-lg">button.btn-lg</button>&nbsp;
+                                </div>
+                                <div class="bd-bottom bd-greylight m-bottom flex-wrap-alignitems--flexend">
+                                    <input type="button" class="btn-sm" value="input.btn-sm">&nbsp;
+                                    <input type="button" value="input type button">&nbsp;
+                                    <input type="button" class="btn-lg" value="input.btn-lg">&nbsp;
+                                    <div class="w-100"></div>
+                                    <input type="submit" class="btn-sm" value="input.btn-sm">&nbsp;
+                                    <input type="submit" value="input type submit">&nbsp;
+                                    <input type="submit" class="btn-lg" value="input.btn-lg">&nbsp;
+                                    <div class="w-100"></div>
+                                    <div class="ft-0-6-em ft-i"><b>*</b> input type button or submit</div>
+                                </div>
+                                <div class="flex-wrap-alignitems--flexend">
+                                    <a href="#" class="btn-sm">a.btn-sm</a>&nbsp;
+                                    <a href="#" class="btn">a.btn</a>&nbsp;
+                                    <a href="#" class="btn-lg">a.btn-lg</a>&nbsp;
+                                </div>
+                                <div class="flex-wrap-alignitems--flexend">
+                                    <div class="btn-sm"><a href="#">.btn-sm>a</a></div>&nbsp;
+                                    <div class="btn"><a href="#">.btn>a</a></div>&nbsp;
+                                    <div class="btn-lg"><a href="#">.btn-lg>a</a></div>&nbsp;
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <div class="tabs block-std m-bottom-x2">
+                                    <div class="tabs__nav  ft-0-8-em opa-6 ">
+                                        <button class="btn-sm btn-bd-tertiary active">buttons</button>
+                                        <button class="btn-sm btn-bd-tertiary">inputs</button>
+                                        <button class="btn-sm btn-bd-tertiary">links</button>
+                                    </div>
+                                    <div class="tabs__content">
+                                        <div class="tab active">
+                                            <div class="bg-primary bg-l-20">                                                
+                                            <button class="btn-bg-primary">btn-bg-primary</button>
+                                            <button class="btn-bd-primary">btn-bd-primary</button>
+                                            <br>
+                                            <button class="btn-bg-secondary">btn-bg-secondary</button>
+                                            <button class="btn-bd-secondary">btn-bd-secondary</button>
+                                            <br>
+                                            <button class="btn-bg-success">btn-bg-success</button>
+                                            <button class="btn-bd-success">btn-bd-success</button>
+                                            <br>
+                                            <button class="btn-bg-info">btn-bg-info</button>
+                                            <button class="btn-bd-info">btn-bd-info</button>
+                                            <br>
+                                            <button class="btn-bg-warning">btn-bg-warning</button>
+                                            <button class="btn-bd-warning">btn-bd-warning</button>
+                                            <br>
+                                            <button class="btn-bg-error">btn-bg-error</button>
+                                            <button class="btn-bd-error">btn-bd-error</button>
+                                            <br>
+                                            <button class="btn-bg-black">btn-bg-black</button>
+                                            <button class="btn-bd-black">btn-bd-black</button>
+                                            <br>
+                                            <button class="btn-bg-blacklight">btn-bg-blacklight</button>
+                                            <button class="btn-bd-blacklight">btn-bd-blacklight</button>
+                                            <br>
+                                            <button class="btn-bg-greystrong">btn-bg-greystrong</button>
+                                            <button class="btn-bd-greystrong">btn-bd-greystrong</button>
+                                            <br>
+                                            <button class="btn-bg-grey">btn-bg-grey</button>
+                                            <button class="btn-bd-grey">btn-bd-grey</button>
+                                            <br>
+                                            <button class="btn-bg-greylight">btn-bg-greylight</button>
+                                            <button class="btn-bd-greylight">btn-bd-greylight</button>
+                                            <br>
+                                            <button class="btn-bg-white">btn-bg-white</button>
+                                            <button class="btn-bd-white">btn-bd-white</button>
+                                            <br>
+                                            <button class="btn-bg-none">btn-bg-none</button>
+                                            <button class="btn-bd-none">btn-bd-none</button>
+                                            <br>
+                                            </div>
+                                        </div>
+                                        <div class="tab">
+                                            <input type="button" class="btn-bg-primary" value="btn-bg-primary">
+                                            <input type="button" class="btn-bd-primary" value="btn-bd-primary">
+                                            <br>
+                                            <input type="button" class="btn-bg-secondary" value="btn-bg-secondary">
+                                            <input type="button" class="btn-bd-secondary" value="btn-bd-secondary">
+                                            <br>
+                                            <input type="button" class="btn-bg-success" value="btn-bg-success">
+                                            <input type="button" class="btn-bd-success" value="btn-bd-success">
+                                            <br>
+                                            <input type="button" class="btn-bg-info" value="btn-bg-info">
+                                            <input type="button" class="btn-bd-info" value="btn-bd-info">
+                                            <br>
+                                            <input type="button" class="btn-bg-warning" value="btn-bg-warning">
+                                            <input type="button" class="btn-bd-warning" value="btn-bd-warning">
+                                            <br>
+                                            <input type="button" class="btn-bg-error" value="btn-bg-error">
+                                            <input type="button" class="btn-bd-error" value="btn-bd-error">
+                                            <br>
+                                            <input type="button" class="btn-bg-black" value="btn-bg-black">
+                                            <input type="button" class="btn-bd-black" value="btn-bd-black">
+                                            <br>
+                                            <input type="button" class="btn-bg-blacklight" value="btn-bg-blacklight">
+                                            <input type="button" class="btn-bd-blacklight" value="btn-bd-blacklight">
+                                            <br>
+                                            <input type="button" class="btn-bg-greystrong" value="btn-bg-greystrong">
+                                            <input type="button" class="btn-bd-greystrong" value="btn-bd-greystrong">
+                                            <br>
+                                            <input type="button" class="btn-bg-grey" value="btn-bg-grey">
+                                            <input type="button" class="btn-bd-grey" value="btn-bd-grey">
+                                            <br>
+                                            <input type="button" class="btn-bg-greylight" value="btn-bg-greylight">
+                                            <input type="button" class="btn-bd-greylight" value="btn-bd-greylight">
+                                            <br>
+                                            <input type="button" class="btn-bg-white" value="btn-bg-white">
+                                            <input type="button" class="btn-bd-white" value="btn-bd-white">
+                                            <br>
+                                            <input type="button" class="btn-bg-none" value="btn-bg-none">
+                                            <input type="button" class="btn-bd-none" value="btn-bd-none">
+                                            <br>
+                                        </div>
+                                        <div class="tab">
+                                            <a href="#" class="btn-bg-primary">btn-bg-primary</a>
+                                            <a href="#" class="btn-bd-primary">btn-bd-primary</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-secondary">btn-bg-secondary</a>
+                                            <a href="#" class="btn-bd-secondary">btn-bd-secondary</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-success">btn-bg-success</a>
+                                            <a href="#" class="btn-bd-success">btn-bd-success</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-info">btn-bg-info</a>
+                                            <a href="#" class="btn-bd-info">btn-bd-info</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-warning">btn-bg-warning</a>
+                                            <a href="#" class="btn-bd-warning">btn-bd-warning</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-error">btn-bg-error</a>
+                                            <a href="#" class="btn-bd-error">btn-bd-error</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-black">btn-bg-black</a>
+                                            <a href="#" class="btn-bd-black">btn-bd-black</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-blacklight">btn-bg-blacklight</a>
+                                            <a href="#" class="btn-bd-blacklight">btn-bd-blacklight</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-greystrong">btn-bg-greystrong</a>
+                                            <a href="#" class="btn-bd-greystrong">btn-bd-greystrong</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-grey">btn-bg-grey</a>
+                                            <a href="#" class="btn-bd-grey">btn-bd-grey</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-greylight">btn-bg-greylight</a>
+                                            <a href="#" class="btn-bd-greylight">btn-bd-greylight</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-white">btn-bg-white</a>
+                                            <a href="#" class="btn-bd-white">btn-bd-white</a>
+                                            <br>
+                                            <a href="#" class="btn-bg-none">btn-bg-none</a>
+                                            <a href="#" class="btn-bd-none">btn-bd-none</a>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab active">
+                                <div class="bd-bottom bd-greylight m-bottom ">
+                                    <h3>btn-group</h3>
+                                    <div class="btn-group">
+                                        <button>FR</button>
+                                        <button>EN</button>
+                                        <button>IT</button>
+                                    </div>
+                                </div>
+                                <div class="bd-bottom bd-greylight m-bottom ">
+                                    <h3>With icons</h3>
+                                    <button class="btn-sm"><span>button.btn-sm</span><i class="close last"></i></button>
+                                    <button class="btn-sm">button.btn-sm<i class="close first"></i></button>
+                                    <br>
+                                    <button class="btn">button.btn<i class="close"></i></button>
+                                    <button class="btn">button.btn<i class="close"></i></button>
+                                    <br>
+                                    <button class="btn-lg">button.btn-lg<i class="close"></i></button>
+                                    <button class="btn-lg">button.btn-lg<i class="close"></i></button>
+                                </div>
+                                <div class="bd-bottom bd-greylight m-bottom ">
+                                  <h3>Input groups</h3>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-sm">
+                                      <button class="btn-sm">button</button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn">
+                                      <button class="btn">button</button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-lg">
+                                      <button class="btn-lg">button</button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-sm ">
+                                      <button class=" btn-sm">button <i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn ">
+                                      <button class="btn">button <i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-lg ">
+                                      <button class=" btn-lg btn-bd-input">button <i class="close"></i></button>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-sm">
+                                      <button class="btn-sm"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn">
+                                      <button class="btn "><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-lg">
+                                      <button class="btn-lg"><i class="close"></i></button>
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-sm.squared">
+                                      <button class="squared btn-sm"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn.squared">
+                                      <button class="btn squared"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group">
+                                      <input type="text" placeholder="button.btn-lg.squared">
+                                      <button class="squared btn-lg"><i class="close"></i></button>
+                                    </div>
+                                </div>
+                                <div class="bd-bottom bd-greylight m-bottom ">
+                                  <h3>Input groups + <span class="tag">.form-shrink</span></h3>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-sm">
+                                      <button class="btn-sm">button</button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn">
+                                      <button class="btn btn">button</button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-lg">
+                                      <button class="btn-lg">button</button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-sm ">
+                                      <button class=" btn-sm">button <i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn ">
+                                      <button class="btn">button <i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-lg ">
+                                      <button class=" btn-lg">button <i class="close"></i></button>
+                                    </div>
+                                    <br>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-sm">
+                                      <button class="btn-sm"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn">
+                                      <button class="btn "><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-lg">
+                                      <button class="btn-lg"><i class="close"></i></button>
+                                    </div>
+                                    <br>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-sm.squared">
+                                      <button class="squared btn-sm"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn.squared">
+                                      <button class="btn squared"><i class="close"></i></button>
+                                    </div>
+                                    <div class="input-group form-shrink">
+                                      <input type="text" placeholder="button.btn-lg.squared">
+                                      <button class="squared btn-lg"><i class="close"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab">
+                    <h3>BACKGROUNDS</h3>
+                    <div class="grid cols-4 cols-md-3 cols-sm-2 auto-flow ft-1-2-em">
+                        <div class="primary ft-1-2-em ">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="secondary ft-1-2-rem">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="error">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="success">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="warning">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-greystrong">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-grey">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-black">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-blacklight">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-greylight">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-white">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                        <div class="bg-none">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                            <a class="" href="#">lorem ipsum dolor sit amet</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab">
+                    <h3>IMAGES</h3>
+                    <div class="d-grid cols-autofit gap-2 m-y-x2 ft-0-7-em  img--bottom img--left fadetogrey" style="--griditem-minwidth: 200px;">
+                        <div>
+                            img alone default<br>
+                            <img src="https://picsum.photos/300/200" class="copy fadetocolor">
+                        </div>
+                        <div>
+                            img alone 1:1<br>
+                            <img src="https://picsum.photos/300/200" class="r_1-1 copy">
+                        </div>
+                        <div>
+                            img alone 4:3<br>
+                            <img src="https://picsum.photos/300/200" class="r_4-3 copy">
+                        </div>
+                        <div>
+                            img alone 16:9<br>
+                            <img src="https://picsum.photos/300/200" class="r_16-9 copy">
+                        </div>
+                        <div>
+                            img alone 2:1<br>
+                            <img src="https://picsum.photos/300/200" class="r_2-1 copy">
+                        </div>
+                    </div>
+                    <div class="d-grid cols-autofit gap-2 m-y-x2 ft-0-7-em img--bottom img--left zoomout" style="--griditem-minwidth: 200px;">
+                        <div>
+                            img-container default<br>
+                            <div class="img-container copy ">
+                                <img src="https://picsum.photos/300/200" class="zoomin">
+                            </div>
+                        </div>
+                        <div>
+                            img-container 1:1<br>
+                            <div class="img-container r_1-1 copy">
+                                <img src="https://picsum.photos/300/200">
+                            </div>
+                        </div>
+                        <div>
+                            img-container 4:3<br>
+                            <div class="img-container r_4-3 copy">
+                                <img src="https://picsum.photos/300/200">
+                            </div>
+                        </div>
+                        <div>
+                            img-container 16:9<br>
+                            <div class="img-container r_16-9 copy">
+                                <img src="https://picsum.photos/300/200">
+                            </div>
+                        </div>
+                        <div>
+                            img-container 2:1<br>
+                            <div class="img-container r_2-1 copy">
+                                <img src="https://picsum.photos/300/200">
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="m-bottom">
+                            <div class="d-grid cols-2 m-top m-bottom-x3 " style="width: 100%; max-width: 700px;">
+                                <div class="">
+                                    <div class="img-container r_16-9 copy">
+                                        <img src="https://picsum.photos/300/300">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">picture is bigger than the container, so it is reduced until it fit</div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 copy">
+                                        <img class="" src="https://picsum.photos/80/80">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">picture is way smaller than the container, so it stay at natural size</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-bottom">
+                            <div class="d-grid cols-2 m-top m-bottom-x3 " style="width: 100%; max-width: 700px;">
+                                <div class="">
+                                    <div class="img-container r_16-9 copy">
+                                        <img src="https://picsum.photos/300/300">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Without <span class="tag">no-bg</span></div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 no-bg copy">
+                                        <img src="https://picsum.photos/300/300">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">no-bg</span></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="m-bottom">
+                            <div class="d-grid cols-autofit m-top m-bottom-x3" style="max-width: 1200px; --griditem-minwidth: 260px;">
+                                <div class="">
+                                    <div class="img-container r_16-9 copy">
+                                        <img src="https://picsum.photos/250/250">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Natural</div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 fit--contain copy">
+                                        <img src="https://picsum.photos/250/250">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--contain</span></div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 fit--cover copy">
+                                        <img src="https://picsum.photos/250/250">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--cover</span></div>
+                                </div>
+                            </div> 
+                        </li>
+
+
+                        <li>
+                            <div class="d-grid cols-autofit m-top m-bottom-x3" style="max-width: 1200px; --griditem-minwidth: 260px;">
+                                <div class="">
+                                    <div class="img-container r_16-9 fit--cover copy">
+                                        <img src="https://picsum.photos/450/450">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">A square image set to <span class="tag">fit--cover</span> in a 16:9 container</div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 fit--cover img--top copy">
+                                        <img src="https://picsum.photos/450/450">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Same image, with <span class="tag">img--top</span></div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_16-9 fit--cover img--bottom copy">
+                                        <img src="https://picsum.photos/450/450">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Same image, with <span class="tag">img--bottom</span></div>
+                                </div>
+                            </div> 
+
+
+                            <div class="d-grid cols-autofit m-top m-bottom-x3 fit--cover" style="max-width: 1200px; --griditem-minwidth: 260px;">
+                                <div class="">
+                                    <div class="img-container r_3-4 copy">
+                                        <img src="https://picsum.photos/650/450" class="">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">A square image set to <span class="tag">fit--cover</span> in a 16:9 container</div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_3-4  img--left copy">
+                                        <img class="" src="https://picsum.photos/650/450">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Same image, with <span class="tag">img--left</span></div>
+                                </div>
+                                <div class="">
+                                    <div class="img-container r_3-4 img--right copy">
+                                        <img src="https://picsum.photos/650/450" class="">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Same image, with <span class="tag">img--right</span></div>
+                                </div>
+                            </div> 
+                        </li>
+
+
+                        <li class="m-bottom">
+                            <div class="d-grid cols-autofit m-top m-bottom-x3 gap-2" style="max-width: 1200px; --griditem-minwidth: 260px;">
+                                <div class="alignself--center justifyself--center">
+                                    <img src="https://picsum.photos/200/150" class="img-container rounded-circle copy">
+                                    <div class="ft-i txt-center ft-0-8-em">Natural</div>
+                                </div>
+                                <div class="alignself--center justifyself--center">
+                                    <img src="https://picsum.photos/200/150" class="img-container fit--contain rounded-circle copy">
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--contain</span></div>
+                                </div>
+                                <div class="alignself--center justifyself--center">
+                                    <img src="https://picsum.photos/200/150" class="img-container fit--cover rounded-circle copy">
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--cover</span></div>
+                                </div>
+                            </div> 
+                            <div class="d-grid cols-autofit m-top m-bottom-x3 gap-2" style="max-width: 1200px; --griditem-minwidth: 260px;">
+                                <div class="alignself--center justifyself--center">
+                                    <div class="img-container rounded-circle copy">
+                                        <img src="https://picsum.photos/300/200">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">Natural, wrap in <span class="tag">img-container</span></div>
+                                </div>
+                                <div class="alignself--center justifyself--center">
+                                    <div class="img-container rounded-circle fit--contain copy">
+                                        <img src="https://picsum.photos/300/200">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--contain</span></div>
+                                </div>
+                                <div class="alignself--center justifyself--center">
+                                    <div class="img-container rounded-circle fit--cover copy">
+                                        <img src="https://picsum.photos/300/200">
+                                    </div>
+                                    <div class="ft-i txt-center ft-0-8-em">With <span class="tag">fit--cover</span></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab">
+                    <h1>This is a sample page</h1>
+                    <p>This is a sample page for guideline purposes. you will find here most of the classical and default web elements at your disposal for designing your website, rendered according to the current framway's configuration. </p>
+                    <h1>Lorem ipsum dolor sit met - h1</h1>
+                    <h2>Lorem ipsum dolor sit met - h2</h2>
+                    <h3>Lorem ipsum dolor sit met - h3</h3>
+                    <h4>Lorem ipsum dolor sit met - h4</h4>
+                    <h5>Lorem ipsum dolor sit met - h5</h5>
+                    <h6>Lorem ipsum dolor sit met - h6</h6>
+                    <div class="clear-after m-bottom-x2">
+                        <img src="https://picsum.photos/300" alt="" class="fl-left ">
+                        <p class="txt-limit">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. <b>In provident nobis ipsum mollitia</b>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor <i>voluptatum possimus</i> maxime voluptatibus, ratione deleniti. Architecto, delectus?
+                        </p>
+                        <button>Lorem ipsum</button>
+                    </div>
+                    <div class="clear-after m-bottom">
+                        <img src="https://picsum.photos/500/300" alt="" class="fl-right">
+                        <h5 class="pbreak">Lorem ipsum dolor sit amet - h5</h5>
+                        <p class="txt-limit test-style">
+                            Lorem ipsum dolor sit amet, <a href="#">consectetur adipisicing</a> elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, <u>consectetur adipisicing</u> elit. In provident nobis <a href="#">ipsum mollitia</a>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor voluptatum possimus maxime voluptatibus, ratione deleniti. Architecto, delectus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam qui reiciendis, quisquam quam, impedit ducimus laboriosam, ullam ipsam ipsum sed, possimus tempore? Sapiente adipisci porro possimus neque, cum inventore optio.
+                        </p>
+                        <p class="txt-limit">
+                            Lorem ipsum dolor sit amet, <a href="#">consectetur adipisicing</a> elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, <u>consectetur adipisicing</u> elit. In provident nobis <a href="#">ipsum mollitia</a>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor voluptatum possimus maxime voluptatibus, ratione deleniti. Architecto, delectus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam qui reiciendis, quisquam quam, impedit ducimus laboriosam, ullam ipsam ipsum sed, possimus tempore? Sapiente adipisci porro possimus neque, cum inventore optio.
+                        </p>
+                    </div>
+                    <div class="ft-1-5-rem txt-center ft-i ft-l opa-6 m-y-x4">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </div>
+                    <div class="quote" tooltip="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum asperiores voluptates nulla nam, consectetur a nihil deserunt assumenda harum esse velit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. <b>In provident nobis ipsum mollitia</b>, et reiciendis maiores, placeat, ipsam exercitationem sapiente sit dolor <i>voluptatum possimus</i> maxime voluptatibus, ratione deleniti. Architecto, delectus?">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                    </div>
+                    <div class="d-grid cols-2 cols-sm-1 ft-1-2-em m-bottom-x2">
+                        <div class="flex-justifycontent--center">
+                            <ul>
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>consectetur adipisicing elit</li>
+                                <li>Animi eius facilis</li>
+                            </ul>
+                        </div>
+                        <div class="flex-justifycontent--center">
+                            <ul>
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>consectetur adipisicing elit</li>
+                                <li>Animi eius facilis
+                                    <ul>
+                                        <li>Lorem ipsum dolor sit amet</li>
+                                        <li>consectetur adipisicing elit</li>
+                                        <li>Animi eius facilis
+                                            <ul class="">
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>consectetur adipisicing elit</li>
+                                                <li>Animi eius facilis</li>
+                                            </ul>
+                                            <ul class="">
+                                                <li>Lorem ipsum dolor sit amet</li>
+                                                <li>consectetur adipisicing elit</li>
+                                                <li>Animi eius facilis</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-grid cols-2 cols-sm-1 ft-1-2-em m-bottom-x3">
+                        <div class="flex-justifycontent--center">
+                            <ol>
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>consectetur adipisicing elit</li>
+                                <li>Animi eius facilis</li>
+                            </ol>
+                        </div>
+                        <div class="flex-justifycontent--center">
+                            <ol>
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>consectetur adipisicing elit</li>
+                                <li>Animi eius facilis</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <ul class="tags">
+                        <li>Lorem ipsum dolor sit amet</li>
+                        <li>consectetur adipisicing elit</li>
+                        <li>Animi eius facilis</li>
+                    </ul>
+                    <div class="table-responsive m-bottom-x2">
+                        <table class="table">
+                            <tr>
+                                <th>Lorem</th>
+                                <th>Ipsum</th>
+                                <th>Dolor</th>
+                                <th>Sit</th>
+                            </tr>
+                            <tr>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                            </tr>
+                            <tr>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                            </tr>
+                            <tr>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                                <td>lorem ipsum</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="txt-center">
+                        <button>Lorem ipsum</button>
+                        <button class="btn-bd-primary">dolor sit amet <i class="close"></i></button>
+                    </div>
+                    <dialog class="simplemodal w-fit" onmousedown="event.target==this && this.close()"><span class="close" onclick="this.closest('dialog').close()"></span>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ipsa tenetur totam eos maiores suscipit quibusdam sint ipsum</p>
+                    </dialog>
+                    <button onclick="document.querySelector('.simplemodal').showModal()">Open simple modal</button>
+                </div>
+            </div>
         </div>
-        <div class="flex-justifycontent--center">
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>consectetur adipisicing elit</li>
-            <li>Animi eius facilis
-              <ul>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>consectetur adipisicing elit</li>
-                <li>Animi eius facilis
-                  <ul class="">
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>consectetur adipisicing elit</li>
-                    <li>Animi eius facilis</li>
-                  </ul>
-                  <ul class="">
-                    <li>Lorem ipsum dolor sit amet</li>
-                    <li>consectetur adipisicing elit</li>
-                    <li>Animi eius facilis</li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="d-grid cols-2 cols-sm-1 ft-1-2-em m-bottom-x3">
-        <div class="flex-justifycontent--center">
-          <ol>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>consectetur adipisicing elit</li>
-            <li>Animi eius facilis</li>
-          </ol>
-        </div>
-        <div class="flex-justifycontent--center">
-          <ol>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>consectetur adipisicing elit</li>
-            <li>Animi eius facilis</li>
-          </ol>
-        </div>
-      </div>
-      <div class="table-responsive m-bottom-x2">
-        <table class="table">
-          <tr>
-            <th>Lorem</th>
-            <th>Ipsum</th>
-            <th>Dolor</th>
-            <th>Sit</th>
-          </tr>
-          <tr>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-          </tr>
-          <tr>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-          </tr>
-          <tr>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-            <td>lorem ipsum</td>
-          </tr>
-        </table>
-      </div>
-      <div class="txt-center">
-        <button>Lorem ipsum</button>
-        <button class="btn-bd-primary icon-last">dolor sit amet<i class="fa fa-arrow-right"></i></button>
-      </div>
     </div>
-  </body>
+</body>
 </html>
