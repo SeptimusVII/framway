@@ -14,7 +14,7 @@
 
 @btn-border-color : if(isdefined(#button[border-color])  , #button[border-color] , @primary );
 @btn-border-width : if(isdefined(#button[border-width])  , #button[border-width] , #border[width] );
-@btn-radius       : if(isdefined(#button[radius])        , if(isnumber(#button[radius]), #button[radius], if(#button[radius] = true, #default[radius], 0 ) ) , 0);
+@btn-radius       : if(isdefined(#button[border-radius])        , if(isnumber(#button[border-radius]), #button[border-radius], if(#button[border-radius] = true, #default[radius], 0 ) ) , 0);
 
 :root{
   --btn-font-size    : @btn-font-size;
