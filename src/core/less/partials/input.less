@@ -146,8 +146,78 @@ input.range:after,input[type="range"]:after{right: 0em; content: attr(max); }
 
 input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !important; height: 0 !important; display: block; } // legacy
 
-.checkbox() {}
-.radio()    {}
+@checkbox : ~'input.checkbox,input[type="checkbox"]';
+@radio    : ~'input.radio,input[type="radio"]';
+@{checkbox},@{radio} {
+	height: 1px;
+	margin: 0;
+	opacity: 0;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	margin-top: 1em;
+	margin-left: 0.35em;
+	&+label{
+	  text-transform: none;
+	  padding: .25em .5em;
+	  font-size: 1em;
+	  line-height: 1.5em;
+	  padding-left: 1.4em;
+	  border: #input[border-width] solid transparent;
+	  margin-right: 1em;
+	  margin-bottom: 1em;
+	  position: relative;
+	  cursor: pointer;
+	  display: block;
+	  &:before ,&:after{
+	    content: "";
+	    display: block;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    line-height: body[line-height];
+	  }
+	  &:before{
+	    width: 1em;
+	    aspect-ratio: 1;
+	    margin-top: 0.5em;
+	    border: clamp(1px,0.15em,0.15em) solid Hsl(from currentColor h s calc(l + 10));
+	  }
+	  &:after{
+	    width: 1.15em;
+	    height: 0.6em;
+	    margin-top: 0.25em;
+	    border: clamp(1px,0.15em,0.15em) solid currentColor;
+	    border-top: clamp(1px,0.15em,0.15em) solid transparent;
+	    border-right: clamp(1px,0.15em,0.15em) solid transparent;
+	    transform: rotate(-55deg) skew(-25deg);
+	    transition: opacity 0.1s;
+	    opacity: 0;
+	  }
+	}
+	&:checked+label{
+	  &:after{opacity: 1;}
+	}
+}
+@{radio}{
+  &+label{
+    &:before {border-radius: 100%; }
+    &:after{
+      border-radius: 100%;
+      border: 0;
+      background-color: currentColor;
+      transition: all 0.3s;
+      transform: none;
+      width: 0.5em;
+      height: auto;
+      aspect-ratio: 1; 
+      translate: 50% 50%;
+      outline: clamp(1px,0.15em,0.15em) solid currentColor;
+      outline-offset: calc(clamp(1px,0.1em,0.1em) * -1);
+      margin-top: 0.5em;
+    }
+  }
+}
 
 // block wrapper>label+input used in forms
 .form-group{
@@ -155,6 +225,9 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
 	margin-bottom: 1em;
 	.lcnm();
 
+	@{checkbox},@{radio}{
+		&+label{margin-bottom: 0;}
+	}
 	label{
 		text-align: left; 
 		font-size: 0.8em;
@@ -166,6 +239,9 @@ input.nofill{opacity: 0; padding: 0 !important; margin: 0 !important; width: 0 !
 }
 .form-group-inline{ // legacy
 	.form-group();
+	@{checkbox},@{radio}{
+		&+label{display: inline-block;}
+	}
 }
 
 // block wrapper>input+button(s)
