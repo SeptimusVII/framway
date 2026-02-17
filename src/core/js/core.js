@@ -25,4 +25,10 @@ class Framway {
 
 Framway.prototype.utils = global.utils = require('./utils.js');
 
+global.viewport = utils.getDimensions();
+window.addEventListener("resize", function(){
+  viewport = utils.getDimensions();
+  // app.adjustTooltips();
+});
+
 module.exports = new Framway();
