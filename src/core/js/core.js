@@ -10,8 +10,6 @@ for (var i in config.themes) {
   }
 }
 
-require('./pipeline.js');
-
 class Framway {
 	constructor(){
 		let framway = this;
