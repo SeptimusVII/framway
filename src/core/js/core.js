@@ -23,5 +23,6 @@ class Framway {
 	}
 }
 
+Framway.prototype.utils = global.utils = require('./utils.js');
 
 module.exports = new Framway();
