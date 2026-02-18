@@ -562,6 +562,7 @@ var Utils = function Utils(){
     return document.body;
   };
 
+  utils.isWithinViewport = function(el, partiallyVisible = false) {
   
   // --> FORM VALIDATION
   
