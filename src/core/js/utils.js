@@ -520,7 +520,6 @@ var Utils = function Utils(){
   utils.getNodeFromString = function(html) {
       const template = document.createElement('template');
       template.innerHTML = html.trim();
-      console.log(template.innerHTML);
       const nNodes = template.content.childNodes.length;
       if (nNodes !== 1) {
           throw new Error(
