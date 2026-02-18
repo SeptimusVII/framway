@@ -485,6 +485,7 @@ var Utils = function Utils(){
      height -= ($('.topbar').outerHeight() || 0);
     return height;
   };
+
   /**
    * Wrap html into an iframe so its content, js and css doesn't bleed onto the main body. Append the iframe to the element provided.
    * @param  {Element} el   [Target element to append the iframe]
@@ -508,6 +509,7 @@ var Utils = function Utils(){
     if (w) iframe.width = iframe.contentWindow.document.body.scrollWidth;
     return iframe;
   }
+
   /** Obsolete */
   utils.getStringAsElement = function(html) {
     return new DOMParser()
@@ -537,6 +539,7 @@ var Utils = function Utils(){
    * @param {String}   selector
    * @param {Function} callback [if the callback has a parameter called "item", the added element will be passed as param to the callback]
    */
+  // TODO: is actually a keypart of component's class, need a rework to get rid of jQuery
   utils.addHtmlHook = function(selector,callback){
     // update html()
     var OldHtml = $.fn.html;
@@ -789,7 +792,7 @@ var Utils = function Utils(){
    */
   utils.renderError = function(name,msg=false,$el=false,success=false){
     if (fw.debug) {
-      fw.log('renderError');
+      console.log('renderError');
       console.log('name :',name);
       console.log('msg    :',msg);
       console.log('$el    :',$el!==false);
