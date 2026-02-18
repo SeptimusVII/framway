@@ -539,7 +539,26 @@ var Utils = function Utils(){
     }
   }
 
+
+  /**
+   * adjust position of OOB tooltips
+   */
+  // TODO: move this to a tooltip component ?
   utils.adjustTooltips = function(){
+    var framway = this;
+    document.querySelectorAll('[tooltip]').forEach((el)=>{
+      el.classList.remove('tooltipOffset--right','tooltipOffset--left')
+      var container = utils.findParentWithCSS(el, 'overflow', ['hidden','auto']);
+      if (window.getComputedStyle(container).position == 'static')
+        container.style.position = 'relative';
+      // console.log(el,container);
+      if ((el.offsetLeft + (parseInt(window.getComputedStyle(el, ':before').width)/2)) > container.offsetWidth)
+          el.classList.add('tooltipOffset--right')
+      else if ((el.offsetLeft - (parseInt(window.getComputedStyle(el, ':before').width)/2)) < 0)
+          el.classList.add('tooltipOffset--left')
+    })
+  };
+
   /**
   * Traverse the DOM upwards and checks the computed styles
   * of each element is passes. Compares the value of the 
