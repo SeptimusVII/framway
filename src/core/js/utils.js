@@ -268,6 +268,28 @@ var Utils = function Utils(){
   
 
   // --> OBJECT
+  Object.defineProperty(DOMTokenList.prototype, 'fw__containsAny', {
+    value: function(arrSearch){
+      let haystack = this.values().toArray();
+      for(var item of arrSearch){
+          if (haystack.includes(item))
+            return true, item;
+      }
+      return false;
+    }
+  })
+  Object.defineProperty(Array.prototype, 'fw__containsAny', {
+    value: function(arrSearch){
+      let haystack = this;
+      for(var item of arrSearch){
+          if (haystack.includes(item))
+            return true, item;
+      }
+      return false;
+    }
+  })
+
+
   /**
    * return an array of a function's parameters. Works only if the parameters don't have defaults values
    * @param  {Function} fn
