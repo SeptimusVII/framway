@@ -73,7 +73,7 @@ var constructPipeline = function(){
 
 	// components
 	for(var name of config['components']){
-		strPip_js += 'require(\'./../../components/'+name+'/'+name+'.js\');\n';
+		strPip_js += 'require(\'./../../components/'+name+'/'+name+'.js\')();\n';
 		strPip_less_components += '@import \'./../../components/'+name+'/'+name+'.less\';\n';
 	}
 	// themes
