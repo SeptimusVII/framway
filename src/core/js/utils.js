@@ -539,6 +539,7 @@ var Utils = function Utils(){
     }
   }
 
+  utils.adjustTooltips = function(){
   /**
   * Traverse the DOM upwards and checks the computed styles
   * of each element is passes. Compares the value of the 
