@@ -24,6 +24,14 @@ class Component {
 			}
 		}
 
+    var timerResize;
+		window.addEventListener("resize", function(){
+		  clearTimeout(timerResize);
+		  timerResize = setTimeout(function(){
+		  	for(var component of fw.components_active[name_l])
+		      component.onResize();
+		  },300);
+		});
 		
 		component = component[name];
 		component.prototype = Object.create(Component.prototype);
@@ -35,6 +43,12 @@ class Component {
 }
 Component.prototype.onCreate = function(){
 	this.log('created','This is the callback on the component\'s creation. You can overwrite it by redefining '+this.type+'.prototype.onCreate');
+};
+/**
+ * callback on resize event
+ */
+Component.prototype.onResize = function(){
+  this.log('resized','This is the callback on resize event. You can overwrite it by redefining '+this.type+'.prototype.onResize');
 };
 
 /**
