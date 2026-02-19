@@ -62,6 +62,21 @@ Component.prototype.log = function(title,msg = false){
   }
 }
 
+Component.prototype.getData = function(label, placeholder = undefined){
+  var component = this;
+  if(component.el.dataset[label] !== undefined && component.el.dataset[label] !== "")
+      return component.el.dataset[label];
+    else
+      return placeholder;
+}
+Component.prototype.getAttr = function(label, placeholder = undefined){
+  var component = this;
+  if(component.el.getAttribute(label) !== null && component.el.getAttribute(label) !== "")
+      return component.el.getAttribute(label);
+    else
+      return placeholder;
+}
+
 
 let componentObserver = new MutationObserver(function(mutations) {
 	mutations.forEach( function (mutation) {
