@@ -25,12 +25,23 @@ class Framway {
 	init(){
 		let framway = this;
 		require('./pipeline.js');
+
+		// load components
 		for(var component of framway.components){
+			// init elements in dom
 			if (typeof framway[utils.getClassName(component)] == 'function') {
 				document.querySelectorAll('.'+component).forEach((el)=>{
 					new framway[utils.getClassName(component)](el)
 				})
 			}
+	    var timerResize;
+			window.addEventListener("resize", function(){
+			  clearTimeout(timerResize);
+			  timerResize = setTimeout(function(){
+			  	for(var el of fw.components_active[component])
+			      el.onResize();
+			  },300);
+			});
 		}
 	}
 }
@@ -44,7 +55,7 @@ if(navigator.userAgent.indexOf('AppleWebKit') != -1)
 global.viewport = utils.getDimensions();
 window.addEventListener("resize", function(){
   viewport = utils.getDimensions();
-  utils.adjustTooltips();
+  utils.adjustTooltips(); // todo: move this to futur component
 });
 
 module.exports = new Framway();
