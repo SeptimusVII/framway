@@ -28,7 +28,7 @@ var deleteComponent = function(){
         else{
             console.log('\n Component '+name+' successfully removed. Be sure to remove the corresponding entry in the framway.config.js file before compiling');
             if(shell.which('hub')){
-                console.log('The git remote repository might remains. To delete it, use the following command '+(shell.which('clip') ? '(copied to your clipboard))':'')+': \n $ hub delete '+git+'framway-component-'+name+' -y \n');
+                console.log('The git remote repository might remains. To delete it, use the following command'+(shell.which('clip') ? ' (copied to your clipboard))':'')+': \n $ hub delete '+git+'framway-component-'+name+' -y \n');
                 if(shell.which('clip'))
                     shell.exec('echo hub delete '+git+'framway-component-'+name+' -y|clip');
             }
@@ -38,8 +38,7 @@ var deleteComponent = function(){
 
 
 var createComponent = function(){
-    json = JSON.parse(fs.readFileSync('package.json', 'utf8'));
-    version = json.version;
+    let version = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
     fs.mkdir('./src/components/'+name,function(err){
         if(err)
             console.log('\n'+err.message+'\n');
@@ -54,6 +53,8 @@ var createComponent = function(){
     let ${className} = Object.getPrototypeOf(fw).${className} = class ${className} extends fw.Component{
         static {
             this.debug = true;
+            this.createdAt  = "${version}";
+            this.lastUpdate = "${version}";
             this.version = "1.0.0";
             this.tpl = utils.getNodeFromString(require('bundle-tpl:./${name}.html')).outerHTML;
             // this.describe();
