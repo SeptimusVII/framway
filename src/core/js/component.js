@@ -1,49 +1,54 @@
-class Component {
-	constructor(name){
-		let name_l = utils.lowerize(name);
-		let component = {
-			[name]: function(el){
-				let obj = this;
-				if (el instanceof HTMLElement) 
-					obj.el = el;
-				else{
-					obj.el = utils.getNodeFromString('<div class="'+name+'"></div>');
-					if (typeof el == 'object') {
-						for(var attr in el){
-							obj[attr] = el[attr];
-						}
-					}
+class Component{
+	static debug = false;
+	constructor(el){
+		let component = this;
+		let name = utils.lowerize(this.constructor.name);
+		if (el instanceof HTMLElement) 
+			component.el = el;
+		else{
+			component.el = this.constructor.tpl ? this.getTemplate() : utils.getNodeFromString('<div class="'+this.constructor.name+'"></div>');
+			if (typeof el == 'object') {
+				for(var attr in el){
+					obj[attr] = el[attr];
 				}
-
-				obj.el.component = this;
-				obj.type = name;
-
-				fw.components_active[name_l] = fw.components_active[name_l] || [];
-				fw.components_active[name_l].push(obj);
-				obj.onCreate();
 			}
 		}
+		component.el.component = this;
 
-    var timerResize;
-		window.addEventListener("resize", function(){
-		  clearTimeout(timerResize);
-		  timerResize = setTimeout(function(){
-		  	for(var component of fw.components_active[name_l])
-		      component.onResize();
-		  },300);
-		});
+		fw.components_active[name] = fw.components_active[name] || [];
+		fw.components_active[name].push(component);
 		
-		component = component[name];
-		component.prototype = Object.create(Component.prototype);
-		component.prototype.constructor = component;
-
-		component.debug = false;
-		return component;
+		component.onCreate();
+	}
+	static describe = function(){
+		if (typeof fw !== 'undefined') {
+			let component = this.prototype;
+			window.addEventListener("load", function(e) {
+				console.groupCollapsed('COMPONENT '+name+' DEBUG DISPLAY');
+				console.group('Methods');
+				console.log('Owned :',Object.getOwnPropertyNames(component));
+				console.log('Inherited :',Object.getOwnPropertyNames(Object.getPrototypeOf(component)));
+				console.groupEnd();
+				console.group('Attributes');
+				for (var prop in component) {
+				  console.log(prop+' ['+typeof component[prop]+'] : ', component[prop]);
+				}
+				console.groupEnd();
+				console.groupEnd();
+			});
+		} else {
+			throw "Error: Framway is not ready. Wait for it to be initialized";
+		}
 	}
 }
+
+/**
+ * callback on component instance creation
+ */
 Component.prototype.onCreate = function(){
 	this.log('created','This is the callback on the component\'s creation. You can overwrite it by redefining '+this.type+'.prototype.onCreate');
 };
+
 /**
  * callback on resize event
  */
@@ -57,6 +62,7 @@ Component.prototype.onResize = function(){
 Component.prototype.destroy = function() {
 	this.el.remove();
 };
+
 /**
  * callback on destroy event
  */
@@ -64,12 +70,18 @@ Component.prototype.onDestroy = function(){
   this.log('destroyed','This is the callback on destroy event. You can overwrite it by redefining '+this.type+'.prototype.onDestroy');
 };
 
+/**
+ * return a new Node element from the component's template
+ */
+Component.prototype.getTemplate = function(){
+	return utils.getNodeFromString(this.constructor.tpl);
+}
 
 Component.prototype.log = function(title,msg = false){
   if(this.constructor.debug){
     let tstamp = new Date();
     tstamp = '['+ tstamp.getHours() +':'+ tstamp.getMinutes() +':'+ tstamp.getSeconds() +']';
-    console.log(tstamp+" Component "+this.type+": "+title);
+    console.log(tstamp+" Component "+this.constructor.name+": "+title);
     if(msg)
       console.log(msg);
     console.log(this);
@@ -77,27 +89,27 @@ Component.prototype.log = function(title,msg = false){
 }
 
 Component.prototype.getData = function(label, placeholder = undefined){
-  var component = this;
+  let component = this;
   if(component.el.dataset[label] !== undefined && component.el.dataset[label] !== "")
       return component.el.dataset[label];
     else
       return placeholder;
 }
+
 Component.prototype.getAttr = function(label, placeholder = undefined){
-  var component = this;
+  let component = this;
   if(component.el.getAttribute(label) !== null && component.el.getAttribute(label) !== "")
       return component.el.getAttribute(label);
     else
       return placeholder;
 }
 
-
 let componentObserver = new MutationObserver(function(mutations) {
 	mutations.forEach( function (mutation) {
 		if (typeof mutation.addedNodes == "object") {
 			mutation.addedNodes.forEach(function (node) {
 				let isComponent = node.classList.fw__containsAny(fw.components);
-			  	if (isComponent && typeof fw[utils.getClassName(isComponent)] == 'function') {
+			  	if (isComponent && typeof fw[utils.getClassName(isComponent)] == 'function' && typeof node.component == 'undefined') {
 	  				new fw[utils.getClassName(isComponent)](node);
 	  				if (fw.debug) console.log('A component '+isComponent+' has been added to the DOM and initialized',node.component);
 			  	}
