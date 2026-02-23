@@ -109,11 +109,11 @@ var displayConfig = function(){
 }
 
 switch(cmd){
-	case 'displayConfig'	    : displayConfig(); break;
-	case 'onWatchStart' 	    : onWatchStart() ; break;
-	case 'onWatchEnd' 	        : onWatchEnd() ; break;
-	case 'onBuildStart' 	    : onBuildStart() ; break;
-	case 'onBuildEnd' 	        : onBuildEnd() ; break;
+	case 'displayConfig'	 : displayConfig(); break;
+	case 'onWatchStart' 	 : onWatchStart() ; break;
+	case 'onWatchEnd' 	     : onWatchEnd() ; break;
+	case 'onBuildStart' 	 : onBuildStart() ; break;
+	case 'onBuildEnd' 	     : onBuildEnd() ; break;
 	case 'constructPipeline' : constructPipeline(); break;
 	default: console.log('\n Unknown command used: '+cmd+'\n'); break;
 }
