@@ -451,13 +451,16 @@ var Utils = function Utils(){
   }
   
   // --> FRAMWAY
-  utils.getClassName = function(str){
+  utils.strToPascalCase = function(str){
     var className = '';
-    for (var i in str.split('-')) {
-      className += str.split('-')[i].charAt(0).toUpperCase() + str.split('-')[i].slice(1);
+    let r = new RegExp(/[\s\-_\W]/g);
+    for (var i in str.split(r)) {
+      className += str.split(r)[i].charAt(0).toUpperCase() + str.split(r)[i].slice(1);
     }
     return className;
   }
+  /** Deprecated */
+  utils.getClassName = utils.strToPascalCase;
 
   utils.versionToInt = function(strVersion){
     return parseFloat(strVersion.replace('.','-').replace('.','').replace('-','.'));

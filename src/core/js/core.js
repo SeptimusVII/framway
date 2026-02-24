@@ -29,9 +29,9 @@ class Framway {
 		// load components
 		for(var component of framway.components){
 			// init elements in dom
-			if (typeof framway[utils.getClassName(component)] == 'function') {
+			if (typeof framway[utils.strToPascalCase(component)] == 'function') {
 				document.querySelectorAll('.'+component).forEach((el)=>{
-					new framway[utils.getClassName(component)](el)
+					new framway[utils.strToPascalCase(component)](el)
 				})
 			}
 	    var timerResize;
