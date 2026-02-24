@@ -1,5 +1,6 @@
 var cmd  = process.argv[2] || 'displayConfig';
 var config = require('../framway.config.js');
+var shell = require('shelljs');
 var fs = require('fs-extra');
 
 var configCleaned = JSON.parse(JSON.stringify(config));
@@ -59,6 +60,126 @@ var checkFoldersAndFiles = function(){
 		resolve();
 	});
 }
+var initFramway = function(){
+	console.log('\n### Framway\'s initialisation...');
+	checkFoldersAndFiles().then(function(){
+		if (config.themes.length) {
+			console.log('\n### Importing themes...');
+			getThemes(config.themes);
+		}
+		if (config.components.length) {
+			console.log('\n### Importing components...');
+			getComponents(config.components);
+		}
+		console.log('\n### Framway\'s initialisation end\n');
+	}).catch(function(err){
+		console.log('something wrong happened: '+err);
+	})
+}
+
+var updateFramway = function(){
+	checkIntegrity().then(function(result){
+		if (result === true || forceUpdate === true) {
+			console.log('\n### Framway\'s updating...');
+			checkFoldersAndFiles().then(function(){
+				console.log('\n### Stashing files...');
+				shell.exec('git stash');
+				console.log('\n### Pulling framway...');
+				shell.exec('git pull');
+				console.log('\n### Unstashing files...');
+				shell.exec('git stash pop');
+				console.log('\n### Install npm dependencies...');
+				shell.exec('npm install');
+				if (config.themes.length) {
+					console.log('\n### Updating themes...');
+					getThemes(config.themes);
+				}
+				if (config.components.length) {
+					console.log('\n### Updating components...');
+					getComponents(config.components);
+				}
+				console.log('\n### Framway\'s update end\n');
+			}).catch(function(err){
+				console.log('something wrong happened: '+err);
+			})
+		}
+	})
+}
+
+var getThemes = function(arrThemes){
+	for (var i = 0; i < arrThemes.length; i++) {
+	  shell.exec('npm run theme '+arrThemes[i]+' get');      
+		console.log(' - Theme "'+arrThemes[i]+'" installed');
+	}
+}
+var getComponents = function(arrComponents){
+	for (var i = 0; i < arrComponents.length; i++) {
+	  shell.exec('npm run component '+arrComponents[i]+' get');      
+		console.log(' - Component "'+arrComponents[i]+'" installed');
+	}
+}
+var checkIntegrity = async function(){
+	var updateCheck = {
+		themes:[],
+		components:[],
+		requirestash: false,
+	}
+	// console.log(configCleaned);
+	// console.log('\n### THEMES')
+	for (var i = 0; i < configCleaned.themes.length; i++) {
+		await new Promise(function(resolve,reject){
+			if (fs.existsSync('./src/themes/'+configCleaned.themes[i]+'/.git')){
+				shell.cd('./src/themes/'+configCleaned.themes[i]);
+				shell.exec('git status --porcelain=v1',{silent:true},function(code,stdout,stderr){
+					if (stdout) {
+						updateCheck.themes.push(configCleaned.themes[i]);
+						updateCheck.requirestash = true;
+					}
+					shell.cd('./../../..');
+					resolve()
+				})
+			} else {
+					resolve()
+			}
+		});
+	}
+	// console.log('\n### COMPONENTS')
+	for (var i = 0; i < configCleaned.components.length; i++) {
+		await new Promise(function(resolve,reject){
+			if (fs.existsSync('./src/components/'+configCleaned.components[i]+'/.git')){
+				shell.cd('./src/components/'+configCleaned.components[i]);
+				shell.exec('git status --porcelain=v1',{silent:true},function(code,stdout,stderr){
+					if (stdout) {
+						updateCheck.components.push(configCleaned.components[i]);
+						updateCheck.requirestash = true;
+					}
+					shell.cd('./../../..');
+					resolve()
+				})
+			} else {
+					resolve()
+			}
+		});
+	}
+	// console.log(updateCheck);
+	if (updateCheck.requirestash) {
+		console.log('\n### The followings have unsaved changes\n');
+		if(updateCheck.themes.length){
+			console.log('Themes:');
+			for(var theme of updateCheck.themes)
+				console.log(' - '+ theme);
+		}
+		if(updateCheck.components.length){
+			console.log('Components:');
+			for(var component of updateCheck.components)
+				console.log(' - '+ component);
+		}
+		console.log('\nPlease commit or stash your changes before going further.\n');
+		return false;
+	} else {
+		return true;
+	}
+}
 
 var constructPipeline = function(){
 	fs.ensureFileSync('./src/core/js/pipeline.js');
@@ -106,9 +227,11 @@ var displayConfig = function(){
 	for (var i = 0; i < config.components.length; i++) {
 		console.log(' - '+config.components[i]);
 	}
+	console.log('\n DEBUG MODE: ',config.debug);
 }
 
 switch(cmd){
+	case 'init'	             : initFramway(); break;
 	case 'displayConfig'	 : displayConfig(); break;
 	case 'onWatchStart' 	 : onWatchStart() ; break;
 	case 'onWatchEnd' 	     : onWatchEnd() ; break;

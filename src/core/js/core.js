@@ -13,7 +13,7 @@ for (var i in config.themes) {
 class Framway {
 	constructor(){
 			let framway = this;
-			framway.debug = false;
+			framway.debug = config.debug?config.debug:false;
 			framway.version = require('../../../package.json').version;
 			for(var key in config)
 			  framway[key] = config[key];
