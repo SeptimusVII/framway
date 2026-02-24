@@ -513,14 +513,8 @@ var Utils = function Utils(){
     return iframe;
   }
 
-  /** Obsolete */
-  utils.getStringAsElement = function(html) {
-    return new DOMParser()
-        .parseFromString(html, "text/html")
-        .documentElement;
-  }
 
-  utils.getNodeFromString = function(html) {
+  utils.htmlToNode = function(html) {
       const template = document.createElement('template');
       template.innerHTML = html.trim();
       const nNodes = template.content.childNodes.length;
@@ -534,6 +528,8 @@ var Utils = function Utils(){
       }
       return template.content.firstChild;
   }
+  /** Deprecated */
+  utils.getStringAsElement = utils.getNodeFromString = utils.htmlToNode;
 
   /**
    * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async
@@ -827,7 +823,7 @@ var Utils = function Utils(){
   // --> NOTIFICATIONS  // TODO
   function notifCleanMsg(str){
     if (str.includes('</html>')){
-      let dial = utils.getNodeFromString(`<dialog class=""><span class="close"><i class="fa fa-times"></i></span></dialog>`);
+      let dial = utils.htmlToNode(`<dialog class=""><span class="close"><i class="fa fa-times"></i></span></dialog>`);
       dial.querySelector('.close').addEventListener('click',()=>{
         dial.close();
         dial.remove();

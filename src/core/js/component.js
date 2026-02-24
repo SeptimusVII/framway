@@ -6,7 +6,7 @@ class Component{
 		if (el instanceof HTMLElement) 
 			component.el = el;
 		else{
-			component.el = this.constructor.tpl ? this.getTemplate() : utils.getNodeFromString('<div class="'+this.constructor.name+'"></div>');
+			component.el = this.constructor.tpl ? this.getTemplate() : utils.htmlToNode('<div class="'+this.constructor.name+'"></div>');
 			if (typeof el == 'object') {
 				for(var attr in el){
 					obj[attr] = el[attr];
@@ -74,7 +74,7 @@ Component.prototype.onDestroy = function(){
  * return a new Node element from the component's template
  */
 Component.prototype.getTemplate = function(){
-	return utils.getNodeFromString(this.constructor.tpl);
+	return utils.htmlToNode(this.constructor.tpl);
 }
 
 Component.prototype.log = function(title,msg = false){
@@ -109,8 +109,8 @@ let componentObserver = new MutationObserver(function(mutations) {
 		if (typeof mutation.addedNodes == "object") {
 			mutation.addedNodes.forEach(function (node) {
 				let isComponent = node.classList.fw__containsAny(fw.components);
-			  	if (isComponent && typeof fw[utils.getClassName(isComponent)] == 'function' && typeof node.component == 'undefined') {
-	  				new fw[utils.getClassName(isComponent)](node);
+			  	if (isComponent && typeof fw[utils.strToPascalCase(isComponent)] == 'function' && typeof node.component == 'undefined') {
+	  				new fw[utils.strToPascalCase(isComponent)](node);
 	  				if (fw.debug) console.log('A component '+isComponent+' has been added to the DOM and initialized',node.component);
 			  	}
 			})
