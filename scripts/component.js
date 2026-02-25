@@ -56,7 +56,7 @@ var createComponent = function(){
             this.createdAt  = "${version}";
             this.lastUpdate = "${version}";
             this.version = "1.0.0";
-            this.tpl = utils.getNodeFromString(require('bundle-tpl:./${name}.html')).outerHTML;
+            this.tpl = utils.htmlToNode(require('bundle-tpl:./${name}.html')).outerHTML;
             // this.describe();
         }
         onCreate(){
