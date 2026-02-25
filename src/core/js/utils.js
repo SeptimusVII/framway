@@ -541,6 +541,11 @@ var Utils = function Utils(){
         return -1;
     }
   });
+  Object.defineProperty(Node.prototype, 'trigger', {
+    value: function(eventName){
+      this.dispatchEvent(new Event(eventName));
+    }
+  });
 
   /**
    * adjust position of OOB tooltips
