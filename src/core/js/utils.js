@@ -562,6 +562,13 @@ var Utils = function Utils(){
     }
   }
 
+  NodeList.prototype.indexOf = function(item) {
+    let nl = this;
+    if (item instanceof HTMLElement) 
+      return Array.prototype.indexOf.call(nl,item);
+    else
+      return -1;
+  };
 
   /**
    * adjust position of OOB tooltips
