@@ -531,13 +531,16 @@ var Utils = function Utils(){
   /** Deprecated */
   utils.getStringAsElement = utils.getNodeFromString = utils.htmlToNode;
 
-  NodeList.prototype.indexOf = function(item) {
-    let nl = this;
-    if (item instanceof HTMLElement) 
-      return Array.prototype.indexOf.call(nl,item);
-    else
-      return -1;
-  };
+
+  Object.defineProperty(NodeList.prototype, 'indexOf', {
+    value: function(item){
+      let nl = this;
+      if (item instanceof HTMLElement) 
+        return Array.prototype.indexOf.call(nl,item);
+      else
+        return -1;
+    }
+  });
 
   /**
    * adjust position of OOB tooltips
