@@ -2,11 +2,11 @@ class Component{
 	static debug = false;
 	constructor(el){
 		let component = this;
-		let name = utils.lowerize(this.constructor.name);
+		let name = utils.strToPascalCase(this.constructor.name);
 		if (el instanceof HTMLElement) 
 			component.el = el;
 		else{
-			component.el = this.constructor.tpl ? this.getTemplate() : utils.htmlToNode('<div class="'+this.constructor.name+'"></div>');
+			component.el = this.constructor.tpl ? this.getTemplate() : utils.htmlToNode('<div class="'+name+'"></div>');
 			if (typeof el == 'object') {
 				for(var attr in el){
 					obj[attr] = el[attr];
@@ -119,15 +119,16 @@ let componentObserver = new MutationObserver(function(mutations) {
 			mutation.removedNodes.forEach(function (node) {
 				let isComponent = node.classList.fw__containsAny(fw.components);
 				if (isComponent && typeof node.component == 'object') {
-				  	let i = fw.components_active[isComponent].indexOf(node.component);
-				  	if (i != -1){
-				  		fw.components_active[isComponent].splice(i,1)
-		  				if (fw.debug) console.log('A component '+isComponent+' has been removed from the DOM',node.component);
-						node.component.onDestroy();
-						node.component = undefined;
-				  	} else {
-				  		if (fw.debug) console.log('A component '+isComponent+' has been destroyed, but was not found in the register');
-				  	}
+					isComponent = utils.strToPascalCase(isComponent);
+			  	let i = fw.components_active[isComponent].indexOf(node.component);
+			  	if (i != -1){
+			  		fw.components_active[isComponent].splice(i,1)
+	  				if (fw.debug) console.log('A component '+isComponent+' has been removed from the DOM',node.component);
+					node.component.onDestroy();
+					node.component = undefined;
+			  	} else {
+			  		if (fw.debug) console.log('A component '+isComponent+' has been destroyed, but was not found in the register');
+			  	}
 				}
 			})
 		}

@@ -864,7 +864,6 @@ var Utils = function Utils(){
 /**
  * check the state of a checkbox
  * @return {Boolean}
- *  TODO : real test
  */
 // $.fn.isChecked = function () {
 //   if ($(this).is(':checked')) return true;else return false;
