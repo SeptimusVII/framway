@@ -144,11 +144,26 @@
                     </dialog>
                     <button onclick="document.querySelector('.simplemodal').showModal()">Open simple modal</button>
                 </div>
-                <div class="tab active">
+                <div class="tab ">
                     <h3>Component factory</h3>
-                    <div>
-                        <div class="testComponent"> testComponent </div>
+                    <div id="factory">
+                        <div id="f_playground"></div>
                     </div>
+                    <script>
+                        window.addEventListener("load", function(e) {
+                            let f_select = utils.htmlToNode(`<select id="f_select"> </select>`);
+                            let f_playground = document.querySelector('#f_playground');
+                            for(var c of fw.components){
+                                f_select.append(utils.htmlToNode(`<option value="${c}">${c}</option>`));
+                            }
+                            document.querySelector('#factory').prepend(f_select);
+                            f_select.addEventListener('change',()=>{
+                                f_playground.innerHTML = '';
+                                f_playground.append(new fw[utils.strToPascalCase(f_select.value)]().el);
+                            });
+                            f_select.trigger('change');
+                        });
+                    </script>
                 </div>
                 <div class="tab ">
                     <h3>INPUTS</h3>
