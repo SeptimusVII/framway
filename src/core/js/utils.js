@@ -531,29 +531,6 @@ var Utils = function Utils(){
   /** Deprecated */
   utils.getStringAsElement = utils.getNodeFromString = utils.htmlToNode;
 
-  /**
-   * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async
-   * When an element matching the selector is added to the dom, it fires the related callback
-   * @param {String}   selector
-   * @param {Function} callback [if the callback has a parameter called "item", the added element will be passed as param to the callback]
-   */
-  // TODO: is actually a keypart of component's class, need a rework to get rid of jQuery
-  utils.addHtmlHook = function(selector,callback){
-    // update html()
-    var OldHtml = $.fn.html;
-    $.fn.html = function () {
-      var EnhancedHtml = OldHtml.apply(this, arguments);
-      if (typeof EnhancedHtml != "string" && arguments.length && EnhancedHtml.find(selector).length) {
-        if(utils.getParameters(callback).indexOf('item') != -1)
-          callback(EnhancedHtml.find(selector));
-        else
-          callback();
-      }
-      return EnhancedHtml;
-    }
-  }
-
-
   NodeList.prototype.indexOf = function(item) {
     let nl = this;
     if (item instanceof HTMLElement) 
