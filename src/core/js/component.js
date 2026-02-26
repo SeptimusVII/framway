@@ -40,6 +40,25 @@ class Component{
 			throw "Error: Framway is not ready. Wait for it to be initialized";
 		}
 	}
+
+	static {
+		// trigger resize callbacks of active components
+    var timerResize;
+		window.addEventListener("resize", function(){
+			clearTimeout(timerResize);
+			timerResize = setTimeout(function(){
+				for(var component_selector of fw.components){
+					let component_className = utils.strToPascalCase(component_selector);
+					// console.log(component_className);
+			  	if (fw.components_active[component_className] && fw.components_active[component_className].length) {
+			  		// console.log("has active instances",fw.components_active[component_className]);
+				  	for(var c of fw.components_active[component_className])
+				      c.onResize();
+			  	}
+				}
+		  },300);
+		});
+	}
 }
 
 /**

@@ -27,21 +27,14 @@ class Framway {
 		require('./pipeline.js');
 
 		// load components
-		for(var component of framway.components){
+		for(var component_selector of framway.components){
 			// init elements in dom
-			if (typeof framway[utils.strToPascalCase(component)] == 'function') {
-				document.querySelectorAll('.'+component).forEach((el)=>{
-					new framway[utils.strToPascalCase(component)](el)
+			let component_className = utils.strToPascalCase(component_selector);
+			if (typeof framway[component_className] == 'function') {
+				document.querySelectorAll('.'+component_selector).forEach((el)=>{
+					new framway[component_className](el)
 				})
 			}
-	    var timerResize;
-			window.addEventListener("resize", function(){
-			  clearTimeout(timerResize);
-			  timerResize = setTimeout(function(){
-			  	for(var el of fw.components_active[component])
-			      el.onResize();
-			  },300);
-			});
 		}
 	}
 }
