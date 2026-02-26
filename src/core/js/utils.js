@@ -516,7 +516,7 @@ var Utils = function Utils(){
 
   utils.htmlToNode = function(html) {
       const template = document.createElement('template');
-      template.innerHTML = html.trim();
+      template.innerHTML = html.trim().replace(/\r?\n|\r/gm, "");
       const nNodes = template.content.childNodes.length;
       if (nNodes !== 1) {
           throw new Error(
