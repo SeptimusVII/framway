@@ -3,6 +3,10 @@
 - Fixes:
 	- `utils.request` now accept 2XX status code as successful
 	- revert unwanted config modification
+- Feat:
+	- add `bg-inherit` class
+- Changes:
+	- disable theme empty theme creation on failed git fetching
 
 2.8.0 - 2026-01-09
 - Feat:
