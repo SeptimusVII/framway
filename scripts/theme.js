@@ -14,7 +14,7 @@ var getTheme = function(){
         console.log('\n'+err.message+'\n');
       else{
         createGit = false;
-        createTheme();
+        // createTheme();
       }
     });
   }
