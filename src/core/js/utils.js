@@ -120,6 +120,15 @@ var Utils = function Utils(){
       return template.content.firstChild;
   }
 
+  Object.defineProperty(NodeList.prototype, 'indexOf', {
+    value: function(item){
+      let nl = this;
+      if (item instanceof HTMLElement) 
+        return Array.prototype.indexOf.call(nl,item);
+      else
+        return -1;
+    }
+  });
 
   /**
    * Add a function callback to most of the jQuery dom modification functions, based on a selector.@async

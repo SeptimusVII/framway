@@ -5,6 +5,7 @@
 	- revert unwanted config modification
 - Feat:
 	- add `bg-inherit` class
+	- add nodeList `indexOf` function
 - Changes:
 	- disable theme empty theme creation on failed git fetching
 
