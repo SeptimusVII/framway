@@ -108,13 +108,13 @@ var updateFramway = function(){
 
 var getThemes = function(arrThemes){
 	for (var i = 0; i < arrThemes.length; i++) {
-	  shell.exec('npm run theme '+arrThemes[i]+' get');      
+	  	shell.exec('npm run theme '+arrThemes[i]+' get');      
 		console.log(' - Theme "'+arrThemes[i]+'" installed');
 	}
 }
 var getComponents = function(arrComponents){
 	for (var i = 0; i < arrComponents.length; i++) {
-	  shell.exec('npm run component '+arrComponents[i]+' get');      
+	  	shell.exec('npm run component '+arrComponents[i]+' get');      
 		console.log(' - Component "'+arrComponents[i]+'" installed');
 	}
 }

@@ -15,6 +15,9 @@ if(!type || !name){
 		shell.cd('./src/'+type+'s/');
 		// console.log('target: ' + git+'framway-'+type+'-'+name);
 		shell.exec('git clone '+git+'framway-'+type+'-'+name+' '+name);
+		shell.cd('./'+name);
+		shell.exec('git checkout v3');
+		shell.cd();
 		shell.cd();
 	} else {
 		if (fs.existsSync('./src/'+type+'s/'+name+'/.git')){
