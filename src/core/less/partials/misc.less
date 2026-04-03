@@ -95,6 +95,17 @@ each(#alias(),{
 })
 
 // UI MISC ELEMENTS
+.ui-btn(@style:{}){
+	cursor: pointer;
+	opacity: 0.6;
+	background: blue;
+	color: .getBestReadableFontColorOn(blue)[@result];
+	&:hover{
+		opacity: 1; 
+		transition: opacity 0.5s;
+	}
+	@style();
+}
 .ui-close(@style:{}){
 	position: relative;
 	flex-shrink: 0;
@@ -102,12 +113,6 @@ each(#alias(),{
 	aspect-ratio: 1;
 	display: inline-block;
 	vertical-align: middle;
-	cursor: pointer;
-	opacity: 0.6;
-	&:hover{
-		opacity: 1; 
-		transition: opacity 0.5s;
-	}
 	&:empty{
 		&:before,&:after{
 			content:""; 
@@ -123,8 +128,26 @@ each(#alias(),{
 	}
 	@style();
 }
-
 .close{.ui-close();}
+
+.ui-more(@style:{}){
+	aspect-ratio: 1;
+  width: 20px;
+  display: flex;
+  position: relative;
+  margin: auto;
+  line-height: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-style: normal;
+	&:before{
+		content:"⸱⸱⸱";
+		display: flex;
+		aspect-ratio: 1;
+	}
+	@style();
+}
 
 // DIALOGS
 dialog{
@@ -133,6 +156,7 @@ dialog{
 	.lcnm();
 	width: 100%; padding: var(--modal-spacing, 2em); border: 0; margin: auto;
 	.close{
+		.ui-btn();
 		.ui-close({
 			position: absolute;
 			top: 0;
