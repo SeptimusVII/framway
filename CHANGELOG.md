@@ -6,6 +6,8 @@
 - Feat:
 	- add `bg-inherit` class
 	- add nodeList `indexOf` function
+	- add `space-evenly` to flex properties list
+	- add `success`, `error`, `info` et `warning` css custom properties
 - Changes:
 	- disable theme empty theme creation on failed git fetching
 
