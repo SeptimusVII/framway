@@ -532,6 +532,13 @@ var Utils = function Utils(){
   utils.getStringAsElement = utils.getNodeFromString = utils.htmlToNode;
 
 
+  Object.defineProperty(NodeList.prototype, 'filter', {
+    value: function(selector){
+      return [].filter.call(this, function(element) {
+        return element.matches(selector);
+      });
+    }
+  });
   Object.defineProperty(NodeList.prototype, 'indexOf', {
     value: function(item){
       let nl = this;
