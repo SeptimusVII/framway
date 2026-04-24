@@ -119,7 +119,7 @@ Component.prototype.getData = function(label, placeholder = undefined){
 Component.prototype.getAttr = function(label, placeholder = undefined){
   let component = this;
   if(component.el.getAttribute(label) !== null && component.el.getAttribute(label) !== "")
-      return component.el.getAttribute(label);
+      return component.el.getAttribute(label) === 'true' ? true : component.el.getAttribute(label) === 'false' ? false : component.el.getAttribute(label);
     else
       return placeholder;
 }
