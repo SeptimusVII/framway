@@ -98,8 +98,6 @@ each(#alias(),{
 .ui-btn(@style:{}){
 	cursor: pointer;
 	opacity: 0.6;
-	background: blue;
-	color: .getBestReadableFontColorOn(blue)[@result];
 	&:hover{
 		opacity: 1; 
 		transition: opacity 0.5s;
@@ -143,8 +141,11 @@ each(#alias(),{
   font-style: normal;
 	&:before{
 		content:"⸱⸱⸱";
+		font-weight: 800;
 		display: flex;
 		aspect-ratio: 1;
+		line-height: 0;
+		align-items: center;
 	}
 	@style();
 }
