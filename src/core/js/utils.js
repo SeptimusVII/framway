@@ -607,6 +607,18 @@ var Utils = function Utils(){
   };
 
   
+  utils.monitorStick = function(el, stickyClass = "is-pinned", rootMargin = "-1px 0px 0px 0px"){
+    const observer = new IntersectionObserver( 
+      ([e]) => e.target.classList.toggle(stickyClass, e.intersectionRatio < 1),
+      {
+        // root: document.documentElement,
+        rootMargin: rootMargin,
+        threshold: [1]
+      }
+    );
+    observer.observe(el)
+  }
+
   // --> FORM VALIDATION
   
   /**
