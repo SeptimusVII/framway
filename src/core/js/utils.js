@@ -606,6 +606,23 @@ var Utils = function Utils(){
       : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
   };
 
+  /**
+   * [nextUntil description]
+   * @param  {HTMLElement} element
+   * @param  {String} selectors    
+   * @param  {String} filter       
+   * @return {Array} array of elements
+   */
+  utils.nextUntil = function(element, selectors, filter = "*") {
+    const siblings = [];
+    let next = element.nextElementSibling;
+    while (next && !next.matches(selectors)) {
+      if (next.matches(filter))
+        siblings.push(next);
+      next = next.nextElementSibling;
+    }
+    return siblings;
+  }
   
   utils.monitorStick = function(el, stickyClass = "is-pinned", rootMargin = "-1px 0px 0px 0px"){
     const observer = new IntersectionObserver( 
