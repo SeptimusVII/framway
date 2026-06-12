@@ -10,6 +10,7 @@
 	- add `success`, `error`, `info` et `warning` css custom properties
 - Changes:
 	- disable theme empty theme creation on failed git fetching
+	- update vars names in `grid-min-max-cols` mixin
 
 2.8.0 - 2026-01-09
 - Feat:
