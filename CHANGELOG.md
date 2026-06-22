@@ -3,11 +3,13 @@
 - Fixes:
 	- `utils.request` now accept 2XX status code as successful
 	- revert unwanted config modification
+	- fix `container` mixin margin
 - Feat:
 	- add `bg-inherit` class
 	- add nodeList `indexOf` function
 	- add `space-evenly` to flex properties list
 	- add `success`, `error`, `info` et `warning` css custom properties
+	- add `primary-font` and `theme-font` vars
 - Changes:
 	- disable theme empty theme creation on failed git fetching
 	- update vars names in `grid-min-max-cols` mixin
