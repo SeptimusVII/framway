@@ -20,13 +20,16 @@ body {background: body(background);color:body(font-color); line-height: body(lin
 
 :root{
 	--container-mw: 100%;
-	--primary:   #{$primary};
-	--secondary: #{$secondary};
-	--success:   #{$success};
-	--error:     #{$error};
-	--info:      #{$info};
-	--warning:   #{$warning};
+	--primary:      #{$primary};
+	--primary-font: #{$primary-font};
+	--secondary:    #{$secondary};
+	--success:      #{$success};
+	--error:        #{$error};
+	--info:         #{$info};
+	--warning:      #{$warning};
+
 	--theme: var(--primary);
+	--theme-font: var(--primary-font);
 }
 
 @mixin container(){

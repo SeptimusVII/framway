@@ -18,6 +18,7 @@ module.exports = {
 	},
 	
 	'primary': 'colors(blue)',
+	'primary-font': '#fff',
 	'secondary': 'adjust-color(primary,$hue: 180deg)',
 
 	'success': 'colors(green)',
