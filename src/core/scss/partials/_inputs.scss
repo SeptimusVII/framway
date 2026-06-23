@@ -206,7 +206,7 @@ input.radio,input[type="radio"]{@extend %radio;}
 
 label{margin-bottom: 0.2rem;}
 
-.form-group{position: relative; margin-bottom: 1em;
+.form-group{position: relative; margin-bottom: 1em; align-self: start;
   @include media-max(xs){margin-bottom: 0.5em;}
   %input, %checkbox+label, %radio+label{
     margin-bottom: 0;
@@ -221,6 +221,30 @@ label{margin-bottom: 0.2rem;}
   .helper{opacity: 0.6; margin: 0.2rem 0 0; font-size: 0.8em; display: block;}
   &:last-child>*:last-child{margin-bottom: 0;}
   .filler{display: block;}
+
+  .input-icon{
+    position: absolute;
+    top: 0;
+    right: 0.75em;
+    bottom: 0;
+    align-content: center;
+    color: input(border-color);
+    pointer-events: none;
+  }
+  @if function-exists(input-invalid) {
+    &.invalid,&:has(.invalid),&:has(:invalid){
+      .input-icon{
+        color:input-invalid(border-color);
+      }
+    }
+  }
+  @if function-exists(input-valid) {
+    &.valid,&:has(.valid),&:has(:valid){
+      .input-icon{
+        color:input-valid(border-color);
+      }
+    }
+  }
 }
 .form-group-inline{@extend .form-group;
   %checkbox+label, %radio+label{ display: inline-block; }
