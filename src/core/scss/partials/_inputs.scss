@@ -50,12 +50,12 @@
 
   &.valid{
     @if function-exists(input-valid) {
-      @extend [required]:valid;
+      @extend [required],:valid;
     }
   }
   &.invalid{
     @if function-exists(input-invalid) {
-      @extend [required]:invalid;
+      @extend [required],:invalid;
     }
   }
 
@@ -84,12 +84,12 @@ input.url, input[type="url"],
 input.email, input[type="email"]{
   &:focus:valid{
     @if function-exists(input-valid) {
-      @extend %input[required]:valid;
+      @extend %input,[required],:valid;
     }
   }
   &:invalid{
     @if function-exists(input-invalid) {
-      @extend %input[required]:invalid;
+      @extend %input,[required],:invalid;
     }
   }
 }
