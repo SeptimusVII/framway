@@ -236,12 +236,22 @@ label{margin-bottom: 0.2rem;}
       .input-icon{
         color:input-invalid(border-color);
       }
+      %radio,%checkbox{
+        &+label:before,&+label:after{
+          color:input-invalid(border-color) 
+        }
+      }
     }
   }
   @if function-exists(input-valid) {
     &.valid,&:has(.valid),&:has(:valid){
       .input-icon{
         color:input-valid(border-color);
+      }
+      %radio,%checkbox{
+        &+label:before,&+label:after{
+          color:input-valid(border-color) 
+        }
       }
     }
   }
