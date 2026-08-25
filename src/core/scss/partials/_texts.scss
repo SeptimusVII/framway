@@ -39,6 +39,21 @@ p.no-txt-limit{max-width: none; }
 }
 .txt-balance-reset{text-wrap: initial;}
 
+.lead{
+  @extend .txt-limit;
+  width: fit-content;
+  font-size: 1.5em;
+  font-weight: 300;
+  // margin-inline: auto;
+}
+
+.prose{
+  > * + *{
+    margin-block-start: var(--prose-flow,1em);
+  }
+}
+
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // TITLES
 h1, h2, h3, h4, h5, h6,

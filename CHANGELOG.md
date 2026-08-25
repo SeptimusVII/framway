@@ -5,6 +5,8 @@
 	- add `grid-minmax` class system
 	- add `convertCssClassesToCustomProperties` function
 	- add `%shdw` scss placeholder, add `shdw` and `txt-shdw` css classes extending it
+	- add `lead`, `prose` texts classes 
+	- add `stack` and `pile` utility classes
 - Changes:
 	- remove old `shdw` css class
 

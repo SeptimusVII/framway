@@ -70,6 +70,20 @@ p{@extend .pbreak;}
 
 .pos-relative{position: relative;}
 
+.stack{
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap,1rem);
+  place-items: start start;
+}
+
+.pile{
+  display: grid;
+  grid-template-areas: "pile";
+  place-items: center;
+  >*{grid-area: pile;}
+}
+
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 // WIDTH
 @mixin w-full(){
