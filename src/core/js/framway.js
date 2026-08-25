@@ -155,8 +155,10 @@ Framway.prototype.clearLogs = function(){
  */
 Framway.prototype.convertCssClassesToCustomProperties = function(){
   document.querySelectorAll('[class*=cssvar--]').forEach((el)=>{
-    let prop = el.classList.value.match(/cssvar\S+/gm)[0].replace('cssvar--','').split('--');
-    el.style.setProperty('--'+prop[0], prop[1]);
+    for(var m of el.classList.value.match(/cssvar\S+/gm)){
+      let prop = m.replace('cssvar--','').split('--');
+      el.style.setProperty('--'+prop[0], prop[1]);
+    }
   })
 }
 
