@@ -33,12 +33,42 @@ $griditem-maxwidth: 1fr !default;
   --cols-max: #{$cols-max};
   --cols-min-width: #{$cols-min-width};
   --cols-gap: #{$cols-gap};
-  --row-gap: #{$row-gap};
+  --rows-gap: #{$row-gap};
   
   display: grid;
   grid-template-columns: Repeat(auto-fill, Minmax(Min(calc(100%/var(--cols-min) - var(--cols-gap)*(var(--cols-min) - 1)/var(--cols-min)), Max(var(--cols-min-width), calc(100%/var(--cols-max) - var(--cols-gap)*(var(--cols-max) - 1)/var(--cols-max)))), 1fr));
-  gap: var(--row-gap) var(--cols-gap);
+  gap: var(--rows-gap) var(--cols-gap);
 }
+
+.grid-minmax{
+  --cols-min: 1;
+  --cols-max: 1;
+  --cols-min-width: var(--griditem-minwidth);
+  --cols-gap: 1em;
+  --rows-gap: var(--cols-gap);
+  display: grid;
+  grid-template-columns: Repeat(auto-fill, Minmax(Min(calc(100%/var(--cols-min) - var(--cols-gap)*(var(--cols-min) - 1)/var(--cols-min)), Max(var(--cols-min-width), calc(100%/var(--cols-max) - var(--cols-gap)*(var(--cols-max) - 1)/var(--cols-max)))), 1fr));
+  gap: var(--rows-gap) var(--cols-gap);
+
+  &:not([class*=m-bottom]){margin-bottom: 0;}
+  @include lastChildNoMargin();
+
+  @for $index from 1 through 12{
+    &.cols-min-#{$index}{--cols-min: #{$index};}
+    &.cols-max-#{$index}{--cols-max: #{$index};}
+  }
+
+  @for $index from 0 through 6{
+    &.cols-gap-#{$index}     {--cols-gap: #{$spacing*$index};}
+    &.cols-gap-#{$index}-em  {--cols-gap: #{1em*$index};}
+    &.cols-gap-#{$index}-rem {--cols-gap: #{1rem*$index};}
+
+    &.rows-gap-#{$index}     {--rows-gap: #{$spacing*$index};}
+    &.rows-gap-#{$index}-em  {--rows-gap: #{1em*$index};}
+    &.rows-gap-#{$index}-rem {--rows-gap: #{1rem*$index};}
+  }
+}
+
 
 .d-grid{
   @include grid();

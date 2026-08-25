@@ -1,4 +1,10 @@
 # Framway
+2.9.0
+- Fixes:
+- Feat:
+	- add `grid-minmax` class system
+- Changes:
+
 2.8.1 - 2026-08-25
 - Fixes:
 	- `utils.request` now accept 2XX status code as successful
@@ -9,7 +15,7 @@
 	- add `bg-inherit` class
 	- add nodeList `indexOf` function
 	- add `space-evenly` to flex properties list
-	- add `success`, `error`, `info` et `warning` css custom properties
+	- add `success`, `error`, `info` and `warning` css custom properties
 	- add `primary-font` and `theme-font` vars
 	- add style for `input-icon` element (in form-group)
 	- add styles for valid/invalid checkbox and radios
