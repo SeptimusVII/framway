@@ -1,6 +1,5 @@
 # Framway
-2.9.0
-- Fixes:
+2.9.0 - 2026-08-25
 - Feat:
 	- add `grid-minmax` class system
 	- add `convertCssClassesToCustomProperties` function
