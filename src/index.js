@@ -1,4 +1,5 @@
 global.app = require('./core/js/framway.js');
+app.convertCssClassesToCustomProperties();
 app.lang 	??= document.querySelector('html').getAttribute('lang') || navigator.language.split('-')[0];
 app.labels 	??= {
 	errors: {

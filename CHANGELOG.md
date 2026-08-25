@@ -3,6 +3,7 @@
 - Fixes:
 - Feat:
 	- add `grid-minmax` class system
+	- add `convertCssClassesToCustomProperties` function
 - Changes:
 
 2.8.1 - 2026-08-25

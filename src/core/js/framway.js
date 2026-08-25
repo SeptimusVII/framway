@@ -150,6 +150,17 @@ Framway.prototype.clearLogs = function(){
 };
 
 /**
+ * convert specific css classes on dom elements to related custom properties 
+ * css class pattern: cssvar--[propertyName]--[propertyValue]
+ */
+Framway.prototype.convertCssClassesToCustomProperties = function(){
+  document.querySelectorAll('[class*=cssvar--]').forEach((el)=>{
+    let prop = el.classList.value.match(/cssvar\S+/gm)[0].replace('cssvar--','').split('--');
+    el.style.setProperty('--'+prop[0], prop[1]);
+  })
+}
+
+/**
  * adjust position of overlapping tooltips
  */
 Framway.prototype.adjustTooltips = function(){
