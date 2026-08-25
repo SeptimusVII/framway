@@ -101,4 +101,5 @@
 
   .bg-none{background: transparent;}
   .bg-inherit{background: inherit;}
+  .bg-theme{background: var(--theme); color: var(--theme-font);}
 }

@@ -7,6 +7,7 @@
 	- add `%shdw` scss placeholder, add `shdw` and `txt-shdw` css classes extending it
 	- add `lead`, `prose` texts classes 
 	- add `stack` and `pile` utility classes
+	- add `backgrounds`, `fonts` and `buttons` support for `theme` vars
 - Changes:
 	- remove old `shdw` css class
 

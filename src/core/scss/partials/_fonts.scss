@@ -25,6 +25,7 @@
 .ft-asc{font-variant: all-small-caps;}
 
 .ft-inherit{color: inherit;}
+.ft-theme{color: var(--theme);}
 
 @for $index from 0 through 10 {
   // @if $index != 0 {
