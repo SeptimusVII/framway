@@ -4,7 +4,9 @@
 - Feat:
 	- add `grid-minmax` class system
 	- add `convertCssClassesToCustomProperties` function
+	- add `%shdw` scss placeholder, add `shdw` and `txt-shdw` css classes extending it
 - Changes:
+	- remove old `shdw` css class
 
 2.8.1 - 2026-08-25
 - Fixes:

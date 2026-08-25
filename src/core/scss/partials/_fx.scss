@@ -39,7 +39,43 @@
   }
 }
 .paper{@include paper();}
-.shdw{box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.5);}
+
+// SHADOWS
+:root{
+  --shdw-elevation : 0.25;
+  --shdw-offx      : 8px;
+  --shdw-ratio-y   : 2;
+  --shdw-ratio-blur: 2;
+  --shdw-offy      : calc(var(--shdw-offx) * var(--shdw-ratio-y));
+  --shdw-blur      : calc(var(--shdw-offx) * var(--shdw-ratio-blur));
+
+  --shdw-hsl-h     : #{hue($primary)};
+  --shdw-hsl-s     : #{saturation($primary)};
+  --shdw-hsl-l     : #{lightness($primary)};
+  --shdw-hsl-a     : calc( 0.5 - (0.25 * var(--shdw-elevation)));
+}
+%shdw{ 
+  box-shadow: none;
+  --shdw  : 
+    calc(var(--shdw-offx) * var(--shdw-elevation)) 
+    calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-y)) 
+    calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-blur)) 
+    hsl(
+      var(--shdw-hsl-h) 
+      var(--shdw-hsl-s) 
+      var(--shdw-hsl-l) / calc( 0.5 - (0.25 * var(--shdw-elevation)))
+    );
+  filter: drop-shadow(var(--shdw));
+}
+.shdw{
+  @extend %shdw;
+}
+.txt-shdw{
+  @extend %shdw;
+  filter: none;
+  text-shadow: var(--shdw);
+}
+
 
 %ripple {
   position: relative; overflow: hidden;
