@@ -1,17 +1,20 @@
 # Framway
-2.8.1
+2.8.1 - 2026-08-25
 - Fixes:
 	- `utils.request` now accept 2XX status code as successful
 	- revert unwanted config modification
 	- fix `container` mixin margin
+	- fix `@extend` on `valid` and `invalid` styles
 - Feat:
 	- add `bg-inherit` class
 	- add nodeList `indexOf` function
 	- add `space-evenly` to flex properties list
 	- add `success`, `error`, `info` et `warning` css custom properties
 	- add `primary-font` and `theme-font` vars
+	- add style for `input-icon` element (in form-group)
+	- add styles for valid/invalid checkbox and radios
 - Changes:
-	- disable theme empty theme creation on failed git fetching
+	- disable empty theme creation on failed git fetching
 	- update vars names in `grid-min-max-cols` mixin
 
 2.8.0 - 2026-01-09
