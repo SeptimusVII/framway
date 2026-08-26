@@ -117,9 +117,13 @@
 	&:hover:before{opacity: 1;}
 }
 
-// ALIASES BLOCK
+// ALIAS CLASSES
 each(#alias(),{
 	.@{key}{
+		--theme: var(escape('--@{key}'));
+	}
+	// ALIAS BLOCKS
+	.block-@{key}{
 		& when (contrast(@value) = #fff){
 			color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
 			background: color-mix(in oklab, var(escape('--@{key}')) 40%, #fff);
