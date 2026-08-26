@@ -27,6 +27,45 @@
   &:after{content:"\00a0»";}
 }
 
+// SHADOWS
+:root{
+  --shdw-elevation : 0.25;
+  --shdw-offx      : 8px;
+  --shdw-ratio-y   : 2;
+  --shdw-ratio-blur: 2;
+  --shdw-offy      : calc(var(--shdw-offx) * var(--shdw-ratio-y));
+  --shdw-blur      : calc(var(--shdw-offx) * var(--shdw-ratio-blur));
+
+  --shdw-hsl-h     : hue(@primary);
+  --shdw-hsl-s     : saturation(@primary);
+  --shdw-hsl-l     : lightness(@primary);
+  --shdw-hsl-a     : calc( 0.5 - (0.25 * var(--shdw-elevation)));
+}
+.shdw{ 
+  box-shadow: none;
+  --shdw  : 
+    calc(var(--shdw-offx) * var(--shdw-elevation)) 
+    calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-y)) 
+    calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-blur)) 
+    hsl(
+      var(--shdw-hsl-h) 
+      var(--shdw-hsl-s) 
+      var(--shdw-hsl-l) / calc( 0.5 - (0.25 * var(--shdw-elevation)))
+    );
+  filter: drop-shadow(var(--shdw));
+}
+.txt-shdw{
+  .shdw();
+  filter: none;
+  text-shadow: var(--shdw);
+}
+.box-shdw{
+	.shdw();
+	filter: none;
+	box-shadow: var(--shdw);
+}
+
+// TOOLTIPS
 [tooltip]:not([tooltip='']){ position: relative;
 	&:before{
 		.paper(false);
