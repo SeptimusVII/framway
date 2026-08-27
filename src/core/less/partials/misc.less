@@ -148,9 +148,10 @@ each(#alias(),{
 	@style();
 }
 .ui-close(@style:{}){
+	--ui-btn-size: 20px;
 	position: relative;
 	flex-shrink: 0;
-	width: 20px;
+	width: var(--ui-btn-size);
 	aspect-ratio: 1;
 	display: inline-block;
 	vertical-align: middle;
@@ -172,8 +173,9 @@ each(#alias(),{
 .close{.ui-close();}
 
 .ui-more(@style:{}){
+	--ui-btn-size: 20px;
 	aspect-ratio: 1;
-  width: 20px;
+  width: var(--ui-btn-size);
   display: flex;
   position: relative;
   margin: auto;
@@ -203,9 +205,8 @@ dialog{
 		.ui-btn();
 		.ui-close({
 			position: absolute;
-			top: 0;
-			right: 0;
-			width: var(--modal-spacing, 2em);
+			top: calc((var(--modal-spacing,2em) / 2) - (var(--ui-btn-size) / 2) );
+			right: calc((var(--modal-spacing,2em) / 2) - (var(--ui-btn-size) / 2) );
 		})
 	}
 	&::backdrop {
