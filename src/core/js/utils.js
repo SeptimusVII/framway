@@ -613,12 +613,10 @@ var Utils = function Utils(){
    * @param  {String} filter       
    * @return {Array} array of elements
    */
-  utils.nextUntil = function(element, selectors, filter = "*", stop = ".stop" ) {
+  utils.nextUntil = function(element, selectors, filter = "*") {
     const siblings = [];
     let next = element.nextElementSibling;
-    while (next && next.matches(selectors)) {
-      if (next.matches(stop))
-        break;
+    while (next && !next.matches(selectors)) {
       if (next.matches(filter))
         siblings.push(next);
       next = next.nextElementSibling;
