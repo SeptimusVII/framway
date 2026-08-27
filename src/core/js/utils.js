@@ -553,6 +553,17 @@ var Utils = function Utils(){
       this.dispatchEvent(new Event(eventName));
     }
   });
+  Object.defineProperty(Node.prototype, 'wrapInner', {
+    value: function(wrapper){
+      if (typeof wrapper === "string") {
+        wrapper = utils.htmlToNode(wrapper);
+      }
+      let div = this.appendChild(wrapper);
+      while (this.firstChild !== wrapper) {
+        wrapper.appendChild(this.firstChild);
+      }
+    }
+  });
 
   /**
    * adjust position of OOB tooltips
