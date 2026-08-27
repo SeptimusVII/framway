@@ -9,7 +9,7 @@ class Component{
 			component.el = this.constructor.tpl ? this.getTemplate() : utils.htmlToNode('<div class="'+name+'"></div>');
 			if (typeof el == 'object') {
 				for(var attr in el){
-					obj[attr] = el[attr];
+					component[attr] = el[attr];
 				}
 			}
 		}
