@@ -104,6 +104,35 @@ each(#breakpoint(),.(@v,@k){
 	});
 })
 
+.grid-minmax{
+  --cols-min: 1;
+  --cols-max: 1;
+  --cols-min-width: var(--griditem-minwidth);
+  --cols-gap: 1em;
+  --rows-gap: var(--cols-gap);
+  display: grid;
+  grid-template-columns: Repeat(auto-fill, Minmax(Min(calc(100%/var(--cols-min) - var(--cols-gap)*(var(--cols-min) - 1)/var(--cols-min)), Max(var(--cols-min-width), calc(100%/var(--cols-max) - var(--cols-gap)*(var(--cols-max) - 1)/var(--cols-max)))), 1fr));
+  gap: var(--rows-gap) var(--cols-gap);
+
+  &:not([class*=m-bottom]){margin-bottom: 0;}
+  .lcnm();
+
+	each(range(1,12){
+    &.cols-min-@{value}{--cols-min: @value;}
+    &.cols-max-@{value}{--cols-max: @value;}
+  })
+
+	each(range(0,6){
+    &.cols-gap-@{value}     {--cols-gap: @spacing*@value;}
+    &.cols-gap-@{value}-em  {--cols-gap: 1em*@value;}
+    &.cols-gap-@{value}-rem {--cols-gap: 1rem*@value;}
+
+    &.rows-gap-@{value}     {--rows-gap: @spacing*@value;}
+    &.rows-gap-@{value}-em  {--rows-gap: 1em*@value;}
+    &.rows-gap-@{value}-rem {--rows-gap: 1rem*@value;}
+  })
+}
+
 
 // LEGACY
 .d-grid{
@@ -124,3 +153,4 @@ each(#breakpoint(),.(@v,@k){
 	grid-template-columns: Repeat(auto-fill, Minmax(Min(calc(100%/var(--min-cols) - var(--grid-column-gap)*(var(--min-cols) - 1)/var(--min-cols)), Max(var(--cols-min-width), calc(100%/var(--max-cols) - var(--grid-column-gap)*(var(--max-cols) - 1)/var(--max-cols)))), 1fr));
 	gap: var(--grid-row-gap) var(--grid-column-gap);
 }
+
