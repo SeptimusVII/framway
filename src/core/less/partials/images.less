@@ -5,8 +5,8 @@
 
 img{ max-width: 100%; height: auto; }
 
-.img-container{.imgContainer(@bg: green);}
-img[class*=r_]{.imgContainer(@bg: red);}
+.img-container{.imgContainer();}
+img[class*=r_]{.imgContainer();}
 .imgContainer(@fit:false,@bg:false,@pos:false,@ratio:false){
 	& when not(@fit = false){--img-fit: @fit; }
 	& when not(@bg = false){--img-bg: @bg; }
