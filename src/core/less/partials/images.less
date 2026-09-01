@@ -1,18 +1,26 @@
-@ratios :{
-	16-9: 16 / 9;
-	2-1 : 2 / 1;
-	1-1 : 1;
-	1-2 : 1 / 2;
-	4-3 : 4 / 3;
-	3-4 : 3 / 4;
+:root{
+	--img-fit: scale-down;
+	--img-bg: #default[block-background];
 }
 
 img{ max-width: 100%; height: auto; }
 
-.img-container(@fit: scale-down, @bg: #default[block-background]){
+.img-container{.imgContainer(@bg: green);}
+img[class*=r_]{.imgContainer(@bg: red);}
+.imgContainer(@fit:false,@bg:false,@pos:false,@ratio:false){
+	& when not(@fit = false){--img-fit: @fit; }
+	& when not(@bg = false){--img-bg: @bg; }
+	& when not(@pos = false){--img-pos: @pos; }
+	& when not(@ratio = false){--img-ratio: @ratio; }
   	display: block;position: relative;overflow: hidden; max-width: 100%; padding: 0;
-  	&:not([class*="bg-"]){background: @bg;}
- 	img{height: 100%;width: 100%;object-fit: @fit;}
+  	background: var(--img-bg);
+ 	img{
+ 		height: 100%;
+ 		width: 100%;
+ 		object-fit: var(--img-fit);
+ 		object-position: var(--img-pos,initial);
+ 		aspect-ratio: var(--img-ratio,auto);
+ 	}
  	iframe{height: 100%; width: 100%; margin: 0;}
  	>figure:has(img){display: contents;}
   	
@@ -21,72 +29,48 @@ img{ max-width: 100%; height: auto; }
   	  	&:is(img),
   	  	img{border-radius: 50%; aspect-ratio: 1/1;}
   	}
-
-  	each(@ratios, {
-  	  &.r_@{key},
-  	  .r_@{key} &:where(:not([class*=r_])){
-  	    aspect-ratio: @value; 
-  	  }
-  	})
-  	&:where(img){object-fit: @fit;
-  	  &:not([class*="w-"]){width: fit-content;}
+  	&:where(img){
+ 		object-fit: var(--img-fit);
+ 		object-position: var(--img-pos,initial);
+ 		aspect-ratio: var(--img-ratio,auto);
+  	  	&:not([class*="w-"]){width: fit-content;}
   	}
-
-	.fit--cover &     {&:where(img), img{object-fit: cover;}}
-	.fit--contain &   {&:where(img), img{object-fit: contain;}}
-	.fit--unset &     {&:where(img), img{object-fit: unset;}}
-	.fit--none &      {&:where(img), img{object-fit: none;}}
-	.fit--scaledown & {&:where(img), img{object-fit: scale-down;}}
-	.fit--natural &   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
-
-
-	&.fit--cover     {&:where(img), img{object-fit: cover;}}
-	&.fit--contain   {&:where(img), img{object-fit: contain;}}
-	&.fit--unset     {&:where(img), img{object-fit: unset;}}
-	&.fit--none      {&:where(img), img{object-fit: none;}}
-	&.fit--scaledown {&:where(img), img{object-fit: scale-down;}}
-	&.fit--natural   {&:where(img), img{object-fit: unset; width: auto; height: auto;}}
-
-
-	each(@sides,.(@side_1){ 
-		& when (@side_1 = left) or (@side_1 = right){
-	  		// class on parent
-	  		.img--@{side_1} &:not([class*="img--"]) {
-	  		  	&:where(img), img{object-position:@side_1;}
-	  		}
-			each(@sides,.(@side_2){ 
-				& when (@side_2 = top) or (@side_2 = bottom){
-	  				.img--@{side_2} &:not([class*="img--"]) {
-	  		  			&:where(img), img{object-position:@side_2;}
-	  				}
-					.img--@{side_1}.img--@{side_2} &:not([class*="img--"]) {
-						&:where(img), img{object-position:@side_1 @side_2;}
-					}
-				} 
-			})
-	      	// class on element
-	  		&.img--@{side_1} {
-	  		  	&:where(img), img{object-position:@side_1;}
-	  		}
-			each(@sides,.(@side_2){ 
-				& when (@side_2 = top) or (@side_2 = bottom){
-	  				&.img--@{side_2} {
-	  		  			&:where(img), img{object-position:@side_2;}
-	  				}
-					&.img--@{side_1}.img--@{side_2} {
-						&:where(img), img{object-position:@side_1 @side_2;}
-					}
-				} 
-			})
-		} 
-	})
 }
 
-.img-container{.img-container(@bg:green);}
-img[class*=r_]{.img-container(@bg:red);}
+each(@sides,.(@side_1){
+	& when (@side_1 = left) or (@side_1 = right){
+		.img-pos--@{side_1}{
+			--img-pos: @side_1;
+		}
+		each(@sides,.(@side_2){
+			& when (@side_2 = top) or (@side_2 = bottom){
+				.img-pos--@{side_2}{
+					--img-pos: @side_2;
+				}
+				.img-pos--@{side_2} .img-pos--@{side_1},
+				.img-pos--@{side_1} .img-pos--@{side_2},
+				.img-pos--@{side_1}.img-pos--@{side_2}{
+					--img-pos: @side_1 @side_2;
+				}
+			}
+		})
+	}
+})
+
+.img-fit--cover,     .fit--cover     {--img-fit:cover;}
+.img-fit--contain,   .fit--contain   {--img-fit:contain;}
+.img-fit--unset,     .fit--unset     {--img-fit:unset;}
+.img-fit--none,      .fit--none      {--img-fit:none;}
+.img-fit--scaledown, .fit--scaledown {--img-fit:scale-down;}
+.img-fit--natural,   .fit--natural   {--img-fit:unset;width: auto; height: auto;}
+
 
 each(@ratios, {
-	.aspect_@{key}{aspect-ratio: @value;}
+	.img-r--@{key},
+	.r_@{key} {
+		--img-ratio: @value; 
+	}
+	.ar_@{key}{aspect-ratio: @value;}
 })
 
 /* IMAGES STYLING */
