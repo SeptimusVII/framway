@@ -72,3 +72,21 @@ p{.pbreak();}
 	background: var(--btn-background); 
 	color: var(--btn-color); 
 }
+
+.txt-limit(){
+	max-width: #body[line-height]*60ch; 
+}
+
+.lead{
+  .txt-limit();
+  font-size: 1.5em;
+  font-weight: 300;
+  width: fit-content;
+  // margin-inline: auto;
+}
+
+.prose{
+  > * + *{
+    margin-block-start: var(--prose-flow,1em);
+  }
+}
