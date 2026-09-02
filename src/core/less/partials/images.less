@@ -8,9 +8,9 @@ img{ max-width: 100%; height: auto; }
 .img-container{.imgContainer();}
 img[class*=r_]{.imgContainer();}
 .imgContainer(@fit:false,@bg:false,@pos:false,@ratio:false){
-	& when not(@fit = false){--img-fit: @fit; }
-	& when not(@bg = false){--img-bg: @bg; }
-	& when not(@pos = false){--img-pos: @pos; }
+	& when not(@fit = false)  {--img-fit:   @fit; }
+	& when not(@bg = false)   {--img-bg:    @bg; }
+	& when not(@pos = false)  {--img-pos:   @pos; }
 	& when not(@ratio = false){--img-ratio: @ratio; }
   	display: block;position: relative;overflow: hidden; max-width: 100%; padding: 0;
   	background: var(--img-bg);

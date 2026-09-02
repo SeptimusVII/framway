@@ -132,7 +132,7 @@ each(#alias(),{
 			color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
 			background: color-mix(in oklab, var(escape('--@{key}')) 60%, #fff);
 		}
-		&:not([class*=p-]){padding: var(--spacing);}
+		padding: var(--block-spacing,var(--spacing));
 		// .debug(luma(@value))
 	}
 })
