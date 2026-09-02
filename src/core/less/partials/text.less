@@ -8,11 +8,13 @@ a{
 	color: var(--link-color);
 	text-decoration: if(#link[@underline], underline, none);
 	&:hover{
-		--link-color: #link[@color-hover];
+		// --link-color: #link[@color-hover];
+		color: var(--link-color-hover,var(--link-color));
 		text-decoration: if(#link[@underline-hover], underline, none);
 	}
 	&:focus{
-		--link-color: #link[@color-focus];
+		// --link-color: #link[@color-focus];
+		color: var(--link-color-focus,var(--link-color-hover,var(--link-color)));
 		text-decoration: if(#link[@underline-focus], underline, none);
 	}
 	&.disabled,

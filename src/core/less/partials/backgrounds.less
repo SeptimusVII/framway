@@ -1,23 +1,15 @@
 .bg(@color){
     @color-var: if(iscolor(@color), @color, var(escape('--@{color}')));
     @color-raw: if(iscolor(@color),@color,@@color);
-    background-color: hsla(from @color-var var(--bg-h, h) var(--bg-s, s) var(--bg-l, l) / var(--bg-a, 1)) ;
-    color: .getBestReadableFontColorOn(@color-raw)[@result];
-    // color: .adjustContrast(#body[color],@color-raw)[@result];
-    // .debug(.adjustContrast(#body[color],@color-raw)[@debug]); 
-    padding: var(--spacing);
-    a{
-        // --link-color: mix(#link[color], .getBestReadableFontColorOn(@color-raw)[@result],60%);
-        // .debug(luma(@color-raw) luma(#link[color]));
-        --link-color: .adjustContrast(#link[color],@color-raw)[@result];
-        &:hover{
-            // --link-color: mix(#link[@color-hover], .getBestReadableFontColorOn(@color-raw)[@result],60%);
-            --link-color: .adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@result];
-            // .debug(.adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@debug]);
-        }
-    }
+    
+    --block-background: hsla(from @color-var var(--bg-h, h) var(--bg-s, s) var(--bg-l, l) / var(--bg-a, 1)) ;
+    --block-color: .getBestReadableFontColorOn(@color-raw)[@result];
+    --link-color: .adjustContrast(#link[color],@color-raw)[@result];
+    --link-color-hover: .adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@result];
+    color: var(--block-color);
+    background: var(--block-background);
+    padding: var(--block-spacing,var(--spacing));
 }
-
 
 each(#colors(),{
     .bg-@{key}{
@@ -28,10 +20,30 @@ each(#alias(),{
     .bg-@{key}{
         .bg(@key);
     }
+    // ALIAS BLOCKS
+    .block-@{key}{
+        & when (contrast(@value) = #fff){
+            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
+            --block-background: color-mix(in oklab, var(escape('--@{key}')) 40%, #fff);
+        }
+        & when (contrast(@value) = #000){
+            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
+            --block-background: color-mix(in oklab, var(escape('--@{key}')) 60%, #fff);
+        }
+        color: var(--block-color);
+        background: var(--block-background);
+        padding: var(--block-spacing,var(--spacing));
+        // .debug(luma(@value))
+    }
 })
 .bg-none{
-    background: transparent;
-    color: inherit;
+    --block-background: transparent;
+    --block-color: inherit;
+}
+.bg-theme{
+    .bg(transparent);
+    --block-background: var(--theme);
+    --block-color:      var(--theme-font);
 }
 
 each(range(0,100,10),{

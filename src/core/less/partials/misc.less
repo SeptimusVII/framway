@@ -121,19 +121,9 @@
 each(#alias(),{
 	.@{key}{
 		--theme: var(escape('--@{key}'));
-	}
-	// ALIAS BLOCKS
-	.block-@{key}{
-		& when (contrast(@value) = #fff){
-			color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
-			background: color-mix(in oklab, var(escape('--@{key}')) 40%, #fff);
-		}
-		& when (contrast(@value) = #000){
-			color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
-			background: color-mix(in oklab, var(escape('--@{key}')) 60%, #fff);
-		}
-		padding: var(--block-spacing,var(--spacing));
-		// .debug(luma(@value))
+		--theme-font: .getBestReadableFontColorOn(@value)[@result];
+		--link-color: .adjustContrast(#link[color],@value)[@result];
+	  --link-color-hover: .adjustContrast(#link[@color-hover],@value,@threshold:2)[@result];
 	}
 })
 
