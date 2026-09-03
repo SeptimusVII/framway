@@ -1,3 +1,4 @@
+// TODO: proper configuration
 :root{
 	--img-fit: scale-down;
 	--img-bg: #default[block-background];
@@ -12,7 +13,11 @@ img[class*=r_]{.imgContainer();}
 	& when not(@bg = false)   {--img-bg:    @bg; }
 	& when not(@pos = false)  {--img-pos:   @pos; }
 	& when not(@ratio = false){--img-ratio: @ratio; }
-  	display: block;position: relative;overflow: hidden; max-width: 100%; padding: 0;
+  	display: block;	
+	position: relative;	
+	overflow: hidden;	
+	max-width: 100%;	
+	padding: 0;
   	background: var(--img-bg);
  	img{
  		height: 100%;
@@ -34,6 +39,11 @@ img[class*=r_]{.imgContainer();}
  		object-position: var(--img-pos,initial);
  		aspect-ratio: var(--img-ratio,auto);
   	  	&:not([class*="w-"]){width: fit-content;}
+  	}
+  	&.fit--natural, 
+  	.fit--natural &{
+  		width: fit-content;
+  		height: fit-content;
   	}
 }
 
@@ -57,12 +67,31 @@ each(@sides,.(@side_1){
 	}
 })
 
-.img-fit--cover,     .fit--cover     {--img-fit:cover;}
-.img-fit--contain,   .fit--contain   {--img-fit:contain;}
-.img-fit--unset,     .fit--unset     {--img-fit:unset;}
-.img-fit--none,      .fit--none      {--img-fit:none;}
-.img-fit--scaledown, .fit--scaledown {--img-fit:scale-down;}
-.img-fit--natural,   .fit--natural   {--img-fit:unset;width: auto; height: auto;}
+.img-fit--cover,
+.fit--cover {
+	--img-fit:cover;
+}
+.img-fit--contain,
+.fit--contain {
+	--img-fit:contain;
+}
+.img-fit--unset,
+.fit--unset {
+	--img-fit:unset;
+}
+.img-fit--none,
+.fit--none {
+	--img-fit:none;
+}
+.img-fit--scaledown,
+.fit--scaledown {
+	--img-fit:scale-down;
+}
+.img-fit--natural,
+.fit--natural {
+	--img-fit:none;
+	&:is(img),img{width: auto; height: auto;}
+}
 
 
 each(@ratios, {
