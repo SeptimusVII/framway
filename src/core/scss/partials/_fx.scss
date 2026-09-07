@@ -49,6 +49,11 @@
   --shdw-offy      : calc(var(--shdw-offx) * var(--shdw-ratio-y));
   --shdw-blur      : calc(var(--shdw-offx) * var(--shdw-ratio-blur));
 
+  --shdw-color     : hsl(
+      var(--shdw-hsl-h) 
+      var(--shdw-hsl-s) 
+      var(--shdw-hsl-l) / calc( 0.5 - (0.25 * var(--shdw-elevation)))
+    );
   --shdw-hsl-h     : #{hue($primary)};
   --shdw-hsl-s     : #{saturation($primary)};
   --shdw-hsl-l     : #{lightness($primary)};
@@ -60,11 +65,7 @@
     calc(var(--shdw-offx) * var(--shdw-elevation)) 
     calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-y)) 
     calc(var(--shdw-offx) * var(--shdw-elevation) * var(--shdw-ratio-blur)) 
-    hsl(
-      var(--shdw-hsl-h) 
-      var(--shdw-hsl-s) 
-      var(--shdw-hsl-l) / calc( 0.5 - (0.25 * var(--shdw-elevation)))
-    );
+    var(--shdw-color);
   filter: drop-shadow(var(--shdw));
 }
 .shdw{
@@ -74,6 +75,11 @@
   @extend %shdw;
   filter: none;
   text-shadow: var(--shdw);
+}
+.box-shdw{
+  @extend %shdw;
+  filter: none;
+  box-shadow: var(--shdw);
 }
 
 
