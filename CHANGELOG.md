@@ -1,4 +1,9 @@
 # Framway
+2.9.1
+- Changes:
+	- changes overflows of html and body from hidden to clip
+	- update `shdw` color var
+	
 2.9.0 - 2026-08-25
 - Feat:
 	- add `grid-minmax` class system
