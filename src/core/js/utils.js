@@ -483,9 +483,11 @@ var Utils = function Utils(){
    * @return {int}
    */
   utils.getViewportHeight = function(){
-    var height = viewport.height - ($('.headerFW').outerHeight() || 0);
-    if($('.topbar').length && !$('.topbar').closest('.headerFW'))
-     height -= ($('.topbar').outerHeight() || 0);
+    var height = viewport.height;
+    if(document.querySelector('.header') && document.querySelector('.header').component !== undefined)
+        height -= (document.querySelector('.header').clientHeight || 0);
+    if(document.querySelector('.topbar') && !document.querySelector('.topbar').closest('.header'))
+      height -= (document.querySelector('.topbar').clientHeight || 0);
     return height;
   };
 
