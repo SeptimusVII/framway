@@ -25,6 +25,7 @@ img[class*=r_]{.imgContainer();}
  		object-fit: var(--img-fit);
  		object-position: var(--img-pos,initial);
  		aspect-ratio: var(--img-ratio,auto);
+ 		opacity: var(--img-opacity,1);
  	}
  	iframe{height: 100%; width: 100%; margin: 0;}
  	>figure:has(img){display: contents;}
@@ -93,6 +94,11 @@ each(@sides,.(@side_1){
 	&:is(img),img{width: auto; height: auto; place-self: center;}
 }
 
+each(range(0,100,10),{
+  .img-opacity--@{value}{
+      --img-opacity: ~(@value*1%);
+  }
+})
 
 each(@ratios, {
 	.img-r--@{key},
