@@ -46,10 +46,10 @@ var createTheme = function(){
       fs.appendFileSync('./src/themes/'+name+'/config.less',
 `#colors() {};
 #default(){};
-#alias(){};`
+#alias()  {};`
       );
-      fs.appendFileSync('./src/themes/'+name+'/'+name+'.less','');
-      fs.appendFileSync('./src/themes/'+name+'/'+name+'.js','');
+      fs.appendFileSync('./src/themes/'+name+'/'+name+'.less','.'+name+'{}');
+      fs.appendFileSync('./src/themes/'+name+'/'+name+'.js','console.log("Theme '+name+'");');
       
       if (createGit) 
         shell.exec('node scripts/git-create.js theme '+name+' '+git);
