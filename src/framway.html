@@ -159,9 +159,11 @@
                             document.querySelector('#factory').prepend(f_select);
                             f_select.addEventListener('change',()=>{
                                 f_playground.innerHTML = '';
-                                f_playground.append(new fw[utils.strToPascalCase(f_select.value)]().el);
+                                let component = new fw[utils.strToPascalCase(f_select.value)]();
+                                component.el.classList.add('f_component');
+                                f_playground.append(component.el);
                             });
-                            f_select.value = 'table-list';
+                            f_select.value = 'slider';
                             f_select.trigger('change');
                         });
                     </script>
