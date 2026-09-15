@@ -14,6 +14,7 @@ class Component{
 			}
 		}
 		component.el.component = this;
+		component.type = name;
 
 		fw.components_active[name] = fw.components_active[name] || [];
 		fw.components_active[name].push(component);
