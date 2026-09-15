@@ -125,6 +125,18 @@ Component.prototype.getAttr = function(label, placeholder = undefined){
     else
       return placeholder;
 }
+Component.prototype.getCssProperty = function(label, placeholder = undefined){
+	let component = this;
+	if(component.el.style.getPropertyValue(label) !== null && component.el.style.getPropertyValue(label) !== "")
+	    return component.el.style.getPropertyValue(label) === 'true' ? true : component.el.style.getPropertyValue(label) === 'false' ? false : component.el.style.getPropertyValue(label);
+	  else
+	    return placeholder;
+}
+
+Component.prototype.setCssProperty = function(label, value){
+	let component = this;
+	component.el.style.setProperty(label, value);
+}
 
 let componentObserver = new MutationObserver(function(mutations) {
 	mutations.forEach( function (mutation) {
