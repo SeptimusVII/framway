@@ -97,14 +97,15 @@ Component.prototype.getTemplate = function(){
 	return utils.htmlToNode(this.constructor.tpl);
 }
 
-Component.prototype.log = function(title,msg = false){
+Component.prototype.log = function(title,msg = false, displayObject = false){
   if(this.constructor.debug){
     let tstamp = new Date();
     tstamp = '['+ tstamp.getHours() +':'+ tstamp.getMinutes() +':'+ tstamp.getSeconds() +']';
     console.log(tstamp+" Component "+this.constructor.name+": "+title);
     if(msg)
       console.log(msg);
-    console.log(this);
+    if(displayObject)
+    	console.log(this);
   }
 }
 
