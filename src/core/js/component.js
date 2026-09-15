@@ -111,7 +111,7 @@ Component.prototype.log = function(title,msg = false, displayObject = false){
 
 Component.prototype.getData = function(label, placeholder = undefined){
   let component = this;
-  label = label.toLowerCase();
+  label = utils.lowerize(utils.strToPascalCase(label.toLowerCase()));
   if(component.el.dataset[label] !== undefined && component.el.dataset[label] !== "")
       return component.el.dataset[label] === 'true' ? true : component.el.dataset[label] === 'false' ? false : component.el.dataset[label];
     else
