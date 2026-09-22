@@ -10,7 +10,7 @@
   box-sizing: border-box;
 }
 html{
-	overflow-x: hidden; 
+	overflow-x: clip; 
 	font-size: var(--body-font-size); 
 	each(#breakpoint(),{
 		@lookup: 'font-size-@{key}';
@@ -22,6 +22,7 @@ html{
 
 body{
 	margin: 0;
+	overflow-x: clip; 
 	background:  var(--body-background);
 	color:       var(--body-color);
 	font-size:   var(--body-font-size);
