@@ -52,14 +52,14 @@
   --shdw-color     : hsl(
       var(--shdw-hsl-h) 
       var(--shdw-hsl-s) 
-      var(--shdw-hsl-l) / calc( 0.5 - (0.25 * var(--shdw-elevation)))
+      var(--shdw-hsl-l) / var(--shdw-hsl-a)
     );
   --shdw-hsl-h     : #{hue($primary)};
   --shdw-hsl-s     : #{saturation($primary)};
   --shdw-hsl-l     : #{lightness($primary)};
   --shdw-hsl-a     : calc( 0.5 - (0.25 * var(--shdw-elevation)));
 }
-%shdw{ 
+@mixin shdw(){ 
   box-shadow: none;
   --shdw  : 
     calc(var(--shdw-offx) * var(--shdw-elevation)) 
@@ -69,15 +69,15 @@
   filter: drop-shadow(var(--shdw));
 }
 .shdw{
-  @extend %shdw;
+  @include shdw();
 }
 .txt-shdw{
-  @extend %shdw;
+  @include shdw();
   filter: none;
   text-shadow: var(--shdw);
 }
 .box-shdw{
-  @extend %shdw;
+  @include shdw();
   filter: none;
   box-shadow: var(--shdw);
 }
