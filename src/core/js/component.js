@@ -142,7 +142,9 @@ let componentObserver = new MutationObserver(function(mutations) {
 	mutations.forEach( function (mutation) {
 		if (typeof mutation.addedNodes == "object") {
 			mutation.addedNodes.forEach(function (node) {
-				let isComponent = node.classList.fw__containsAny(fw.components);
+				if (node.classList.contains('exclude_component'))
+					return;
+				let isComponent = node.classList.fw__containsAny(fw.components) ;
 			  	if (isComponent && typeof fw[utils.strToPascalCase(isComponent)] == 'function' && typeof node.component == 'undefined') {
 	  				new fw[utils.strToPascalCase(isComponent)](node);
 	  				if (fw.debug) console.log('A component '+isComponent+' has been added to the DOM and initialized',node.component);
@@ -151,7 +153,9 @@ let componentObserver = new MutationObserver(function(mutations) {
 		}
 		if (typeof mutation.removedNodes == "object") {
 			mutation.removedNodes.forEach(function (node) {
-				let isComponent = node.classList.fw__containsAny(fw.components);
+				if (node.classList.contains('exclude_component'))
+					return;
+				let isComponent = node.classList.fw__containsAny(fw.components) ;
 				if (isComponent && typeof node.component == 'object') {
 					isComponent = utils.strToPascalCase(isComponent);
 			  	let i = fw.components_active[isComponent].indexOf(node.component);
