@@ -191,7 +191,11 @@ dialog{
 	.container();
 	.paper();
 	.lcnm();
-	width: 100%; padding: var(--modal-spacing, 2em); border: 0; margin: auto;
+	width: 100%; 
+	max-width: calc(var(--container-mw) - 2em);
+	padding: var(--modal-spacing, 2em); 
+	border: 0; 
+  margin: auto;
 	.close{
 		.ui-btn();
 		.ui-close({
