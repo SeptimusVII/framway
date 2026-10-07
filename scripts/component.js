@@ -8,16 +8,16 @@ var git         = '';
 
 var getComponent = function(){
     shell.exec('node scripts/git-get.js component '+name+' '+git);
-    if (!fs.existsSync('./src/components/'+name+'/'+name+'.js')){
-        fs.remove('./src/components/'+name,function(err){
-            if(err)
-                console.log('\n'+err.message+'\n');
-            else{
-                // createGit = false;
-                // createComponent();
-            }
-        });
-    }
+    // if (!fs.existsSync('./src/components/'+name+'/'+name+'.js')){
+    //     fs.remove('./src/components/'+name,function(err){
+    //         if(err)
+    //             console.log('\n'+err.message+'\n');
+    //         else{
+    //             // createGit = false;
+    //             // createComponent();
+    //         }
+    //     });
+    // }
 }
 
 
