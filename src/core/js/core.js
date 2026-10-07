@@ -51,4 +51,14 @@ window.addEventListener("resize", function(){
   utils.adjustTooltips(); // todo: move this to futur component
 });
 
+/*
+Close button events
+ */
+document.addEventListener('click',(e)=>{
+    if (e.target.classList.contains('close')) {
+    	if (e.target.parentNode.nodeName == 'DIALOG')
+    		e.target.parentNode.close();
+    }
+});
+
 module.exports = new Framway();
