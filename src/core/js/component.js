@@ -142,7 +142,7 @@ let componentObserver = new MutationObserver(function(mutations) {
 	mutations.forEach( function (mutation) {
 		if (typeof mutation.addedNodes == "object") {
 			mutation.addedNodes.forEach(function (node) {
-				if (node.classList.contains('exclude_component'))
+				if (node.nodeType != 1 || node.classList.contains('exclude_component'))
 					return;
 				let isComponent = node.classList.fw__containsAny(fw.components) ;
 			  	if (isComponent && typeof fw[utils.strToPascalCase(isComponent)] == 'function' && typeof node.component == 'undefined') {
@@ -153,7 +153,7 @@ let componentObserver = new MutationObserver(function(mutations) {
 		}
 		if (typeof mutation.removedNodes == "object") {
 			mutation.removedNodes.forEach(function (node) {
-				if (node.classList.contains('exclude_component'))
+				if (node.nodeType != 1 || node.classList.contains('exclude_component'))
 					return;
 				let isComponent = node.classList.fw__containsAny(fw.components) ;
 				if (isComponent && typeof node.component == 'object') {
