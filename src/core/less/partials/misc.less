@@ -129,6 +129,9 @@ each(#alias(),{
 })
 
 // UI MISC ELEMENTS
+:root{
+	--ui-btn-size: 20px;
+}
 .ui-btn(@style:{}){
 	cursor: pointer;
 	opacity: 0.6;
@@ -139,7 +142,6 @@ each(#alias(),{
 	@style();
 }
 .ui-close(@style:{}){
-	--ui-btn-size: 20px;
 	position: relative;
 	flex-shrink: 0;
 	width: var(--ui-btn-size);
@@ -164,7 +166,6 @@ each(#alias(),{
 .close{.ui-close();}
 
 .ui-more(@style:{}){
-	--ui-btn-size: 20px;
 	aspect-ratio: 1;
   width: var(--ui-btn-size);
   display: flex;
@@ -198,11 +199,12 @@ dialog{
   margin: auto;
 	.close{
 		.ui-btn();
-		.ui-close({
-			position: absolute;
-			top: calc((var(--modal-spacing,2em) / 2) - (var(--ui-btn-size) / 2) );
-			right: calc((var(--modal-spacing,2em) / 2) - (var(--ui-btn-size) / 2) );
-		})
+		.ui-close();
+	}
+	>.close{
+		position: absolute;
+		top: calc((var(--modal-spacing,2em) / 2) - (var(--ui-btn-size) / 2) );
+
 	}
 	&::backdrop {
 	  background-color: transparent;
