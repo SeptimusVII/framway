@@ -505,6 +505,7 @@ var Utils = function Utils(){
     doc.write(html);
     doc.close();
     iframe.style.width = "100%";
+    iframe.style.border = "0";
     utils.resizeIframeOnContent(iframe);
     return iframe;
   }
