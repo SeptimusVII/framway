@@ -13,8 +13,10 @@ class Component{
 				}
 			}
 		}
+		// console.log('constructor',this);
 		component.el.component = this;
 		component.type = name;
+		component.debug = component.debug ?? component.getData('debug', this.constructor.debug)
 
 		fw.components_active[name] = fw.components_active[name] || [];
 		fw.components_active[name].push(component);
@@ -98,7 +100,7 @@ Component.prototype.getTemplate = function(){
 }
 
 Component.prototype.log = function(title,msg = false, displayObject = false){
-  if(this.constructor.debug){
+  if(this.constructor.debug || this.debug){
     let tstamp = new Date();
     tstamp = '['+ tstamp.getHours() +':'+ tstamp.getMinutes() +':'+ tstamp.getSeconds() +']';
     console.log(tstamp+" Component "+this.constructor.name+": "+title);
@@ -145,10 +147,10 @@ let componentObserver = new MutationObserver(function(mutations) {
 				if (node.nodeType != 1 || node.classList.contains('exclude_component'))
 					return;
 				let isComponent = node.classList.fw__containsAny(fw.components) ;
-			  	if (isComponent && typeof fw[utils.strToPascalCase(isComponent)] == 'function' && typeof node.component == 'undefined') {
-	  				new fw[utils.strToPascalCase(isComponent)](node);
-	  				if (fw.debug) console.log('A component '+isComponent+' has been added to the DOM and initialized',node.component);
-			  	}
+		  	if (isComponent && typeof fw[utils.strToPascalCase(isComponent)] == 'function' && typeof node.component == 'undefined') {
+  				new fw[utils.strToPascalCase(isComponent)](node);
+  				if (fw.debug) console.log('A component '+isComponent+' has been added to the DOM and initialized',node.component);
+		  	}
 			})
 		}
 		if (typeof mutation.removedNodes == "object") {
