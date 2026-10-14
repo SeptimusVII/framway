@@ -517,23 +517,31 @@ var Utils = function Utils(){
   }
 
 
-  utils.htmlToNode = function(html) {
-      const template = document.createElement('template');
-      template.innerHTML = html.trim().replace(/\r?\n|\r/gm, "");
-      const nNodes = template.content.childNodes.length;
-      if (nNodes !== 1) {
-          throw new Error(
-              `html parameter must represent a single node; got ${nNodes}. ` +
-              'Note that leading or trailing spaces around an element in your ' +
-              'HTML, like " <img/> ", get parsed as text nodes neighbouring ' +
-              'the element; call .trim() on your input to avoid this.'
-          );
+  utils.htmlToNode = function(html,allowMultiple=true,wrap=false) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim().replace(/\r?\n|\r/gm, "");
+    const nNodes = template.content.childNodes.length;
+    if (nNodes !== 1) {
+      if(!allowMultiple){
+        throw new Error(
+            `html parameter must represent a single node; got ${nNodes}. ` +
+            'Note that leading or trailing spaces around an element in your ' +
+            'HTML, like " <img/> ", get parsed as text nodes neighbouring ' +
+            'the element; call .trim() on your input to avoid this.'
+        );
+      } 
+      if(wrap){
+        template.content.wrapInner('<div></div>');
+        return template.content.firstChild
+      } else {
+        return template.content
       }
+    } else {
       return template.content.firstChild;
+    }
   }
   /** Deprecated */
   utils.getStringAsElement = utils.getNodeFromString = utils.htmlToNode;
-
 
   Object.defineProperty(NodeList.prototype, 'filter', {
     value: function(selector){
