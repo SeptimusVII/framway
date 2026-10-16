@@ -449,6 +449,29 @@ var Utils = function Utils(){
   utils.normalize = function(str){
     return str.toLowerCase().replace(/ |\./g,'_');
   }
+  utils.segmentStr = function(str, granularity = 'word', joiners = ["-"]){
+    const segmenter = new Intl.Segmenter([], { granularity: granularity });
+    const segmentedText = segmenter.segment(str);
+    // const segments = [...segmentedText].filter(s => s.isWordLike).map(s => {s.segment});
+    const segments = [...segmentedText];
+    let final = [];
+    for (let i = 0; i < segments.length; i++) {
+      let current = segments[i];
+      if (!current.isWordLike)
+        continue;
+      let word = current.segment;
+      while(
+        i + 2 < segments.length && 
+        joiners.includes(segments[i + 1].segment) && 
+        segments[i + 2].isWordLike 
+      ){
+        word += segments[i + 1].segment + segments[i + 2].segment;
+        i += 2;
+      }
+      final.push(word)
+    }
+    return final;
+  }
   
   // --> FRAMWAY
   utils.strToPascalCase = function(str){
