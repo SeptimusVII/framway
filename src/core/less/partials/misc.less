@@ -1,10 +1,8 @@
 .paper(@bg: #default[block-background]){
  	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
  	& when not (@bg = false){
- 		&:not([class*=bg-]){
-	 		background-color: @bg; 
-    		color: .getBestReadableFontColorOn(@bg)[@result];
- 		}
+ 		background-color: var(--block-background, @bg); 
+		color: var(--block-color,.getBestReadableFontColorOn(@bg)[@result]);
  	}
 }
 .paper{.paper();}
