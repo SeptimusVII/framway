@@ -47,7 +47,7 @@ ul,ol{
 	}
 }
 
-@pbreak-width: 20ch;
+@pbreak-width: clamp(0ch,20ch,100%);
 .pbreak{
   &:before {
     content: "";
