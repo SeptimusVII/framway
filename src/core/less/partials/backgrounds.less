@@ -1,14 +1,22 @@
+:root{
+    --block-background: .getAdminColorHSLA(#default[block-background])[@result];
+    --block-color:      .getBestReadableFontColorOn(#default[block-background])[@result];
+    --block-padding:    var(--spacing);  
+}
+.block(){
+    background: var(--block-background);
+    color:      var(--block-color);
+    padding:    var(--block-padding);
+}
+
 .bg(@color){
     @color-var: if(iscolor(@color), @color, var(escape('--@{color}')));
     @color-raw: if(iscolor(@color),@color,@@color);
-    
     --block-background: .getAdminColorHSLA(@color-var)[@result];
-    --block-color: .getBestReadableFontColorOn(@color-raw)[@result];
-    --link-color: .adjustContrast(#link[color],@color-raw)[@result];
+    --block-color:      .getBestReadableFontColorOn(@color-raw)[@result];
+    --link-color:       .adjustContrast(#link[color],@color-raw)[@result];
     --link-color-hover: .adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@result];
-    color: var(--block-color);
-    background: var(--block-background);
-    padding: var(--block-spacing,var(--spacing));
+    .block();
 }
 
 each(#colors(),{
@@ -30,9 +38,7 @@ each(#alias(),{
             --block-color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
             --block-background: .getAdminColorHSLA(color-mix(in oklab, var(escape('--@{key}')) 60%, #fff))[@result];
         }
-        color: var(--block-color);
-        background: var(--block-background);
-        padding: var(--block-spacing,var(--spacing));
+        .block();
         // .debug(luma(@value))
     }
 })
