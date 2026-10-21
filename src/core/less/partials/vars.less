@@ -14,8 +14,10 @@
 :root{
 	each(#alias(),{
 		--@{key}: @value;
+		--@{key}-font: .getBestReadableFontColorOn(@value)[@result];
 	});
 	--theme: var(--primary);
+	--theme-font: var(--primary-font);
 	--spacing: @spacing;
 	--radius: @radius;
 }
