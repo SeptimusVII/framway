@@ -587,6 +587,17 @@ var Utils = function Utils(){
       this.dispatchEvent(new Event(eventName));
     }
   });
+  Object.defineProperty(Node.prototype, 'wrap', {
+    value: function(wrapper){
+      if (typeof wrapper === "string") {
+        wrapper = utils.htmlToNode(wrapper);
+      }
+      if (this.nodeType == 1 && this.parentNode) {
+        this.parentNode.insertBefore(wrapper, this);
+        wrapper.appendChild(this);
+      }
+    }
+  });
   Object.defineProperty(Node.prototype, 'wrapInner', {
     value: function(wrapper){
       if (typeof wrapper === "string") {
