@@ -28,7 +28,7 @@ $griditem-maxwidth: 1fr !default;
   }
 }
 
-@mixin grid-min-cols-max($cols-min, $cols-max, $cols-min-width, $row-gap: 0px, $cols-gap: 0px) {
+@mixin grid-min-max-cols($cols-min, $cols-max, $cols-min-width, $row-gap: 0px, $cols-gap: 0px) {
   --cols-min: #{$cols-min};
   --cols-max: #{$cols-max};
   --cols-min-width: #{$cols-min-width};
