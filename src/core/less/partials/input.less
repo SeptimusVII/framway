@@ -2,6 +2,7 @@
 @input-color                : if(isdefined(#input[color])                , #input[color]         , .getBestReadableFontColorOn(@input-background));
 @input-p-x                  : if(isdefined(#input[p-x])                  , #input[p-x]           , .5em);
 @input-p-y                  : if(isdefined(#input[p-y])                  , #input[p-y]           , .25em);
+@input-margin               : if(isdefined(#input[margin])               , #input[margin]        , 1em);
 @input-font-size            : if(isdefined(#input[font-size])            , #input[font-size]     , 1em);
 @input-line-height          : if(isdefined(#input[line-height])          , #input[line-height]   , 1.5em);
 @input-border-width         : if(isdefined(#input[border-width])         , #input[border-width]  , 1px);
@@ -31,6 +32,7 @@
 	--input-border-radius : @input-border-radius; 
 	--input-p-x           : @input-p-x;
 	--input-p-y           : @input-p-y;
+	--input-margin           : @input-margin;
 	--input-font-size     : @input-font-size;
 	--input-line-height   : @input-line-height;
 }
@@ -52,8 +54,8 @@
 	font-size:        var(--input-font-size, @input-font-size);
 	line-height:      var(--input-line-height, @input-line-height);
 
-	margin-right:  1em;
-	margin-bottom: 1em;
+	margin-right:     var(--input-margin);
+	margin-bottom:    var(--input-margin);
 
 	td &:last-child {margin-bottom: 0;margin-right: 0; }
 
