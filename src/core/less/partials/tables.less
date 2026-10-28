@@ -41,7 +41,7 @@
 	--table-hover-bg:      @table-hover-bg;
 
 	width: 100%;
-	margin-bottom: @spacing;
+	margin-bottom: var(--spacing);
 	vertical-align:   var(--table-vertical-align, top);
   border-color: 	  var(--table-border-color);
 	color:            var(--table-font-color, @table-color);
@@ -147,7 +147,7 @@ table.layout-fixed{table-layout: fixed;}
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  &:not(:last-child){margin-bottom: @spacing;}
+  &:not(:last-child){margin-bottom: var(--spacing);}
   &>.table{margin-bottom: 0;}
 }
 
