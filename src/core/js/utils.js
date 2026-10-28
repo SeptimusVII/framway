@@ -609,6 +609,12 @@ var Utils = function Utils(){
       }
     }
   });
+  Object.defineProperty(Node.prototype, 'getIndex', {
+    value: function(){
+      return Array.from(this.parentNode.children).indexOf(this);
+    }
+  });
+
 
   /**
    * adjust position of OOB tooltips
