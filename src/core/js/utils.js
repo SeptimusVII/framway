@@ -265,6 +265,16 @@ var Utils = function Utils(){
       return components.join("");
   }
 
+
+  /**
+   * return a strict boolean of a given value, including a test on string "false" returning false
+   * @param  {Any} value 
+   * @return {Boolean}     
+   */
+  utils.booleanify = function(value){
+    return value === 'true' ? true : value === 'false' ? false : !!value;
+  }
+
   
 
   // --> OBJECT
