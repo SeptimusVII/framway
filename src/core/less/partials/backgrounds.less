@@ -1,3 +1,4 @@
+@contrast-mode: manual;
 :root{
     --block-background: .getAdminColorHSLA(#default[block-background])[@result];
     --block-color:      .getBestReadableFontColorOn(#default[block-background])[@result];
@@ -13,9 +14,21 @@
     @color-var: if(iscolor(@color), @color, var(escape('--@{color}')));
     @color-raw: if(iscolor(@color),@color,@@color);
     --block-background: .getAdminColorHSLA(@color-var)[@result];
-    --block-color:      .getBestReadableFontColorOn(@color-raw)[@result];
-    --link-color:       .adjustContrast(#link[color],@color-raw)[@result];
-    --link-color-hover: .adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@result];
+    
+    // AUTO CONTRAST
+    & when (@contrast-mode = auto){
+        --block-color: contrast-color(var(--block-background));
+        --link-color:       color-mix(in oklab, #link[color] 100%,         var(--block-color) 80%);
+        --link-color-hover: color-mix(in oklab, #link[@color-hover] 100%,  var(--block-color) 50%);
+    }
+
+    // MANUAL CONTRAST
+    & when (@contrast-mode = manual){
+        --block-color:      .getBestReadableFontColorOn(@color-raw)[@result];
+        --link-color:       .adjustContrast(#link[color],@color-raw)[@result];
+        --link-color-hover: .adjustContrast(#link[@color-hover],@color-raw,@threshold:2)[@result];
+    }
+    
     .block();
 }
 
@@ -31,12 +44,12 @@ each(#alias(),{
     // ALIAS BLOCKS
     .block-@{key}{
         & when (contrast(@value) = #fff){
-            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
             --block-background: .getAdminColorHSLA(color-mix(in oklab, var(escape('--@{key}')) 40%, #fff))[@result];
+            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 90%, #000);
         }
         & when (contrast(@value) = #000){
-            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
             --block-background: .getAdminColorHSLA(color-mix(in oklab, var(escape('--@{key}')) 60%, #fff))[@result];
+            --block-color:      color-mix(in oklab, var(escape('--@{key}')) 70%, #000);
         }
         .block();
         // .debug(luma(@value))
