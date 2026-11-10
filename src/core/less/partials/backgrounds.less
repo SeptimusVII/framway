@@ -62,7 +62,9 @@ each(#alias(),{
 .bg-theme{
     .bg(transparent);
     --block-background: .getAdminColorHSLA(var(--theme))[@result];
-    --block-color:      var(--theme-font);
+    --block-color: var(--theme-font);
+    --link-color:       color-mix(in oklab, #link[color] 100%, var(--block-color) 80%);
+    --link-color-hover: color-mix(in oklab, #link[@color-hover] 100%,  var(--block-color) 50%);
 }
 
 each(range(0,100,10),{
